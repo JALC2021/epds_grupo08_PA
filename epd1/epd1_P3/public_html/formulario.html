@@ -11,14 +11,34 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <header>
-            <h1>Club de Lectura Universidad Pablo de Olavide</h1>
+        <figure><img src="http://grepetto.com/fig/upo.gif" width="" height="" align="">
+            <h1 align="justify">Club de Lectura Universidad Pablo de Olavide</h1>
+            </figure>
             <nav>
                 <a href="index.html">Inicio</a> |
                 <!--Se podria poner un div ?? -->
             </nav>
         </header>
+        <br>
+        <main>
+
+            <form action="." oninput="range_control_value.value = range_control.valueAsNumber">
+Nombre Usuario: <input type="text" name="name_control" align="justify" autofocus required />
+<br />
+Email: <input type="email" name="email_control" align="justify" required />
+<br />
+Password: <input type="Password" name="password" align="justify" required>
+<br />
+Nombre y Apellidos: <input type="text" name="nombre" align="justify">
+<br />
+<legend>Seleciona: </legend>
+                        <input type="checkbox" name="autores" value="" />Autores<br />
+                        <input type="checkbox" name="libros" value="" />Libros<br />
+<br />
+<input type="submit" value="Enviar" />
             
+        </main>
+            <br>
             <footer>
             <figure> <img src="https://www.upo.es/export/portal/com/css/portada/cssimg/logo_upo.gif" alt="icono upo" align="left"></figure>
             <p>Equipo EPD 8 Programaci&oacute;n Avanzada</p>
