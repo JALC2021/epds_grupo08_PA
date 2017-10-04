@@ -1,0 +1,1004 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xml:lang="es"
+      lang="es">
+  <head>
+    <meta http-equiv="Content-Type"
+          content="text/html; charset=us-ascii" />
+    <link rel="stylesheet"
+          href="estilo.css"
+          type="text/css" />
+    <title>
+      Estructura de Datos y de la Informaci&oacute;n - Entorno de
+      Desarrollo Java NetBeans IDE 4.1
+    </title>
+  </head>
+  <body>
+    <div class="cabecera">
+      <h1>
+        Estructura de Datos y de la Informaci&oacute;n
+      </h1>
+    </div>
+    <div>
+      <div class="lateral">
+        <div class="logo">
+          <img src="imagenes/LogoPlumUpo.gif"
+               alt="Logo UPO" />
+        </div>
+        <ul>
+          <li>Pr&aacute;cticas
+            <ol>
+              <li><a href="index.html">Entorno de Desarrollo Java Netbeas IDE 4.1</a>
+              </li>
+              <li><a href="construccion.html">Estructuras de control y mecanismos de
+              entrada/salida de texto</a>
+              </li>
+              <li><a href="construccion.html">Interfaces</a>
+              </li>
+              <li><a href="construccion.html">Clases, objetos e interfaces</a>
+              </li>
+              <li><a href="construccion.html">M&eacute;todos sobrecargados y constructores</a>
+              </li>
+              <li><a href="construccion.html">Visibilidad y miembros de clase</a>
+              </li>
+              <li><a href="construccion.html">Herencia de clases</a>
+              </li>
+            </ol>
+          </li>
+          <li>Seminarios
+            <ol>
+              <li><a href="s1.html">Estructuras de control</a>
+              </li>
+              <li><a href="construccion.html">Interfaces</a>
+              </li>
+              <li><a href="construccion.html">Interfaces</a>
+              </li>
+              <li><a href="construccion.html">Clases</a>
+              </li>
+              <li><a href="construccion.html">Herencia</a>
+              </li>
+              <li><a href="construccion.html">Visibilidad y miembros de clase</a>
+              </li>
+              <li><a href="construccion.html">Excepciones</a>
+              </li>
+            </ol>
+          </li>
+        </ul>
+      </div>
+      <div class="central">
+        <h2>
+          APD-1: ENTORNO DE DESARROLLO JAVA NETBEANS IDE 4.1
+        </h2>
+        <div class="areaLimpia">
+          <div class="tablaContenido">
+            <p>
+              <strong>Contenido</strong>
+            </p>
+            <ol>
+              <li>
+                <a href="#objetivos">Objetivos</a>
+              </li>
+              <li>
+                <a href="#conceptos">Conceptos</a>
+              </li>
+              <li>
+                <a href="#bibliografia">Bibliograf&iacute;a
+                B&aacute;sica</a>
+              </li>
+              <li>
+                <a href="#experimentos">Experimentos</a>
+              </li>
+              <li>
+                <a href="#ejercicios">Ejercicios</a>
+              </li>
+              <li>
+                <a href="#problemas">Problemas</a>
+              </li>
+              <li>
+                <a href="#ampBibliografia">Ampliaci&oacute;n de
+                Bibliograf&iacute;a</a>
+              </li>
+            </ol>
+          </div>
+        </div>
+        <div class="cuaderno">
+          <h3 id="objetivos">
+            Objetivos
+          </h3>
+          <ul>
+            <li>Aprender el uso del entorno de desarrollo
+            NetBeans IDE 4.1 y familiarizarse con las acciones
+            b&aacute;sicas del mismo.
+            </li>
+            <li>Edici&oacute;n, compilaci&oacute;n,
+            ejecuci&oacute;n y depuraci&oacute;n de programas.
+            </li>
+          </ul>
+          <h3 id="conceptos">
+            Conceptos
+          </h3>
+          <div class="bloqueexplicacion">
+            <p>
+              NetBeans IDE 4.1 es un entorno de desarrollo para
+              la creaci&oacute;n de aplicaciones en lenguaje Java
+              desarrollado por Sun Microsystems Inc. y
+              distribuido de forma libre. &Eacute;ste ser&aacute;
+              el entorno de desarrollo que se emplear&aacute;
+              durante el desarrollo de las sesiones
+              pr&aacute;cticas de esta asignatura.
+            </p>
+            <p>
+              NetBeans ha sido desarrollado empleando Java y por
+              lo tanto que se ejecuta sobre la M&aacute;quina
+              Virtual Java. Debido a esto, para poder usar
+              NetBeans deber&aacute; disponer de dicha
+              m&aacute;quina virtual, as&iacute; como las
+              herramientas de desarrollo de Java, todo ello
+              incluido en J2SE JDK, el kit de desarrollo Java 2
+              en su versi&oacute;n est&aacute;ndar. La
+              versi&oacute;n 4.1 de NetBeans requiere para su
+              correcto funcionamiento que la versi&oacute;n 5.0 o
+              superior de J2SE JDK est&eacute; instalada
+              previamente.
+            </p>
+            <p>
+              Para instalar NetBeans 4.1 en su ordenador personal
+              deber&aacute; descargar y ejecutar los siguientes
+              instaladores siguiendo el orden indicado:
+            </p>
+            <ol>
+              <li>J2SE JDK 5.0 Update 8 (o versi&oacute;n
+              superior): <a href=
+              "http://java.sun.com/javase/downloads/index.jsp">http://java.sun.com/javase/downloads/index.jsp</a>
+              </li>
+              <li>NetBeans 4.1: <a href=
+              "http://www.netbeans.org/community/releases/41/">http://www.netbeans.org/community/releases/41/</a>
+              </li>
+            </ol>
+            <p>
+              Recientemente, Sun Microsystems est&aacute;
+              ofreciendo a los usuarios la versi&oacute;n 5.0 de
+              NetBeans. Podr&aacute; descargar este programa,
+              junto con la versi&oacute;n m&aacute;s reciente de
+              J2SE JDK, todo en un &uacute;nico programa de
+              instalaci&oacute;n, en la siguiente
+              direcci&oacute;n:
+            </p>
+            <p>
+              <a href=
+              "http://java.sun.com/j2se/1.5.0/download-netbeans.html">
+              http://java.sun.com/j2se/1.5.0/download-netbeans.html</a>
+            </p>
+          </div>
+          <h4>
+            1. Pasos en la creaci&oacute;n de un programa
+          </h4>
+          <div class="bloqueexplicacion">
+            <dl>
+              <dt>
+                Edici&oacute;n
+              </dt>
+              <dd>
+                La edici&oacute;n no es m&aacute;s que escribir
+                el c&oacute;digo del programa propiamente dicho.
+                Dado que Java es un lenguaje totalmente orientado
+                a objetos, todo c&oacute;digo (incluido el
+                programa principal) debe estar encapsulado en una
+                clase. Una vez escrito el c&oacute;digo en la
+                clase correspondiente, &eacute;sta debe ser
+                almacenada en un fichero cuyo nombre coincide
+                exactamente con el nombre de la clase
+                a&ntilde;adiendo la extensi&oacute;n ".java".
+              </dd>
+              <dt>
+                Compilaci&oacute;n
+              </dt>
+              <dd>
+                La compilaci&oacute;n es una fase
+                autom&aacute;tica en la que el compilador de java
+                (<em>javac</em>) transforma el c&oacute;digo
+                fuente en c&oacute;digo m&aacute;quina
+                (<em>bytecode</em>) interpretable por la
+                m&aacute;quina virtual, creando un fichero de
+                igual nombre que el &ldquo;.java&rdquo;, pero con
+                extensi&oacute;n &ldquo;.class&rdquo;. En caso de
+                que el c&oacute;digo Java contenga errores
+                (sint&aacute;cticos o sem&aacute;nticos), el
+                compilador no produce el fichero
+                &ldquo;.class&rdquo;, y avisa al programador de
+                los errores existentes, su tipo y
+                localizaci&oacute;n en el c&oacute;digo mediante
+                un mensaje en pantalla. Estos errores se
+                denominan errores de compilaci&oacute;n.
+              </dd>
+              <dt>
+                Ejecuci&oacute;n
+              </dt>
+              <dd>
+                Una vez compilado el programa, la m&aacute;quina
+                virtual interpreta el c&oacute;digo
+                m&aacute;quina y lo ejecuta en la plataforma
+                concreta donde est&aacute; instalada (sistema
+                operativo + arquitectura hardware). En esta fase
+                tambi&eacute;n se pueden producir errores por mal
+                funcionamiento del programa, denominados errores
+                de ejecuci&oacute;n, que provienen de una
+                confusi&oacute;n del programador al haber escrito
+                un programa que no realiza las operaciones que
+                deseaba. Estos errores son m&aacute;s
+                dif&iacute;ciles de corregir, ya que el
+                compilador no indica qu&eacute; error hay ni
+                d&oacute;nde se produce, ni es posible que lo
+                indique ya que para &eacute;l el programa
+                est&aacute; escrito correctamente, siendo
+                necesario en la mayor&iacute;a de los casos
+                depurar el programa para encontrar la parte del
+                mismo que no hace lo que deseamos.
+              </dd>
+              <dt>
+                Depuraci&oacute;n.
+              </dt>
+              <dd>
+                La mayor&iacute;a de los entornos de
+                programaci&oacute;n permiten depurar programas
+                realizando una ejecuci&oacute;n paso a paso, es
+                decir l&iacute;nea a l&iacute;nea del programa, y
+                consultar los valores que van tomando las
+                variables y objetos, de manera que podemos hacer
+                una traza para detectar d&oacute;nde y por
+                qu&eacute; se producen los errores y corregir los
+                mismos.
+              </dd>
+            </dl>
+          </div>
+          <div class="figura">
+            <img src="imagenes/Esquema%20Java.gif"
+                 alt="Esquema de Java" /><br />
+            <em>Figura 1</em>. Pasos en la creaci&oacute;n de un
+            programa en Java
+          </div>
+          <h4>
+            2. El entorno NetBeans IDE 4.1
+          </h4>
+          <div class="bloqueexplicacion">
+            <p>
+              El entorno de desarrollo NetBeans IDE 4.1 integra,
+              entre otras, las siguientes herramientas:
+            </p>
+            <ul>
+              <li>Editor orientado la creaci&oacute;n de
+              c&oacute;digo Java: Este editor resaltar&aacute;
+              las palabras clave, expresiones, constantes, etc.
+              </li>
+              <li>Compilador de c&oacute;digo fuente Java.
+              </li>
+              <li>Depurador visual (Debuger), que permite
+              visualizar y modificar el contenido de variables.
+              </li>
+              <li>Visor de proyectos y ficheros que permite
+              visualizar la jerarqu&iacute;a de las clases
+              utilizadas en los programas as&iacute; como los
+              diferentes ficheros creados y generados durante la
+              edici&oacute;n, compilaci&oacute;n y
+              ejecuci&oacute;n de programas.
+              </li>
+              <li>Herramientas complementarias para la
+              creaci&oacute;n de aplicaciones complejas.
+              </li>
+            </ul>
+            <p>
+              Como se muestra en la Figura 2, NetBeans presenta
+              el aspecto de una aplicaci&oacute;n com&uacute;n
+              Windows, con la barra de men&uacute;s, la barra de
+              botones y varios paneles de acci&oacute;n. El panel
+              principal es el de edici&oacute;n, donde se escribe
+              el c&oacute;digo java de las diferentas clases. A
+              la izquierda encontramos los paneles de proyecto y
+              navegador, con los que podremos acceder a cada una
+              de las partes (clases y librer&iacute;as) del
+              proyecto abierto en cada momento. Por
+              &uacute;ltimo, en la parte inferior tenemos el
+              panel de salida, en el que se presenta toda la
+              informaci&oacute;n sobre la compilaci&oacute;n,
+              errores y ejecuci&oacute;n del programa.
+            </p>
+          </div>
+          <div class="figura">
+            <img src="imagenes/Pantalla%20NetBeans.jpg"
+                 alt="Pantalla NetBeans" /><br />
+            <em>Figura 2</em>. Vista Simple de NetBeans
+          </div>
+          <h4>
+            3. Creaci&oacute;n de un proyecto
+          </h4>
+          <div class="bloqueexplicacion">
+            <p>
+              Normalmente, una aplicaci&oacute;n no est&aacute;
+              compuesta por una &uacute;nica clase, sino que
+              contiene varias clases que interact&uacute;an entre
+              s&iacute;, cada una de las cuales resuelve parte
+              del problema principal de la aplicaci&oacute;n. Un
+              proyecto no es m&aacute;s que una unidad
+              l&oacute;gica que agrupa todos los componentes
+              (clases, librer&iacute;as, etc.) que integran la
+              aplicaci&oacute;n Java. Por ello, cada vez que
+              queramos implementar una nueva aplicaci&oacute;n,
+              crearemos un proyecto donde agruparemos las clases
+              que resuelven el problema que nos ocupa.
+            </p>
+            <p>
+              Para crear un proyecto simple (aplicaci&oacute;n
+              Java con interfaz de texto) se siguen los
+              siguientes pasos:
+            </p>
+            <ol>
+              <li>Elegimos la opci&oacute;n <em>New Project</em>
+              del men&uacute; <em>File.</em> Aparece el cuadro de
+              di&aacute;logo de la Figura 3.
+              </li>
+              <li>Seleccionamos <em>Categories: General</em> y
+              <em>Projects: Java Application</em>. Pulsamos el
+              bot&oacute;n <em>Next</em>.
+              </li>
+              <li>En el cuadro de di&aacute;logo de la Figura 4,
+              damos nombre al proyecto (<em>Project Name</em>) y
+              seleccionamos la localizaci&oacute;n donde se
+              almacenar&aacute;n los ficheros correspondientes al
+              nuevo proyecto. Recuerde la localizaci&oacute;n
+              para poder copiar su trabajo y conservarlo. Todo lo
+              que se guarda en los ordenadores de las aulas se
+              borrar&aacute; al finalizar el d&iacute;a.
+              </li>
+              <li>En este mismo cuadro podemos seleccionar
+              establecer el proyecto como principal (<em>Set as
+              Main Project</em>) y crear y renombrar de manera
+              autom&aacute;tica la clase principal que
+              contendr&aacute; el m&eacute;todo <em>main</em>
+              (<em>Create Main Class</em>).
+              </li>
+              <li>Una vez seleccionadas las opciones oportunas,
+              pulsamos el bot&oacute;n <em>finish</em>. Con ello,
+              se crea el proyecto junto a todos los ficheros
+              necesarios para su compilaci&oacute;n y
+              ejecuci&oacute;n. Ya podemos insertar el
+              c&oacute;digo java del programa.
+              </li>
+            </ol>
+          </div>
+          <div class="figura">
+            <img src="imagenes/NuevoProyecto1.jpg"
+                 alt="Nuevo proyecto paso 1" /><br />
+            <em>Figura 3</em>. Nuevo Proyecto
+          </div>
+          <div class="figura">
+            <img src="imagenes/NuevoProyecto2.jpg"
+                 alt="Nuevo proyecto paso 2" /><br />
+            <em>Figura 4</em>. Nueva Aplicaci&oacute;n Java
+          </div>
+          <h4>
+            4. Edici&oacute;n del c&oacute;digo
+          </h4>
+          <div class="bloqueexplicacion">
+            <p>
+              Una vez creado el proyecto, podemos a&ntilde;adir
+              clases y c&oacute;digo a estas clases. Para poder
+              ejecutar la aplicaci&oacute;n, es necesario que
+              exista <strong>una y s&oacute;lo una</strong> clase
+              principal que contenga el m&eacute;todo
+              <em>main</em>. Si durante la creaci&oacute;n del
+              proyecto no se seleccion&oacute; &ldquo;<em>Create
+              Main Class</em> &rdquo;, ser&aacute; necesario
+              a&ntilde;adir una. Para ello, se selecciona la
+              opci&oacute;n <em>New File</em> del men&uacute;
+              <em>File</em> y posteriormente se elige <em>Java
+              Main Class</em> (si la clase es principal) o
+              <em>Java Class</em> (si la clase no es principal).
+              Posteriormente se le da nombre a la clase en el
+              cuadro de di&aacute;logo y se pulsa
+              <em>finish.</em> La clase es a&ntilde;adida al
+              proyecto de forma autom&aacute;tica,
+              cre&aacute;ndose el fichero con extensi&oacute;n
+              <em>.java</em> correspondiente.
+            </p>
+            <p>
+              Una vez que tenemos la clase principal, podemos
+              acceder a ella mediante el panel de proyecto y
+              a&ntilde;adir c&oacute;digo en el panel de
+              edici&oacute;n. Por ejemplo:
+            </p>
+            <div class="codigo">
+              <pre>
+public class Principal {
+   public static void main(String[] args) {
+      System.out.println("Hola Mundo");
+   }
+}
+</pre>
+            </div>
+            <p>
+              NetBeans aplica al mismo tiempo que estamos
+              editando el c&oacute;digo, un an&aacute;lisis
+              sint&aacute;ctico de los que estamos escribiendo,
+              de manera que detecta errores sint&aacute;cticos en
+              tiempo de edici&oacute;n. Cuando se produce un
+              error de este tipo, aparece un peque&ntilde;o
+              cuadro rojo junto a la l&iacute;nea donde se
+              produce el error. Si situamos el rat&oacute;n sobre
+              uno de estos cuadros, nos indica cual es el error
+              que hay en la l&iacute;nea. Es importante saber que
+              el programa no puede ser compilado hasta que todos
+              estos errores son corregidos.
+            </p>
+          </div>
+          <h4>
+            5. Compilaci&oacute;n y Ejecuci&oacute;n
+          </h4>
+          <div class="bloqueexplicacion">
+            <p>
+              Cuando el programa ha sido escrito, y
+              despu&eacute;s de corregir los fallos
+              sint&aacute;cticos que marca el editor, nos
+              disponemos a compilarlo y ejecutarlo. Podemos
+              compilar todos los ficheros de c&oacute;digo Java
+              (con extensi&oacute;n de archivo .java), uno a uno
+              mediante la opci&oacute;n <em>compile
+              &rdquo;fichero.java&rdquo;</em> del men&uacute;
+              <em>Build.</em> Sin embargo, lo m&aacute;s
+              com&uacute;n es dejar que el entorno compile y
+              posteriormente ejecute el programa usando la
+              opci&oacute;n <em>Run Main Project</em> del
+              men&uacute; <em>Run</em>. Esta acci&oacute;n
+              compila autom&aacute;ticamente todos los ficheros
+              que no hab&iacute;an sido previamente compilados y
+              ejecuta el programa resultante. Toda la
+              informaci&oacute;n sobre la compilaci&oacute;n,
+              as&iacute; como la salida del programa, se muestra
+              en el panel de salida. Si durante la
+              compilaci&oacute;n se han producido errores, el
+              programa no llega a ejecutarse, mostr&aacute;ndose
+              dichos errores en el panel de salida. En este caso,
+              podemos acceder directamente a la l&iacute;nea en
+              la que se ha detectado error simplemente pinchando
+              sobre el mensaje de error correspondiente.
+            </p>
+          </div>
+          <h4>
+            6. Depuraci&oacute;n
+          </h4>
+          <div class="bloqueexplicacion">
+            <p>
+              Como se ha comentado anteriormente, un programa no
+              puede ser ejecutado hasta que todos los errores de
+              compilaci&oacute;n han sido corregidos, aunque esto
+              no garantiza el buen funcionamiento del programa.
+              Cuando un programa funciona (se ejecuta) pero no
+              realiza su cometido de manera correcta debido a un
+              error por parte del programador, decimos que se
+              producen errores de ejecuci&oacute;n. Estos errores
+              no son detectados por el compilador, por lo que es
+              necesario ejecutar el programa paso a paso para
+              realizar una traza del mismo para localizar el
+              error. A esta fase se le denomina depuraci&oacute;n
+              (<i>debug</i>). NetBeans incorporan herramientas de
+              depuraci&oacute;n a las que podemos acceder
+              mediante el men&uacute; <i>Run</i>.
+            </p>
+          </div>
+          <div class="figura">
+            <img src="imagenes/Opciones%20Debug.jpg"
+                 alt="Opciones de depurado" /><br />
+            <em>Figura 5</em>. Opciones de Depuraci&oacute;n
+          </div>
+          <div class="bloqueexplicacion">
+            <p>
+              Para arrancar el modo depuraci&oacute;n,
+              seleccionamos la opci&oacute;n <i>Debug Main
+              Project</i>, mientras que para detener la
+              ejecuci&oacute;n elegimos <i>Finish Debugger
+              Sesion</i>.
+            </p>
+            <dl>
+              <dt>
+                Breakpoints (Puntos de Ruptura)
+              </dt>
+              <dd>
+                Sirven para suspender temporalmente la
+                ejecuci&oacute;n del programa en una l&iacute;nea
+                de c&oacute;digo cuando se arranca mediante la
+                opci&oacute;n <i>Debug Main Project</i>.
+                As&iacute;, podemos examinar el valor de las
+                variables o continuar la ejecuci&oacute;n del
+                programa paso a paso. Los puntos de ruptura se
+                insertan con la tecla <i>Ctrl+F8</i> o bien con
+                la opci&oacute;n <i>Toggle Breakpoint</i>.
+              </dd>
+              <dt>
+                Ejecuci&oacute;n paso a paso (Opciones de Avance)
+              </dt>
+              <dd>
+                Una vez suspendido el programa en un punto de
+                interrupci&oacute;n, podemos ejecutar el programa
+                l&iacute;nea a l&iacute;nea, para comprobar su
+                correcto funcionamiento. Las opciones de avance
+                paso a paso son:
+                <ul>
+                  <li>
+                    <i>Step Over (F8):</i> ejecuta la siguiente
+                    l&iacute;nea de c&oacute;digo. Si la
+                    siguiente l&iacute;nea es una funci&oacute;n,
+                    la ejecuta sin ejecutar paso a paso el
+                    c&oacute;digo de dicha funci&oacute;n.
+                  </li>
+                  <li>
+                    <i>Step Into (F7):</i> ejecuta la siguiente
+                    l&iacute;nea de c&oacute;digo. Si esa
+                    l&iacute;nea es una llamada a otra
+                    funci&oacute;n, el programa entrar&aacute; en
+                    el c&oacute;digo de esa funci&oacute;n para
+                    ejecutarla paso a paso.
+                  </li>
+                  <li>
+                    <i>Step Out (crtl+F7):</i> ejecuta sin parar
+                    en cada l&iacute;nea el c&oacute;digo
+                    restante hasta salir del m&eacute;todo cuyo
+                    c&oacute;digo se est&aacute; ejecutando
+                    actualmente.
+                  </li>
+                  <li>
+                    <i>Run to Cursor (F4):</i> contin&uacute;a la
+                    ejecuci&oacute;n del programa, sin parar en
+                    cada l&iacute;nea, hasta llegar a la
+                    l&iacute;nea de c&oacute;digo en la que
+                    situemos el cursor. Esta opci&oacute;n es
+                    equivalente a crear un punto de ruptura en
+                    dicha l&iacute;nea.
+                  </li>
+                </ul>Cuando empezamos a ejecutar un programa en
+                modo depuraci&oacute;n, aparecen una serie de
+                nuevos botones en la barra de herramientas con
+                estas mismas opciones. Las diferentes opciones de
+                depuraci&oacute;n tambi&eacute;n pueden ser
+                invocadas pulsando las teclas de funci&oacute;n,
+                lo cu&aacute;l suele ser un a pr&aacute;ctica
+                habitual, por lo que es muy recomendable que se
+                familiarice cuanto antes con la tecla que
+                corresponde a cada opci&oacute;n.
+              </dd>
+              <dt>
+                Ventanas de Depuraci&oacute;n
+              </dt>
+              <dd>
+                Para ver los valores de las variables, podemos
+                utilizar las ventanas de depuraci&oacute;n.
+                Algunas de estas ventanas se abren directamente
+                cuando iniciamos la ejecuci&oacute;n. Si esto no
+                ocurre, podemos abrirlas desde el men&uacute;
+                <i>Windows</i>, opci&oacute;n <i>Debugging</i>.
+                <ul>
+                  <li>Ventana de Observaci&oacute;n
+                  (<i>Watches</i>): muestra el valor de aquellas
+                  variables que seleccionemos con la
+                  opci&oacute;n <i>New Watch</i>.
+                  </li>
+                  <li>Ventana de Variables (<i>Local
+                  Variables</i>): muestra el valor de las
+                  variables definidas dentro de la funci&oacute;n
+                  actual.
+                  </li>
+                  <li>Pila de llamadas (<i>Call Stack</i>):
+                  Muestra la pila de llamadas, es decir los que
+                  est&aacute;n m&eacute;todos en ejecuci&oacute;n
+                  en ese momento.
+                  </li>
+                </ul>
+              </dd>
+            </dl>
+          </div>
+          <h3 id="bibliografia">
+            Bibliograf&iacute;a B&aacute;sica
+          </h3>
+          <div class="bloqueexplicacion">
+            <p>
+              Entorno NetBeans:
+            </p>
+            <ul>
+              <li>NetBeans IDE 4.1 Quick Start Guide: <a href=
+              "http://www.netbeans.org/kb/41/quickstart.html">http://www.netbeans.org/kb/41/quickstart.html</a>
+              </li>
+            </ul>
+            <p>
+              Conceptos b&aacute;sicos de programaci&oacute;n y
+              del lenguaje Java:
+            </p>
+            <ul>
+              <li>Programaci&oacute;n en Java 2. Jes&uacute;s
+              S&aacute;nchez Allende y otros. McGraw-Hill, 2005.
+              Cap&iacute;tulos 0 y 1.
+              </li>
+            </ul>
+          </div>
+          <h3 id="experimentos">
+            Experimentos
+          </h3>
+          <div class="bloqueexplicacion">
+            <p>
+              <span class="identificadorExp">E1</span> Cree,
+              compile y ejecute un programa Experimento1 que
+              muestre por pantalla el mensaje "Mi primer programa
+              en Java".
+            </p>
+          </div>
+          <div class="bloqueexplicacion">
+            <p>
+              <span class="identificadorExp">E2</span> Cree un
+              nuevo programa que contenga el siguiente
+              c&oacute;digo:
+            </p>
+            <div class="codigo">
+              <pre>
+public class Experimento2{
+   public static void main(String[] args) {
+      int a = 9;
+      if(a = 0)
+         System.out.println("a es igual a 0");
+      else
+         System.out.println("a es distinto de 0");
+   }
+}
+</pre>
+            </div>
+            <ol>
+              <li>Intente compilarlo y ejecutarlo.
+              &iquest;Cu&aacute;l es el error?
+              </li>
+              <li>Corrija el programa y vuelva a compilarlo y
+              ejecutarlo. Cambie los valores de la variable a
+              para que la salida cambie.
+              </li>
+            </ol>
+          </div>
+          <div class="bloqueexplicacion">
+            <p>
+              <span class="identificadorExp">E3</span> Haga una
+              traza al siguiente programa sin ejecutarlo.
+            </p>
+            <div class="codigo">
+              <pre>
+public class Experimento3 {
+   public static void main(String[] args) {
+      int i = 10;
+      int j = 4;
+      double k;
+      k = i/j;
+      System.out.println("El valor de k es " + k);
+   }
+}
+</pre>
+            </div>
+            <ol>
+              <li>&iquest;Qu&eacute; valor deber&iacute;a tomar
+              la variable k?
+              </li>
+              <li>Edite, compile y ejecute el programa.
+              &iquest;Qu&eacute; valor toma k realmente?
+              &iquest;Por qu&eacute;?
+              </li>
+              <li>Corrija el programa para que k tome el valor
+              que calcul&oacute; en la traza.
+              </li>
+            </ol>
+          </div>
+          <div class="bloqueexplicacion">
+            <p>
+              <span class="identificadorExp">E4</span> El
+              siguiente programa pretende determinar cual es la
+              variable que almacena el valor m&aacute;ximo de las
+              tres que se definen. Ed&iacute;telo y
+              ejec&uacute;telo.
+            </p>
+            <div class="codigo">
+              <pre>
+public class Experimento4 {
+   public static void main(String[] args) {
+      int x, y, z;
+      x=10;
+      y=x/2;
+      z=x+y/2;
+      if(x&gt;y)
+         if(x&gt;z)
+            System.out.println("x es el m&aacute;ximo");
+         else
+            System.out.println("z es el m&aacute;ximo");
+      else
+         System.out.println("y es el m&aacute;ximo");
+   }
+}
+</pre>
+            </div>
+            <ol>
+              <li>&iquest;Qu&eacute; valores toman cada una de
+              las variables?
+              </li>
+              <li>&iquest;Funciona correctamente? Ejecute el
+              programa en modo depuraci&oacute;n y analice
+              d&oacute;nde est&aacute; el problema.
+              </li>
+              <li>Corrija el programa, vuelva a compilarlo y
+              ejecutarlo.
+              </li>
+            </ol>
+          </div>
+          <h3 id="ejercicios">
+            Ejercicios
+          </h3>
+          <div class="bloqueexplicacion">
+            <p>
+              <span class="identificadorEje">EJ1</span> El
+              siguiente programa contiene varios errores
+              sint&aacute;cticos y sem&aacute;nticos.
+            </p>
+            <div class="codigo">
+              <pre>
+public class Ejercico1 {
+   public static void main(String[] args) {
+        
+      int var1, var2 = 5;
+      char c1 = R, c2 = O, c3 = M, c4 = A;
+        
+      var1 = Var2 + 1;
+        
+      System.out.println("El valor de var1 es " + var1)
+      System.out.println("El valor de var2 es " + var2);
+      System.out.println("Palabra 1: " + c1 + c2 + c3 + c4 );
+      System.out.println("Palabra 2: " c4 + c3 + c2 + c1 );
+      System.out.println( c3 + c2 + c1 + c4 );
+      System.out.primtln("Palabra 4: " + c1 + c4 + c3 + c2 );
+        
+   }
+}
+</pre>
+            </div>
+            <ol>
+              <li>Escr&iacute;balo tal y como est&aacute;. No
+              atienda a los errores marcados por el entorno.
+              </li>
+              <li>Corrija todos los errores sin a&ntilde;adir
+              l&iacute;neas nuevas de manera que la salida por
+              pantalla sea la siguiente:
+                <div class="salidapantalla">
+                  <pre>
+El valor de var1 es 6
+El valor de var2 es 5
+Palabra 1: ROMA
+Palabra 2: AMOR
+Palabra 3: MORA
+Palabra 4: RAMO
+</pre>
+                </div>
+              </li>
+            </ol>
+          </div>
+          <h3 id="problemas">
+            Problemas
+          </h3>
+          <div class="bloqueexplicacion">
+            <p>
+              <span class="identificadorPro">P1</span> Escriba un
+              programa que dada una variable real <em>f</em> que
+              representa una temperatura en grados Fahrenheit,
+              almacene en otra variable real <em>c</em> la misma
+              temperatura en grados Celsius e imprima el
+              resultado por pantalla. Utilice la siguiente
+              f&oacute;rmula:
+            </p>
+            <div class="ecuacion">
+              <img src="imagenes/EcuacionTemp.gif"
+                   alt=
+                   "Ecuaci&oacute;n de conversi&oacute;n de Temperatura" />
+              </div>
+            <ol>
+              <li>Pruebe el funcionamiento del programa sabiendo
+              que 75 grados Fahrenheit equivalen a 25.8 grados
+              Celsius.
+              </li>
+              <li>La f&oacute;rmula de transformaci&oacute;n
+              puede ser representada por diversas expresiones.
+              Vuelva a ejecutar el programa pero usando las
+              siguientes expresiones. &iquest;Cu&aacute;les de
+              ellas son correctas y cu&aacute;les no lo son?
+              Justifique su respuesta.
+                <ol>
+                  <li>
+                    <pre>
+c = 5/9*(f-32);
+</pre>
+                  </li>
+                  <li>
+                    <pre>
+c = (5/9)*(f-32);
+</pre>
+                  </li>
+                  <li>
+                    <pre>
+c = (5/9.0)*(f-32);
+</pre>
+                  </li>
+                  <li>
+                    <pre>
+c = ((double)5/9)*(f-32);
+</pre>
+                  </li>
+                  <li>
+                    <pre>
+c = (f-32)*5/9;
+</pre>
+                  </li>
+                </ol>
+              </li>
+            </ol>
+          </div>
+          <div class="bloqueexplicacion">
+            <p>
+              <span class="identificadorPro">P2.</span> Complete
+              el siguiente programa que dado el radio de un
+              c&iacute;rculo (de tipo <em>double</em>), calcule
+              el di&aacute;metro, el &aacute;rea y la longitud de
+              la circunferencia, y que muestre por pantalla
+              dichos valores. Comp&iacute;lelo y
+              ejec&uacute;telo.
+            </p>
+            <div>
+              <pre>
+public class Circulo {
+   public static final double PI = 3.14; //Constante PI
+   public static void main(String[] args) {
+      double radio = 4; 
+      double diametro, area, circunferencia;
+        
+      /*Ponga aqu&iacute; el c&oacute;digo*/
+   }
+}
+</pre>
+            </div>
+          </div>
+          <div class="bloqueexplicacion">
+            <p>
+              <span class="identificadorPro">P3.</span> Escriba
+              un programa similar al anterior, pero que calcule
+              el &aacute;rea y el per&iacute;metro de un cuadrado
+              (conociendo el lado) y un tri&aacute;ngulo recto
+              (conociendo su base y altura).
+            </p>
+          </div>
+          <div class="bloqueexplicacion">
+            <p>
+              <span class="identificadorPro">P4.</span>
+              Programaci&oacute;n en Java 2. Luis Joyanes
+              Aguilar, Ignacio Zahonero Mart&iacute;nez.
+              McGraw-Hill, 2002. P&aacute;gina 172, ejercicio
+              5.1.
+            </p>
+          </div>
+          <div class="bloqueexplicacion">
+            <p>
+              <span class="identificadorPro">P5.</span>
+              Programaci&oacute;n en Java 2. Luis Joyanes
+              Aguilar, Ignacio Zahonero Mart&iacute;nez.
+              McGraw-Hill, 2002. P&aacute;gina 172, ejercicio
+              5.3.
+            </p>
+          </div>
+          <div class="bloqueexplicacion">
+            <p>
+              <span class="identificadorPro">P6.</span>
+              Programaci&oacute;n en Java 2. Luis Joyanes
+              Aguilar, Ignacio Zahonero Mart&iacute;nez.
+              McGraw-Hill, 2002. P&aacute;gina 172, ejercicio
+              5.7.
+            </p>
+          </div>
+          <div class="bloqueexplicacion">
+            <p>
+              <span class="identificadorPro">P7.</span>
+              Programaci&oacute;n en Java 2. Luis Joyanes
+              Aguilar, Ignacio Zahonero Mart&iacute;nez.
+              McGraw-Hill, 2002. P&aacute;gina 172, ejercicio
+              5.8.
+            </p>
+          </div>
+          <div class="bloqueexplicacion">
+            <p>
+              <span class="identificadorPro">P8.</span>
+              Programaci&oacute;n en Java 2. Luis Joyanes
+              Aguilar, Ignacio Zahonero Mart&iacute;nez.
+              McGraw-Hill, 2002. P&aacute;gina 172, ejercicio
+              5.9.
+            </p>
+          </div>
+          <div class="bloqueexplicacion">
+            <p>
+              <span class="identificadorPro">P9.</span>
+              Programaci&oacute;n en Java 2. Luis Joyanes
+              Aguilar, Ignacio Zahonero Mart&iacute;nez.
+              McGraw-Hill, 2002. P&aacute;gina 172, ejercicio
+              5.10.
+            </p>
+          </div>
+          <div class="bloqueexplicacion">
+            <p>
+              <span class="identificadorPro">P10.</span>
+              Programaci&oacute;n en Java 2. Luis Joyanes
+              Aguilar, Ignacio Zahonero Mart&iacute;nez.
+              McGraw-Hill, 2002. P&aacute;gina 172, ejercicio
+              5.12.
+            </p>
+          </div>
+          <h3 id="ampBibliografia">
+            Ampliaci&oacute;n de Bibliograf&iacute;a
+          </h3>
+          <div class="bloqueexplicacion">
+            <p>
+              Entorno NetBeans:
+            </p>
+            <ul>
+              <li>Using NetBeansTM IDE 4.1: <a href=
+              "http://www.netbeans.org/kb/41/using-netbeans/index.html">
+                http://www.netbeans.org/kb/41/using-netbeans/index.html</a>
+              </li>
+            </ul>
+          </div>
+          <div class="bloqueexplicacion">
+            <p>
+              Conceptos b&aacute;sicos de programaci&oacute;n y
+              del lenguaje Java:
+            </p>
+            <ul>
+              <li>Programaci&oacute;n, Algoritmos y Ejercicios
+              Resueltos en Java. David Camacho (coordinador).
+              Prentice Hall Pearson, 2003. Cap&iacute;tulo 1,
+              p&aacute;gs. 1 a 30.
+              </li>
+              <li>Programaci&oacute;n en Java 2: Algoritmos,
+              estructuras de datos y programaci&oacute;n
+              orientada a objetos. Luis Joyanes Aguilar, Ignacio
+              Zahonero Mart&iacute;nez. McGraw-Hill, 2002.
+                <ul>
+                  <li>Introducci&oacute;n a la
+                  programaci&oacute;n: Cap&iacute;tulo 1.
+                  </li>
+                  <li>Introducci&oacute;n a Java y su
+                  filosof&iacute;a: Cap&iacute;tulo 2.
+                  </li>
+                  <li>Introducci&oacute;n al lenguaje:
+                  Cap&iacute;tulos 4 y 5.
+                  </li>
+                </ul>
+              </li>
+              <li>Aprenda Java como si Estuviera en Primero.
+              <a href=
+              "http://mat21.etsii.upm.es/ayudainf/aprendainf/Java/Java2.pdf">
+                http://mat21.etsii.upm.es/ayudainf/aprendainf/Java/Java2.pdf</a>
+                Cap&iacute;tulo 1, p&aacute;gs. 1-4.
+                Cap&iacute;tulo 2, p&aacute;gs. 22 a 29.
+              </li>
+              <li>
+                <a href=
+                "http://java.sun.com/docs/books/tutorial/getStarted/index.html">
+                http://java.sun.com/docs/books/tutorial/getStarted/index.html</a>
+              </li>
+              <li>
+                <a href=
+                "http://java.sun.com/docs/books/tutorial/java/concepts/index.html">
+                http://java.sun.com/docs/books/tutorial/java/concepts/index.html</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pie">
+      Creado por Carlos D. Barranco Gonz&aacute;lez 10/9/07
+    </div>
+  </body>
+</html>

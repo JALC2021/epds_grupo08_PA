@@ -1,0 +1,230 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xml:lang="es"
+      lang="es">
+  <head>
+    <meta http-equiv="Content-Type"
+          content="text/html; charset=us-ascii" />
+    <link rel="stylesheet"
+          href="estilo.css"
+          type="text/css" />
+    <title>
+      Estructura de Datos y de la Informaci&oacute;n -
+      Estructuras de control
+    </title>
+  </head>
+  <body>
+    <div class="cabecera">
+      <h1>
+        Estructura de Datos y de la Informaci&oacute;n
+      </h1>
+    </div>
+    <div>
+      <div class="lateral">
+        <div class="logo">
+          <img src="imagenes/LogoPlumUpo.gif"
+               alt="Logo UPO" />
+        </div>
+        <ul>
+          <li>Pr&aacute;cticas
+            <ol>
+              <li><a href="index.html">Entorno de Desarrollo Java Netbeas IDE 4.1</a>
+              </li>
+              <li><a href="construccion.html">Estructuras de control y mecanismos de
+              entrada/salida de texto</a>
+              </li>
+              <li><a href="construccion.html">Interfaces</a>
+              </li>
+              <li><a href="construccion.html">Clases, objetos e interfaces</a>
+              </li>
+              <li><a href="construccion.html">M&eacute;todos sobrecargados y constructores</a>
+              </li>
+              <li><a href="construccion.html">Visibilidad y miembros de clase</a>
+              </li>
+              <li><a href="construccion.html">Herencia de clases</a>
+              </li>
+            </ol>
+          </li>
+          <li>Seminarios
+            <ol>
+              <li><a href="s1.html">Estructuras de control</a>
+              </li>
+              <li><a href="construccion.html">Interfaces</a>
+              </li>
+              <li><a href="construccion.html">Interfaces</a>
+              </li>
+              <li><a href="construccion.html">Clases</a>
+              </li>
+              <li><a href="construccion.html">Herencia</a>
+              </li>
+              <li><a href="construccion.html">Visibilidad y miembros de clase</a>
+              </li>
+              <li><a href="construccion.html">Excepciones</a>
+              </li>
+            </ol>
+          </li>
+        </ul>
+      </div>
+      <div class="central">
+        <h2>
+          AAD-1: ESTRUCTURAS DE CONTROL
+        </h2>
+        <div class="areaLimpia">
+          <div class="tablaContenido">
+            <p>
+              <strong>Contenido</strong>
+            </p>
+            <ol>
+              <li>
+                <a href="#objetivos">Objetivos</a>
+              </li>
+              <li>
+                <a href="#problema">Problema Propuesto</a>
+              </li>
+            </ol>
+          </div>
+        </div>
+        <div class="cuaderno">
+          <h3 id="objetivos">
+            Objetivos
+          </h3>
+          <ul>
+            <li>Fijar los conceptos relativos a las estructuras
+            de control de flujo y los mecanismos de entrada y
+            salida en Java.
+            </li>
+          </ul>
+          <h3 id="problema">
+            Problema Propuesto
+          </h3>
+          <div class="bloqueexplicacion">
+            <p>
+              Desarrolle un programa que simule a una
+              m&aacute;quina expendedora. El funcionamiento
+              interno de una m&aacute;quina expendedora se
+              descompone en las siguientes fases:
+            </p>
+            <ol>
+              <li>Introducci&oacute;n de efectivo: Se
+              mostrar&aacute; al usuario un mensaje indicando que
+              introduzca monedas. Se simular&aacute; la entrada
+              de monedas ofreciendo al usuario un men&uacute; con
+              los diferentes tipos de monedas en
+              circulaci&oacute;n (2 euros, 1 euro, 50 cents, 20
+              cents, 10 cents, 5 cents, 2 cents, 1 cent). Cada
+              vez que el usuario seleccione una opci&oacute;n se
+              ir&aacute; acumulando el cr&eacute;dito que tiene
+              en la m&aacute;quina, imprimi&eacute;ndose el valor
+              de dicho cr&eacute;dito despu&eacute;s de mostrar
+              el men&uacute;, siempre y cuando el valor del
+              cr&eacute;dito sea superior a cero. Se
+              repetir&aacute; la petici&oacute;n de monedas
+              mediante el men&uacute; hasta que el usuario escoja
+              la opci&oacute;n "comprar" con la que se
+              pasar&aacute; a la siguiente fase. La opci&oacute;n
+              "comprar" s&oacute;lo se mostrar&aacute; cuando el
+              cr&eacute;dito disponible sea mayor que cero. La
+              variable que almacenar&aacute; el cr&eacute;dito de
+              que dispone el usuario no deber&aacute; de ser de
+              tipo flotante decimal, si no de tipo entero. Para
+              ello, el cr&eacute;dito se expresar&aacute; en
+              c&eacute;ntimos, quedando representada por ejemplo
+              una cantidad de 2 euros por el n&uacute;mero 200,
+              la de un euro por 100, 50 c&eacute;ntimos por 50,
+              etc. Esta opci&oacute;n deber&iacute;a generar una
+              pantalla con un aspecto similar al siguiente:
+							
+							<div class="salidapantalla">
+                  <pre>Introduzca monedas: 
+=============================================
+1. Moneda de 2 euros.
+2. Moneda de 1 euro.
+3. Moneda de 50 c&eacute;ntimos.
+4. Moneda de 20 c&eacute;ntimos.
+5. Moneda de 10 c&eacute;ntimos.
+6. Moneda de 5 c&eacute;ntimos.
+7. Moneda de 2 c&eacute;ntimos.
+8. Moneda de 1 c&eacute;ntimo.
+9. Comprar.
+credito disponible: 3.80</pre>
+							</div>
+				
+              </li>
+              <li>Compra de productos: Se ofrecer&aacute; al
+              usuario un men&uacute; con el listado de productos
+              que est&aacute;n a la venta. Cada vez que el
+              usuario seleccione un producto se
+              decrementar&aacute; su precio del cr&eacute;dito
+              que posee el usuario. El usuario, mientras tenga
+              suficiente cr&eacute;dito, podr&aacute; comprar
+              tantos productos como desee. Se pasar&aacute; a la
+              siguiente fase del proceso cuando el usuario no
+              tenga cr&eacute;dito, o cuando &eacute;ste haya
+              seleccionado la opci&oacute;n "devolver cambio" del
+              men&uacute;. Esta opci&oacute;n deber&aacute; de
+              generar una pantalla similar a la siguiente:
+							<div class="salidapantalla">
+                  <pre>Seleccione productos: 
+=============================================
+1. Rosquilla. (1.50)
+2. Chocolatina (1.25)
+3. Bolsa de patatas. (1.00)
+4. Agua mineral. (0.75)
+5. Refresco. (1.00)
+6. Pipas. (0.50)
+7. Devolver cambio.
+credito disponible: 3.88
+------------------------------ El usuario pulsa la opci&oacute;n 1 ----------------------------'
+Rosquilla dispensada.</pre>
+							</div>
+							
+              </li>
+              <li>Vuelta de cambio: Esta opci&oacute;n
+              calcular&aacute; qu&eacute; cambio ha de devolver
+              una m&aacute;quina expendedora usando el
+              m&iacute;nimo n&uacute;mero de monedas. Una vez
+              calculado, el programa imprimir&aacute; por
+              pantalla el n&uacute;mero de monedas, cuando este
+              sea superior a cero, de cada tipo que se ha de
+              devolver. Se simular&aacute; la devoluci&oacute;n
+              de cada una de las monedas imprimiendo por
+              pantalla, por cada una de las monedas que se haya
+              de devolver, "Devuelvo una moneda de X", siendo X
+              el valor de la moneda devuelta. Esta opci&oacute;n,
+              en el caso de tener que devolver un cambio de 5.26
+              euros, imprimir&iacute;a una pantalla similar a la
+              siguiente:
+							
+							<div class="salidapantalla">
+                  <pre>Devoluci&oacute;n de cambio
+=============================================
+2 monedas de 2 euros.
+1 monedas de 1 euro.
+1 monedas de 20 c&eacute;ntimos.
+1 monedas de 5 c&eacute;ntimos.
+1 monedas de 1 c&eacute;ntimo.
+Devuelvo una moneda de 2 euros.
+Devuelvo una moneda de 2 euros.
+Devuelvo una moneda de 1 euro.
+Devuelvo una moneda de 20 c&eacute;ntimos.
+Devuelvo una moneda de 5 c&eacute;ntimos.
+Devuelvo una moneda de 1 c&eacute;ntimo.</pre>
+				 		 </div>						
+              </li>
+            </ol>
+            <p>
+              Todos los men&uacute;s, cuando se seleccione una
+              opci&oacute;n incorrecta, mostrar&aacute;n por
+              pantalla un mensaje indicando que la opci&oacute;n
+              es err&oacute;nea.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pie">
+      Creado por Carlos D. Barranco Gonz&aacute;lez 14/9/07
+    </div>
+  </body>
+</html>
