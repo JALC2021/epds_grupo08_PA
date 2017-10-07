@@ -9,22 +9,159 @@ and open the template in the editor.
 */
 
 body{
-    
+
     background-color:rgb(211,211,211);
-    
+
 }
 
 h1{
-    
+
     color:white;
     background-color: rgb(0,0,128);
     text-align: center;
+
+}
+
+h2{
+    
+    background-color: rgb(173,216,230);
+    color:blue;
+    border:double blue;
+    text-align: center;
+    padding:10px;
+    
     
 }
 
 .lateral{
+
+    float: left;
+    width: 20%;
+    background-color: rgb(0,0,128);
+    color:yellow;
+}
+
+.lateral a{
+
+    color:white;
+    text-decoration:none;
+
+}
+
+.tablaContenido a{
+
+    color:blue;
+    text-decoration:none;
+
+}
+
+.central{
     
-    position: relative;
-    left: 5px;
-    width: 30%;
+    float: right;
+    width:78%; 
+}
+
+.aviso{
+
+    border: double 5px red;
+    padding: 20px;
+    margin-left: 10px;
+    text-align: center;
+    background-color:rgb(224,255,255);
+}
+.tituloaviso{
+    font-weight: bold;
+    font:Sans-serif;    
+    font-size:2em;    
+}
+.cuerpoaviso{
+
+    font:serif;
+}
+
+.logo{
+
+    background-color: white;
+    text-align: center;
+    padding: 6px;
+}
+
+.pie{
+
+    background-color: rgb(0,0,128);
+    text-align: right;
+    color:yellow;
+    clear:both;
+}
+
+.salidapantalla{
+    
+    background-color: black;
+    color:green;
+    border: double yellow;
+    width:100%;
+}
+
+
+.aeraSalidaPorPantalla{
+    background-color: white;
+    border:dotted blue;
+}
+
+.bloqueexplicacion{
+    
+    background-color: #ccffff;
+    
+}
+.tablaContenido{
+    background-color: white;
+    float:right;
+    border:dashed blue 3px;
+    color:black; 
+    margin:10px;
+}
+h3{
+    
+    border-bottom: solid blue 1px;
+    color:blue;
+    margin-right: 5px;
+}
+.cuaderno{
+    
+    background-color: rgb(255,255,224);
+    padding:20px;
+}
+
+.codigo{
+    
+    background-color:#3399ff;
+    color:white;
+    border:double blue;
+    
+}
+
+.figura{
+    
+    border:solid blue;
+    text-align: center;
+    background-color:white;
+    padding:15px;
+}
+
+.identificadorPro{
+    
+    border:solid 2px blue;
+    background-color: yellow;
+}
+
+.identificadorEje{
+    
+    border:solid 2px blue;
+    background-color: #ff9933
+}
+
+.identificadorExp{
+    
+    border:solid 2px blue;
+    background-color: #00ff99
 }
