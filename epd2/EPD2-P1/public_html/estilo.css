@@ -11,6 +11,7 @@ and open the template in the editor.
 body{
 
     background-color:rgb(211,211,211);
+    text-align: justify;
 
 }
 
@@ -25,12 +26,18 @@ h1{
 h2{
     
     background-color: rgb(173,216,230);
-    color:blue;
-    border:double blue;
+    color:#000088;
+    border:double #000088 0.2em;
     text-align: center;
     padding:10px;
+     
+}
+
+h3{
     
-    
+    border-bottom: solid blue 1px;
+    color:#000088;
+    margin-right: 5px;
 }
 
 .lateral{
@@ -58,7 +65,7 @@ h2{
 .central{
     
     float: right;
-    width:78%; 
+    width:79%; 
 }
 
 .aviso{
@@ -99,33 +106,25 @@ h2{
     background-color: black;
     color:green;
     border: double yellow;
-    width:100%;
-}
-
-
-.aeraSalidaPorPantalla{
-    background-color: white;
-    border:dotted blue;
+    margin:8px;
+    padding:20px;
 }
 
 .bloqueexplicacion{
     
     background-color: #ccffff;
+    padding:5px;
     
 }
 .tablaContenido{
     background-color: white;
     float:right;
-    border:dashed blue 3px;
+    border:dashed blue 5px;
     color:black; 
     margin:10px;
+    padding:5px;
 }
-h3{
-    
-    border-bottom: solid blue 1px;
-    color:blue;
-    margin-right: 5px;
-}
+
 .cuaderno{
     
     background-color: rgb(255,255,224);
@@ -142,10 +141,11 @@ h3{
 
 .figura{
     
-    border:solid blue;
+    border:solid #000088 2px;
     text-align: center;
     background-color:white;
     padding:15px;
+    margin-top:15px;
 }
 
 .identificadorPro{
@@ -164,4 +164,45 @@ h3{
     
     border:solid 2px blue;
     background-color: #00ff99
+}
+
+.bloqueexplicacion a {
+    
+    text-decoration: none;
+    color:red;
+}
+
+dt{
+    
+    font-weight: bold;
+}
+
+.bloqueexplicacion ol, .bloqueexplicacion ul {
+    background-color: white;
+    border:dashed blue 2px;
+    padding-left:30px;
+    padding-top:15px;
+    padding-bottom:15px;
+    padding-right:15px;
+    margin:10px;
+    
+}
+
+.bloqueexplicacion dd{
+    
+    border:dotted blue 3px;
+    background-color:#ffcccc;
+    padding:10px;
+    margin: 5px;
+}
+
+.bloqueexplicacion ol ol, .bloqueexplicacion ul ul {
+    
+    border:none;
+    
+}
+.bloqueexplicacion dd ul{
+    
+    border:none;
+    background-color:#ffcccc;
 }
