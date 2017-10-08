@@ -9,22 +9,17 @@ and open the template in the editor.
 */
 
 body{
-
     background-color:rgb(211,211,211);
     text-align: justify;
-
 }
 
 h1{
-
     color:#ffffcc;
     background-color: rgb(0,0,128);
     text-align: center;
-
 }
 
 h2{
-    
     background-color: rgb(173,216,230);
     color:#000088;
     border:double #000088 0.2em;
@@ -34,14 +29,16 @@ h2{
 }
 
 h3{
-    
     border-bottom: solid blue 1px;
     color:#000088;
     margin-right: 5px;
 }
 
-.lateral{
+h4{
+    color:#000088;
+}
 
+.lateral{
     float: left;
     width: 20%;
     background-color: rgb(0,0,128);
@@ -49,33 +46,26 @@ h3{
 }
 
 .lateral ul{
-    
     padding-right: 15px;
     text-align: left
 }
 
 .lateral a{
-
     color:white;
     text-decoration:none;
-
 }
 
 .tablaContenido a{
-
     color:blue;
     text-decoration:none;
-
 }
 
 .central{
-    
     float: right;
     width:79%; 
 }
 
 .aviso{
-
     border: double 5px red;
     padding: 20px;
     margin-left: 10px;
@@ -194,19 +184,22 @@ dt{
     
 }
 
+/*lista que está dentro del apartado nº4*/
 .bloqueexplicacion dd{
     
-    border:dotted blue 3px;
+    border:dotted blue 2px;
     background-color:#ffcccc;
     padding:10px;
     margin: 5px;
 }
 
+/*afecta a todas listas ordenadas y no ordenadas dentro de la clase bloqueexplicacion*/
 .bloqueexplicacion ol ol, .bloqueexplicacion ul ul {
     
     border:none;
     
 }
+/*A las listas desdordanadas dentro de la etiqueta dd, les quitamos el borde y cambiamos el color*/
 .bloqueexplicacion dd ul{
     
     border:none;
