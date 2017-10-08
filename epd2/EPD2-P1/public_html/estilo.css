@@ -8,11 +8,13 @@ and open the template in the editor.
     Author     : Gonza
 */
 
+/*todo el contenido del documento*/
 body{
     background-color:rgb(211,211,211);
     text-align: justify;
 }
 
+/*títulos*/
 h1{
     color:#ffffcc;
     background-color: rgb(0,0,128);
@@ -38,28 +40,31 @@ h4{
     color:#000088;
 }
 
+/*clase que será el lateral izquierdo de la pantalla*/
 .lateral{
     float: left;
     width: 20%;
     background-color: rgb(0,0,128);
     color:yellow;
 }
-
+/*lista desordenada dentro del panel lateral*/
 .lateral ul{
     padding-right: 15px;
     text-align: left
 }
 
+/*enlaces dentro del panel lateral*/
 .lateral a{
     color:white;
     text-decoration:none;
 }
-
+/*enlaces dentro la tabla de contenido situada a la derecha*/
 .tablaContenido a{
     color:blue;
     text-decoration:none;
 }
 
+/*parte central de la página*/
 .central{
     float: right;
     width:79%; 
@@ -127,11 +132,13 @@ h4{
     padding:20px;
 }
 
+/*Parte del código en azul*/
 .codigo{
     
     background-color:#3399ff;
     color:white;
     border:double blue;
+    padding:5px 5px 5px 15px;
     
 }
 
