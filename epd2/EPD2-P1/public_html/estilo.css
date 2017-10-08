@@ -69,7 +69,7 @@ h4{
     float: right;
     width:79%; 
 }
-
+/*Clase encargada de mostrar el título de página en construcción*/
 .aviso{
     border: double 5px red;
     padding: 20px;
@@ -77,23 +77,25 @@ h4{
     text-align: center;
     background-color:rgb(224,255,255);
 }
+/*Clase encargada de mostrar el título de página en construcción*/
 .tituloaviso{
     font-weight: bold;
     font:Sans-serif;    
     font-size:2em;    
 }
+/*Clase encargada de mostrar el título de página en construcción*/
 .cuerpoaviso{
 
     font:serif;
 }
-
+/*logo del panel lateral izquierdo*/
 .logo{
 
     background-color: white;
     text-align: center;
     padding: 6px;
 }
-
+/*pie de página*/
 .pie{
 
     background-color: rgb(0,0,128);
@@ -102,6 +104,7 @@ h4{
     clear:both;
 }
 
+/*salida por pantalla de un programa en la página s1.html*/
 .salidapantalla{
     
     background-color: black;
@@ -111,12 +114,14 @@ h4{
     padding:20px;
 }
 
+/*clase dónde va incluido las diferentes partes del cuaderno*/
 .bloqueexplicacion{
     
     background-color: #ccffff;
     padding:5px;
     
 }
+/*tabla de contenido en el panel lateral derecho*/
 .tablaContenido{
     background-color: white;
     float:right;
@@ -126,6 +131,7 @@ h4{
     padding:5px;
 }
 
+/*parte central compuesto de varias clases bloqueexplicacion*/
 .cuaderno{
     
     background-color: rgb(255,255,224);
@@ -142,6 +148,7 @@ h4{
     
 }
 
+/*imagen y pie de imagen*/
 .figura{
     
     border:solid #000088 2px;
@@ -150,36 +157,39 @@ h4{
     padding:15px;
     margin-top:15px;
 }
-
+/*identificador de problemas*/
 .identificadorPro{
     
     border:solid 2px blue;
     background-color: yellow;
 }
-
+/*identificador de ejercicios*/
 .identificadorEje{
     
     border:solid 2px blue;
     background-color: #ff9933
 }
-
+/*identificador de experimentos*/
 .identificadorExp{
     
     border:solid 2px blue;
     background-color: #00ff99
 }
 
+/*enlaces dentro de la clase bloqueexplicacion*/
 .bloqueexplicacion a {
     
     text-decoration: none;
     color:red;
 }
 
+/*etiquetas dt*/
 dt{
     
     font-weight: bold;
 }
 
+/*afecta a todas listas ordenadas y no ordenadas dentro de la clase bloqueexplicacion*/
 .bloqueexplicacion ol, .bloqueexplicacion ul {
     background-color: white;
     border:dashed blue 2px;
@@ -200,7 +210,7 @@ dt{
     margin: 5px;
 }
 
-/*afecta a todas listas ordenadas y no ordenadas dentro de la clase bloqueexplicacion*/
+/*afecta a todas listas ordenadas dentro de listas ordenadas y no ordenadas dentro de las no ordenadas dentro de la clase bloqueexplicacion*/
 .bloqueexplicacion ol ol, .bloqueexplicacion ul ul {
     
     border:none;
