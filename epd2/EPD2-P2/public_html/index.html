@@ -11,36 +11,20 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="hojaEstilo.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     </head>
     <body>
         <header>
-            <figure><img src="http://grepetto.com/fig/upo.gif" alt="icono_upo">
-                <h1>Club de Lectura Universidad Pablo de Olavide</h1>
-            </figure>
+            <figure><img src="http://grepetto.com/fig/upo.gif" alt="icono_upo"></figure>
+            <h1>Club de Lectura Universidad Pablo de Olavide</h1>
         </header>
-        <hr>
         <nav>
-            <a href="index.html">Inicio</a> |
-            <a href="autores.html">Autores</a> |
-            <a href="libros.html">Libros</a> |
-            <a href="formulario.html">Login / Registrate</a> |
-            <a href="https://www.google.es/">Buscador</a>
+            <i class="material-icons" ><a class="a_nav" href="index.html">home</a></i>
+            <i class="material-icons" ><a class="a_nav" href="formulario.html">person</a></i>
+            <i class="material-icons" ><a class="a_nav" href="https://www.google.es/">search</a></i>
+            <a class="a_nav" href="autores.html">Autores</a>
+            <a class="a_nav" href="libros.html">Libros</a>
         </nav>
-        <hr> <!--Linea para dividir las partes de la página-->
-        <aside>
-            <h2>Autores</h2>
-            <ul>             
-                <li><a href="autores_nuevos.html">Nuevos</a></li>
-                <li><a href="autores_mas_visitados.html">M&aacute;s Visitados</a></li>
-            </ul>
-
-            <h2>Libros</h2>
-            <ul>             
-                <li><a href="libros_nuevos.html">Nuevos</a></li>
-                <li><a href="libros_mas_visitados.html">M&aacute;s Valorados</a></li>
-            </ul>
-        </aside>
-        <hr>
         <main>
             <article>
                 <h2>Actualidad</h2>
@@ -111,10 +95,22 @@ and open the template in the editor.
                 </section>
             </article>
         </main>
-        <hr>
+        <aside>
+            <h2 class="h2_aside">Autores</h2>
+            <ul>             
+                <li class="li_aside"><a class="a_aside" href="autores_nuevos.html">Nuevos</a></li>
+                <li class="li_aside"><a class="a_aside"  href="autores_mas_visitados.html">M&aacute;s Visitados</a></li>
+            </ul>
+
+            <h2  class="h2_aside">Libros</h2>
+            <ul>             
+                <li class="li_aside"><a class="a_aside"  href="libros_nuevos.html">Nuevos</a></li>
+                <li class="li_aside"><a class="a_aside"  href="libros_mas_visitados.html">M&aacute;s Valorados</a></li>
+            </ul>
+        </aside>
         <footer>
             <figure> <img src="https://www.upo.es/export/portal/com/css/portada/cssimg/logo_upo.gif" alt="icono upo"></figure>
-            <p><mark>Equipo EPD 8 Programaci&oacute;n Avanzada</mark></p>
+            <p>Equipo EPD 8 Programaci&oacute;n Avanzada</p>
             <p>Gonzalo del Rio Alaez | Juan Antonio L&oacute;pez Cano | Susana Mercedes de la Calle Iglesias </p>
         </footer>
     </body>
