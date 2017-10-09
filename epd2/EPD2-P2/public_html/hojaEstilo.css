@@ -26,12 +26,12 @@ header figure{
 h1{
     color: white;
     padding: 1%;
-    font-size: 300%;
+    font-size: 290%;
     font-family: monospace;
 }
 
 nav {
-   width: 100%;
+    width: 100%;
 }
 
 ul.nav_responsive {
@@ -55,8 +55,8 @@ ul.nav_responsive li a {
 }
 
 ul.nav_responsive li a:hover:not(.active) {
-background-color: white;
-color: #A52A2A;
+    background-color: white;
+    color: #A52A2A;
 
 }
 
@@ -68,25 +68,20 @@ color: #A52A2A;
 article {
     width: 75%;
     float: left;
-    /*padding-left: 2%;
-    padding-right: 2%;
-    padding-top: 0.5%;
-    padding-bottom: 0.5%;*/
     padding: 1%;
 }
 
-article h2{
+h2{
     font-size: 200%;
     font-family: monospace;
     color: #800000;
 }
 
-article h3{
+h3{
     font-size: 150%;
     font-family: monospace;
     color: #800000;
 }
-
 
 article p{
     font-size: 100%;
@@ -94,12 +89,73 @@ article p{
     text-align: justify;
 }
 
+hr{
+    border-bottom-style: solid;
+
+    color: #800000;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    text-align: left;
+    padding: 1%;
+}
+
+th {
+    background-color: #A52A2A;
+    color: white;
+}
+
+table a{
+    color: black;
+    text-decoration: none;
+}
+
+table  a:hover:not(.active) {
+    color: blue;
+}
+
+table th a{
+    color: white;
+    text-decoration: none;
+}
+table th a:hover:not(.active) {
+    color: blue;
+}
+
+.opinion{
+    font-family: monospace;
+}
+
+.opinion a{
+    text-decoration: none;
+    color: black;
+}
+.opinion a:hover:not(.active){
+    color: blue;
+}
+
+meter{
+    width: 60%;
+    height: 3em;
+    padding-left:27%;
+    
+}
+
+video{
+   padding-left:27%;
+}
 
 aside {
     width: 20%;
     float:right;
     padding:0.5%;
 }
+
 .h2_aside{
     color: #800000;
     text-align: center;
@@ -127,8 +183,8 @@ ul{
 footer{
     width: 100%;
     background: #A52A2A;
-      padding-top: 0.1%;
-      padding-bottom: 1%;
+    padding-top: 0.1%;
+    padding-bottom: 1%;
     clear: both;
 
 }

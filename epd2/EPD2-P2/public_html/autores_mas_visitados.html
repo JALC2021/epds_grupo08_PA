@@ -9,54 +9,55 @@ and open the template in the editor.
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="hojaEstilo.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
 <body>
     <header>
-        <figure><img src="http://grepetto.com/fig/upo.gif" alt="icono_upo">
-            <h1>Club de Lectura Universidad Pablo de Olavide</h1>
-        </figure>
+        <figure><img src="http://grepetto.com/fig/upo.gif" alt="icono_upo"></figure>
+        <h1>Club de Lectura Universidad Pablo de Olavide</h1>
     </header>
-    <hr>
     <nav>
-        <a href="index.html">Inicio</a> |
-        <a href="autores.html">Autores</a> |
-        <a href="libros.html">Libros</a> |
-        <a href="formulario.html">Login / Registrate</a> |
-        <a href="https://www.google.es/">Buscador</a>
+        <ul class="nav_responsive">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="formulario.html">Login</a></li>
+            <li><a href="https://www.google.es/">Buscar</a></li>
+            <li><a href="autores.html">Autores</a></li>
+            <li><a href="libros.html">Libros</a></li>
+        </ul>
     </nav>
-    <hr> <!--Linea para dividir las partes de la página-->
-    <aside>
+    <article>
         <h2>Autores</h2>
+        <section>
+            <h3>M&aacute;s visitados</h3>
+            <figure>
+                <a href="https://es.wikipedia.org/wiki/Stephen_King"><img src="http://imag.lecturalia.com/img/autor/stephen-king-358.jpg" alt="Stephen King"></a>
+                <figcaption>Stephen King</figcaption>
+            </figure>
+            <h4>Stephen Edwin King, Estados Unidos (Maine, 1947)</h4>
+            <hr> <!--Linea para dividir las partes de la página-->
+            <figure>
+                <a href="https://es.wikipedia.org/wiki/Arturo_Pérez-Reverte"><img src="http://imag.lecturalia.com/img/autor/arturo-perez-reverte-30.jpg" alt="Arturo Pérez-Reverte"></a>
+                <figcaption>Arturo Pérez-Reverte</figcaption>
+            </figure>
+            <h4>España (Cartagena, 1951)</h4>
+        </section>
+    </article>
+    <aside>
+        <h2 class="h2_aside">Autores</h2>
         <ul>             
-            <li><a href="autores_nuevos.html">Nuevos</a></li>
-            <li><a href="autores_mas_visitados.html">M&aacute;s Visitados</a></li>
+            <li class="li_aside"><a class="a_aside" href="autores_nuevos.html">Nuevos</a></li>
+            <li class="li_aside"><a class="a_aside"  href="autores_mas_visitados.html">M&aacute;s Visitados</a></li>
         </ul>
 
-        <h2>Libros</h2>
+        <h2  class="h2_aside">Libros</h2>
         <ul>             
-            <li><a href="libros_nuevos.html">Nuevos</a></li>
-            <li><a href="libros_mas_visitados.html">M&aacute;s Valorados</a></li>
+            <li class="li_aside"><a class="a_aside"  href="libros_nuevos.html">Nuevos</a></li>
+            <li class="li_aside"><a class="a_aside"  href="libros_mas_valorados.html">M&aacute;s Valorados</a></li>
         </ul>
     </aside>
-    <hr> <!--Linea para dividir las partes de la página-->
-    <article>
-        <figure>
-            <a href="https://es.wikipedia.org/wiki/Stephen_King"><img src="http://imag.lecturalia.com/img/autor/stephen-king-358.jpg" alt="Stephen King"></a>
-            <figcaption>Stephen King</figcaption>
-        </figure>
-        <h4>Stephen Edwin King, Estados Unidos (Maine, 1947)</h4>
-        <hr> <!--Linea para dividir las partes de la página-->
-        <figure>
-            <a href="https://es.wikipedia.org/wiki/Arturo_Pérez-Reverte"><img src="http://imag.lecturalia.com/img/autor/arturo-perez-reverte-30.jpg" alt="Arturo Pérez-Reverte"></a>
-            <figcaption>Arturo Pérez-Reverte</figcaption>
-        </figure>
-        <h4>España (Cartagena, 1951)</h4>
-    </article>
-    <hr> <!--Linea para dividir las partes de la página-->
     <footer>
-        <figure> <img src="https://www.upo.es/export/portal/com/css/portada/cssimg/logo_upo.gif" alt="icono upo"></figure>
-        <p>Equipo EPD 8 Programaci&oacute;n Avanzada</p>
-        <p>Gonzalo del Rio Alaez | Juan Antonio L&oacute;pez Cano | Susana Mercedes de la Calle Iglesias </p>
+        <figure> <img src="https://www.upo.es/export/portal/com/css/portada/cssimg/logo_upo.gif" alt="icono upo" width="50" height="50"></figure>
+        <p>Equipo EPD 8 Programaci&oacute;n Avanzada: Gonzalo del Rio Alaez | Juan Antonio L&oacute;pez Cano | Susana Mercedes de la Calle Iglesias</p>
     </footer>
 </body>
 </html>
