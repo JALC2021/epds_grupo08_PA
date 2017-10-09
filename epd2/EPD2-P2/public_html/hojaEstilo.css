@@ -7,94 +7,103 @@ and open the template in the editor.
     Created on : 08-oct-2017, 12:58:12
     Author     : juanantoniolopezcano
 */
-/*
+
 body{
     margin: 0;
 }
 
 header{
+    width: 100%;
     background: #A52A2A;
-    padding-top: 1px;
-    text-align: left;
-}
-article{
-    width: 40%;
+    padding-top: 0.1%;
+    padding-bottom: 0.1%;
 }
 
-aside{
-    width: 20%;
-}
-main:after{
-    content: "";
-    display: table;
-    clear: both;
-
-}
-footer{
-    background: #A52A2A;
-    padding: 10px;
-}
-*/
-
-body{
-    margin: 0;
-    display: inline-block;
-
-}
-header{
-    width: auto;
-    background: #A52A2A;
-    padding-top: 1px;
-    padding-bottom: 1px;
-}
-
-figure{
+header figure{
     float: left;
 }
 
 h1{
     color: white;
-    padding: 1px;
-    font-size: 3em;
+    padding: 1%;
+    font-size: 300%;
     font-family: monospace;
 }
 
 nav {
-    width: 100%;
-    background: #A52A2A;
+   width: 100%;
+}
+
+ul.nav_responsive {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #A52A2A;
+}
+
+ul.nav_responsive li {float: left;}
+
+ul.nav_responsive li a {
     display: block;
     color: white;
-    padding-top: 2ex;
-    padding-bottom: 2ex;
-    font-family: monospace;
-    font-size: 1.1em;
-}
-.a_nav{
-    color: white;
-    font-size: 1.3em;
-    margin: 0.5em;
-    padding-left: 0.7em;
+    text-align: center;
+    padding: 14px 16px;
     text-decoration: none;
+    font-family: monospace;
+    font-size: 150%;
 }
 
-article{
-    width: 70%;
+ul.nav_responsive li a:hover:not(.active) {
+background-color: white;
+color: #A52A2A;
+
+}
+
+@media screen and (max-width: 600px){
+    ul.nav_responsive, ul.nav_responsive li {float: none;}
+}
+
+
+article {
+    width: 75%;
     float: left;
-    padding-left: 2em;
-    padding-right: 2em;
-    padding-top: 0.5em;
-    padding-bottom: 0.5em;
+    /*padding-left: 2%;
+    padding-right: 2%;
+    padding-top: 0.5%;
+    padding-bottom: 0.5%;*/
+    padding: 1%;
 }
 
-aside{
+article h2{
+    font-size: 200%;
+    font-family: monospace;
+    color: #800000;
+}
+
+article h3{
+    font-size: 150%;
+    font-family: monospace;
+    color: #800000;
+}
+
+
+article p{
+    font-size: 100%;
+    font-family: monospace;
+    text-align: justify;
+}
+
+
+aside {
     width: 20%;
     float:right;
-    padding:0.5em;
+    padding:0.5%;
 }
 .h2_aside{
     color: #800000;
     text-align: center;
-    font-size: 2em;
+    font-size: 200%;
     font-family: monospace;
     text-decoration: none;
 }
@@ -105,26 +114,33 @@ ul{
 
 .li_aside{
     text-align:justify;
-    margin: 1em;
-    font-size: 1.3em;
+    margin: 1%;
+    font-size: 130%;
     font-family: monospace;
 }
 
 .a_aside{
-    color: #A52A2A;
     text-decoration: none;
+    color: black;
 }
 
 footer{
-    width: auto;
+    width: 100%;
     background: #A52A2A;
+      padding-top: 0.1%;
+      padding-bottom: 1%;
     clear: both;
+
 }
 
+footer figure{
+    float: left;
+}
 
-/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
-@media (max-width: 700px) {
-    header,article,aside  {
-        width: 100%;
-    }
+footer p{
+    color: white;
+    padding: 1%;
+    font-size: 100%;
+    font-family: monospace;
+    text-align: center;
 }
