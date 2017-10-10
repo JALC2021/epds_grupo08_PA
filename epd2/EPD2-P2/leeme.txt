@@ -1,0 +1,273 @@
+ESTILOS Y ATRIBUTOS UTILIZADOS.
+Sólo hemos usado un par de clases ya que hemos decidido aplicar formato sobre las mismas etiquetas o secciones.
+
+body{
+    margin: 0;
+    font-family:Helvetica,Futura,Arial,Verdana,sans-serif;
+}
+/*Para el cuerpo de la página hemos decidido este tipo de letra y que cada navegador adopte la que tenga por defecto, no hemos introducido imagen de fondo por que nos parecía bien esta estética*/
+
+header{
+    width: 100%;
+    background: #A52A2A;
+    padding-top: 0.1%;
+    padding-bottom: 0.1%;
+}
+
+header figure{ 
+    float: left;
+}
+/*Adaptamos el fondo, contenido y la imagen de nuestra cabecera la flotaremos hacia la izquierda*/
+
+h1{
+    color: white;
+    padding: 1%;
+    font-size: 290%;
+    font-family: monospace;
+}
+
+h2{
+    font-size: 200%;
+    font-family: monospace;
+    color: #800000;
+}
+
+h3{
+    font-size: 150%;
+    font-family: monospace;
+    color: #800000;
+}
+
+h4, ol{
+    font-family:Helvetica,Futura,Arial,Verdana,sans-serif;
+}
+
+/*Para los títulos decidimos que la fuente sea distinta a la del body y hemos usado % para que sea responsive*/
+
+nav {
+    width: 100%;
+}
+
+ul.nav_responsive { 
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #A52A2A;
+}
+
+ul.nav_responsive li {float: left;}
+
+ul.nav_responsive li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-family: monospace;
+    font-size: 150%;
+}
+
+ul.nav_responsive li a:hover:not(.active) {
+    background-color: white;
+    color: #A52A2A;
+
+}
+/*El nav lo hemos diseñado para que al pasar el mouse sobre la barra de navegación se inviertan los colores utilizando pseudo clases */
+
+article {
+    width: 75%;
+    float: left;
+    /*padding: 1%;*/
+    margin-left: 1%;
+    margin-bottom:1% ;
+}
+
+article p{
+    font-size: 100%;
+    text-align: justify;
+}
+
+hr{
+    border-bottom-style: solid;
+
+    color: #800000;
+}
+/*Damos formato a los artículos, la linea de separación entre secciones también la hemos diseñado para que sea atractiva*/
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    text-align: left;
+    padding: 1%;
+}
+
+th {
+    background-color: #A52A2A;
+    color: white;
+}
+
+table a{
+    color: black;
+    text-decoration: none;
+}
+
+table  a:hover:not(.active) {
+    color: blue;
+}
+
+table th a{
+    color: white;
+    text-decoration: none;
+}
+table th a:hover:not(.active) {
+    color: blue;
+}
+/*Para la sección de tablas hemos diseñado la misma con los mismos colores bases de nuestra web, para algunas etiquetas como usb y los autores al pasar el mouse cambian de color y al hacer clic te dirige hacia su web para más información*/
+
+.opinion{
+    font-family: monospace;
+}
+
+.opinion a{
+    text-decoration: none;
+    color: black;
+}
+.opinion a:hover:not(.active){
+    color: blue;
+}
+/*Para esta sección también hemos introducido la pseudo clase :hover ya que nos introduce un cambio bastante interactivo con el usuario*/
+
+meter{
+    width: 60%;
+    height: 3em;
+    display: block;
+    margin: auto;
+    padding: 1%;
+}
+/*Al ser una opinión le hemos dado forma de barra de encuesta para que los usuarios puedan observar como esta la situación al entrar en la página*/
+
+video{
+    width: 60%;
+    display: block;
+    margin: auto;
+}
+/*Para el video solo hemos centrado y adaptado el tamaño*/
+
+input[type=text], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #800000;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 100%;
+}
+
+input[type=email] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #800000;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 100%;
+}
+
+input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #800000;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 100%;
+}
+
+
+input[type=submit] {
+    width: 100%;
+    background-color: #A52A2A;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 100%;
+}
+
+input[type=submit]:hover {
+    background-color: blue;
+    color: white;
+}
+/*El formulario es el que más cambios ha sufrido ya que le hemos dado un toque visual a la vez que no diste mucho del diseño de nuestra web, como se observa se han utilizado bastantes atributos, los cuales se detallan más arriba*/
+
+aside {
+    width: 20%;
+    float:right;
+    margin-right: 1%;
+    margin-bottom: 1%;
+}
+
+.h2_aside{
+    color: #800000;
+    text-align: center;
+    font-size: 200%;
+    font-family: monospace;
+    text-decoration: none;
+}
+ul{
+    list-style-type:  square;
+    color: #800000;
+}
+
+.li_aside{
+    text-align:justify;
+    margin: 6%;
+    font-size: 130%;
+    font-family: monospace;
+}
+
+.a_aside{
+    text-decoration: none;
+    color: black;
+}
+
+aside img{
+    display: block;
+    margin: auto;
+}
+/*El aside contiene unas opciones de navegación y redes sociales, a las cuales no se les ha introducido enlace ya que hemos insertado suficientes, flota a la derecha con un porcentaje del 27%*/
+
+footer{
+    width: 100%;
+    background: #A52A2A;
+    padding-top: 0.2%;
+    padding-bottom: 1.4%;
+    clear: both;
+}
+
+footer figure{
+    float: left;
+}
+
+footer p{
+    color: white;
+    padding: 1%;
+    font-size: 100%;
+    text-align: center;
+}
+/*Para el foyer hemos realizado un diseño mas clásico ya que solo mostraremos información de los integrantes que han realizado la web y la escuela a la que pertenecen*/
+
+@media screen and (max-width: 600px){
+    ul.nav_responsive, ul.nav_responsive li {float: none;}
+}
+/*Esta función nos permite hacer nuestra web response y que cuando queramos estrecharlo lo máximo posible nuestra web se adapte a cualquier dispositivo*/
+
