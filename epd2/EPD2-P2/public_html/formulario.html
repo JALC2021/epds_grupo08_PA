@@ -32,18 +32,22 @@ and open the template in the editor.
                 <section>
                     <h3>Introduzca los datos:</h3>
                     <form action="." oninput="range_control_value.value = range_control.valueAsNumber">
-                        Nombre Usuario: <input type="text" name="name_control" autofocus required />
-                        <br />
-                        Email: <input type="email" name="email_control" required />
-                        <br />
-                        Password: <input type="Password" name="password" />
-                        <br />
-                        Nombre y Apellidos: <input type="text" name="nombre" />
-                        <br />
-                        <input type="checkbox" name="autores" value="" />Autores<br />
-                        <input type="checkbox" name="libros" value="" />Libros<br />
-                        <br />
-                        <input type="submit" value="Enviar" />
+                        <label>Nombre Usuario:</label>
+                        <input type="text" name="name_control" autofocus required>
+                        <label>Email:</label
+                        <input type="email" name="email_control" required>
+                        <label>Password:</label>
+                        <input type="Password" name="password">
+                        <label>Nombre y Apellidos:</label>
+                        <input type="text" name="nombreyapellidos">
+                        <label>Tipo</label>
+                        <select required>
+                            <option>Ninguno</option>
+                            <option>Autor</option>
+                            <option>Libro</option>
+                            <option>Ambos</option>
+                        </select>
+                        <input type="submit" value="Enviar">
                     </form>
                 </section>
             </article>

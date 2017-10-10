@@ -59,12 +59,7 @@ ul.nav_responsive li a:hover:not(.active) {
     color: #A52A2A;
 
 }
-
-@media screen and (max-width: 600px){
-    ul.nav_responsive, ul.nav_responsive li {float: none;}
-}
-
-
+/**/
 article {
     width: 75%;
     float: left;
@@ -85,7 +80,8 @@ h3{
 
 article p{
     font-size: 100%;
-    font-family: monospace;
+    /*font-family: monospace;*/
+    font-family: myFirstFont;
     text-align: justify;
 }
 
@@ -150,6 +146,53 @@ video{
    padding-left:27%;
 }
 
+input[type=text], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #800000;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type=email] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #800000;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #800000;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+
+input[type=submit] {
+    width: 100%;
+    background-color: #A52A2A;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type=submit]:hover {
+    background-color: blue;
+    color: white;
+}
+
 aside {
     width: 20%;
     float:right;
@@ -199,4 +242,13 @@ footer p{
     font-size: 100%;
     font-family: monospace;
     text-align: center;
+}
+
+@media screen and (max-width: 600px){
+    ul.nav_responsive, ul.nav_responsive li {float: none;}
+}
+
+@font-face {
+   font-family: myFirstFont;
+   src: url(sansation_light.woff);
 }
