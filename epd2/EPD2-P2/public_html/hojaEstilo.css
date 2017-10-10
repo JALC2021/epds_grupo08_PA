@@ -10,6 +10,7 @@ and open the template in the editor.
 
 body{
     margin: 0;
+    font-family:Helvetica,Futura,Arial,Verdana,sans-serif;
 }
 
 header{
@@ -59,11 +60,13 @@ ul.nav_responsive li a:hover:not(.active) {
     color: #A52A2A;
 
 }
-/**/
+
 article {
     width: 75%;
     float: left;
-    padding: 1%;
+    /*padding: 1%;*/
+    margin-left: 1%;
+    margin-bottom:1% ;
 }
 
 h2{
@@ -77,11 +80,12 @@ h3{
     font-family: monospace;
     color: #800000;
 }
+h4, ol{
+    font-family:Helvetica,Futura,Arial,Verdana,sans-serif;
+}
 
 article p{
     font-size: 100%;
-    /*font-family: monospace;*/
-    font-family: myFirstFont;
     text-align: justify;
 }
 
@@ -138,22 +142,15 @@ table th a:hover:not(.active) {
 meter{
     width: 60%;
     height: 3em;
-    padding-left:27%;
-    
+    display: block;
+    margin: auto;
+    padding: 1%;
 }
 
 video{
-   padding-left:27%;
-}
-
-select {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #800000;
-    border-radius: 4px;
-    box-sizing: border-box;
+    width: 60%;
+    display: block;
+    margin: auto;
 }
 
 input[type=text], select {
@@ -164,6 +161,7 @@ input[type=text], select {
     border: 1px solid #800000;
     border-radius: 4px;
     box-sizing: border-box;
+    font-size: 100%;
 }
 
 input[type=email] {
@@ -174,6 +172,7 @@ input[type=email] {
     border: 1px solid #800000;
     border-radius: 4px;
     box-sizing: border-box;
+    font-size: 100%;
 }
 
 input[type=password] {
@@ -184,6 +183,7 @@ input[type=password] {
     border: 1px solid #800000;
     border-radius: 4px;
     box-sizing: border-box;
+    font-size: 100%;
 }
 
 
@@ -196,6 +196,7 @@ input[type=submit] {
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    font-size: 100%;
 }
 
 input[type=submit]:hover {
@@ -206,7 +207,8 @@ input[type=submit]:hover {
 aside {
     width: 20%;
     float:right;
-    padding:0.5%;
+    margin-right: 1%;
+    margin-bottom: 1%;
 }
 
 .h2_aside{
@@ -223,7 +225,7 @@ ul{
 
 .li_aside{
     text-align:justify;
-    margin: 1%;
+    margin: 6%;
     font-size: 130%;
     font-family: monospace;
 }
@@ -233,13 +235,17 @@ ul{
     color: black;
 }
 
+aside img{
+    display: block;
+    margin: auto;
+}
+
 footer{
     width: 100%;
     background: #A52A2A;
-    padding-top: 0.1%;
-    padding-bottom: 1%;
+    padding-top: 0.2%;
+    padding-bottom: 1.4%;
     clear: both;
-
 }
 
 footer figure{
@@ -250,7 +256,6 @@ footer p{
     color: white;
     padding: 1%;
     font-size: 100%;
-    font-family: monospace;
     text-align: center;
 }
 
@@ -258,7 +263,3 @@ footer p{
     ul.nav_responsive, ul.nav_responsive li {float: none;}
 }
 
-@font-face {
-   font-family: myFirstFont;
-   src: url(sansation_light.woff);
-}
