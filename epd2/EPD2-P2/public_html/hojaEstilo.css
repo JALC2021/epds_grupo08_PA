@@ -19,7 +19,7 @@ header{
     padding-bottom: 0.1%;
 }
 
-header figure{
+header figure{ 
     float: left;
 }
 
@@ -34,7 +34,7 @@ nav {
     width: 100%;
 }
 
-ul.nav_responsive {
+ul.nav_responsive { 
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -144,6 +144,16 @@ meter{
 
 video{
    padding-left:27%;
+}
+
+select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #800000;
+    border-radius: 4px;
+    box-sizing: border-box;
 }
 
 input[type=text], select {
