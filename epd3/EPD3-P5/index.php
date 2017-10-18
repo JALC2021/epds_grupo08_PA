@@ -129,10 +129,9 @@ and open the template in the editor.
         <article>
 <?php
 $matrix = inicializarMatrix();
-$escalar = 7;
+$escalar = 4;
 $triang = array();
 echo "Matriz Inicial: <br />";
-imprimirMatrixIni($matrix);
 $comprobacion = imprimirMatrix($matrix,$escalar);
 echo "Valor del escalado: $escalar <br />";
 if($comprobacion == false){
