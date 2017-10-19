@@ -1,0 +1,170 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 16-oct-2017, 8:33:38
+    Author     : susana
+*/
+/*
+*/
+body{
+    background-color: blanchedalmond;
+    font-family: sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1em;
+    text-align:left;
+}
+
+h1,h2{
+    color: salmon;
+}
+
+#tituloArticulo{
+    font-size: 2em;
+    font-family: fantasy;
+    text-decoration: underline;
+}
+
+#resaltado{
+    background-color: #fff9e9;
+    font-family: monospace;
+}
+
+#botonEnlace{
+    background: salmon;
+    color:white;
+    border:0;
+}
+
+#imagen1{
+    width: 370px;
+    height:200px;
+    float: right;
+}
+
+#parrafo2{
+    font-style:oblique;
+}
+
+#img2{
+    float:right; 
+}
+
+.juntas{
+    width: 400px;
+    height:400px; 
+}
+
+.imagen2{
+    margin-right: 150px;
+}
+
+#img3{
+    float:left;   
+}
+
+.imagen3{
+
+    margin-left: 150px;
+}
+
+#question,#figura3{
+    clear:both;
+}
+
+table{
+    border:solid;
+    text-align:center;
+    vertical-align:central;
+    margin: 0 0 1em 0;
+}
+
+td,th{
+    border-bottom: 1px solid #999;
+    width: 25%;
+    background-color:white;
+}
+
+th{
+    background-color: lightsalmon;
+}
+
+#check{
+    width: 30px;
+    height: 30px;
+}
+
+#figura1,#figura2,#imagen6,#figura3,#figura4{
+    float:right;
+}
+
+#imagen4{
+    width: 350px;
+    height:130px;  
+}
+
+#imagen5,#imagen6,#imagen7,#imagen8{
+    width: 370px;
+    height:370px;
+}
+
+#imagen6{
+    padding-top:20px;
+    clear:right;  
+}
+
+#apdo2{
+    clear:right;
+}
+
+#apdo2imagen{ 
+    clear:left;
+}
+
+#negrita{
+    font-weight: 900;
+}
+
+#figura5,#figura6{
+    padding: 1em 3em;
+    margin: 1em 25%;  
+}
+
+#imagen9,#imagen11{
+    width: 100%;
+}
+
+#imagen12{
+    width: 50%;
+    margin: 1em 25%; 
+}
+
+#conclusion{
+    background-color: peachpuff
+}
+
+#blue{
+   color:blue; 
+}
+
+#red{
+    color:red;
+}
+
+#green{
+    color:green;
+}
+
+#purple{
+    color:purple;
+}
+
+#footer{
+    font-style:oblique;
+    font-size:12px;
+    font-weight:100;
+}
+

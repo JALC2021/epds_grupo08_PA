@@ -1,0 +1,52 @@
+
+Las características CSS3 que se han incluido son las siguientes:
+
+Para el body he usado:
+
+    background-color: para esteblecer el color del fondo de la página web, concretamente, el color blanchedalmond.
+    font-family: para elegir una familia de letras, en este caso, sans-serif.
+    font-style: para definir el estilo de la fuente. Este ha sido normal.
+    font-weight: para precisar el grosor de la fuente. He optado por 500.
+    font-size: para asignar un tamaño a la fuente, que ha sido de 1em.
+    text-align: para alinear el texto a la izquierda (valor left).
+
+Para los títulos del artículo y de las distintas secciones, h1 y h2, he utlilizado la propiedad color para poner
+la letra de estos, en color salmón.
+Específicamente, para el título del artículo, además de usar las propiedades font-size y font-family (ya mencionadas) 
+con valores 2em y fantasy, respectivamente, he utilizado text-decoration con valor underline para decorar el 
+título proncipal con un subrayado.
+
+Para el botón que aparece al principio de la web, el cual, contiene un enlace, he usado:
+
+    background: salmon;
+    border: para que no aparezca el borde del botón marcado, y se vea homogéno, sin filo. Para ello le he dado el valor 0;
+
+Para la primera imagen he ustilzado:
+
+    width: para establecer la anchura de la imagen a 370px;
+    height: para definir la altura de la imagen a 200px;
+    float: para que la imagen flote hacia la derecha y se quede al lado del texto. Valor right;
+
+Para la segunda imagen, he empleado la propiedad margin-right para definir la anchura del margen derecho a 150px.
+
+Para uno de los textos y una de las figuras he usado la propiedad clear para controlar el comportamiento de los elementos 
+adyacentes a los elementos posicionados de forma flotante. He empleado el valor both para que estos
+elementos bajen hasta que su borde superior esté por debajo del borde inferior de los elementos flotantes que había
+arriba, tanto a la derecha como a la izquerda.
+
+Para la tabla he usado:
+    
+    vertical-align: para que lo que contienen las celdas de la tabla se encuentre centrado (valor central) en el eje vertical.
+    margin: para definir los cuatro márgenes;0 arriba, a la dercha y a la izquierda, y 1em abajo.
+
+Para la cabecera y las celdas he utilizado border-bottom: para establecer el borde inferior a 1px de grosor, sólido, 
+y en el color #999;
+    
+Para la imagen6 he empleado la propiedad padding-top para generar espacio por encima de la imagen, definiendo este a 20px;
+    
+Para las figuras 5 y 6 he usado la propiedad padding para generar espacio de 1em arriba y abajo de la figura, y de 3em a la 
+derech ae izquierda de la misma.
+    
+  
+
+El resto de propiedades empleadas en la hoja de estilo, son las mismas citadas aquí, con otros valores.

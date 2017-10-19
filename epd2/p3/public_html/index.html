@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>PROBLEMA 2-EPD3</title>
+        <meta charset="UTF-8">
+        <meta name="description" content="Rendering Text in WebVR">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="estilo.css" />
+
+    </head>
+
+    <body>
+
+        <article>
+            <section>
+                <h1 id="tituloArticulo">Rendering Text in WebVR</h1>
+                <p>By David Lyons, Lead WebVR Developer, Within</p>
+
+                <a href= "https://vr.with.in/" ><button id="botonEnlace">VIEW THE SITE</button></a> 
+                <figure>
+                    <img id="imagen1" src="https://developers.google.com/web/showcase/2017/images/within/0.jpg" alt="Imagen1">
+                </figure>   
+                <p>Within (<a href="https://with.in/">https://with.in/</a>) is a platform for storytelling in virtual reality. So when the team heard about<a href="https://developers.google.com/web/fundamentals/vr/"> WebVR</a> 
+                    in 2015 we were immediately interested in its potential. Today, that interest manifests into a unique subdomain 
+                    of our Web platform, <a href="https://vr.with.in/">https://vr.with.in/</a>. Anyone with a VR-enabled browser can go to the site, click a button 
+                    and throw on a headset to be immersed in our portfolio of VR films.
+                </p>
+                <p id="parrafo2"> Today that includes but is not limited to Chrome on Daydream View. For information on your device and head-mounted 
+                    display check out <a href="https://webvr.info/">https://webvr.info/.</a>
+                </p>
+                <p> Like other virtual reality specific rendering environments, the web predominantly relies on a three-dimensional 
+                    representation of a scene. This scene has a camera, your perspective, and any number of objects. To help manage 
+                    this scene, camera, and objects we use a library called <a href="https://threejs.org/">Three.js</a> which leverages the <bdi id="resaltado">&lt;canvas&gt;</bdi>; element to throw
+                    rendering onto your computer's GPU. There are many useful Three.js add-ons to make your scene viewable in WebVR. 
+                    The main two are <a href="https://github.com/mrdoob/three.js/blob/dev/examples/js/effects/VREffect.js">THREE.VREffect</a>
+                    for creating a viewport for each eye and <a href="https://github.com/mrdoob/three.js/blob/dev/examples/js/controls/VRControls.js">THREE.VRControls</a> for translating the perspective (e.g the rotation and position of the
+                    head-mounted display) convincingly into your scene. There are many examples of how to implement this. Check out the 
+                    <a href="https://threejs.org/examples/?q=webvr">Three.js WebVR examples</a> for ways to get started.
+                </p>
+                <p> As we got further into our exploration of WebVR we ran into an issue. If we look at the contents of the web, text is
+                    an integral part of it. While the majority of our content is video based, if you go to the <a href="https://with.in/#films">Within site</a> text surrounds
+                    the content; the user interface and additional information about a film or related films are all constructed with text. 
+                    Furthermore all of this text is created in the DOM. Our WebVR explorations and <a href="https://vr.with.in/">https://vr.with.in/</a> are all in <bdi id="resaltado">&lt;canvas&gt;</bdi>.
+                </p>
+                <figure id="img2">
+                    <img  class="juntas imagen2" src="https://developers.google.com/web/showcase/2017/images/within/1.jpg" alt="imagen2">
+                </figure>
+                <figure id="img3">
+                    <img class="juntas imagen3" src="https://developers.google.com/web/showcase/2017/images/within/2.jpg" alt="imagen3">
+                </figure>
+                <p id="question">Text used in WebVR for <a href="https://vr.with.in/">vr.with.in</a></p>
+            </section>
+            <section>
+                <h2 id="question">What are my Options?</h2><hr>
+                <p>Luckily, there is work being done to make this possible. In fact in our research we found a number of effective ways to render
+                    text in a three-dimensional environment on a <bdi id="resaltado">&lt;canvas&gt;</bdi> element. Below is a matrix of a few we found marked with pros and cons 
+                    for each:
+                </p>
+                <table>
+                    <thead>
+                    <th ></th>
+                    <th>Resolution Independent</th>
+                    <th>Typographic Features</th>
+                    <th>Performance</th>
+                    <th>Ease of Implementation</th>
+
+                    </thead >
+
+                    <tr>
+                        <td><a href="https://vr.with.in/archive/text-2d-canvas/">2D canvas text</a></td>
+                        <td></td>
+                        <td><img id="check" src="img/check.jpg"></td>
+                        <td><img id="check" src="img/check.jpg"></td>
+                        <td><img id="check" src="img/check.jpg"></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://vr.with.in/archive/text-triangulated-vector/">Triangulated vector text</a></td>
+                        <td><img id="check" src="img/check.jpg"></td>
+                        <td></td>
+                        <td><img id="check" src="img/check.jpg"></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://threejs.org/examples/webgl_geometry_text.html#1D00FF111#three.js">Extruded 3D text</a></td>
+                        <td><img id="check" src="img/check.jpg"></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://vr.with.in/archive/text-sdf-bitmap/">Signed distance field bitmap text</a></td>
+                        <td><img id="check" src="img/check.jpg"></td>
+                        <td><img id="check" src="img/check.jpg"></td>
+                        <td><img id="check" src="img/check.jpg"></td>
+                        <td></td>
+                    </tr>
+                </table>
+            </section>
+            <section>
+                <h2>Our Decision: SDF Bitmap Font</h2><hr>
+                <p>2D canvas with <bdi id="resaltado">ctx.fillText()</bdi> can do text wrapping, letter spacing and line height, but overflow gets cut off,
+                    and text will be blurry if you zoom in really far. You could increase the size of the canvas texture, but might
+                    hit an upper limit in texture size or performance could suffer if the texture is too big.
+                    Extruded 3D text is essentially the same as triangulated vector text, but with depth and possibly a bevel so
+                    it has at least twice as much geometry. Either of these could work in small doses for titles or logos, but wouldn't
+                    perform as well for large quantities of text and neither has typographic features.
+                </p>
+                <figure id="figura1">
+                    <img id="imagen4" src="https://developers.google.com/web/showcase/2017/images/within/diagram.png"  alt="imagen4">
+                    <figcaption>Font to SDF bitmap workflow</figcaption>
+                </figure>
+
+                <p>
+                    Bitmap fonts use one quad (two triangles) per character, so they use less geometry and perform better than <a href="https://vr.with.in/archive/text-triangulated-vector/">triangulated
+                        vectors.</a> They're still raster based since they use a texture map sprite, but with an SDF shader they're basically
+                    resolution-independent so they look nicer than a 2D canvas texture. <a href="https://mattdesl.svbtle.com/material-design-on-the-gpu">Matt DesLauriers'</a> three-bmfont-text also includes
+                    reliable typographic features for text wrapping, letter spacing, line height and alignment. Overflow doesn't get cut off.
+                    Font size is controlled through scale. We chose this route because it gave us the best options for design while staying
+                    performant. Unfortunately, it wasn't as easy to implement so we'll go through the steps in the hopes of helping fellow
+                    developers working in WebVR.
+                </p><br /><br />
+            </section>
+            <section>
+                <h2>1. Generate a bitmap font (.png + .fnt)</h2><hr>
+
+                <figure id="figura2">
+                    <img id="imagen5" src="https://developers.google.com/web/showcase/2017/images/within/3.png" alt="imagen5">
+                    <figcaption>Hiero interface</figcaption>
+                </figure>
+                <figure>
+                    <img id="imagen6" src="https://developers.google.com/web/showcase/2017/images/within/4.png" alt="imagen6">
+                </figure>
+                <figure id="figura3">
+                    <img id="imagen7" src="https://developers.google.com/web/showcase/2017/images/within/5.png" alt="imagen7">
+                    <figcaption>Hiero output (Bitmap PNG and .fnt file)</figcaption>
+                </figure>
+                <p> <a href="https://github.com/libgdx/libgdx/wiki/Hiero">Hiero</a> is a bitmap font packing tool that runs with Java. The Hiero documentation doesn't really 
+                    explain how to run it without going through a complicated build process. First, install Java if you haven't already. 
+                    Then, if double-click on the runnable-hiero.jar doesn't open Hiero, try running it with this command in the console:
+                </p>
+                <p><bdi id="resaltado">java -jar runnable-hiero.jar</bdi></p>
+                <p>
+                    Once Hiero is running, open a .ttf or .otf desktop font, enter any extra characters you want included, change rendering
+                    to Java to enable effects, increase the size so that your characters fill up the entire glyph cache square, add a distance
+                    field effect, adjust the distance field's scale and spread. The scale value is like a resolution. The higher it is, the less
+                    blurry it will be, but the longer it will take for Hiero to render the preview. 
+
+                    Then save your bitmap font. It generates a 
+                    bitmap font consisting of a .png image and an AngelCode .fnt font description file.
+                </p>
+            </section>
+            <section>
+                <h2 id="apdo2">2. Convert AngelCode to JSON</h2><hr id="apdo2">
+                <p>
+                    Now that the bitmap font has been generated, we have to load it into our javascript app
+                    with Matt DesLauriers' <a href="https://www.npmjs.com/package/load-bmfont">load-bmfont npm package.</a>
+                    We could browserify load-bmfont and use that on the front end, but instead we're going to
+                    run <a href="https://vr.with.in/archive/text-sdf-bitmap/load-bmfont.js">load-bmfont.js</a> with Node to convert and save Hiero's AngelCode .fnt to a <a href="https://vr.with.in/archive/text-sdf-bitmap/fonts/roboto/bitmap/roboto-bold.json">.json file</a>:   
+                </p>
+                <p><bdi id="resaltado"> npm install<br />node load-bmfont.js</bdi></p>
+                <figure id="figura4">
+                    <img id="imagen8" src="https://developers.google.com/web/showcase/2017/images/within/6.png" alt="imagen8">
+                    <figcaption>Example of output JSON</figcaption>
+                </figure>
+                <p id="apdo2imagen">Now we can bypass load-bmfont and just do an XHR (XMLHttpRequest) request on the .json font file.</p>
+
+                <div id="resaltado"><p><bdi id="blue">var</bdi> r = <bdi id="blue">new</bdi> <bdi id="purple">XMLHttpRequest</bdi>();<br />
+                        r.open(<bdi id="green">'GET'</bdi>, <bdi id="green">'fonts/roboto/bitmap/roboto-bold.json'</bdi>);</p>
+
+                    <p>r.onreadystatechange = <bdi id="blue">function</bdi>() {<br />
+                        &nbsp;<bdi id="blue">if</bdi>(r.readyState ===<bdi id="red"> 4 </bdi>&& r.status === <bdi id="red">200</bdi>) {<br />
+                        setup(JSON.parse(r.responseText));<br />
+                        &nbsp;}<br />
+                        };</p>
+
+                    <p>r.send();</p>
+
+                    <p><bdi id="blue">function</bdi> setup(font) {<br />
+                        &nbsp;<bdi id="red">// pass font into TextBitmap object </bdi><br />
+                        }</p></div>
+            </section>
+            <section>
+                <h2 id="apdo2">3. Browserify three-bmfont-text</h2><hr>
+                <p>
+                    Once we have the font loaded, Matt's three-bmfont-text will take care of the rest. Since we're not using
+                    Node for our own app, we're going to <a href="https://vr.with.in/archive/text-sdf-bitmap/three-bmfont-text.js"> browserify three-bmfont-text.js</a>
+                    into a usable <a href="https://vr.with.in/archive/text-sdf-bitmap/three-bmfont-text-bundle.js">three-bmfont-text-bundle.js</a>
+                </p>
+                <div id="resaltado"><p> 
+                        npm install -g browserify<br />
+                        browserify three-bmfont-text.js -o three-bmfont-text-bundle.js 
+                    </p></div>
+            </section>
+            <section>
+                <h2>4. SDF shader</h2><hr>
+                <p>
+                    Adjust the <bdi  id="negrita">afwidth</bdi> and <bdi id="negrita">threshold</bdi> sliders on <a href="https://vr.with.in/archive/text-sdf-bitmap/" >vr.with.in/archive/text-sdf-bitmap/</a> to see the affect of the
+                    signed distance field shader.
+                </p>
+            </section>
+            <section>
+                <h2>5. Usage</h2><hr>
+                <p>For convenience, I created a <a href="https://vr.with.in/archive/text-sdf-bitmap/text-bitmap.js">TextBitmap wrapper class</a> for the browserified three-bmfont-text.</p>
+                <figure id="figura5">
+                    <img id="imagen9" src="https://developers.google.com/web/showcase/2017/images/within/7.png" alt="imagen9">
+                    <figcaption>Text-sdf-bitmap in action</figcaption>
+                </figure>
+                <div id="resaltado"><p><bdi id="blue">&lt;script</bdi> <bdi id="purple">src</bdi>=<bdi id="green">"three-bmfont-text-bundle.js"</bdi><bdi id="blue">&gt;&lt;/script&gt;</bdi><br />
+                        <bdi id="blue">&lt;script</bdi> <bdi id="purple">src</bdi>=<bdi id="green">"sdf-shader.js"</bdi><bdi id="blue">&gt;&lt;/script&gt;</bdi><br />
+                        <bdi id="blue">&lt;script</bdi> <bdi id="purple">src</bdi>=<bdi id="green">"text-bitmap.js"</bdi><bdi id="blue">&gt;&lt;/script&gt;</bdi>;
+                    </p></div>
+                <p>Create an XHR request for the .json font file and create a text object in the callback:</p>
+                <div id="resaltado"><p><bdi id="blue">var</bdi> bmtext = <bdi id="blue">new</bdi><bdi id="purple"> TextBitmap</bdi>({ options });</p></div>
+                <p>To change text:</p>
+                <div id="resaltado"><p>bmtext.text = <bdi id="green">'The quick brown fox jumps over the lazy dog.'</bdi>;<br /><br />
+                        scene.add( bmtext.<bdi id="blue">group</bdi> );<br />
+                        hitBoxes.push( bmtext.hitBox );
+                    </p></div>
+                <p>The bitmap font's .png is loaded with THREE.TextureLoader in text-bitmap.js</p>
+                <p>TextBitmap also includes an invisible hitbox for three.js raycast interaction through a mouse,
+                    camera, or hand tracked motion controllers like Oculus Touch or the Vive controllers.
+                    The hitbox's size auto-updates when you change the text options.
+                </p>
+                <p>Bmtext.group is added to the three.js scene. If you need to access the children / Object3D's,
+                    the scene graph for the text looks like:
+                </p>
+                <figure>
+                    <img src="https://developers.google.com/web/showcase/2017/images/within/diagram2.png" alt="imagen10">
+                </figure>
+            </section>
+            <section>
+                <h2>6. Unminify json and modify xoffsets</h2><hr>
+                <figure id="figura6">
+                    <img id="imagen11" src="https://developers.google.com/web/showcase/2017/images/within/8.gif" alt="imagen11">
+                </figure>
+                <p>If your kerning look off, you may need to edit the xoffsets in the json. Paste the json into
+                    <a href="http://jsbeautifier.org/">Jsbeautifier.org</a> to get an unminified version of the file.
+                </p>
+                <p>The xoffset is essentially global kerning for one character. Kerning is for two specific 
+                    characters that appear next to each other. The default values in the kerning array don't
+                    actually make a difference, and it would be too tedious to edit, so you can empty that 
+                    array to decrease the file size of the json. Then edit the xoffsets for kerning.
+                </p>
+                <p>First you'll have to figure out which characters go with which char ID in the json.
+                    In <a href="https://vr.with.in/archive/text-sdf-bitmap/three-bmfont-text-bundle.js" >three-bmfont-text-bundle.js</a>, insert <bdi id="resaltado">console.log</bdi> after line 240:
+                </p>
+                <div id="resaltado"><p><bdi id="blue">var</bdi> id = text.charCodeAt(i)<br />
+                        <bdi id="red"> // console.log(id);</bdi>
+                    </p></div>
+                <p>Then type into dat.gui text field on <a href="https://vr.with.in/archive/text-sdf-bitmap/">https://vr.with.in/archive/text-sdf-bitmap/</a> and check
+                    the console to find the corresponding ID of a character.
+                </p>
+                <p>For example, in our bitmap font, "j" is consistently too far to the right. 
+                    Its char ID is 106. So find <bdi id="resaltado">"id": 106</bdi>in the json and change its xoffset from -1 to -10.
+                </p>
+            </section>
+            <section>
+                <h2>7. Layout</h2><hr>
+                <p>If you have multiple blocks of text and want it to flow from top to bottom like HTML, everything
+                    has to be manually positioned, similar to absolute positioning every dom element yourself with CSS.
+                    Can you imagine doing this in CSS?
+                </p>
+                <div id="resaltado"><p>* { position: absolute; }</p></div>
+                <p>That's what text layout in 3D is like. In the detail view: title, author, description, and duration are
+                    each a new TextBitmap object with their own styles, color, scale, etc.:
+                </p>
+                <figure>
+                    <img id="imagen12" src="https://developers.google.com/web/showcase/2017/images/within/9.jpg" alt="imagen12">
+                </figure>
+                <div id="resaltado">
+                    <p>
+                        author.<bdi id="blue">group</bdi>.position.y = title.<bdi id="blue">group</bdi>.position.y - title.height - padding;<br />
+                        description.<bdi id="blue">group</bdi>.position.y = author.<bdi id="blue">group</bdi>.position.y - author.height - padding;<br />
+                        duration.<bdi id="blue">group</bdi>.position.y = description.<bdi id="blue">group</bdi>.position.y - description.height - padding;<br /> 
+                    </p></div>
+                <p>
+                    This assumes that the local origin of each TextBitmap group is vertically aligned with the top
+                    of the TextBitmap mesh (see centering in <a href="https://vr.with.in/archive/text-sdf-bitmap/text-bitmap.js">text-bitmap.js update</a>). If you change the text for any
+                    of those objects later, and the height of that object changes, you will also need to recalculate
+                    those positions. Here, only the y-position of the text is modified, but one opportunity of working
+                    in 3D is that we can push and pull the text in the z-direction, as well as rotate around the x, y and z axes.   
+                </p>
+            </section>
+            <section>
+                <h2><bdi id="conclusion">Conclusion</bdi></h2><hr>
+                <p>
+                    Text and layout in WebVR have a long way to go before they're as easy and as widely-used as HTML and CSS.
+                    But working solutions exist and you can do way more in WebVR than you can with a traditional HTML web page.
+                    WebVR exists today. There will probably be better tools tomorrow. Until then, try it out and experiment. 
+                    Developing without a ubiquitous framework leads to more unique projects, and that's exciting.  
+                </p><hr>
+
+            </section>
+        </article>
+
+
+        <footer id="footer"> 
+            <p>Except as otherwise noted, the content of this page is licensed under the <a href="https://creativecommons.org/licenses/by/3.0/">Creative
+                    Commons Attribution 3.0 License</a>, and code samples are licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0 License.</a>
+                For details, see our <a href="https://developers.google.com/terms/site-policies">Site Policies</a>. Java is a registered trademark of Oracle and/or its affiliates.
+            </p>
+
+            <p>Last updated Junio 23, 2017.</p>
+        </footer>
+
+    </body>
+</html>
