@@ -10,7 +10,8 @@ and open the template in the editor.
         <title>PA-EPD3-P5-Grupo8</title>
         <style>
             body{
-                background-color:#cfcfcf
+                background-color:#cfcfcf;
+                font-size: 20px;
 
             }
             h1,h2{
@@ -18,11 +19,11 @@ and open the template in the editor.
                 border: solid red 1px;
             }
             h1{         
-                font-size: 20px;
+                font-size: 30px;
                 background-color:  #a7f5f1; 
             }
             h2{
-                font-size: 12px;
+                font-size: 17px;
                 background-color:  #a7f5f1; 
             }
             strong{
@@ -35,10 +36,15 @@ and open the template in the editor.
                 border: double 3px white;
 
             }
+            article{
+                
+                padding-left: 20px;
+            }
         </style>
     </head>
     <?php
 
+    //convierte los elementos de la triangular inferior en el valor del escalado elemento a elemento
     function TriangMatrix($matrix, &$triang, $escalar) {
         $diag = 0;
         for ($i = 0; $i < sizeof($matrix); $i++) {
@@ -54,6 +60,8 @@ and open the template in the editor.
         return true;
     }
 
+    /*función que comprueba si la suma de los elementos de la diagonal es mayor
+    que el número escalar intrducido*/
     function comprobarSumaDiag($matrix, $escalar) {
         $sumDiag = 0;
         for ($i = 0; $i < sizeof($matrix); $i++) {
@@ -71,19 +79,9 @@ and open the template in the editor.
             return false;
         }
     }
-
-    function imprimirMatrix($matrix, $escalar) {
-        if (comprobarSumaDiag($matrix, $escalar) == true) {
-            imprimirMatrixIni($matrix);
-            return true;
-        }else{
-            
-            return false;
-            
-        }
-    }
     
-    function imprimirMatrixIni($matrix){
+    //imprime la matriz en una tabla sin comprobar nada anteriormente.
+    function imprimirMatrix($matrix){
         echo "<table border=1>";
             foreach ($matrix as $fila) {
                 echo "<tr>";
@@ -94,23 +92,27 @@ and open the template in the editor.
                 echo "</tr>";
             }
             echo "</table>";
-        
+        echo "<br />";
     }
 
+    /*función que nos devuelve un vector con los elementos de la diagonal principal
+    multiplicados por su escalado*/
     function multDiag($matrix, $escalar) {
         $cont = 0;
         for ($i = 0; $i < sizeof($matrix); $i++) {
             for ($j = 0; $j < sizeof($matrix); $j++) {
                 if ($i == $j) {
                     $diag[$cont] = $matrix[$i][$j] * $escalar;
-                    echo "$diag[$cont] ";
+                    echo "| $diag[$cont] ";
                     $cont++;
                 }
             }
         }
+        echo "|";
         return $diag;
     }
 
+    //Inicializa la matriz 4x4
     function inicializarMatrix() {
         $matrix = array();
         for ($i = 0; $i < 4; $i++) {
@@ -128,22 +130,29 @@ and open the template in the editor.
         </header>
         <article>
 <?php
+//Inicializamos la matriz
 $matrix = inicializarMatrix();
+//Elegimos un número escalar
 $escalar = 4;
+//Creamos un vector para recibir la diagonal principal multiplicada por el escalar
 $triang = array();
-echo "Matriz Inicial: <br />";
-$comprobacion = imprimirMatrix($matrix,$escalar);
-echo "Valor del escalado: $escalar <br />";
-if($comprobacion == false){
+
+//imprimimos el valor del escalar elegido
+echo "Valor del escalado: $escalar <br /><br />";
+
+/*Comprobamos la suma de la diagonal principal. Si es false no continuamos, en caso
+  contrario continuamos con el programa*/
+if(!comprobarSumaDiag($matrix, $escalar)){
     
     echo "El valor del escalar es mayor que al de la suma de la diagonal";
     
 }else{
-    
+    echo "Matriz Inicial: <br />";
+    imprimirMatrix($matrix);
     TriangMatrix($matrix, $triang, $escalar);
     echo "Matriz Triangular superior: <br />";
-    imprimirMatrix($triang,$escalar);
-    echo "Diagonal por el escalado: ";
+    imprimirMatrix($triang);
+    echo "Diagonal principal por el escalado: ";
     multDiag($matrix, $escalar);
     
 }
