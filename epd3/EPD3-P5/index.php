@@ -149,10 +149,13 @@ if(!comprobarSumaDiag($matrix, $escalar)){
 }else{
     echo "Matriz Inicial: <br />";
     imprimirMatrix($matrix);
+    //Guardamos la nueva matriz en la variale $triang que se pasa por referencia
     TriangMatrix($matrix, $triang, $escalar);
     echo "Matriz Triangular superior: <br />";
+    //imprimimos la nueva matriz
     imprimirMatrix($triang);
     echo "Diagonal principal por el escalado: ";
+    //calculamos e imprimimos el vector
     multDiag($matrix, $escalar);
     
 }
