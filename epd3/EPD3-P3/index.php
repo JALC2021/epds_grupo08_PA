@@ -67,12 +67,12 @@ and open the template in the editor.
         </header>
         <article>
             <p>A continuación, calcularemos el sumatorio de los primeros números pares de la secuencia 
-                numérica hasta el número 200.<br /><br />
+                numérica hasta el número elegido por el usuario.<br /><br />
             
             Los factores que intervienen en la resolución son los siguientes:<br /><br />
             <ol>
             <?php
-            $res = sumNumPares(200);
+            $res = sumNumPares(100);
             echo "<li>Número: <strong>$res[0]</strong><br /><li>Suma total: <strong>$res[1]</strong><br /><li>Factores: | ";
             foreach($res[2] as $factor){
                 
