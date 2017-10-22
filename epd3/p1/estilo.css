@@ -1,0 +1,48 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 20-oct-2017, 20:49:08
+    Author     : susana
+*/
+
+body { 
+    font-family: verdana;
+    background: url("Imagenes/matematicas.gif");
+    background-color:rgb(0,0,153);
+    background-repeat: no-repeat;
+    background-position-x: 30px;
+    background-position-y: 200px;
+    background-size:400px 400px; /*No se cambia el tamaño de la imagen*/
+    
+}
+/*Si la imagen no esta en el html para poderle poner un id o class y ponerle aquí sus propiedades
+como pongo otra imagen más de forma que reconozca las propiedades que son para cada una*/
+h1{
+    font-family:verdana;
+    font-style:oblique;
+    font-variant: small-caps;
+    font-size: 2em;
+    font-weight: 700;
+    text-decoration: underline;
+    text-align: center;
+    color: #FFFFFF;
+}
+table{
+    background-color: white;
+    margin: 0 auto;
+    position: fixed;
+    bottom: 20%;
+    top: 50%;
+    right:57%;
+    left:39%;
+    font-size: 1.5em;
+    border: 1em solid aquamarine; 
+    text-align: center;
+    table-layout: auto;
+    
+    
+ } 
+
