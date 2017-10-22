@@ -1,0 +1,51 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 20-oct-2017, 18:06:37
+    Author     : susana
+*/
+
+body { 
+    font-family: calibri, sans-serif;
+    background-image:url("Imagenes/Fibonacci (1).jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+h1{
+    margin:auto;
+    padding:10%;
+    font-size: 2em;
+    font-weight: 900;
+    text-decoration: underline;
+    text-align: center;
+    color: darkmagenta;
+}
+
+table{
+    background-color: white;
+    margin: 0 auto;
+    position: fixed;
+    bottom: 20%;
+    top: 50%;
+    right:57%;
+    left:39%;
+    font-size: 1.5em;
+    border: 0.2em solid maroon; 
+    text-align: center;
+    table-layout: auto;
+    
+    
+ } 
+ 
+ td{
+    
+     border: 0.2em solid indianred;
+     width: 1em;
+ }
+
