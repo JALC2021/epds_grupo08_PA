@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" type="text/css" href="style.css" />
+        <link rel="stylesheet" type="text/css" href="estilo.css" />
         <title>Epd_4_p1</title>
     </head>
     <body>
@@ -11,8 +11,6 @@
         $deslizadorMin = $_POST['des1'];
         $deslizadorMax = $_POST['des2'];
         $enviar = $_POST['submit'];
-        $comprobar_ip = '/^(([1-9]?[0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]).){3}([1-9]?[0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$/';
-        $comprobar_puerto = '/^(1[0-4][0-9][0-9]|1500)$/';
 
         if (isset($enviar) || isset($textArea)) {
 
@@ -44,7 +42,7 @@
                         echo "<font color='green'>" . $unir = $sepTexPunto[$i] . "." . "</font>";
                     } else if (($contPAlabras == $deslizadorMin) || ($contPAlabras == $deslizadorMax )) {
                         echo "<font>" . $unir = $sepTexPunto[$i] . "." . "</font>";
-                    }                  
+                    }
                 }
 
                 if ($contMin == $contMax) {
