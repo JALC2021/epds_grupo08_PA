@@ -17,13 +17,13 @@ and open the template in the editor.
             dos direcciones IP y dos números comprendidos en el intervalo [1000, 1500]. Use la función filter_var() de PHP, o bien expresiones
             regulares, para detectar este tipo de contenidos en el texto.</p>
         <form method="post" action="recogidaDatos.php">
-            Introduzca el Texto: <br>
-            <textarea name="textarea" rows="6" cols="60" required="on" maxlength="10000" minlength="1" >El puerto puede cambiar a 1501 pero el texto debe contener IP origen: 128.32.54.1 con puerto 1500 y por supuesto una IP destino: 127.0.0.1 con puerto 1342 .</textarea>
-            <br><br> 
+            Introduzca el Texto: <br />
+            <textarea name="textarea" rows="6" cols="60" maxlength="10000" >El puerto puede cambiar a 1501 pero el texto debe contener IP origen: 128.32.54.1 con puerto 1500 y por supuesto una IP destino: 127.0.0.1 con puerto 1342 .</textarea>
+            <br /><br /> 
             Minimo: <input type="range" name="des1" min="1" max="10">
-            <br><br>
+            <br /><br />
             Máximo: <input type="range" name="des2" min="1" max="10">
-            <br><br>
+            <br /><br />
             <input type="submit" name="submit" value="Enviar">  
             <input type="reset" name="borrar" value="borrar">
         </form>

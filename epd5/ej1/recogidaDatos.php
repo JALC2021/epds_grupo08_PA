@@ -64,15 +64,15 @@ and open the template in the editor.
 
                     if (preg_match($comprobar_ip, $sepTextEspacio[$j])) {
 
-                        echo "IP: " . $sepTextEspacio[$j] . "<br>";
+                        echo "IP: " . $sepTextEspacio[$j] . "<br />";
                     }
                     if (preg_match($comprobar_puerto, $sepTextEspacio[$j])) {
-                        echo "PUERTO: " . $sepTextEspacio[$j] . "<br>";
+                        echo "PUERTO: " . $sepTextEspacio[$j] . "<br />";
                     }
                 }
             } else {
 
-                echo "error en el deslizador<br>";
+                echo "error en el deslizador<br />";
             }
         } else {
             echo "revisar campo texto antes de enviar";
