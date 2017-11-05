@@ -15,28 +15,64 @@ and open the template in the editor.
         $deslizadorMin = $_POST['des1'];
         $deslizadorMax = $_POST['des2'];
         $enviar = $_POST['submit'];
-
         $comprobar_ip = '/^(([1-9]?[0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]).){3}([1-9]?[0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$/';
-        $comprobar_puerto = '/[^.]^1[0-5]|[0-4]{1}[0-9][0-9]{2}$/';
-//        '/^(6553[0-5]|655[0-2][0-9]|65[0-4][0-9]{2}|[0-9]{3}|[0-5]?([0-9]){0,3}[0-9])$/';
-//        $rango_puerto_min = 1000;
-//        $rango_puerto_max = 1500;
-//        $comprobar_puerto = filter_var();
+        $comprobar_puerto = '/^(1[0-4][0-9][0-9]|1500)$/';
 
         if (isset($enviar) || isset($textArea)) {
 
-            $sep = explode(' ', $textArea);
+            $encontrado = false;
+            $sepTexPunto = explode('.', $textArea);    //recore el texto y cuando hay un (.) para e introduce la frase sin punto en un vector
+            $sepTextEspacio = explode(' ', $textArea);
+            $unir = " ";
 
+            if ($deslizadorMin < $deslizadorMax) {
+                $contMin = 0;
+                $contMax = 0;
 
-            for ($i = 0; $i < count($sep); $i++) {
+                for ($i = 0; $i < count($sepTexPunto); $i++) {
 
-                if (preg_match($comprobar_ip, $sep[$i])) {
+                    $contPAlabras = str_word_count($sepTexPunto[$i]);   //cuento las palabras
 
-                    echo "IP: " . $sep[$i] . "<br>";
+                    if ($contPAlabras == $deslizadorMin) {
+
+                        $contMin++;
+                    } elseif ($contPAlabras == $deslizadorMax) {
+
+                        $contMax++;
+                    }
+
+                    if ($contPAlabras < $deslizadorMin) {
+
+                        echo "<font color='red'>" . $unir = $sepTexPunto[$i] . "." . "</font>";
+                    } else if ($contPAlabras > $deslizadorMax) {
+
+                        echo "<font color='green'>" . $unir = $sepTexPunto[$i] . "." . "</font>";
+                    } else if (($contPAlabras == $deslizadorMin) || ($contPAlabras == $deslizadorMax )) {
+                        echo "<font>" . $unir = $sepTexPunto[$i] . "." . "</font>";
+                    }
                 }
-                if (preg_match($comprobar_puerto, $sep[$i])) {
-                    echo "PUERTO: " . $sep[$i] . "<br>";
+                if ($contMin == $contMax) {
+                    echo "<h3>El texto contiene errores</h3>";
+                } else {
+                    echo "<h3>El texto no contiene errores</h3>";
                 }
+                
+                echo "<br><h3>El texto contiene Ip y Puerto</h3>";
+                echo "<p>$textArea</p>";
+
+                for ($j = 0; $j < count($sepTextEspacio); $j++) {
+
+                    if (preg_match($comprobar_ip, $sepTextEspacio[$j])) {
+
+                        echo "IP: " . $sepTextEspacio[$j] . "<br>";
+                    }
+                    if (preg_match($comprobar_puerto, $sepTextEspacio[$j])) {
+                        echo "PUERTO: " . $sepTextEspacio[$j] . "<br>";
+                    }
+                }
+            } else {
+
+                echo "error en el deslizador<br>";
             }
         } else {
             echo "revisar campo texto antes de enviar";
