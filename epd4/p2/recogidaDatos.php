@@ -91,7 +91,7 @@
                     }
                 }
             } else {
-                echo "error en el deslizador<br>";
+                echo "error en el deslizador<br />";
             }
 
             if ($encontrado == true) {
