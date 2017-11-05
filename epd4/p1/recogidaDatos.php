@@ -11,23 +11,22 @@
         $deslizadorMin = $_POST['des1'];
         $deslizadorMax = $_POST['des2'];
         $enviar = $_POST['submit'];
+        $comprobar_ip = '/^(([1-9]?[0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]).){3}([1-9]?[0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$/';
+        $comprobar_puerto = '/^(1[0-4][0-9][0-9]|1500)$/';
 
         if (isset($enviar) || isset($textArea)) {
 
             $encontrado = false;
-            $sep = explode('.', $textArea);    //recore el texto y cuando hay un (.) para e introduce la frase sin punto en un vector
-//        print_r($sep); 
+            $sepTexPunto = explode('.', $textArea);    //recore el texto y cuando hay un (.) para e introduce la frase sin punto en un vector
             $unir = " ";
-            $contMin = 0;
-            $contMax = 0;
 
             if ($deslizadorMin < $deslizadorMax) {
                 $contMin = 0;
                 $contMax = 0;
 
-                for ($i = 0; $i < count($sep) - 1; $i++) {
+                for ($i = 0; $i < count($sepTexPunto); $i++) {
 
-                    $contPAlabras = str_word_count($sep[$i]);   //cuento las palabras
+                    $contPAlabras = str_word_count($sepTexPunto[$i]);   //cuento las palabras
 
                     if ($contPAlabras == $deslizadorMin) {
 
@@ -39,19 +38,19 @@
 
                     if ($contPAlabras < $deslizadorMin) {
 
-                        echo "<font color='red'>" . $unir = $sep[$i] . "." . "</font>";
+                        echo "<font color='red'>" . $unir = $sepTexPunto[$i] . "." . "</font>";
                     } else if ($contPAlabras > $deslizadorMax) {
 
-                        echo "<font color='green'>" . $unir = $sep[$i] . "." . "</font>";
+                        echo "<font color='green'>" . $unir = $sepTexPunto[$i] . "." . "</font>";
                     } else if (($contPAlabras == $deslizadorMin) || ($contPAlabras == $deslizadorMax )) {
-                        echo "<font>" . $unir = $sep[$i] . "." . "</font>";
-                    }
+                        echo "<font>" . $unir = $sepTexPunto[$i] . "." . "</font>";
+                    }                  
                 }
 
                 if ($contMin == $contMax) {
-                    echo "<h3>El texto no contiene errores</h3>";
-                } else {
                     echo "<h3>El texto contiene errores</h3>";
+                } else {
+                    echo "<h3>El texto no contiene errores</h3>";
                 }
             } else {
 
