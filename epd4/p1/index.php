@@ -8,7 +8,7 @@
     <body>
         <form method="post" action="recogidaDatos.php">
             Introduzca el Texto: <br>
-           <textarea name="textarea" rows="6" cols="60" required="on" maxlength="1000" minlength="1" >hola. que  tal.mal y tu que.</textarea>
+           <textarea name="textarea" rows="6" cols="60" maxlength="1000" >hola. que  tal.mal y tu que.</textarea>
             <br><br>
             Minimo: <input type="range" name="des1" min="1" max="10">
             <br><br>
