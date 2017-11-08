@@ -62,62 +62,16 @@ and open the template in the editor.
         fclose($fw);
     }
 
-    function unidad($numuero) {
-        switch ($numuero) {
-            case 9: {
-                    $letra = "J";
-                    break;
-                }
-            case 8: {
-                    $letra = "I";
-                    break;
-                }
-            case 7: {
-                    $letra = "H";
-                    break;
-                }
-            case 6: {
-                    $letra = "G";
-                    break;
-                }
-            case 5: {
-                    $letra = "F";
-                    break;
-                }
-            case 4: {
-                    $letra = "E";
-                    break;
-                }
-            case 3: {
-                    $letra = "D";
-                    break;
-                }
-            case 2: {
-                    $letra = "C";
-                    break;
-                }
-            case 1: {
-                    $letra = "B";
-                    break;
-                }
-            case 0: {
-                    $letra = "A";
-                    break;
-                }
-        }
-        return $letra;
-    }
-
     function mostrarVariasImagenes($imagenes) {
 
         for ($j = 0; $j < count($imagenes); $j++) {
             $vector = explode(",", $imagenes[$j]);
-            $date = date("Y-m-d_H-i") . "-" . unidad($j) . ".jpg";
+            $date = date("Y-m-d_H-i") . "-" . chr($j+65) . ".jpg";
             array_push($vector, $date);
             getFotoURL($vector);
             ?>
             <td>
-                <figure><img style="width: 40%" src=<?PHP echo $date ?>>
+                <figure><img style="width: 100%" src=<?PHP echo $date ?>>
                     <figcaption><?PHP
                         echo "Categor&iacute;as: ";
                         for ($i = 0; $i < count($vector) - 1; $i++) {
