@@ -1,16 +1,1 @@
-
-0;Dublin
-0;Sevilla
-0;Madrid
-1;Roma
-1;Londres
-1;Sevilla
-1;Amsterdam
-2;Paris
-2;Sevilla
-2;Madrid
-2;Barcelona
-3;Roma
-3;Dublin
-3;Madrid
-3;Barcelona
+Dublin;Madrid;Amsterdam
