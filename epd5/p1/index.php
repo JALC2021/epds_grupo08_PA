@@ -7,9 +7,11 @@ and open the template in the editor.
 <html>
     <head>
         <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="estilo.css">
         <title>Epd_5_p1</title>
     </head>
     <body>
+        <!--
         <p>Cree un sistema, compuesto por varias páginas PHP, que permita gestionar vuelos y destinos de aerolíneas.
             La primera página del sistema permitirá dar de alta una aerolínea y sus destinos. En ella se pedirá al usuario el nombre de la
             aerolínea y el número de destinos en los que opera. Al enviar esta información, se proporcionará al usuario un nuevo formulario en
@@ -37,11 +39,15 @@ and open the template in the editor.
             de vuelo hacia otros destinos. Esta tabla mostrará los destinos ordenados de forma descendente en función del número de
             conexiones.</p>
         <p>Cree una página principal que permita el acceso a cada una de las páginas descritas anteriormente.</p>
+        -->
         <h2>Alta Aerol&iacute;nea</h2>
-        <form method="post" action =altaAerolinea.php name="alta">
+        <form method="post" action ="altaAerolinea.php" name="alta">
             Nombre: <input type="text" name="nombreAerolinea"><br />
-            N&uacute;mero de Destinos: <input type="number" name="nDestinos" value="0" min="0" max="8"><br />
+            N&uacute;mero de Destinos: <input type="number" name="nDestinos" min="1" max="8"><br />
             <input type="submit" name="siguiente" value="Siguiente">
         </form>
+        <?php
+        // put your code here
+        ?>
     </body>
 </html>
