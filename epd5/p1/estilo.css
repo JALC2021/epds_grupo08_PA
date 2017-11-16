@@ -14,7 +14,17 @@ body{
 
 }
 input[type=text], select {
-    width: 100%;
+    width: 20%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 1em;
+}
+input[type=time]{
+    width: 20%;
     padding: 12px 20px;
     margin: 8px 0;
     display: inline-block;
@@ -24,7 +34,7 @@ input[type=text], select {
     font-size: 1em;
 }
 input[type=number], select {
-    width: 30%;
+    width: 20%;
     padding: 12px 20px;
     margin: 8px 0;
     display: inline-block;
@@ -35,7 +45,7 @@ input[type=number], select {
 }
 
 input[type=submit] {
-    width: 100%;
+    width: 20%;
     background-color: #4CAF50;
     color: white;
     padding: 14px 20px;

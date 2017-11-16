@@ -42,8 +42,8 @@ and open the template in the editor.
         -->
         <h2>Alta Aerol&iacute;nea</h2>
         <form method="post" action ="altaAerolinea.php" name="alta">
-            Nombre: <input type="text" name="nombreAerolinea"><br />
-            N&uacute;mero de Destinos: <input type="number" name="nDestinos" min="1" max="8"><br />
+            Nombre: <br /><input type="text" name="nombreAerolinea"><br />
+            N&uacute;mero de Destinos:<br /><input type="number" name="nDestinos" min="1" max="8"><br />
             <input type="submit" name="siguiente" value="Siguiente">
         </form>
         <?php

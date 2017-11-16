@@ -40,8 +40,8 @@ and open the template in the editor.
         }
         flock($lectura_txt_id_nombreAerolinea, LOCK_UN);
         fclose($lectura_txt_id_nombreAerolinea);
+        
         //leemos las ciudades destino para cada aerolinea
-
         $nombreDest = array();
         $lectura_txt_altaCompleta = fopen("altaCompleta.txt", 'r');   //modo lectura
         flock($lectura_txt_altaCompleta, LOCK_SH);  //bloqueo lectura
@@ -56,23 +56,26 @@ and open the template in the editor.
 //        tenemos que mostrar en la web el nombre de las aerolineas. y los destinos de cada aerolinea en un radio boton 
 //        imprimo las aerolineas y sus destinos
 
-        for ($ind = 0; $ind < count($nombreAero[0]); $ind++) {
-            echo "<article>";
-            echo "<h2>" . $nombreAero[1][$ind] . "</h2>";
+        ?> <form method="post" action="eligeDestino.php"><?php
+            for ($ind = 0; $ind < count($nombreAero[0]); $ind++) {
+                echo "<article>";
+                echo "<h2>" . $nombreAero[1][$ind] . "</h2>";
 
-            for ($inde = 0; $inde < count($nombreDest[0]); $inde++) {
+                for ($inde = 0; $inde < count($nombreDest[0]); $inde++) {
 
-                if ($nombreAero[0][$ind] == $nombreDest[0][$inde]) {    // value='" . .  "'". 
-                    echo"<input type='radio' name='destinos'>" . $nombreDest[1][$inde] . "</input>";
+                    if ($nombreAero[0][$ind] == $nombreDest[0][$inde]) {
+//                        echo"<input type='radio' name='destinos'>" . $nombreDest[1][$inde] . "</input>";
+                        ?><input type="radio" name="ciudadOrigen" value="<?php echo $nombreDest[0][$inde] . ";" . $nombreDest[1][$inde]; ?>">
+                        <?php
+                        echo $nombreDest[1][$inde];
+
+                    }
                 }
+                echo "</article>";
             }
-            echo "</article>";
-        }
-        ?>
-        <form method="post" action="altaVuelos.php">
+            ?>
 
-            <h4>Seleccione Origen y pulse:</h4> <input type="submit" name="enviarDestino" value="Enviar">
-
+            <h4>Seleccione Origen:</h4> <input type="submit" name="enviarDestino" value="Enviar">
         </form>
     </body>
 </html>

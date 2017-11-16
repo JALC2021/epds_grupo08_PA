@@ -7,7 +7,7 @@ and open the template in the editor.
 <html>
     <head>
         <meta charset="UTF-8">
-             <link rel="stylesheet" type="text/css" href="estilo.css">
+        <link rel="stylesheet" type="text/css" href="estilo.css">
         <title>Epd_5_p1</title>
     </head>
     <body>
@@ -79,12 +79,12 @@ and open the template in the editor.
         }
         ?>
 
-        <form method="post" action ="altaCompleta.php" name="alta">  
+        <form method="post" action ="altaCompleta.php" name="altaComleta">  
 
             <?php
             for ($i = 0; $i < $nDestinos; $i++) {
                 ?>
-                <p>Destino <?php echo $i+1 ?> </p>
+                <p>Destino <?php echo $i + 1 ?> </p>
 
                 <select  size="8" name="vectorCiudadesDestino[]">    
                     <?php
@@ -95,7 +95,7 @@ and open the template in the editor.
                 </select>
             <?php } ?>
             <input type="hidden" name="id_aerolinea" value="<?php echo $id_aerolinea; ?>">
-            <input type="hidden" name="nombreAerolinea" value="<?php echo $nombreAerolinea; ?>">
+            <input type="hidden" name="nombreAerolinea" value="<?php echo $nombreAerolinea; ?>"><br />
             <input type="submit" name="enviarDestino" value="Enviar">
         </form>
     </body>
