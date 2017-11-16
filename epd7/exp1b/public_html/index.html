@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <script type="text/javascript">
+//no hace falta poner el tipo
+
+function hola(nombre){
+document.write("¡Hola " + nombre + "!");
+//La función write escribe una cadena en un documento
+}
+
+</script>
+    </head>
+    <body>
+        <script type="text/javascript">
+//la función prompt se utiliza para imprimir por pantalla.
+/*Las variables si llevan delante la expresión var, son variables locales. Si no se pone nada, son variables globales
+No hace falta declarar el tipo, pero si inicializarla; sino se inicializa su valor por defecto será null o undefined.*/
+var nombre = prompt("Dime tu nombre","");
+hola(nombre);
+
+</script>
+    </body>
+</html>
