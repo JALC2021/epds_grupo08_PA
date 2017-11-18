@@ -1,0 +1,14 @@
+0;Roma
+0;Madrid
+1;Sevilla
+1;Paris
+1;Barcelona
+2;Amsterdam
+2;Dublin
+2;Londres
+2;Madrid
+3;Londres
+3;Roma
+4;Barcelona
+4;Madrid
+4;Sevilla

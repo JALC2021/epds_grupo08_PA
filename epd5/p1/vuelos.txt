@@ -1,0 +1,5 @@
+0;Vueling;Madrid;Roma;01:09
+1;RyanAir;Sevilla;Paris;02:34
+1;RyanAir;Barcelona;Paris;01:12
+1;RyanAir;Sevilla;Barcelona;01:00
+0;Vueling;Roma;Madrid;01:13

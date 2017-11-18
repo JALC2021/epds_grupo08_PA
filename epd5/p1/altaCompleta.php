@@ -8,7 +8,7 @@ and open the template in the editor.
     <head>
         <meta charset="UTF-8">
         <link rel="stylesheet" type="text/css" href="estilo.css">
-        <title></title>
+        <title>Epd_5_p1</title>
     </head>
     <body>
         <?php

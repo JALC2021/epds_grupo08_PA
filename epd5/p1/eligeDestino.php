@@ -11,15 +11,10 @@ and open the template in the editor.
         <title>Epd_5_p1</title>
     </head>
     <body>
-        <h1>Aerol&iacute;nea Seleccionada</h1> 
-        <?php //nombre de la aerolinea segun id?>
         <?php
         $ciudadOrigen = $_POST['ciudadOrigen'];
-        echo count($ciudadOrigen);
         $pos = array(explode(";", $ciudadOrigen));
-        print_r($pos);
-        
-        
+
         //Leemos las aerolineas
         $nombreAero = array();
         $lectura_txt_id_nombreAerolinea = fopen("iDnombreAerolinea.txt", 'r');    //modo lectura
@@ -46,17 +41,47 @@ and open the template in the editor.
         }
         flock($lectura_txt_altaCompleta, LOCK_UN);
         fclose($lectura_txt_altaCompleta);
-        
-        
-        ?><h3>Origen: <?php echo $ciudadOrigen; ?> </h3> 
-        <form method="post"action="">
-            Destino:
-            <select>
 
+        for ($i = 0; $i < count($nombreAero[0]); $i++) {
+            if ($nombreAero[0][$i] == $pos[0][0]) {
+                //imprimo el nombre de la aerolinea selecionoada en el origen
+                $nombreAerolineaSeleccionada = $nombreAero[1][$i];
+                ?> <h1> Aerol&iacute;nea Seleccionada: <?php echo $nombreAero[1][$i]; ?></h1><?php
+            }
+        }
+
+        $vOrigenes = array();
+        ?><h3>Origen: <?php echo $pos[0][1]; ?> </h3> 
+        <?php
+        for ($k = 0; $k < count($nombreDest[0]); $k++) {
+            if ($nombreDest[0][$k] == $pos[0][0]) {
+                $vOrigenes[] = $nombreDest[1][$k];
+            }
+        }
+        ?>
+        <form method="post" action="aerolineaCompleta.php">
+            <?php
+            $busquedaPos = array_search($pos[0][1], $vOrigenes);
+            unset($vOrigenes[$busquedaPos]);
+            if (empty($vOrigenes)) {
+                echo "Esta aerolínea esta completa";
+            } else {
+                ?>
+                Destino:<br />
+                <select name="cDestino">
+                    <?php foreach ($vOrigenes as $value) {
+                        ?><option value="<?php echo $value; ?>"><?php echo $value; ?></option>  <?php
+                    }
+                }
+                ?>
             </select>
 
             <br />Introduzca ti&eacute;mpo de vuelo: <br /><input type="time" name="tiempoVuelo" value="Enviar"><br />
             <br />Comprobar: <br /><input type="submit" name="enviarDestino" value="Enviar">
+            <input type="hidden" name="nombreAerolinea" value="<?php echo $nombreAerolineaSeleccionada; ?>">
+            <input type="hidden" name="id_aerolinea" value="<?php echo $pos[0][0]; ?>">
+            <input type="hidden" name="cOrigen" value="<?php echo $pos[0][1]; ?>">
+
         </form>
 
     </body>
