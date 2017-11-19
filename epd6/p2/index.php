@@ -61,7 +61,6 @@ and open the template in the editor.
             die("No se pudo conectar con la base de datos");
         }
         
-        echo "INSERT INTO `imagenes` (`id`, `categorias`, `imagenes`) VALUES (NULL,'" . $categorias . "','" . $date . "');";
         
         $result = mysqli_query($con, "INSERT INTO `imagenes` (`id`, `categorias`, `imagenes`) VALUES (NULL,'" . $categorias . "','" . $date . "');");
         
