@@ -81,7 +81,7 @@ and open the template in the editor.
             getFotoURL($vector);
             ?>
             <td>
-                <figure><img style="width: 100%" src=<?PHP echo $date ?>>
+                <figure><img style="width: 100%" src=<?PHP echo $date ?>
                     <figcaption><?PHP
         echo "Categor&iacute;as: ";
         for ($i = 0; $i < count($vector) - 1; $i++) {
@@ -204,7 +204,7 @@ and open the template in the editor.
                     </table>
                 </form>
             </td>
-            <td><ol><strong>El archivo subido tiene que tener las siguientes car&aacute;cter&iacute;sticas:</strong><br />
+            <td><ol><label>El archivo subido tiene que tener las siguientes car&aacute;cter&iacute;sticas:</label><br />
                     <li>Tipo: Texto</li>
                     <li>Formato: Una sola línea</li>
                     <li>Longitud: Máximo 200 carácteres</li>
