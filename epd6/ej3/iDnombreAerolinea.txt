@@ -1,0 +1,8 @@
+0;Vueling
+1;RyanAir
+2;Iberia
+3;Easy Jet
+4;Air Europa
+5;Gonzalo
+6;Wind
+7;Wind
