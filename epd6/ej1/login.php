@@ -24,7 +24,11 @@ if (isset($_POST['login'])) {
     if (mysqli_num_rows($result) < 1) {
         echo "El usuario no existe. Puede registrarse si lo desea.";
     } else {
-        $_SESSION['user'] = $_POST['usuario'];
+        //actualizamos la última hora del acceso.
+        $result2 = mysqli_query($con, "UPDATE usuarios SET last_access=now() WHERE usuario like '" . $_POST['usuario']  . "';");
+        if (!$result2) {
+            die("Error al ejecutar la consulta: " . mysqli_error($con));
+        }
         $_SESSION['estado'] = TRUE;
         echo $_SESSION['url'];
         if (!isset($_SESSION['url'])) {
