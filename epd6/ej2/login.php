@@ -17,8 +17,8 @@ if (isset($_POST['login'])) {
     }
 
     //sanear la entrada
-    $name = mysqli_real_escape_string($conn, $_POST['nombre']);
-    $pass = mysqli_real_escape_string($conn, $_POST['password']);
+    $name = mysqli_real_escape_string($con, $_POST['usuario']);
+    $pass = mysqli_real_escape_string($con, $_POST['password']);
 
     $result = mysqli_query($con, "SELECT * FROM usuarios WHERE usuario like '" . $name . "' AND password like '" . $pass . "';");
 
@@ -28,7 +28,11 @@ if (isset($_POST['login'])) {
     if (mysqli_num_rows($result) < 1) {
         echo "El usuario no existe. Puede registrarse si lo desea.";
     } else {
-        $_SESSION['user'] = $_POST['usuario'];
+        //actualizamos la última hora del acceso.
+        $result2 = mysqli_query($con, "UPDATE usuarios SET last_access=now() WHERE usuario like '" . $name . "';");
+        if (!$result2) {
+            die("Error al ejecutar la consulta: " . mysqli_error($con));
+        }
         $_SESSION['estado'] = TRUE;
         echo $_SESSION['url'];
         if (!isset($_SESSION['url'])) {
