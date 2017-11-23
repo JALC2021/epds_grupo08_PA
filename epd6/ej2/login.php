@@ -33,6 +33,9 @@ if (isset($_POST['login'])) {
         if (!$result2) {
             die("Error al ejecutar la consulta: " . mysqli_error($con));
         }
+        
+        //cerramos la conexión
+        mysqli_close($con);
         $_SESSION['estado'] = TRUE;
         echo $_SESSION['url'];
         if (!isset($_SESSION['url'])) {
