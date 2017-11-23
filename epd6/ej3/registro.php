@@ -26,6 +26,7 @@ if (isset($_POST['finalizar'])) {
     if (!$result) {
         die("Error al ejecutar la consulta: " . mysqli_error($con));
     }
+    mysqli_close($con);
     $_SESSION['registrado'] = TRUE;
     header("location:login.php");
 }

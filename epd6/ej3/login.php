@@ -30,6 +30,7 @@ if (isset($_POST['login'])) {
     } else {
         $fila = mysqli_fetch_array($result);
 
+        //comprobamos si el hash de la contraseña del formulario coincide con la almacenada en la bbdd
         if (password_verify($pass, $fila['password'])) {
 
             //actualizamos la última hora del acceso.
@@ -37,6 +38,8 @@ if (isset($_POST['login'])) {
             if (!$result2) {
                 die("Error al ejecutar la consulta: " . mysqli_error($con));
             }
+            
+            mysqli_close($con);
 
             $_SESSION['estado'] = TRUE;
             echo $_SESSION['url'];
@@ -45,6 +48,7 @@ if (isset($_POST['login'])) {
             }
             echo $_SESSION['url'];
             header("location:" . $_SESSION['url']);
+            //si no coincide vuelve a mostrar la página de login.
         } else {
             header("location:login.php");
         }
