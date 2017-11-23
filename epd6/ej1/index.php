@@ -1,6 +1,7 @@
 <?PHP
 session_start();
 
+//si estamos conectados entramos
 if(isset($_SESSION['estado'])){
 ?>
 <!DOCTYPE html>
@@ -52,10 +53,11 @@ and open the template in the editor.
             N&uacute;mero de Destinos:<br /><input type="number" name="nDestinos" min="2" max="8"><br />
             <input type="submit" name="siguiente" value="Siguiente">
         </form>
-        
+        <!-- enlace para deslogarse que nos envía a la página logout -->
         <a href=logout.php ><button>Logout</button></a>
         <?php
 }else{
+    //si no estamos conectados, almacenamos la página actual y nos envía a la página del login.
     $_SESSION['url'] = "index.php";
     header("location:login.php");
 }

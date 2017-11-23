@@ -1,6 +1,6 @@
 <?PHP
 session_start();
-
+//si estamos conectados entramos
 if (isset($_SESSION['estado'])) {
     ?>
 
@@ -83,9 +83,11 @@ and open the template in the editor.
 
             <h4>Seleccione Origen:</h4> <input type="submit" name="enviarDestino" value="Enviar">
             <br />
+            <!-- enlace para deslogarse que nos envía a la página logout -->
             <a href=logout.php ><button>Logout</button></a>
               <?php
         } else {
+            //si no estamos conectados, almacenamos la página actual y nos envía a la página del login.
             $_SESSION['url'] = "altaCompleta.php";
             header("location:login.php");
         }

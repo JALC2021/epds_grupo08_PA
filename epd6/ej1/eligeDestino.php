@@ -1,6 +1,6 @@
 <?PHP
 session_start();
-
+//si estamos conectados entramos
 if (isset($_SESSION['estado'])) {
     ?>
     <!DOCTYPE html>
@@ -88,9 +88,11 @@ if (isset($_SESSION['estado'])) {
                 <input type="hidden" name="cOrigen" value="<?php echo $pos[0][1]; ?>">
 
             </form>
+            <!-- enlace para deslogarse que nos envía a la página logout -->
             <a href=logout.php ><button>Logout</button></a>
             <?php
         } else {
+            //si no estamos conectados, almacenamos la página actual y nos envía a la página del login.
             $_SESSION['url'] = "eligeDestino.php";
             header("location:login.php");
         }

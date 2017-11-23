@@ -1,6 +1,6 @@
 <?PHP
 session_start();
-
+//si estamos conectados entramos
 if (isset($_SESSION['estado'])) {
     ?>
 
@@ -57,10 +57,12 @@ if (isset($_SESSION['estado'])) {
                 ?>
                 <h4>Mostrar Resumen:</h4> <input type="submit" name="resumenAerolinea" value="Enviar">
                 <br />
+                <!-- enlace para deslogarse que nos envía a la página logout -->
                 <a href=logout.php ><button>Logout</button></a>
             </form>
             <?php
         } else {
+            //si no estamos conectados, almacenamos la página actual y nos envía a la página del login.
             $_SESSION['url'] = "aerolineaCompleta.php";
             header("location:login.php");
         }
