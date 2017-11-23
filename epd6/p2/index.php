@@ -12,7 +12,7 @@ and open the template in the editor.
     </head>
     <body>
         <?php
-
+//función que recibe un vector en el que todos los elementos son catergorías menos la última que ese el nombre de la foto
         function getFotoURL($vector) {
             $categorias = "";
             for ($i = 0; $i < count($vector); $i++) {
@@ -28,6 +28,7 @@ and open the template in the editor.
             copy("https://source.unsplash.com/featured/?" . urlencode($categorias), $foto);
         }
 
+        //función que muestra por pantalla y almacena sólo 1 imagen.
         function mostrarImagenes($vector) {
             $date = date("Y-m-d_H-i") . ".jpg";
             $categorias = implode(" ", $vector);
@@ -50,6 +51,7 @@ and open the template in the editor.
             </figure>
         </th>
         <?PHP
+        //almacenamiento en la bbdd
         $con = mysqli_connect("localhost", "user1", "user1");
         if (!$con) {
             die("No se pudo realizar la conexión");
@@ -71,10 +73,12 @@ and open the template in the editor.
         mysqli_close($con);
     }
 
+    //función que muestra por pantalla y almacena el nombre de las imágenes leídas del fichero
     function mostrarVariasImagenes($imagenes) {
 
         for ($j = 0; $j < count($imagenes); $j++) {
             $vector = explode(",", $imagenes[$j]);
+            //con el código ASCII almacenamos la letra
             $date = date("Y-m-d_H-i") . "-" . chr($j + 65) . ".jpg";
             $categorias = implode(" ", $vector);
             array_push($vector, $date);
@@ -96,6 +100,8 @@ and open the template in the editor.
                 </figure>
             </td>
             <?PHP
+            
+            //conexión a la base de datos para almacenar los datos
             $con = mysqli_connect("localhost", "user1", "user1");
 
             if (!$con) {
@@ -174,6 +180,7 @@ and open the template in the editor.
 
         </tr>
         <tr>
+            <!-- formulario de una sóla imagen -->
             <td><strong>Elegir una/varias categorías:</strong>
                 <form action="." method="POST">
                     <table>
@@ -211,6 +218,7 @@ and open the template in the editor.
                     <li>Características: Separadas por comas</li>
                     <li>Número de imágenes: Separadas por punto y coma</li>
                 </ol>
+                <!-- formulario de varias imagenes que se suben por fichero -->
                 <form action="." method="POST" enctype="multipart/form-data">
                     <input type="file" name="fichero" value="upload" ><br />
                     <input type="submit" name="EnvioFichero" value="OK">
