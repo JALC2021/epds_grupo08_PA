@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html lang="es">
+    <head>
+        <title>EJERCICIO 1-EPD7</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="estilo.css"/>
+
+        <script type="text/javascript">
+            <!--
+            function calculaPh(concentracionMolar) {
+
+                var ph = -(Math.log10(concentracionMolar));//el ph a partir de la concentracion molar se calcula haciendo: -log(en base 10)de dicha concentracion molar
+                return ph.toFixed(3);//toFixed permite limitar el nº de decimalos al valor que se introduzca por paramettro, o dejar el nº como entero, si no introducimos parametros
+            }
+            //-->
+        </script>
+
+    </head>
+
+    <body>
+        <h1>Resultado:</h1>
+        <script type="text/javascript">
+            do {
+                
+                var concentracionMolar = prompt("Se calculará el Ph de una sustancia a partir de la concentración molar de la misma.\nIntroduzca la concentracion molar de una sustancia por favor:", concentracionMolar);
+                if (isNaN(concentracionMolar)) {//en el caso de que el número no sea válido mostraremos un mensaje de aviso al usuario
+                    alert("Debe introducir un número en formato correcto. Ejemplo: 0.5");
+                }
+               } while (isNaN(concentracionMolar));//isNaN detecta números inválidos
+
+            document.write("El ph de la sustancia introducida es " + calculaPh(concentracionMolar));
+        </script>
+        
+    </body>
+</html>
