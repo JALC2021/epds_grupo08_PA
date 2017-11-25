@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>EPD7-P3</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="./estilo.css" > 
+        <script type="text/javascript">
+
+            //función que almacena en un array la combinación ganadora en la que no se puede repetir números y
+            //deben estar obligatoriamente entre el 1 y el 49
+            function combinacionGanadora() {
+                var combGanadora = new Array();
+                i = 0;
+                alert("Introduzca la combinación ganadora (numeros entre el 1 y el 49 y que no se repitan)");
+                while (i < 6) {
+                    if (i === 0) {
+                        var num = prompt("Boleto ganador nº " + i + ":");
+                        if (!isNaN(num) && num > 0 && num < 50) {
+                            combGanadora.push(num);
+                            i++;
+                        } else {
+                            alert("Introduzca un valor correspondiente entre el 1 y el 49");
+                        }
+
+                    } else {
+                        var num = prompt("Boleto ganador nº " + i + ":");
+                        if (!isNaN(num) && num > 0 && num < 50 && (combGanadora.indexOf(num) == -1)) {
+                            combGanadora.push(num);
+                            i++;
+                        } else if (combGanadora.indexOf(num) >= 0) {
+                            alert("Los boletos ganadores no se pueden repetir. El Boleto " + num + " ya se insertó previamente");
+                        } else {
+                            alert("Introduzca un valor correspondiente entre el 1 y el 49");
+                        }
+                    }
+                }
+                return combGanadora;
+            }
+
+            //función que recibe el número de participantes y te devuelve una cadena con los números elegidos por los 
+            //participantes sin repetirse y entre el 1 y el 49. Cada participante irá separado por punto y coma.
+            function cadena(numPart) {
+
+                var cadena = new String();
+                var m = 0;
+                while (m < numPart) {
+                    var numBoletos = new Array();
+                    i = 0;
+                    alert("Introduzca la combinación elegida por la Persona " + (m + 1) + " (numeros entre el 1 y el 49 y que no se repitan)");
+                    while (i < 6) {
+
+                        if (i === 0) {
+                            var num = prompt("Persona " + (m + 1) + ". Introduzca el número " + i + " del boleto:");
+                            if (!isNaN(num) && num > 0 && num < 50) {
+                                cadena += (num + " ");
+                                numBoletos.push(num);
+                                i++;
+                            } else {
+                                alert("Introduzca un valor correspondiente entre el 1 y el 49");
+                            }
+                        } else {
+                            var num = prompt("Persona " + (m + 1) + ". Introduzca el número " + i + " del boleto:");
+                            if (!isNaN(num) && num > 0 && num < 50 && (numBoletos.indexOf(num) === -1)) {
+                                cadena += (num + " ");
+                                numBoletos.push(num);
+                                i++;
+                            } else if (numBoletos.indexOf(num) >= 0) {
+                                alert("Los boletos no se pueden repetir. El Boleto " + num + " ya se insertó previamente");
+                            } else {
+                                alert("Introduzca un valor correspondiente entre el 1 y el 49");
+                            }
+                        }
+                    }
+                    var nombre = 0;
+                    while (!isNaN(nombre)) {
+                        nombre = prompt("Introduzca el nombre del participante " + (m + 1) + ":");
+                        if (!isNaN(nombre)) {
+                            alert("Introduzca un nombre correcto");
+                        }
+                    }
+
+                    cadena += (nombre + ";");
+
+                    m++;
+                }
+
+                return cadena;
+            }
+
+            //función que devuelve el número de participantes pedido por pantalla
+            function numParticipantes() {
+
+                var numPart = "Error";
+
+                while (isNaN(numPart)) {
+                    numPart = prompt("Introduzca el número de personas que han participado:");
+                    if (isNaN(numPart)) {
+                        alert("Introduzca un número correcto");
+                    }
+                }
+
+                return numPart;
+
+            }
+
+            //creación de un array en la cual los índices son los aciertos y el valor el premio
+            function crearMatrizPremios() {
+                var premios = new Array(6);
+                premios[0] = 0;
+                premios[1] = 20;
+                premios[2] = 50;
+                premios[3] = 100;
+                premios[4] = 10000;
+                premios[5] = 200000;
+                premios[6] = 1000000;
+                return premios;
+            }
+
+            //función que nos devolverá un array en el que los indices son el participante en concreto y el valor en nº de aciertos.
+            function aciertosTotParticipante(numPart, combGanadora, participantes) {
+                var aciertosTot = new Array(numPart);
+
+
+
+                for (i = 0; i < numPart; i++) {
+
+                    var aciertos = 0;
+                    for (var j = 0; j < 6; j++) {
+                        for (var m = 0; m < 6; m++) {
+                            if (combGanadora[m] === participantes[i][j]) {
+
+                                aciertos++;
+                            }
+                        }
+                    }
+                    aciertosTot[i] = (aciertos);
+                }
+                return aciertosTot;
+            }
+            
+            //nos devuelve una matriz dónde el índice es el participante y los campos los boletos elegidos
+            //menos el último que es el nombre del participante
+            function participantes(cadena) {
+                var personas = new Array();
+                personas = cadena.split(";");
+                var participantes = new Array();
+
+                for (i = 0; i < personas.length; i++) {
+
+                    participantes.push(personas[i].split(" "));
+
+                }
+                return participantes;
+            }
+
+
+            //función comparativa dónde compararemos únicamente los valores del premio situada en la columna 2
+            function funcionDeComparacion(matrix1, matrix2) {
+                return (matrix2[2] - matrix1[2]);
+            }
+
+            //creamos la matriz final dónde el primer campo son los boletos elegidos, 
+            //el segundo los aciertos, el tercero el premio y el cuarto el nombre del participante.
+            function creacionMatrixFinal(aciertosTot, premios, participantes) {
+                var matrixFinal = new Array();
+
+                for (i = 0; i < (participantes.length - 1); i++) {
+                    var vectorFinal = new Array();
+                    vectorFinal[3] = (participantes[i].pop());
+                    vectorFinal[0] = (participantes[i]);
+                    vectorFinal[1] = (aciertosTot[i]);
+                    vectorFinal[2] = (premios[aciertosTot[i]]);
+                    matrixFinal[i] = vectorFinal;
+                }
+                return matrixFinal;
+            }
+
+            //función que muestra los valores en forma de tabla.
+            function imprimirTabla(matrixFinal) {
+                document.write("<table width=200 border=1 cellpadding=1 cellspacing=1>");
+                document.write("<tr>");
+
+                for (i = 0; i < 4; i++) {
+                    var titulo;
+                    switch (i) {
+                        case 0:
+
+                            document.write("<th>Boletos elegidos</th>");
+                            break;
+                        case 1:
+
+                            document.write("<th>Aciertos</th>");
+                            break;
+                        case 2:
+
+                            document.write("<th>Premio</th>");
+                            break;
+                        case 3:
+
+                            document.write("<th>Nombre</th>");
+                            break;
+                    }
+
+
+                }
+                document.write("</tr>");
+
+                for (i = 0; i < matrixFinal.length; i++) {
+                    document.write("<tr>");
+                    for (j = 0; j < matrixFinal[i].length; j++) {
+                        document.write("<td>" + matrixFinal[i][j] + "</td>")
+                    }
+                    document.write("</tr>")
+                }
+                document.write("</table>")
+            }
+
+        </script>
+    </head>
+    <body>
+        <header><h1>EPD7-P3-GRUPO8</h1></header>
+        <script type="text/javascript">
+
+            var combGanadora = combinacionGanadora();
+            var numPart = numParticipantes();
+            var cadena = cadena(numPart);
+            var participantes = participantes(cadena);
+            var premios = crearMatrizPremios();
+            var aciertosTot = aciertosTotParticipante(numPart, combGanadora, participantes);
+
+            var matrixFinal = creacionMatrixFinal(aciertosTot, premios, participantes);
+            matrixFinal.sort(funcionDeComparacion);
+
+            imprimirTabla(matrixFinal);
+
+        </script>
+
+        <footer><h2>Realizado por: Gonzalo del R&iacute;o | Susana de la calle | Juan Antonio L&oacute;pez</h2></footer>
+    </body>
+</html>
