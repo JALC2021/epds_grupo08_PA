@@ -16,7 +16,7 @@ and open the template in the editor.
             //deben estar obligatoriamente entre el 1 y el 49
             function combinacionGanadora() {
                 var combGanadora = new Array();
-                i = 0;
+                var i = 0;
                 alert("Introduzca la combinación ganadora (numeros entre el 1 y el 49 y que no se repitan)");
                 while (i < 6) {
                     if (i === 0) {
@@ -51,7 +51,7 @@ and open the template in the editor.
                 var m = 0;
                 while (m < numPart) {
                     var numBoletos = new Array();
-                    i = 0;
+                    var i = 0;
                     alert("Introduzca la combinación elegida por la Persona " + (m + 1) + " (numeros entre el 1 y el 49 y que no se repitan)");
                     while (i < 6) {
 
@@ -170,7 +170,7 @@ and open the template in the editor.
             function creacionMatrixFinal(aciertosTot, premios, participantes) {
                 var matrixFinal = new Array();
 
-                for (i = 0; i < (participantes.length - 1); i++) {
+                for (var i = 0; i < (participantes.length - 1); i++) {
                     var vectorFinal = new Array();
                     vectorFinal[3] = (participantes[i].pop());
                     vectorFinal[0] = (participantes[i]);
@@ -186,7 +186,7 @@ and open the template in the editor.
                 document.write("<table width=200 border=1 cellpadding=1 cellspacing=1>");
                 document.write("<tr>");
 
-                for (i = 0; i < 4; i++) {
+                for (var i = 0; i < 4; i++) {
                     var titulo;
                     switch (i) {
                         case 0:
@@ -211,9 +211,9 @@ and open the template in the editor.
                 }
                 document.write("</tr>");
 
-                for (i = 0; i < matrixFinal.length; i++) {
+                for (var i = 0; i < matrixFinal.length; i++) {
                     document.write("<tr>");
-                    for (j = 0; j < matrixFinal[i].length; j++) {
+                    for (var j = 0; j < matrixFinal[i].length; j++) {
                         document.write("<td>" + matrixFinal[i][j] + "</td>")
                     }
                     document.write("</tr>")
