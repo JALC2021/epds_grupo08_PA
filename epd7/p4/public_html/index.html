@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>EPD7-p4</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="./estilo.css" />
+        <script>
+            function primo(num)
+            {
+                var primo = true;
+                if (num > 2) {
+                    for (var i = 2; i < num; i++)
+                    {
+                        if (num % i == 0)
+                        {
+                            primo = false
+                        }
+                    }
+                } else {
+                    primo = false;
+                }
+                return primo;
+            }
+
+            function compararNum(num1, num2) {
+                return num1 - num2;
+            }
+        </script>
+    </head>
+    <body>
+        <header><h1>EPD7-P4-GRUPO8</h1></header>
+
+        <script>
+            alert("Si desea parar, introduzca el número 0");
+            var numero = -1;
+            var primos = new Array();
+            var noPrimos = new Array();
+            while (numero != 0) {
+
+                numero = parseInt(prompt("Introduzca un número para informale si es primo o no:"));
+                if (!isNaN(numero)) {
+                    if (primo(numero)) {
+                        if (primos.indexOf(numero) === -1) {
+                            primos.push(numero);
+                        }else{
+                            alert("El número " + numero + " ya ha sido insertado previamente");
+                        }
+                    } else {
+                        if (noPrimos.indexOf(numero) === -1) {
+                            noPrimos.push(numero);
+                        }else{
+                            alert("El número " + numero + " ya ha sido insertado previamente");
+                        }
+                    }
+                } else {
+                    alert("Introduzca un número");
+                }
+            }
+
+            primos.sort(compararNum);
+            noPrimos.sort(compararNum);
+
+            document.write("Números Primos: <br />");
+            for (var i = 0; i < primos.length; i++) {
+                document.write(primos[i] + " ");
+            }
+            document.write("<br />Números No Primos: <br />");
+            for (var i = 0; i < noPrimos.length; i++) {
+                document.write(noPrimos[i] + " ");
+            }
+        </script>
+
+        <footer><h2>Realizado por: Gonzalo del R&iacute;o | Susana de la calle | Juan Antonio L&oacute;pez</h2></footer>
+    </body>
+</html>
