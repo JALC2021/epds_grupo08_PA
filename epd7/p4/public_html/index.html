@@ -11,6 +11,7 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="./estilo.css" />
         <script>
+            //comprobamos si el número es primo o no devolviéndo true o false.
             function primo(num)
             {
                 var primo = true;
@@ -27,10 +28,12 @@ and open the template in the editor.
                 }
                 return primo;
             }
-
+            //función para ordenar los números de menor a mayor
             function compararNum(num1, num2) {
                 return num1 - num2;
             }
+            
+            
         </script>
     </head>
     <body>
@@ -43,6 +46,8 @@ and open the template in the editor.
             var noPrimos = new Array();
             while (numero != 0) {
 
+                //comprobamos si el número introducido es primo o no y lo introducimos en un array según en caso
+                //primos: para los números primos y noPrimos: para los números no primos.
                 numero = parseInt(prompt("Introduzca un número para informale si es primo o no:"));
                 if (!isNaN(numero)) {
                     if (primo(numero)) {
