@@ -67,7 +67,10 @@
                 //permite volver a ejecutar la funcion mostrarCrono despues
                 //de un intervalo de tiempo. equivale a poner que se actualice
                 //cada vez que pase una decima (1s == 1000 milisegundos).
-                cronoId = setTimeout("mostrarCrono()", 100);
+                if (segundos > 10)
+                    cronoId = setTimeout("mostrarCrono()", 100);
+                else
+                    cronoId = setTimeout("mostrarCrono()", 50);
                 cronoEjecutando = true;
                 return true;
             }
@@ -110,7 +113,7 @@
                     return false;
                 }
             }
-            
+
             function actualizaDias() {
                 var dias = document.getElementById("idtdias").value;
                 if (dias == "") {
@@ -121,18 +124,18 @@
                 //de la pagina.
                 //modo de acceso mediante el identificador id. Devuelve el primer
                 //elemento con ese id.
- 
-                
+
+
             }
-            
+
             function actualizaHoras() {
                 var horas = document.getElementById("idthoras").value;
-                if(horas>23){
+                if (horas > 23) {
                     document.getElementById("idthoras").value = horas % 24;
                     var dias = document.getElementById("idtdias").value;
                     //la funcion parseInt transforma una cadena de texto en un entero.
                     document.getElementById("idtdias").value = parseInt(dias) + parseInt(horas / 24);
-                }else if (horas == "") {
+                } else if (horas == "") {
                     document.getElementById("idthoras").value = 0;
                 }
                 //DOM document .- representa el documento HTML copleto. Mediante
@@ -140,8 +143,8 @@
                 //de la pagina.
                 //modo de acceso mediante el identificador id. Devuelve el primer
                 //elemento con ese id.
- 
-                
+
+
             }
             function actualizaMinutos() {
                 var minutos = document.getElementById("idtminutos").value;
