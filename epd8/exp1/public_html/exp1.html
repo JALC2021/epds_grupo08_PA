@@ -1,0 +1,188 @@
+<html>
+    <head> 
+        <title>Experimento</title>
+        <script language="JavaScript">
+            //crono
+            var cronoId = null;
+            var cronoEjecutando = false;
+            var dias = 0, horas = 0, minutos = 0, segundos = 0, decimas = 0;
+            function detenerCrono() {
+                //cancela la funcion que invoca, cada cierto intervalo, una funcion
+                //determinada (setTimeOut)
+                if (cronoEjecutando) {
+                    clearTimeout(cronoId);
+                }
+                cronoEjecutando = false;
+            }
+            //asigna los valores de las cajas de texto a las variables
+            //horas, minutos, segundos y pone a 0 las decimas.
+            function inicializarValoresCrono() {
+                dias = document.getElementById("idtdias").value;
+                horas = document.getElementById("idthoras").value;
+                minutos = document.getElementById("idtminutos").value;
+                segundos = document.getElementById("idtsegundos").value;
+                decimas = 0;
+            }
+            function iniciarCrono() {
+                if (dias == 0 && horas == 0 && minutos == 0 && segundos == 0) {
+                    inicializarValoresCrono();
+                }
+                detenerCrono();
+                mostrarCrono();
+            }
+            //actualiza las variables horas, minutos, segundos y decimas.
+            function actualizaCrono() {
+                decimas--;
+                if (decimas < 0) {
+                    decimas = 9;
+                    segundos--;
+                }
+                if (segundos < 0) {
+                    segundos = 59;
+                    minutos--;
+                }
+                if (minutos < 0) {
+                    minutos = 59;
+                    horas--;
+                }
+                if (horas < 0) {
+                    horas = 24;
+                    dias--;
+                }
+                if (dias < 0) {
+                    alert("Cuenta atras terminada.");
+                    return true;
+                }
+                return false;
+            }
+            function mostrarCrono() {
+                //actualizar los datos del crono.
+                if (actualizaCrono()) {
+                    return true;
+                }
+                //formaterar salida
+                formatoSalidaCrono(dias, horas, minutos, segundos, decimas);
+
+                document.crono.tcrono.value = cronoSalida;
+                //permite volver a ejecutar la funcion mostrarCrono despues
+                //de un intervalo de tiempo. equivale a poner que se actualice
+                //cada vez que pase una decima (1s == 1000 milisegundos).
+                cronoId = setTimeout("mostrarCrono()", 100);
+                cronoEjecutando = true;
+                return true;
+            }
+
+            function reiniciarCrono() {
+                detenerCrono();
+                inicializarValoresCrono();
+                formatoSalidaCrono(dias, horas, minutos, segundos, decimas);
+                document.crono.tcrono.value = cronoSalida;
+            }
+
+
+            function dosDigitos(e) {
+                if (e < 10) {
+                    return "0" + e;
+                } else {
+                    return e;
+                }
+            }
+            function formatoSalidaCrono(di, h, m, s, d) {
+                cronoSalida = "";
+                cronoSalida += dosDigitos(di);
+                cronoSalida += ":" + dosDigitos(h);
+                cronoSalida += ":" + dosDigitos(m);
+                cronoSalida += ":" + dosDigitos(s);
+                cronoSalida += ":" + decimas;
+            }
+            function esNumero(e) {
+                var pnum = /^[0-9]+$/; //expresión regular empezando on los carácters /
+                //event.which .- devuelve el boton del raton que fue pulsado
+                var keynum = e.which;
+                //Objecto string manipula cadena de caracteres.
+                //fromCharCode .- convierte del valor unicode (asociado a cada tecla)
+                //     a una cadena.
+                var keychar = String.fromCharCode(keynum);
+                //si el caracter es un numero o las teclas de borrar.      
+                if (pnum.test(keychar) || keynum == 8 || keynum == 0) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+            
+            function actualizaDias() {
+                var dias = document.getElementById("idtdias").value;
+                if (dias == "") {
+                    document.getElementById("idtdias").value = 0;
+                }
+                //DOM document .- representa el documento HTML copleto. Mediante
+                // el objeto DOM document se puede acceder a todos los elementos
+                //de la pagina.
+                //modo de acceso mediante el identificador id. Devuelve el primer
+                //elemento con ese id.
+ 
+                
+            }
+            
+            function actualizaHoras() {
+                var horas = document.getElementById("idthoras").value;
+                if(horas>23){
+                    document.getElementById("idthoras").value = horas % 24;
+                    var dias = document.getElementById("idtdias").value;
+                    //la funcion parseInt transforma una cadena de texto en un entero.
+                    document.getElementById("idtdias").value = parseInt(dias) + parseInt(horas / 24);
+                }else if (horas == "") {
+                    document.getElementById("idthoras").value = 0;
+                }
+                //DOM document .- representa el documento HTML copleto. Mediante
+                // el objeto DOM document se puede acceder a todos los elementos
+                //de la pagina.
+                //modo de acceso mediante el identificador id. Devuelve el primer
+                //elemento con ese id.
+ 
+                
+            }
+            function actualizaMinutos() {
+                var minutos = document.getElementById("idtminutos").value;
+                if (minutos > 59) {
+                    document.getElementById("idtminutos").value = minutos % 60;
+                    var horas = document.getElementById("idthoras").value;
+                    //la funcion parseInt transforma una cadena de texto en un entero.
+                    document.getElementById("idthoras").value = parseInt(horas) + parseInt(minutos / 60);
+                    actualizaHoras();
+                } else if (minutos == "") {
+                    document.getElementById("idtminutos").value = 0;
+                }
+            }
+            function actualizaSegundos() {
+                var segundos = document.getElementById("idtsegundos").value;
+                if (segundos > 59) {
+                    document.getElementById("idtsegundos").value = segundos % 60;
+                    var minutos = document.getElementById("idtminutos").value;
+                    document.getElementById("idtminutos").value = parseInt(minutos) + parseInt(segundos / 60);
+                    actualizaMinutos();
+                } else if (segundos == "") {
+                    document.getElementById("idtsegundos").value = 0;
+                }
+            }
+        </script>
+    </head>
+
+    <body>
+        <form name="crono">
+            <!-- Objeto event se crea automaticamente al ocurrir cualquier evento. Este objecto nos
+                  permite conocer informacion de cualquier evento ocurrido en el navegador. -->
+            Dias: <input type="text" name="tdias" id="idtdias" value="0" onkeypress="return esNumero(event)" onChange="actualizaDias()" /><br>
+            Horas: <input type="text" name="thoras" id="idthoras" value="0" onkeypress="return esNumero(event)" onChange="actualizaHoras()" /><br> <!--OnChange es cuándo abandona el foco, se aplica la función-->
+            Minutos: <input type="text" name="tminutos" id="idtminutos" value="0" onkeypress="return esNumero(event)" onChange="actualizaMinutos()" /><br>
+            Segundos: <input type="text" name="tsegundos" id="idtsegundos" value="0" onkeypress="return esNumero(event)" onChange="actualizaSegundos()" /><br>
+
+
+            <input type="button" name="botVaL" value="iniciar" onClick="iniciarCrono()" /> <!-- no hace falta el return pq es un click con el submit -->
+            <input type="button" name="reVal" value="reiniciar" onClick="reiniciarCrono()" />
+            <input type="button" name="tfcrono" value="detener" onClick="detenerCrono()" /><br /><br />
+            <input type="text" name="tcrono" value="00:00:00:0" > </input>
+        </form>
+    </body>
+</html>
