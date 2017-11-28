@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>epd_7_p5</title>
+        <style>
+            body{background: khaki;}
+            table, th, td {
+                border: 1px solid black;
+                border-collapse: collapse;
+            }
+            th, td {
+                padding: 5px;
+            }
+            th {
+                text-align: left;
+            }
+
+        </style>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="text/javascript">
+
+            function numeroAleatorioRango(temMin, temMax, contadorPacientes) {
+                var vetorTemperaturasAleatorias = [];
+                for (var i = 0; i < contadorPacientes; i++) {
+                    var numAlea = Math.random() * (temMax - temMin) + temMin;
+                    var numAleaFinal = numAlea.toFixed(1);
+                    vetorTemperaturasAleatorias.push(numAleaFinal);
+                }
+
+                return vetorTemperaturasAleatorias;
+            }
+
+
+            function pacienteTemperatura(vectorPacientes, vectorTemAleatorias) {
+
+                document.write("<table width=200 border=1 cellpadding=1 cellspacing=1>");
+
+                document.write("<tr>");
+                document.write("<th>Nombre Paciente</th>");
+                for (var i = 0; i < vectorPacientes.length; i++) {
+
+                    document.write("<td>" + vectorPacientes[i] + "</td>");
+
+                }
+                document.write("</tr>");
+                document.write("<tr>");
+                document.write("<th>Temperatura</th>");
+                for (var j = 0; j < vectorTemAleatorias.length; j++) {
+
+                    document.write("<td>" + vectorTemAleatorias[j] + "</td>");
+
+                }
+                document.write("</tr>");
+
+                document.write("</table>");
+
+            }
+        </script>
+    </head>
+
+    <body>
+        <script type="text/javascript">
+
+            var vectorPacientes = ["Pepe", "Maria", "Manuel", "Isabel"];
+            var contadorPacientes = vectorPacientes.length;
+
+            var temMin = parseInt(prompt("Introduce la temperatura mínima"));
+            var temMax = parseInt(prompt("Introduce la temperatura máxima"));
+
+            if (temMin >= temMax) {
+                alert("La temperatura ínima no puede ser mayor que la temperatura máxima, vuelva  intentarlo");
+                var temMin = parseInt(prompt("Introduce la temperatura mínima"));
+                var temMax = parseInt(prompt("Introduce la temperatura máxima"));
+
+            }
+
+            var vectorTemAleatorias = numeroAleatorioRango(temMin, temMax, contadorPacientes);
+            var vectorfinal = pacienteTemperatura(vectorPacientes, vectorTemAleatorias);
+
+        </script>
+
+        <footer><h2>Realizado por: Gonzalo del R&iacute;o | Susana de la calle | Juan Antonio L&oacute;pez</h2></footer>
+    </body>
+</html>
