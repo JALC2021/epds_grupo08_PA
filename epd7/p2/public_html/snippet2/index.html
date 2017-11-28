@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>PROBLEMA 2-EPD7: snippet 2</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <script>
+<!--        //Este es el snippet usado que utiliza una hoja de estilo diferente en función de la hora el día
+            function getStylesheet() {
+                var currentTime = new Date().getHours();
+                if (0 <= currentTime && currentTime < 5) {
+                    document.write("<link rel='stylesheet' href='night.css' type='text/css'>");
+                }
+                if (5 <= currentTime && currentTime < 11) {
+                    document.write("<link rel='stylesheet' href='morning.css' type='text/css'>");
+                }
+                if (11 <= currentTime && currentTime < 16) {
+                    document.write("<link rel='stylesheet' href='day.css' type='text/css'>");
+                }
+                if (16 <= currentTime && currentTime < 22) {
+                    document.write("<link rel='stylesheet' href='evening.css' type='text/css'>");
+                }
+                if (22 <= currentTime && currentTime <= 24) {
+                    document.write("<link rel='stylesheet' href='night.css' type='text/css'>");
+                }
+            }
+
+            getStylesheet();
+-->
+        </script>
+<!--        o en el caso de que JavaScript no esté habilitado en el navegador muestra también, una hoja de estilo diferente que no
+            dependerá de la hora del día
+-->
+        <noscript><link href="main.css" rel="stylesheet"></noscript>
+    </head>
+
+    <body>
+        <header>
+            <h1>HOLA, ESTO ES UNA PRUEBA DE ESTILOS</h1>
+            <h2>En función de la hora del día, ver&aacute; tanto un color de fondo como un mensaje diferente</h2>
+            <h3>Si usted ve un color de fondo rosa es que JavaScript est&aacute; deshabilitado en su navegador; en otro caso, JavaScript est&aacute; activado</h3>
+        </header>
+
+        <article>
+            <script type="text/javascript">
+            <!--
+           var horaActual = new Date().getHours();
+           if(5 <= horaActual && horaActual < 11){
+               document.write("Buenos días, que tenga una jornada maravillosa");
+           }else if(11 <= horaActual && horaActual < 16){
+                document.write("Buenos días, usted debe madrugar más. A quien madruga, Dios le ayuda...");
+           }else if(16 <= horaActual && horaActual < 22){
+               document.write("Buenas tardes, que sean amenas las últimas horas de la jornada");
+           }else{
+                document.write("Buenos noches, que tenga un profundo y reparador sueño, y despierte lleno/a de energía");
+           }
+            //-->
+            </script>
+        </article>
+
+        <footer>
+            <p><span>Este snippet se ha incorporado de:</span> <a href="https://css-tricks.com/snippets/javascript/different-stylesheet-pending-the-time-of-day/" target="__blank">https://css-tricks.com/snippets/javascript/different-stylesheet-pending-the-time-of-day/</a></p>
+        </footer>
+    </body>
+</html>

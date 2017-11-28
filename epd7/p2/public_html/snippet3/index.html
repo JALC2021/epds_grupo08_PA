@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>PROBLEMA 2-EPD7: snippet 1</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!--        He añadido el estilo interno para poner un gif de fondo-->
+        <style type="text/css"> 
+          body {background: url("images/image.gif") no-repeat;
+          background-position-x: 50%;
+          }
+          footer{
+               padding-top: 38%;
+          }
+        </style>
+
+    </head>
+    <body>
+        
+<!--        Este es el snippet, cuya funcionalidad es que desaparezca la imagen, que contiene el campo de texto
+            para búsqueda en el formulario, al hacer click dentro de él-->
+
+        <form name="searchform" id="search-form">
+
+            <b>Search</b>
+            <input type="text" name="txtInput"  style="width: 200px; height: 30px" title="Enter the terms you wish to search for." />
+            <input type="submit" value="GO!" class="submit" style="cursor: pointer;" />
+
+        </form>
+
+        <script type="text/javascript" language="javascript">
+            (function () {
+                var id = document.getElementById('search-form');
+                if (id && id.txtInput) {
+                    var name = id.txtInput;
+                    var unclicked = function () {
+                        if (name.value == '') {
+                            name.style.background = '#FFFFFF url(images/img.jpg) left no-repeat';
+                        }
+                    };
+                    var clicked = function () {
+                        name.style.background = '#ffffff';
+                    };
+                    name.onfocus = clicked;
+                    name.onblur = unclicked;
+                    unclicked();
+                }
+            })();
+        </script>
+        
+        <footer>
+            <p><span>Este snippet se ha incorporado de:</span> <a href="https://css-tricks.com/snippets/javascript/input-with-disappearing-background-image/" target="__blank">https://css-tricks.com/snippets/javascript/input-with-disappearing-background-image/</a></p>
+        </footer>
+    </body>
+</html>
