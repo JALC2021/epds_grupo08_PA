@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <!-- Si tenemos fuciones se ubican en el head-->
+        <title>epd_7_ej2</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script>
+            function Redondeo(numero, cadenaCifraRedondeo) {
+                var num = parseFloat(numero);
+                var resultado = Math.round(num * Math.pow(10, cadenaCifraRedondeo)) / Math.pow(10, cadenaCifraRedondeo);
+
+                while (resultado.length < cadenaCifraRedondeo) {
+                    resultado = resultado + "0";
+                }
+                return resultado;
+            }
+
+            function compruebaCadena(cadenaPrincipal) {
+                var cadena = cadenaPrincipal;
+                var cadenaPunto = ".".charCodeAt();
+                var num_0 = "0".charCodeAt();
+                var num_9 = "9".charCodeAt();
+                var encontrado;
+                var cont = 0;
+
+                while (cont < 1) {
+
+                    for (var i = 0; i < cadena.length; i++) {
+
+                        if (cadena.charCodeAt(i) === cadenaPunto) {
+                            encontrado = true;
+                            cont++;
+                        } else {
+                            encontrado = false;
+                        }
+
+                        if (cadena.charCodeAt(i) >= num_0 && cadena.charCodeAt(i) <= num_9) {
+                            encontrado = true;
+                        } else {
+                            encontrado = false;
+                        }
+                    }
+                }
+                return cadena;
+            }
+        </script>
+    </head>
+    <body>
+        <script type="text/javascript">
+            var cadenaPrincipal = "9.656";
+            var cad = compruebaCadena(cadenaPrincipal);
+
+            var cadenaCifraRedondeo = parseInt(prompt("Introduzca la cifra a la que desea redondear"));
+            var cifraFinal = Redondeo(cad, cadenaCifraRedondeo);
+            document.write("El resultado de redondear " + cad + " a " + cadenaCifraRedondeo + " es " + cifraFinal);
+
+        </script>
+
+    </body>
+</html>
