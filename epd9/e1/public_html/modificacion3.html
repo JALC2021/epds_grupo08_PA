@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+
+<!-- Usar 2 botones, uno para modificar el texto y otro para volver a mostrar el texto anterior.
+Código inicial
+
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    $("button").click(function(){
+        $("p").hide();
+    });
+});
+</script>
+</head>
+<body>
+
+<h2>This is a heading</h2>
+
+<p>This is a paragraph.</p>
+<p>This is another paragraph.</p>
+
+<button>Click me to hide paragraphs</button>
+
+</body>
+</html>
+
+-->
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                var texto_original = $("p:first").text();
+                var texto_original2 = $("p:last").text();
+                
+                $("#original").click(function () {
+                    $("p:first").text(texto_original);
+                    $("p:last").text(texto_original2);
+                });
+                
+                $("#cambiado").click(function () {
+                    $("p").text("Hola");
+                });
+            });
+        </script>
+    </head>
+    <body>
+
+        <h2>This is a heading</h2>
+
+        <p>This is a paragraph.</p>
+        <p>This is another paragraph.</p>
+
+        <button id="original">Texto Original</button> <button id="cambiado">Texto cambiado</button>
+
+    </body>
+</html>
