@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>PROBLEMA 1-EPD7</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+        <script type="text/javascript">
+            <!--  
+         //FUNCIONES
+
+            //devuelve la cadena que recibe por argumento, desde la posición inicio hasta la posición fin
+            function sub(cadena, inicio, fin) {
+
+                var nuevaCadena = cadena.charAt(inicio - 1);
+
+                for (var i = inicio; i <= fin - 1; i++) {
+
+                    nuevaCadena = nuevaCadena + cadena.charAt(i);
+                }
+                return nuevaCadena;
+            }
+
+            //devuelve las cadenas 1 y 2 concatenadas
+            function cat(cadena1, cadena2) {
+                var nuevaCadena = cadena1 + cadena2;
+                return nuevaCadena;
+            }
+
+            // devuelve la cadena que recibe por argumento sustituyendo lo que contenga buscar por lo que contenga reemplazar
+            function rep(cadena, buscar, reemplazar) {
+                var cad = [];
+                var nuevaCad = "";
+
+                for (var j = 0; j < cadena.length; j++) {
+                    cad[j] = cadena.charAt(j);
+                }
+                for (var i = 0; i < cadena.length; i++) {
+                    if (cad[i] == buscar) {
+                        cad[i] = reemplazar;
+                    }
+                }
+                for (var k = 0; k < cad.length; k++) {
+                    nuevaCad = nuevaCad + cad[k]
+                }
+
+                return nuevaCad;
+            }
+            //-->
+        </script>
+
+
+    </head>
+    <body>
+        <script type="text/javascript">
+            <!-- 
+    var texto = prompt("Introduzca una cadena de caracteres seguida por punto y coma, y a continuación, las operaciones que desee\n\
+    realizarle a la misma, con sus respectivos operandos. Estas, también separadas por punto y coma. Ejemplo: lola;rep(o,a);sub(2,4);cat(na)", "");
+
+
+            texto = texto.split(";"); //partimos la cadena recogida por ;
+            var cadena = texto[0]; //guardamos la palabra original en la variable cadena
+            var op1 = texto[1]; //guardamos las operaciones en variables
+            var op2 = texto[2];
+            var op3 = texto[3];
+
+            var arrayOp1 = op1.split("("); //partimos cada operacion por (
+            var arrayOp2 = op2.split("(");
+            var arrayOp3 = op3.split("(");
+
+            var nombreOp1 = arrayOp1[0]; //guardamos el nombre de las operaciones en variables para poder comparar
+            var nombreOp2 = arrayOp2[0]; //y saber a qué función llamamos en cada momento
+            var nombreOp3 = arrayOp3[0];
+
+
+            document.write("Cadena original: " + cadena + "<br />");
+
+            if (nombreOp1 == "sub") { //si la operación 1 coincide con sub..
+                var parametrosOp1 = arrayOp1[1].substring(0, arrayOp1[1].length - 1); //guardamos los argumentos sin paréntesis final ")"
+
+                var arrayParam = parametrosOp1.split(","); //partimos los argumentos por coma, para guardar cada uno y pasarselos a la función
+                var resultado = sub(cadena, arrayParam[0], arrayParam[1])
+                document.write("Resultado parcial 1: " + resultado + "<br />");
+
+                if (nombreOp2 == "rep") {
+                    var parametrosOp2 = arrayOp2[1].substring(0, 3);
+
+                    arrayParam = parametrosOp2.split(",");
+                    var resultado = rep(resultado, arrayParam[0], arrayParam[1])
+                    document.write("Resultado parcial 2: " + resultado + "<br />");
+
+                    //ahora ya sabemos cual es la tercera operacion
+                    var parametrosOp3 = arrayOp3[1].substring(0, arrayOp3[1].length - 1); // guardamos los argumentos sin los paréntesis
+                    var resultado = cat(resultado, parametrosOp3);
+                    document.write("Resultado parcial 3: " + resultado + "<br />");
+                    document.write("Por tanto, el resultado total es: " + resultado);
+
+                } else if (nombreOp2 == "cat") {
+
+                    var parametrosOp2 = arrayOp2[1].substring(0, arrayOp2[1].length - 1);
+                    var resultado = cat(resultado, parametrosOp2);
+                    document.write("Resultado parcial 2: " + resultado + "<br />");
+
+                    //ahora ya sabemos cual es la tercera operacion
+                    var parametrosOp3 = arrayOp3[1].substring(0, 3);
+
+                    arrayParam = parametrosOp3.split(",");
+                    var resultado = rep(resultado, arrayParam[0], arrayParam[1])
+                    document.write("Resultado parcial 3: " + resultado + "<br />");
+                    document.write("Por tanto, el resultado total es: " + resultado);
+
+                }
+
+
+            } else if (nombreOp1 == "cat") {
+                var parametrosOp1 = arrayOp1[1].substring(0, arrayOp1[1].length - 1);
+                resultado = cat(cadena, parametrosOp1);
+                document.write("Resultado parcial 1: " + resultado + "<br />");
+
+                if (nombreOp2 == "sub") {
+                    var parametrosOp2 = arrayOp2[1].substring(0, arrayOp2[1].length - 1);
+                    var arrayParam = parametrosOp2.split(",");
+                    var resultado = sub(resultado, arrayParam[0], arrayParam[1])
+                    document.write("Resultado parcial 2: " + resultado + "<br />");
+
+                    //ahora ya sabemos cual es la tercera operacion
+                    var parametrosOp3 = arrayOp3[1].substring(0, 3);
+
+                    arrayParam = parametrosOp3.split(",");
+                    var resultado = rep(resultado, arrayParam[0], arrayParam[1])
+                    document.write("Resultado parcial 3: " + resultado + "<br />");
+                    document.write("Por tanto, el resultado total es: " + resultado);
+
+
+                } else if (nombreOp2 == "rep") {
+                    var parametrosOp2 = arrayOp2[1].substring(0, 3);
+
+                    arrayParam = parametrosOp2.split(",");
+                    var resultado = rep(resultado, arrayParam[0], arrayParam[1])
+                    document.write("Resultado parcial 2: " + resultado + "<br />");
+
+                    //ahora ya sabemos cual es la tercera operacion
+                    var parametrosOp3 = arrayOp3[1].substring(0, arrayOp3[1].length - 1);
+                    var arrayParam = parametrosOp3.split(",");
+                    var resultado = sub(resultado, arrayParam[0], arrayParam[1])
+                    document.write("Resultado parcial 3: " + resultado + "<br />");
+                    document.write("Por tanto, el resultado total es: " + resultado);
+                }
+
+
+
+            } else if (nombreOp1 == "rep") {
+                var parametrosOp1 = arrayOp1[1].substring(0, 3);
+
+                arrayParam = parametrosOp1.split(",");
+                var resultado = rep(cadena, arrayParam[0], arrayParam[1])
+                document.write("Resultado parcial 1: " + resultado + "<br />");
+
+                if (nombreOp2 == "sub") {
+                    var parametrosOp2 = arrayOp2[1].substring(0, arrayOp2[1].length - 1);
+                    var arrayParam = parametrosOp2.split(",");
+                    var resultado = sub(resultado, arrayParam[0], arrayParam[1])
+                    document.write("Resultado parcial 2: " + resultado + "<br />");
+
+                    //ahora ya sabemos cual es la tercera operacion
+                    var parametrosOp3 = arrayOp3[1].substring(0, arrayOp3[1].length - 1);
+                    var resultado = cat(resultado, parametrosOp3);
+                    document.write("Resultado parcial 3: " + resultado + "<br />");
+                    document.write("Por tanto, el resultado total es: " + resultado);
+
+
+                } else if (nombreOp2 == "cat") {
+                    var parametrosOp2 = arrayOp2[1].substring(0, arrayOp2[1].length - 1);
+                    var resultado = cat(resultado, parametrosOp2);
+                    document.write("Resultado parcial 2: " + resultado + "<br />");
+
+                    //ahora ya sabemos cual es la tercera operacion
+                    var parametrosOp3 = arrayOp3[1].substring(0, arrayOp3[1].length - 1);
+                    var arrayParam = parametrosOp3.split(",");
+                    var resultado = sub(resultado, arrayParam[0], arrayParam[1])
+                    document.write("Resultado parcial 3: " + resultado + "<br />");
+                    document.write("Por tanto, el resultado total es: " + resultado);
+
+
+                }
+
+            }
+
+
+            //-->
+        </script>
+
+    </body>
+</html>
