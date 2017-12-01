@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="text/javascript">
+            function celdaMarcada(x, y) {
+                if (barcoSeleccionado) {
+
+                    matriz[x][y] = 1;
+                    if (comprobarLongitud()) {
+                        alert("todo OK");
+                        var celda = document.getElementById("aguaImg[" + x + "][" + y + "]");
+                        celda.setAttribute("src", "imagenes/barco.jpg");
+                    } else {
+                        alert("MAL");
+                        matriz[x][y] = 0;
+                    }
+                } else {
+                    alert("No ha seleccionado el icono del barco situado en la parte inferior");
+                }
+            }
+
+            function comprobarLongitud() {
+                continuar = true;
+                var longitudBarco = 0;
+                numBarco = 0;
+                var longitud = document.getElementById("numBarcosSelecc").value;
+
+                for (var i = 0; i < 25; i++) {
+
+                    for (var j = 0; j < 25; j++) {
+
+                        if (matriz[i][j] == 1) {
+                            longitudBarco++;
+                            if (longitudBarco > longitud) {
+                                return false;
+                            }
+                        } else {
+                            if (longitudBarco != 0) {
+                                numBarco++;
+                                if (numBarco > 6) {
+                                    alert("Número máximo de barcos superados");
+                                    return false;
+                                }
+                            }
+                            longitudBarco = 0;
+                        }
+
+                    }
+
+                }
+
+                for (var i = 0; i < 25; i++) {
+
+                    for (var j = 0; j < 25; j++) {
+                        
+                        if (matriz[j][i] == 1) {
+                            longitudBarco++;
+                            if (longitudBarco > longitud) {
+                                return false;
+                            }
+                        } else {
+//                           
+                            
+                            if (longitudBarco > 1 && matriz[j][i] == 1) {
+
+                                numBarco++;
+                                if (numBarco > 6) {
+                                    alert("Número máximo de barcos superados");
+                                    return false;
+                                }
+
+                            }
+                            longitudBarco = 0;
+                        }
+
+                    }
+
+                }
+                return true;
+
+            }
+
+//            function crearMatriz(){
+
+            matriz = new Array(25);
+
+            for (var i = 0; i < 25; i++) {
+                fila = new Array();
+                for (var j = 0; j < 25; j++) {
+
+                    fila.push(0);
+                }
+                matriz[i] = fila;
+            }
+
+//            }
+        </script>
+    </head>
+    <body>
+        <script  type="text/javascript">
+
+            var body = document.body;
+            var table = document.createElement("table");
+            table.setAttribute("id", "table");
+            table.setAttribute("border", "solid 1px grey");
+            body.appendChild(table);
+
+            for (var i = 0; i < 25; i++) {
+                var trTabla = document.createElement("tr");
+                trTabla.setAttribute("id", "trTabla" + i);
+                document.getElementById("table").appendChild(trTabla);
+
+                for (var j = 0; j < 25; j++) {
+                    var tdTabla = document.createElement("td");
+
+
+                    var tr = document.getElementById("trTabla" + i);
+                    var aguaImg = document.createElement("img");
+                    aguaImg.setAttribute("src", "./imagenes/agua.jpg");
+                    aguaImg.setAttribute("width", "10");
+                    aguaImg.setAttribute("id", "aguaImg[" + i + "][" + j + "]");
+                    aguaImg.setAttribute("onclick", "celdaMarcada(" + i + "," + j + ")");
+                    tdTabla.appendChild(aguaImg);
+                    tr.appendChild(tdTabla);
+                }
+            }
+            barcoSeleccionado = false;
+            function seleccionar() {
+
+                if (!barcoSeleccionado) {
+                    document.getElementById("barco").setAttribute("style", "border: solid 1px red");
+                    barcoSeleccionado = true;
+                } else {
+                    document.getElementById("barco").setAttribute("style", "border: none");
+                    barcoSeleccionado = false;
+                }
+            }
+
+        </script>
+
+        <p>
+            <input id="numBarcosSelecc" type="range" min="1" max="10" name="numBarcos" value = "5" onchange="mostrarValorRange()"> <strong id="num">5</strong> 
+
+            <img id="barco" src="imagenes/barco.jpg" width="30" onclick="seleccionar(barcoSeleccionado)"/>
+        </p>
+
+        <script  type="text/javascript">
+            function mostrarValorRange() {
+                var barcosSelecc = document.getElementById("numBarcosSelecc");
+                var num = barcosSelecc.value;
+                document.getElementById("num").innerHTML = num;
+            }
+        </script>
+
+    </body>
+</html>
