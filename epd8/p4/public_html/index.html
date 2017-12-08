@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>EPD8-P4-Grupo8</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="text/javascript">
+
+            //comprueba si la letra introducida está en la solucion y la muestra. También contabiliza los errrores y en caso de tener 5, finaliza el juego.
+            errores = 0;
+            function introducirLetra() {
+                if (errores < 4) {
+                    var caracter = document.getElementById("letra").value;
+                    var insertado = false;
+                    for (var m = 0; m < caracteres.length; m++) {
+                        if (caracter == caracteres[m]) {
+                            var text = document.createTextNode(caracter);
+                            document.getElementById("tdtable" + m).removeChild(document.getElementById("tdtable" + m).childNodes[0]);
+                            document.getElementById("tdtable" + m).appendChild(text);
+                            insertado = true;
+                        }
+                    }
+                    if (!insertado) {
+                        errores++;
+                        document.getElementById("errores").removeChild(document.getElementById("errores").childNodes[0]);
+                        var text3 = document.createTextNode("Numero de errores: " + errores);
+                        document.getElementById("errores").appendChild(text3);
+                    }
+                } else {
+                    document.write("Ha superado el máximo número de fallos. Fin del juego.");
+                }
+            }
+
+            //Con esta función mostramos la solución elegida en el navegador.
+            function verSolucion() {
+
+                tablaSol = document.createElement("table");
+                tablaSol.setAttribute("id", "tablaSol");
+
+                var trTablaSol = document.createElement("tr");
+                trTablaSol.setAttribute("id", "trTablaSol");
+
+                for (var j = 0; j < caracteres.length; j++) {
+
+                    var tdTablaSol = document.createElement("td");
+                    tdTablaSol.setAttribute("id", "tdtableSol" + j);
+                    tdTablaSol.setAttribute("style", "border-bottom:1px solid black");
+                    tdTablaSol.setAttribute("width", "10");
+                    tdTablaSol.setAttribute("height", "20");
+                    var texto = document.createTextNode(caracteres[j]);
+
+                    tdTablaSol.appendChild(texto);
+                    trTablaSol.appendChild(tdTablaSol);
+                    tablaSol.appendChild(trTablaSol);
+                }
+
+                tablaActual = document.getElementById("table");
+                document.body.replaceChild(tablaSol, tablaActual);
+
+            }
+            //mostramos la solución anterior.
+            function restaurarTabla() {
+                document.body.replaceChild(tablaActual, tablaSol);
+            }
+
+            //crea la palabra inicial y muestra el número de errores inicial a 0
+            function crearPalabraInicial() {
+                var palabra = prompt("Introduzca la palabra secreta");
+                caracteres = palabra.split("");
+                var body = document.body;
+                var table = document.createElement("table");
+                table.setAttribute("id", "table");
+
+
+
+                var trTabla = document.createElement("tr");
+                trTabla.setAttribute("id", "trTabla");
+
+                for (var j = 0; j < palabra.length; j++) {
+
+                    var tdTabla = document.createElement("td");
+                    tdTabla.setAttribute("id", "tdtable" + j);
+                    tdTabla.setAttribute("style", "border-bottom:1px solid black");
+                    tdTabla.setAttribute("width", "10");
+                    tdTabla.setAttribute("height", "20");
+
+                    var texto = document.createTextNode("  ");
+
+
+                    tdTabla.appendChild(texto);
+                    trTabla.appendChild(tdTabla);
+
+
+                }
+                table.appendChild(trTabla);
+                body.appendChild(table);
+
+                var parrafo = document.createElement("p");
+                parrafo.setAttribute("id", "errores");
+                var text2 = document.createTextNode("Numero de errores: " + errores);
+                parrafo.appendChild(text2);
+                document.body.appendChild(parrafo);
+            }
+
+        </script>
+    </head>
+    <body onload="crearPalabraInicial()">
+
+        <form name="texto">
+            Introduzca una letra <input type="text" id="letra" name="letra" onchange="introducirLetra()" onfocus=""/>
+        </form>
+        <p style="border:1px solid grey; width:40%" onmouseover="verSolucion()" onmouseout="restaurarTabla()">Pase el rat&oacute;n por aqu&iacute; para ver la soluci&oacute;n:</p>
+
+    </body>
+</html>
