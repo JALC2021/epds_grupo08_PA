@@ -18,24 +18,26 @@ and open the template in the editor.
             var noticia3 = ["titulo3", "descripcion3"];
             var noticias = [noticia1, noticia2, noticia3];
 
-
-            function muestraNoticia(valor) {
-                valorGlobal = valor;
+            valorGlobal = 0;
+            function muestraNoticia() {
+                
+                
                 if (tiempo != undefined) {
                     clearInterval(tiempo);
                 }
 
                 var tiempo = setInterval(
                         function () {
-                            document.getElementById("titulo").textContent = noticias[valor][0]
-                            document.getElementById("descripcion").textContent = noticias[valor][1]
-                            if (valor == noticias.length - 1) {
-                                valor = 0;
+                            
+                            document.getElementById("titulo").textContent = noticias[valorGlobal][0]
+                            document.getElementById("descripcion").textContent = noticias[valorGlobal][1]
+                            if (valorGlobal == noticias.length - 1) {
+                                valorGlobal = 0;
                             } else {
-                                valor++;
+                                valorGlobal++;
                             }
 
-                        }, 10000);
+                        }, 5000);
 
             }
 
