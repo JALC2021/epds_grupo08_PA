@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>epd8_ej2</title>
+        <style>
+            table {
+                font-family: arial, sans-serif;
+                border-collapse: collapse;
+                width: 100%;
+            }
+
+            td, th {
+                border: 1px solid #dddddd;
+                text-align: center;
+                padding: 8px;
+            }
+
+            thead{
+                background-color: #dddddd;
+
+            }
+
+        </style>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="text/javascript">
+
+            function numerosAleatorios() {
+                var min = 1;
+                var max = 51;
+                var dias = 20;
+                var vNumerosAleatorios = [];
+                for (var i = 0; i < dias; i++) {
+                    var numAleatorio = Math.floor(Math.random() * (max - min) + min);
+                    vNumerosAleatorios.push(numAleatorio);
+                }
+
+                var vfinal = [];
+
+                vfinal = [vNumerosAleatorios[0]];
+
+                for (var j = 1; j < vNumerosAleatorios.length; j++) {
+
+                    if (vNumerosAleatorios[0] < vNumerosAleatorios[j]) {
+
+                        vfinal.push("-");
+
+                    } else if (vNumerosAleatorios[0] > vNumerosAleatorios[j]) {
+
+                        vfinal.push("+");
+
+                    } else if (vNumerosAleatorios[0] === vNumerosAleatorios[j]) {
+
+                        vfinal.push("=");
+                    }
+
+                }
+
+
+                return vfinal;
+            }
+
+            function tabla(nCompanyas) {
+
+                document.write("<table>");
+                document.write("<caption>Tabla Bolsa</caption>");
+                document.write("<thead>");
+                document.write("<tr>");
+                document.write("<th>N&uacute;mero de Compa&ntilde;ia</th>");
+
+                var dia = 1;
+                while (dia <= 20) {
+                    document.write("<th>€ acci&oacute;n D&iacute;a " + dia + "</th>");
+                    dia = dia + 1;
+                }
+                document.write("</tr>");
+                document.write("</thead>");
+
+                for (var k = 0; k < nCompanyas; k++) {
+                    vfinal = numerosAleatorios();
+
+                    document.write("<tr>");
+                    document.write("<tbody>");
+                    document.write("<tr>");
+                    document.write("<td>Compa&ntilde;ia " + k + "</td>");
+
+
+                    for (var l = 0; l < vfinal.length; l++) {
+
+                        document.write("<td>" + vfinal[l] + "</td>");
+
+                    }
+
+                    document.write("</tr>");
+
+                }
+
+                document.write("</tr>");
+                document.write("</tbody>");
+                document.write("</table>");
+                document.write("<br />");
+
+
+
+
+                /*var body = document.body;
+                 var table = document.createElement("table");
+                 table.setAttribute("id", "table");
+                 
+                 var trTabla = document.createElement("tr");
+                 trTabla.setAttribute("id", "trTabla");
+                 
+                 for (var k = 0; k < nCompanyas; k++) {
+                 
+                 vfinal = numerosAleatorios();
+                 
+                 for (var l = 0; l < vfinal.length; l++) {
+                 
+                 var tdTabla = document.createElement("td");
+                 tdTabla.setAttribute("id", "tdTabla");
+                 
+                 var tdTexto = document.createTextNode(vfinal[l]);
+                 tdTabla.appendChild(tdTexto);
+                 trTabla.appendChild(tdTabla);
+                 }
+                 
+                 }
+                 table.appendChild(trTabla);
+                 body.appendChild(table);*/
+
+
+
+            }
+
+        </script>
+    </head>
+    <body>
+        <script type="text/javascript">
+            var nCompanyas = parseInt(prompt("Introduce el numero de compañias"));
+            //var vNumAleatorios = [];
+            //var companias = [];
+
+            //for (var h = 0; h < nCompanyas; h++) {
+            //vNumAleatorios = numerosAleatorios();
+            companias = tabla(nCompanyas);
+            //}
+
+
+
+        </script>
+
+    </body>
+</html>
