@@ -20,7 +20,7 @@ and open the template in the editor.
 
 
             function muestraNoticia(valor) {
-                
+
                 if (tiempo != undefined) {
                     clearInterval(tiempo);
                 }
@@ -38,9 +38,20 @@ and open the template in the editor.
                         }, 2000);
 
             }
+
+            function muestraNot(valor) {
+
+
+                document.getElementById("titulo").textContent = noticias[valor][0]
+                document.getElementById("descripcion").textContent = noticias[valor][1]
+
+
+            }
             
+            
+
 //            var listado;
-            	//Para obtener un array de elementos "img" del div "carrete"	
+            //Para obtener un array de elementos "img" del div "carrete"	
 
 //            function myFunctionentrar(num) {
 //                document.write("hola");
@@ -52,19 +63,19 @@ and open the template in the editor.
 //}
 
 
-      //      function efectoNoticias() {
-               // document.getElementById("titular").style.color = "purple";
-                //document.getElementById("titular").style.textDecoration = "underline";
+            //      function efectoNoticias() {
+            // document.getElementById("titular").style.color = "purple";
+            //document.getElementById("titular").style.textDecoration = "underline";
 
-   //                 document.getElementsByTagName("li").style.color = "purple";
+            //                 document.getElementsByTagName("li").style.color = "purple";
 //                    document.getElementsByName("li").style.textDecoration="underline";
- //           }
+            //           }
 
- //           function mouseLeave() {
-               // document.getElementById("titular").style.color = "#000099";
-  //              document.getElementById("titular").style.textDecoration ="none";
-                //                    document.getElementsByName("li").style.color="black";
- //           }
+            //           function mouseLeave() {
+            // document.getElementById("titular").style.color = "#000099";
+            //              document.getElementById("titular").style.textDecoration ="none";
+            //                    document.getElementsByName("li").style.color="black";
+            //           }
 
 
         </script>
@@ -109,37 +120,43 @@ and open the template in the editor.
 
                     <!--                     for(var i=0;i<noticias.length;i++){-->
 
-                    <li id="titular" onclick="muestraNoticia(0)"> <script type="text/javascript">  document.write(noticias[0][0])</script> </li>
-                    <li id="titular" onclick="muestraNoticia(1)"> <script type="text/javascript">  document.write(noticias[1][0])</script></li>
-                    <li id="titular" onclick="muestraNoticia(2)"> <script type="text/javascript">  document.write(noticias[2][0])</script></li>
-                   
-<!--                    <script type="text/javascript">
-                     listado=document.getElementById("titular1");
+                    <li id="titular0" onclick="muestraNot(0)"> </li>
+                    <li id="titular1" onclick="muestraNot(1)"> </li>
+                    <li id="titular2" onclick="muestraNot(2)"> </li>
 
-			for(var i=0;i<listado.length;i++){
-                            document.write(num);
-				listado[i].addEventListener("click", function(){myFunctionentrar(i)});
-                                //listado[i].addEventListener("mouseleave", function(){myFunctionsalir(i)});
+                    <!--                    <script type="text/javascript">
+                                         listado=document.getElementById("titular1");
+                    
+                                            for(var i=0;i<listado.length;i++){
+                                                document.write(num);
+                                                    listado[i].addEventListener("click", function(){myFunctionentrar(i)});
+                                                    //listado[i].addEventListener("mouseleave", function(){myFunctionsalir(i)});
+                    
+                                            }
+                                                               </script>-->
 
-			}
-                                           </script>-->
 
+
+                    <!--                    <script type="text/javascript">
+                    
+                                            document.getElementById("titular").onmouseenter = function () {
+                                                myFunctionentrar()
+                                            };
+                                            document.getElementById("titular").onmouseleave = function () {
+                                                myFunctionsalir()()
+                                            };
+                    
+                                            // }
                     
                     
-<!--                    <script type="text/javascript">
-
-                        document.getElementById("titular").onmouseenter = function () {
-                            myFunctionentrar()
-                        };
-                        document.getElementById("titular").onmouseleave = function () {
-                            myFunctionsalir()()
-                        };
-
-                        // }
-
-
-
-                    </script>-->
+                    
+                                        </script>-->
+                    
+                    <script>
+                        for(var i=0;i<noticias.length;i++){
+                            document.getElementById("titular"+i).textContent = noticias[i][0];
+                        }
+                    </script>
                 </ul>
             </article>
         </section>
