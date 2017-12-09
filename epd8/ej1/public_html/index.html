@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="estilo.css" />
+        <script type="text/javascript">
+
+            //Declaración de la matriz
+            var noticia1 = ["titulo1", "descripcion1"];
+            var noticia2 = ["titulo2", "descripcion2"];
+            var noticia3 = ["titulo3", "descripcion3"];
+            var noticias = [noticia1, noticia2, noticia3];
+
+            valorGlobal = 0; //se utiliza esta variable global para que la funcion muestraNoticia(), a la que se llama al cargar la página tenga el valor 0, que sería la primera noticia.
+            //por otro lado, la función muestraNot() a la que se llama al pulsar el titular de alguna noticia, actualiza esta variable global con el valor de la fila de la noticia en la que se ha pulsado, para que el orden sea correcto, 
+            //y la muestra de noticias siga por la noticia que se encuentra debajo de la que se ha pulsado
+            function muestraNoticia() {
+
+                setInterval(
+                        function () {
+
+                            document.getElementById("titulo").textContent = noticias[valorGlobal][0] //se muestra el título de la noticia
+                            document.getElementById("descripcion").textContent = noticias[valorGlobal][1] //se muestra el cuerpo (descripción) de la noticia
+                            if (valorGlobal == noticias.length - 1) {
+                                valorGlobal = 0;
+                            } else {
+                                valorGlobal++;
+                            }
+
+                        }, 10000); //las noticias cambiarán cada 10 segundos
+
+            }
+
+            function muestraNot(valor) {
+                valorGlobal = valor;
+
+                document.getElementById("titulo").textContent = noticias[valor][0]
+                document.getElementById("descripcion").textContent = noticias[valor][1]
+            }
+
+        </script>
+    </head>
+    <body onload="muestraNoticia()">
+        <section>
+            <article id="noticia">
+                <h1 id="titulo"></h1>
+                <p id="descripcion"></p>
+            </article>
+        </section>
+
+        <script type="text/javascript">
+
+            //Se rellena la matriz
+            var noticia1 = ['Rajoy: "El voto del Partido Popular es como siempre un voto seguro, no sujeto a ningún cambalache"', 'Rajoy también ha irrumpido en la campaña catalana. Ha pedido el voto para su partido, el único que puede, dice, frenar el delirio independentista. Los pactos se antojan complicados con el cruce de reproches entre unos y otros.Rajoy entra en la campaña catalana con mucho brío. Su candidato Albiol soplaba las velas y todo eran elogios del presidente del Gobierno. "Hoy cumple unos muy bien llevados 50 años. Que sean muchos más y que los veamos todos, que eso al final no molesta a nadie", declara Mariano Rajoy. A pesar del castigo de las encuestas en favor de PSC y Ciudadanos. "El voto del Partido Popular es como siempre un voto seguro, no sujeto a ningún cambalache, la mejor garantía para evitar historias indeseadas en el futuro", asegura Rajoy. Asimismo Iceta pone el foco en los indecisos y asegura que los pactos son imprescindibles para desbloquear la situación. "A mí me gustaría ejercer como presidente en mayoría. Quedan todavía casi un millón de indecisos, tenemos todavía hasta el 21 D", afirma el líder del PSC. Recibida al grito de presidenta, Arrimadas se ha mostrado tajante: "Se creen que se pueden saltar las resoluciones judiciales, es más, se indignan cuando les llaman a declarar". Mientras, Echenique en el mitin de los comunes destacaba las similitudes entre Junts per Catalunya y el PP. "El único partido capaz de competir con el Partido Popular por el premio de partido más corrupto de Europa. Aunque la mona se vista de seda, mona, corrupta se queda", afirma. Una campaña que de momento, sigue anclada en el pasado con reproches cruzados entre partidos.'];
+            var noticia2 = ['Cristiano Ronaldo, tras ganar su quinto Balón de Oro: "Soy el mejor jugador de la historia"', 'Cristiano Ronaldo, portada de France Football tras conquistar su quinto de Balón de Oro, habló con la revista gala sobre el Real Madrid y otros temas de la actualidad deportiva y personal. "Soy el mejor jugador de la historia", afirma el luso. El delantero del Real Madrid Cristiano Ronaldo se ha autodenominado como "el mejor jugador de la historia" después de recibir su quinto Balón de Oro, afirmando que no hay futbolista "más completo" que él, y ha reconocido que pensaba que no podría "atrapar" al barcelonista Leo Messi en número de trofeos. "Respeto las preferencias de todos, pero no veo a nadie mejor que yo. Ningún futbolista hace cosas que yo mismo no puedo hacer, pero veo que hago cosas que otros no pueden hacer. No hay un jugador más completo que yo. Soy el mejor jugador de la historia, tanto en los buenos como en los malos momentos", declaró en una entrevista a la revista France Football, que otorga el galardón. El portugués, que iguala a Leo Messi con cinco trofeos, aseguró que volver a ganarlo es "un sueño". "Ya he entrado en la historia del fútbol, no solo al ganar este Balón de Oro. Ya había entrado ganando un Balón de Oro, luego dos, tres, cuatro, cinco... Ahora es normal que pase a la historia como el jugador que ganó más. Estoy muy feliz, es un momento muy especial para mí. Nunca pensé que fuera tan bonito, ni siquiera en un sueño", reconoció. "No pensé que podría atrapar a Messi". En este sentido, afirmó que no pensaba que pudiera alcanzar al argentino. "No pensé que podría atrapar a Messi, porque después de ganar mi primer Balón de Oro, él ganó cuatro. Pero el fútbol te da la oportunidad de seguir trabajando y ganando, y gané, y vivo una época maravillosa", subrayó. Cristiano explicó, además, que para conseguir sus premios individuales "los trofeos colectivos siempre ayudan". "Ganar este trofeo es una recompensa deportiva. Me lo pasé genial: anoté muchos goles, fui máximo goleador de la Champions, ganamos la Champions y LaLiga", manifestó. Además, señaló que se encuentra "bien y motivado", y que se ve capaz de ganar más. "Estas son cosas que suceden naturalmente, cuando pensamos que estamos en una mala situación, de repente encontramos un buen momento, eso es fútbol. Estoy acostumbrado. No es por casualidad o por suerte que he ganado el Balón de Oro cinco veces, es con trabajo, dedicación y siempre creyendo en mi potencial y talento", apuntó. "Me convertí en el primer jugador en marcar en todos los partidos de una fase de grupos de la Liga de Campeones-, ¿qué puedo decir? Una de las palabras que más escucho en mi vida diaria es "bravo". Cuando escuchas "bravo" es la señal de que haces las cosas bien, tanto en el deporte como en la vida", concluyó.'];
+            var noticia3 = ["'El Prenda' de 'La Manada' aseguró en el juicio que es habitual que una mujer quiera tener sexo con dos o tres desconocidos a la vez", 'Para el conocido como "El Prenda" de "La Manada" es habitual que una mujer quiera tener sexo con dos o tres hombres desconocidos a la vez. Lo dijo en su declaración ante el juez, publicada por el diario "El Mundo". Asegura que la joven que denunció la violación grupal, no sólo estaba participativa, sino que incluso pidió que la penetraran. Además, sostiene que los gemidos de ella eran de placer y que se fueron del portal de manera escalonada, conforme iban eyaculando. "El Prenda" asegura que la actitud de la denunciante fue en todo momento participativa, que hasta les dijo que podría mantener relaciones con todos ellos: "Esas palabras las tengo en mi cabeza, con dos, con cinco, con los que echen. Reconoce que fue él quien eligió el lugar donde ocurrieron los hechos: "Una mujer abre un portal (…), me acerco a ella y subo (…). Mi objetivo era que entrásemos todos (…) para tener un sitio íntimo". Asegura que, tras conocerla en la verbena, sí hablaron de sexo y que por eso se fueron juntos: "En ese momento, el objetivo era, pues, buscar un hostal, un hotel, un sitio (…). A ella nunca vamos a acompañarla al coche porque esa conversación no existe". Dice que nadie la agarró para que entrara y la memoria le falla algo más cuando la fiscal le pregunta por las grabaciones y no duda en contar la finalidad: "¿A ella le dijeron en algún momento que estaban grabando?""Pues no lo recuerdo, pero, vamos, era evidente""¿Para qué querían ustedes esa grabación?""Para uso personal" Dice que su intención no era compartirlos por sus grupos de WhatsApp a pesar de que lo contó, que eso era algo normal: "Pasar el vídeo, no; enseñarlo, puede (…). Tampoco lo veía mal, como una parte de la fiesta más". Tampoco le pareció extraño ver a la chica con los ojos cerrados, reconoce que llevaba cocaína y que tras los hechos siguieron de marcha: "Pues después de salir del portal… nos fuimos. Sí que recuerdo encontrarme con más chicas, seguir con el tonteo". Además dice que del robo del móvil se enteró ya en prisión. '];
+            var noticias = [noticia1, noticia2, noticia3];
+
+
+        </script>
+
+        <section>
+
+            <article id="listado">
+                <p id="tituloListado">NOTICIAS DESTACADAS:</p>
+
+                <script>
+                    //Se crea una lista no ordenada que contendrá los titulares de las noticias, y se añaden como atributos id, y onclick para que al pulsar sobre una noticia se llame a la función que la muestra
+                    var undList = document.createElement("ul");
+                    for (var i = 0; i < noticias.length; i++) {
+                        var liObj = document.createElement("li");
+                        liObj.setAttribute("id", "titular" + i);
+                        liObj.setAttribute("onclick", "muestraNot(" + i + ")");
+                        liObj.textContent = noticias[i][0];
+                        undList.appendChild(liObj);
+                    }
+
+                    document.body.appendChild(undList);
+                </script>
+
+            </article>
+        </section>
+    </body>
+    <footer>
+        <p>www.laSexta.com/noticias | Madrid | Actualizado el 08/12/2017 a las 16:24 horas</p>
+    </footer>
+</html>
