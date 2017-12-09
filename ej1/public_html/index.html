@@ -20,7 +20,7 @@ and open the template in the editor.
 
 
             function muestraNoticia(valor) {
-
+                valorGlobal = valor;
                 if (tiempo != undefined) {
                     clearInterval(tiempo);
                 }
@@ -35,12 +35,12 @@ and open the template in the editor.
                                 valor++;
                             }
 
-                        }, 2000);
+                        }, 10000);
 
             }
 
             function muestraNot(valor) {
-
+                valorGlobal = valor;
 
                 document.getElementById("titulo").textContent = noticias[valor][0]
                 document.getElementById("descripcion").textContent = noticias[valor][1]
