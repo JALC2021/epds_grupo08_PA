@@ -20,15 +20,15 @@ and open the template in the editor.
 
             valorGlobal = 0;
             function muestraNoticia() {
-                
-                
+
+
                 if (tiempo != undefined) {
                     clearInterval(tiempo);
                 }
 
                 var tiempo = setInterval(
                         function () {
-                            
+
                             document.getElementById("titulo").textContent = noticias[valorGlobal][0]
                             document.getElementById("descripcion").textContent = noticias[valorGlobal][1]
                             if (valorGlobal == noticias.length - 1) {
@@ -49,8 +49,8 @@ and open the template in the editor.
 
 
             }
-            
-            
+
+
 
 //            var listado;
             //Para obtener un array de elementos "img" del div "carrete"	
@@ -117,49 +117,21 @@ and open the template in the editor.
 
             <article id="listado">
                 <p id="tituloListado">NOTICIAS DESTACADAS:</p>
-                <ul>
 
+                <script>
 
-                    <!--                     for(var i=0;i<noticias.length;i++){-->
+                    var undList = document.createElement("ul");
+                    for (var i = 0; i < noticias.length; i++) {
+                        var liObj = document.createElement("li");
+                        liObj.setAttribute("id", "titular" + i);
+                        liObj.setAttribute("onclick", "muestraNot(" + i + ")");
+                        liObj.textContent = noticias[i][0];
+                        undList.appendChild(liObj);
+                    }
 
-                    <li id="titular0" onclick="muestraNot(0)"> </li>
-                    <li id="titular1" onclick="muestraNot(1)"> </li>
-                    <li id="titular2" onclick="muestraNot(2)"> </li>
+                    document.body.appendChild(undList);
+                </script>
 
-                    <!--                    <script type="text/javascript">
-                                         listado=document.getElementById("titular1");
-                    
-                                            for(var i=0;i<listado.length;i++){
-                                                document.write(num);
-                                                    listado[i].addEventListener("click", function(){myFunctionentrar(i)});
-                                                    //listado[i].addEventListener("mouseleave", function(){myFunctionsalir(i)});
-                    
-                                            }
-                                                               </script>-->
-
-
-
-                    <!--                    <script type="text/javascript">
-                    
-                                            document.getElementById("titular").onmouseenter = function () {
-                                                myFunctionentrar()
-                                            };
-                                            document.getElementById("titular").onmouseleave = function () {
-                                                myFunctionsalir()()
-                                            };
-                    
-                                            // }
-                    
-                    
-                    
-                                        </script>-->
-                    
-                    <script>
-                        for(var i=0;i<noticias.length;i++){
-                            document.getElementById("titular"+i).textContent = noticias[i][0];
-                        }
-                    </script>
-                </ul>
             </article>
         </section>
     </body>
