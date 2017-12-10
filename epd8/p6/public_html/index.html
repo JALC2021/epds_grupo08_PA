@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <style>
+            body{
+                border-radius: 5px;
+                background-color: #f2f2f2;
+                padding: 10px;
+
+            }
+            input[type=text], select {
+                width: 20%;
+                padding: 12px 20px;
+                margin: 8px 0;
+                display: inline-block;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                box-sizing: border-box;
+                font-size: 1em;
+            }
+            input[type=url]{
+                width: 20%;
+                padding: 12px 20px;
+                margin: 8px 0;
+                display: inline-block;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                box-sizing: border-box;
+                font-size: 1em;
+            }
+            input[type=number], select {
+                width: 20%;
+                padding: 12px 20px;
+                margin: 8px 0;
+                display: inline-block;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                box-sizing: border-box;
+                font-size: 1em;
+            }
+            input[type=tel] {
+                width: 20%;
+                padding: 12px 20px;
+                margin: 8px 0;
+                display: inline-block;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                box-sizing: border-box;
+                font-size: 1em;
+            }
+
+            input[type=submit] {
+                width: 20%;
+                background-color: #4CAF50;
+                color: white;
+                padding: 14px 20px;
+                margin: 8px 0;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                font-size: 1em;
+            }
+
+            input[type=submit]:hover {
+                background-color:red ;
+            }
+
+            input[type=radio] {
+                display: inline-block;
+                position: relative;
+                padding-left: 35px;
+                margin-bottom: 12px;
+                cursor: pointer;
+                font-size: 22px;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+            }
+
+        </style>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="text/javascript">
+            function valida() {
+                var salida = '';
+
+                // Comprobamos el nombre (Mínimo 1 palabra)
+                var expr = /^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$/g;
+                if (!expr.test(document.getElementById('nombre').value))
+                    salida += 'El nombre ha de estar compuesto por al menos una palabras\n';
+
+                // Comprobamos el apellido (Mínimo 2 palabras)
+                expr = /^[a-zA-Záéíóú]+(\s[a-zA-Záéíóú]+)+$/;
+                if (!expr.test(document.getElementById('apellidos').value))
+                    salida += 'El apellido ha de estar compuesto por al menos dos palabras\n';
+
+                // Comprobamos el número de telefono (9 cifras)
+                expr = /^\d{9}$/;
+                if (!expr.test(document.getElementById('tlf').value))
+                    salida += 'El teléfono ha de estar compuesto por 9 cifras\n';
+
+                // Comprobamos a url es correcta.
+                expr = /^http:\/\/[a-zA-Z0-9-_:/.?&amp;=]+$/;
+                if (!expr.test(document.getElementById('url').value))
+                    salida += 'La página web no es válida o contiene carácteres no válidos o no empieza por http://\n';
+
+                // Comprobamos que se ha selecionado un elemento de la lista
+                var indice = document.getElementById("opciones").selectedIndex;
+                if (indice === null || indice === 0) {
+                    salida += 'Debe seleccionar un estado civil\n';
+                }
+
+                if (salida !== '') {
+                    alert(salida);
+                    return false;
+                } else
+                    alert("Miembro dado de alta sin errores");
+                return true;
+            }
+
+        </script>
+    </head>
+    <body>
+        <form action="#" method="post" onsubmit="return valida()">
+            Nombre: <input type="text" id="nombre" name="nombre"><br />
+            Apellidos: <input type="text" id="apellidos" name="apellidos"><br />
+            Altura: <input type="number" name="altura" min="100" max="299"><br />
+            Estado Civil:
+            <select id="opciones" name="opciones">
+                <option value="">- Selecciona uno -</option>
+                <option value="soltero">Soltero</option>
+                <option value="casado">Casado</option>
+                <option value="divorciado">Divorciado</option>
+                <option value="viudo">Viudo</option>
+            </select><br />
+            P&aacute;gina Web: <input type="url" id="url" name="paginaWeb"><br />
+            N&uacute;mero de Tel&eacute;fono: <input type="tel" id="tlf" name="telefono"> <br />
+            Sexo: <input type="radio" required name="sexo" value="mujer"> Mujer
+            <input type="radio" required name="sexo" value="hombre"> Hombre <br />
+            <input type="submit"  name="enviar" value="Enviar">
+        </form>
+    </body>
+</html>

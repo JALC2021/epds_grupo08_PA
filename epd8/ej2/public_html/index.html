@@ -87,7 +87,7 @@ and open the template in the editor.
 
                         var tdTabla = document.createElement("td");
                         tdTabla.setAttribute("id", "tdTabla" + k + l);
-                        if (l == 0) {
+                        if (l === 0) {
                             var tdTexto = document.createTextNode("Compañia " + k);
                         } else {
                             var tdTexto = document.createTextNode(vfinal[l - 1]);
@@ -96,7 +96,7 @@ and open the template in the editor.
                         trTabla.appendChild(tdTabla);
 
                         if ((l > (vfinal.length - 5)) && (l <= vfinal.length)) {
-                            if (vfinal[l - 1] == "↑") {
+                            if (vfinal[l - 1] === "↑") {
                                 contadorArriba++;
                             }
                         }
@@ -116,7 +116,7 @@ and open the template in the editor.
                 document.body.appendChild(parrafo);
                 matriz.sort(function (a, b) {
                     return b[1] - a[1]
-                })
+                });
 
                 for (var k = 0; k < nCompanyas; k++) {
 
@@ -127,7 +127,7 @@ and open the template in the editor.
 
                         var tdTabla = document.createElement("td");
                         tdTabla.setAttribute("id", "tdTabla" + l);
-                        if (l == vfinal.length - 5) {
+                        if (l === vfinal.length - 5) {
                             var tdTexto = document.createTextNode("Compañia " + matriz[k][0]);
                         } else {
                             var tdTexto = document.createTextNode(document.getElementById("tdTabla" + matriz[k][0] + l).textContent);
@@ -139,9 +139,6 @@ and open the template in the editor.
                     table.appendChild(trTabla);
                     body.appendChild(table);
                 }
-
-
-
             }
 
         </script>
@@ -149,12 +146,7 @@ and open the template in the editor.
     <body>
         <script type="text/javascript">
             var nCompanyas = parseInt(prompt("Introduce el numero de compañias"));
-            
             companias = tabla(nCompanyas);
-            
-
-
-
         </script>
 
     </body>
