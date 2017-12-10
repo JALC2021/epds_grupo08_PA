@@ -48,11 +48,11 @@ and open the template in the editor.
 
                     if (vNumerosAleatorios[0] < vNumerosAleatorios[j]) {
 
-                        vfinal.push("-");
+                        vfinal.push("↑");
 
                     } else if (vNumerosAleatorios[0] > vNumerosAleatorios[j]) {
 
-                        vfinal.push("+");
+                        vfinal.push("↓");
 
                     } else if (vNumerosAleatorios[0] === vNumerosAleatorios[j]) {
 
@@ -60,78 +60,85 @@ and open the template in the editor.
                     }
 
                 }
-
-
                 return vfinal;
             }
 
             function tabla(nCompanyas) {
 
-                document.write("<table>");
-                document.write("<caption>Tabla Bolsa</caption>");
-                document.write("<thead>");
-                document.write("<tr>");
-                document.write("<th>N&uacute;mero de Compa&ntilde;ia</th>");
+                var parrafo = document.createElement("p");
+                parrafo.textContent = "Tabla de todas las compañías";
+                document.body.appendChild(parrafo);
 
-                var dia = 1;
-                while (dia <= 20) {
-                    document.write("<th>€ acci&oacute;n D&iacute;a " + dia + "</th>");
-                    dia = dia + 1;
+                var body = document.body;
+                var table = document.createElement("table");
+                table.setAttribute("id", "table");
+
+                matriz = [];
+                vectorFinal = [];
+                for (var k = 0; k < nCompanyas; k++) {
+                    vectorFinal = [];
+                    vectorFinal.push(k);
+                    vfinal = numerosAleatorios();
+                    var trTabla = document.createElement("tr");
+                    trTabla.setAttribute("id", "trTabla" + k);
+
+                    var contadorArriba = 0;
+                    for (var l = 0; l <= vfinal.length; l++) {
+
+                        var tdTabla = document.createElement("td");
+                        tdTabla.setAttribute("id", "tdTabla" + k + l);
+                        if (l == 0) {
+                            var tdTexto = document.createTextNode("Compañia " + k);
+                        } else {
+                            var tdTexto = document.createTextNode(vfinal[l - 1]);
+                        }
+                        tdTabla.appendChild(tdTexto);
+                        trTabla.appendChild(tdTabla);
+
+                        if ((l > (vfinal.length - 5)) && (l <= vfinal.length)) {
+                            if (vfinal[l - 1] == "↑") {
+                                contadorArriba++;
+                            }
+                        }
+                    }
+                    table.appendChild(trTabla);
+                    body.appendChild(table);
+
+                    vectorFinal.push(contadorArriba);
+                    matriz[k] = vectorFinal;
                 }
-                document.write("</tr>");
-                document.write("</thead>");
+
+                var table = document.createElement("table");
+                table.setAttribute("id", "tableResumen");
+
+                var parrafo = document.createElement("p");
+                parrafo.textContent = "Tabla resumen";
+                document.body.appendChild(parrafo);
+                matriz.sort(function (a, b) {
+                    return b[1] - a[1]
+                })
 
                 for (var k = 0; k < nCompanyas; k++) {
-                    vfinal = numerosAleatorios();
 
-                    document.write("<tr>");
-                    document.write("<tbody>");
-                    document.write("<tr>");
-                    document.write("<td>Compa&ntilde;ia " + k + "</td>");
+                    var trTabla = document.createElement("tr");
+                    trTabla.setAttribute("id", "trTabla" + k);
 
+                    for (var l = vfinal.length - 5; l <= vfinal.length; l++) {
 
-                    for (var l = 0; l < vfinal.length; l++) {
+                        var tdTabla = document.createElement("td");
+                        tdTabla.setAttribute("id", "tdTabla" + l);
+                        if (l == vfinal.length - 5) {
+                            var tdTexto = document.createTextNode("Compañia " + matriz[k][0]);
+                        } else {
+                            var tdTexto = document.createTextNode(document.getElementById("tdTabla" + matriz[k][0] + l).textContent);
 
-                        document.write("<td>" + vfinal[l] + "</td>");
-
+                        }
+                        tdTabla.appendChild(tdTexto);
+                        trTabla.appendChild(tdTabla);
                     }
-
-                    document.write("</tr>");
-
+                    table.appendChild(trTabla);
+                    body.appendChild(table);
                 }
-
-                document.write("</tr>");
-                document.write("</tbody>");
-                document.write("</table>");
-                document.write("<br />");
-
-
-
-
-                /*var body = document.body;
-                 var table = document.createElement("table");
-                 table.setAttribute("id", "table");
-                 
-                 var trTabla = document.createElement("tr");
-                 trTabla.setAttribute("id", "trTabla");
-                 
-                 for (var k = 0; k < nCompanyas; k++) {
-                 
-                 vfinal = numerosAleatorios();
-                 
-                 for (var l = 0; l < vfinal.length; l++) {
-                 
-                 var tdTabla = document.createElement("td");
-                 tdTabla.setAttribute("id", "tdTabla");
-                 
-                 var tdTexto = document.createTextNode(vfinal[l]);
-                 tdTabla.appendChild(tdTexto);
-                 trTabla.appendChild(tdTabla);
-                 }
-                 
-                 }
-                 table.appendChild(trTabla);
-                 body.appendChild(table);*/
 
 
 
@@ -142,13 +149,9 @@ and open the template in the editor.
     <body>
         <script type="text/javascript">
             var nCompanyas = parseInt(prompt("Introduce el numero de compañias"));
-            //var vNumAleatorios = [];
-            //var companias = [];
-
-            //for (var h = 0; h < nCompanyas; h++) {
-            //vNumAleatorios = numerosAleatorios();
+            
             companias = tabla(nCompanyas);
-            //}
+            
 
 
 
