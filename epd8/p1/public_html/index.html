@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script>
+            function validar() {
+
+                for (var i = 0; i < document.formulario.cadena.value.length; i++) {
+
+                    if (document.formulario.cadena.value.charCodeAt(i) < 48 || document.formulario.cadena.value.charCodeAt(i) > 57)
+                    {
+                        document.formulario.cadena.value = document.formulario.cadena.value.slice(0, i);
+                    }
+                }
+            }
+
+        </script>
+    </head>
+    <body>
+        <script>
+            var pelicula = ["los arcos", "titanic", "1800", "1830", "1900", "1930"];
+            document.write("Cine: " + pelicula[0] + "<br />");
+            document.write("Pelicula: " + pelicula[1] + "<br />");
+            document.write("Hora: " + pelicula[2] + " , " + pelicula[3] + " , " + pelicula[4] + " , " + pelicula[5]);
+            for (var k = 2; k < pelicula.length; k++) {
+
+                if ((document.getElementById("cadena")) === pelicula[k]) {
+
+                    alert("ok");
+                } else {
+
+                    //alert("la hora no existe");
+                }
+            }
+        </script>
+
+        <form name="formulario">
+
+            <br /> Introduzca hora de la pelicula:<br />
+            <input type="text" size="100" name="cadena" id ="cadena" maxlength="4" onkeyup="validar()">
+
+
+        </form>
+    </body>
+</html>
