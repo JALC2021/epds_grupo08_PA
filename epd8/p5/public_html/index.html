@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Problema 5-EPD 8</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div>
+            <form name="main">
+                <label><strong>Añadir-Eliminar imagenes</strong> </label><br><br>
+                <label>Introduce parámetro a buscar:</label>&nbsp;<input type="text" id="parametro"><br><br>
+                <input type="button" value="Añadir imagen" name="add" onclick="add_imagen()">
+                <input type="button" value="Eliminar imagen" name="remove" onclick="remove_imagen()">
+            </form>
+            <script type="text/javascript">
+                function add_imagen() {
+                    var d = new Date();
+                    var n = d.getTime();
+                    if (document.getElementsByTagName("table")[0] == null) {
+                        var body = document.getElementsByTagName("body")[0];
+                        var tabla = document.createElement("table");
+                        var tablaBody = document.createElement("tbody");
+                        var fila = document.createElement("tr");
+                        var celda = document.createElement("td");
+                        var hombre = document.createElement("img");
+                        var mujer = document.createElement("img");
+                        hombre.setAttribute("src", "https://source.unsplash.com/featured/?man," + document.getElementById("parametro") + "&" + n);
+                        hombre.style.width="500px";
+                        hombre.style.height="500px";
+                        mujer.setAttribute("src", "https://source.unsplash.com/featured/?woman," + document.getElementById("parametro") + "&" + n);
+                        mujer.style.width="500px";
+                        mujer.style.height="500px";
+                        celda.appendChild(hombre);
+                        fila.appendChild(celda);
+                        celda.appendChild(mujer);
+                        fila.appendChild(celda);
+                        tablaBody.appendChild(fila);
+                        tabla.appendChild(tablaBody);
+                        body.appendChild(tabla);
+                    } else {
+                        var body = document.getElementsByTagName("body")[0];
+                        var tabla = document.getElementsByTagName("table")[0];
+                        var tablaBody = document.getElementsByTagName("tbody")[0];
+                        var fila = document.createElement("tr");
+                        var celda = document.createElement("td");
+                        var hombre = document.createElement("img");
+                        var mujer = document.createElement("img");
+                        hombre.setAttribute("src", "https://source.unsplash.com/featured/?man," + document.getElementById("parametro") + "&" + n);
+                        hombre.style.width="500px";
+                        hombre.style.height="500px";
+                        mujer.setAttribute("src", "https://source.unsplash.com/featured/?woman," + document.getElementById("parametro") + "&" + n);
+                        mujer.style.width="500px";
+                        mujer.style.height="500px";
+                        celda.appendChild(hombre);
+                        fila.appendChild(celda);
+                        celda.appendChild(mujer);
+                        fila.appendChild(celda);
+                        tablaBody.appendChild(fila);
+                        tabla.appendChild(tablaBody);
+                        body.appendChild(tabla);
+                    }
+
+                }
+
+                function remove_imagen() {
+                    if (document.getElementsByTagName("tr")[1] != null) {
+                        var tablaBody = document.getElementsByTagName("tbody")[0];
+                        tablaBody.removeChild(tablaBody.lastChild);
+                    } else if (document.getElementsByTagName("tr")[0] != null) {
+                        var tabla = document.getElementsByTagName("table")[0];
+                        tabla.remove(tabla.selectedIndex);
+                    }
+                }
+
+
+            </script>
+        </div>   
+    </body>
+</html>
