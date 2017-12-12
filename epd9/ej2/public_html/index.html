@@ -13,8 +13,8 @@ and open the template in the editor.
 
         <script>
             $(document).ready(function () {
-                //cuando entramos en el primer párrafo, primero se hace la desaparción con velocidad,
-                //luego se ejecuta la función verSolución y finalmente se vuelve a mostrar, todo por orden y cuándo finaliza
+                //cuando entramos en el primer p&aacute;rrafo, primero se hace la desaparción con velocidad,
+                //luego se ejecuta la función verSolución y finalmente se vuelve a mostrar, todo por orden y cu&aacute;ndo finaliza
                 //uno se ejecuta el siguiente.
                 $("p").first().mouseenter(function () {
                     $("table").hide(1000,function (){
@@ -27,19 +27,17 @@ and open the template in the editor.
                     }).show(1000);
                 });
                 
-                //En este caso tenemos un variable que nos informará si la variable está visible o no
-                //luego al clickear en el id "tdtable" (en este caso el 0), se cambiará el texto con el valor del carácter visible
+                //En este caso tenemos un variable que nos informar&aacute; si la variable est&aacute; visible o no
+                //luego al clickear en el id "tdtable" (en este caso el 0), se cambiar&aacute; el texto con el valor del car&aacute;cter visible
                 // o se vuelve a mostrar nada (invisible)
-                var $caracterVisible = false;
-                $("#tdtable0").click(function(){
-                    if(!$caracterVisible){
-                    $("#tdtable0").text(caracteres[0]);
-                    
-                    $caracterVisible=true;
-                }else{
-                    $("#tdtable0").text("");
-                    $caracterVisible=false;
+                for($i=0;$i<caracteres.length;$i++){
+                    $("#tdtable"+$i).html("<span>"+caracteres[$i]+"</span>");
+                    $("span").hide();
                 }
+              
+                $("td").click(function(){
+                    
+                    $(this).children("span").toggle();
                     
                 });
             
@@ -49,7 +47,7 @@ and open the template in the editor.
 
         <script type="text/javascript">
 
-            //comprueba si la letra introducida está en la solucion y la muestra. También contabiliza los errrores y en caso de tener 5, finaliza el juego.
+            //comprueba si la letra introducida est&aacute; en la solucion y la muestra. También contabiliza los errrores y en caso de tener 5, finaliza el juego.
             errores = 0;
             function introducirLetra() {
                 if (errores < 4) {
@@ -70,7 +68,7 @@ and open the template in the editor.
                         document.getElementById("errores").appendChild(text3);
                     }
                 } else {
-                    document.write("Ha superado el máximo número de fallos. Fin del juego.");
+                    document.write("Ha superado el m&aacute;ximo número de fallos. Fin del juego.");
                 }
             }
 
