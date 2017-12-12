@@ -11,21 +11,41 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script>
-            $(document).ready(function(){
-            
-            $("#bt1").click(function(){
-                $("#img1").toggle();
+            $(document).ready(function () {
+                
+                $("#img1").hide();
+                $("#img2").hide();
+                $("#img3").hide();
+                $("#img4").hide();
+                $("#img5").hide();
+                $("#img6").hide();
+
+                $("#bt1").click(function () {
+                    $("#img1").toggle();
+                });
+
+                $("#bt2").click(function () {
+                    $("#img2").toggle(1000);
+                });
+
+                $("#bt3").click(function () {
+                    $("#img3").slideToggle(1000);
+                });
+
+                $("#bt4").click(function () {
+                    $("#img4").fadeToggle(1000);
+                });
+
+                $("#bt5").click(function () {
+                   $("#img5").slideToggle();
+          
+                });
+
+                $("#bt6").click(function () {
+                    $("#img6").fadeToggle();
+                });
+
             });
-            
-            $("#bt2").click(function(){
-                $("#img2").toggle(1000);
-            });
-            
-            $("#bt3").click(function(){
-                $("#img3").slideToggle(1000);
-            });
-            
-    });
         </script>
     </head>
     <body>
@@ -111,6 +131,54 @@ and open the template in the editor.
                 </p>
             </section>
 
+            <section>
+                <h2>La cámara marca la diferencia</h2>
+                <p>
+                    Lo que sin duda me ha gustado más del iPhone 8 Plus es su doble
+                    cámara. El zoom 2x necesita de buena luz para funcionar bien,
+                    pero el resultado es genial. El modo retrato y los nuevos modos
+                    de iluminación son una pasada, aunque necesitas cierto tino para
+                    conseguir que la persona que fotografíes no quede sin oreja o que
+                    el fondo no se coma una prenda, un hombro, etc.
+                </p>
+                <img id="img4" src="imagenes/img4.JPG" />
+                <p>
+                    <button id="bt4" >Efectos imagen4</button>
+                </p>
+            </section>
+
+            <section>
+
+                <p>
+                    Los niveles de distorsión en el Galaxy S7 hacen realmente 
+                    incómoda la escucha, pero en el caso del iPhone 8 Plus el
+                    resultado es casi profesional. Y eso que la canción que grabé
+                    con el iPhone era más cañera (por tanto, susceptible de más
+                    distorsión) que la que capturé con el S7.
+                    Y hablando de conciertos, donde las condiciones de luz no 
+                    siempre son las mejores para fotos con móviles, aquí un ejemplo
+                    de lo conseguido con zoom 2x:
+                </p>
+                <img id="img5" src="imagenes/img5.JPG" />
+                <p>
+                    <button id="bt5" >Efectos imagen5</button>
+                </p>
+            </section>
+
+            <section>
+
+                <p>
+                    Eso sí, en el mercado hay alternativas Android que son al menos
+                    equiparables en prestaciones y son muy interesantes en precio.
+                    Pero si lo que quieres es tener el mejor iPhone del momento, yo
+                    me esperaría a ver qué tal el iPhone X. En el hipotético caso de
+                    que aquello salga mal, iPhone 8 u 8 Plus son para ti.
+                </p>
+                <img id="img6" src="imagenes/img6.JPG" />
+                <p>
+                    <button id="bt6" >Efectos imagen6</button>
+                </p>
+            </section>
         </article>
     </body>
 </html>
