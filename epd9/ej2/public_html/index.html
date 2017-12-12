@@ -13,7 +13,9 @@ and open the template in the editor.
 
         <script>
             $(document).ready(function () {
-
+                //cuando entramos en el primer párrafo, primero se hace la desaparción con velocidad,
+                //luego se ejecuta la función verSolución y finalmente se vuelve a mostrar, todo por orden y cuándo finaliza
+                //uno se ejecuta el siguiente.
                 $("p").first().mouseenter(function () {
                     $("table").hide(1000,function (){
                         verSolucion();
@@ -24,6 +26,10 @@ and open the template in the editor.
                        restaurarTabla(); 
                     }).show(1000);
                 });
+                
+                //En este caso tenemos un variable que nos informará si la variable está visible o no
+                //luego al clickear en el id "tdtable" (en este caso el 0), se cambiará el texto con el valor del carácter visible
+                // o se vuelve a mostrar nada (invisible)
                 var $caracterVisible = false;
                 $("#tdtable0").click(function(){
                     if(!$caracterVisible){
