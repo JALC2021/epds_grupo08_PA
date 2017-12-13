@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>EJERCICIO1-EPD9</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <script type="text/javascript">
+
+            var parametros = location.search; //recogemos los datos que enviamos desde index.html
+            var variables = parametros.split("?"); //partimos la cadena por ? para tener en cada posicion del vector el una variable con su valor
+            var datos = [];
+
+            for (var i = 1; i < variables.length; i++) {
+
+                var valores = variables[i].split("="); //partimos por = para guardar en un nuevo vector todos los valores de las variables
+                datos.push(valores[1]);
+            }
+
+        </script>    
+    </head>
+
+    <body style="background-color: wheat">
+        <script type="text/javascript">
+            var alt1 = datos[2].replace("%20", " "); //reemplazamos %20 que es como representa un espacio por " "
+            //datos[3] no sacará nada porque la imagen no tiene atributo alt
+            var alt3 = datos[4].replace("%20", " ");
+            var alt4 = datos[5].replace("%20", " "); //en este caso hay 2 espacios, por eso tenemos que hacer dos replace
+            alt4 = alt4.replace("%20", " ");
+            var parrafo2 = datos[7].replace("%20", " ");
+
+            document.write("<span style='color:sienna'>1. Número medio de palabras por párrafo de la página:</span><br /><br />Media exacta: " + datos[0] + " Media redondeada: " + datos[1] + "<br /><br />");
+            document.write("<span style='color:sienna'>2. Listado con los textos alternativos de las imágenes que contiene la página:</span><ul>" + "<li>" + alt1 + "</li>" + "<li>" + datos[3] + "</li>" + "<li>" + alt3 + "</li>" + "<li>" + alt4 + "</li></ul><br />");
+            document.write("<span style='color:sienna'>3. Mostrar los dos primeros párrafos en negrita:</span><br /><br /><strong>" + datos[6] + "</strong><br /><strong>" + parrafo2 + "</strong><br /><br />");
+            document.write("<span style='color:sienna'>4. Mostrar la URL del primer hiperenlace de la página:</span><br /><br />" + datos[8]+"<br />Esto ocurre porque el primer hiperenlace no tiene definido el atributo href. Vamos a mostrar el segundo hiperenlace:<br /><br />"+datos[9]);
+
+        </script>
+    </body>
+</html>
