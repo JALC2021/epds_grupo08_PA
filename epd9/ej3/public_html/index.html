@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>epd9_ej3</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/style1.css" type="text/css"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script>
+            function generarTabla() {
+                var ids = 0;
+                var numeroCompanya = parseInt(document.getElementById('in1').value);
+                var wrap = document.getElementById("wrap");
+
+                var table = document.createElement("table");
+                wrap.appendChild(document.createTextNode("Lista de companyas:"));
+                wrap.appendChild(document.createElement("br"));
+                wrap.appendChild(table);
+
+                var row = document.createElement("tr");
+                table.appendChild(row);
+
+                celda = document.createElement("th");
+                text = document.createTextNode("Compañia ");
+                celda.appendChild(text);
+                row.appendChild(celda);
+
+                for (var i = 0; i < 20; i++) {
+                    celda = document.createElement("th");
+                    text = document.createTextNode((i + 1).toString());
+                    celda.appendChild(text);
+                    row.appendChild(celda);
+                }
+
+                var companyas = []; 
+                //Creamos las companyas
+                for (var i = 0; i < numeroCompanya; i++) {
+
+                    //generamos numeroCompanya para cada compañia
+                    var numeroCompanyaes = ["Compañia " + (i + 1), Math.floor((Math.random() * 50) + 1)];
+                    for (var j = 0; j < 19; j++) {
+                        numeroCompanyaes.push(Math.floor((Math.random() * 50) + 1));
+                    }
+                    companyas.push(numeroCompanyaes);
+                }
+
+                //Generamos el resto de la tabla principal
+                for (var i = 0; i < companyas.length; i++) {
+
+                    var row = document.createElement("tr");
+                    table.appendChild(row);
+
+                    celda = document.createElement("td");
+                    text = document.createTextNode(companyas[i][0]);
+                    celda.appendChild(text);
+                    row.appendChild(celda);
+
+                    celda = document.createElement("td");
+                    text = document.createTextNode(companyas[i][1]);
+                    celda.appendChild(text);
+                    row.appendChild(celda);
+
+                    for (var j = 2; j < 21; j++) {
+                        celda = document.createElement("td");
+                        img = document.createElement("img");
+                        
+                        if (companyas[i][j] > companyas[i][j - 1]) {
+                            img.setAttribute("src", "img/up.png");
+                            img.setAttribute("alt", "up");
+                            img.setAttribute("height", "40");
+                            img.setAttribute("width", "40");
+                            
+                        } else if (companyas[i][j] < companyas[i][j - 1]) {
+                            img.setAttribute("src", "img/down.png");
+                            img.setAttribute("alt", "down");
+                            img.setAttribute("height", "40");
+                            img.setAttribute("width", "40");
+                            
+                        } else {
+                            img.setAttribute("src", "img/eq.ico");
+                            img.setAttribute("alt", "igual");
+                            img.setAttribute("height", "40");
+                            img.setAttribute("width", "40");
+
+                        }
+                        
+                        img.setAttribute("alt", companyas[i][j]);
+                        img.setAttribute("id", ids);
+                        img.setAttribute("onmouseover", "mouseIn(this)");
+                        img.setAttribute("onclick", "mouseClick(this)");
+                        var precio = document.createElement("span");
+                        precio.textContent = companyas[i][j];
+                        precio.setAttribute("id", "s" + ids);
+                        celda.appendChild(img);
+                        celda.appendChild(precio);
+                        row.appendChild(celda);
+                        precio.style.opacity = 0;
+                        ids++;
+                    }
+                }
+                wrap.appendChild(document.createElement("br"));
+                wrap.appendChild(document.createElement("br"));
+                wrap.appendChild(document.createTextNode("Compañias ordenadas por balance:"));
+                wrap.appendChild(document.createElement("br"));
+                //Copiamos un nuevo array y lo ordenamos
+                var companyasOrdenadas = companyas;
+                companyasOrdenadas.sort(compare);
+
+
+                //Imprimimos la tabla ordenado por el ultimo numeroCompanya de todos los registros de cada compañia
+                var table = document.createElement("table");
+                wrap.appendChild(table);
+
+                var row = document.createElement("tr");
+                table.appendChild(row);
+
+                celda = document.createElement("th");
+                text = document.createTextNode("Compañia ");
+                celda.appendChild(text);
+                row.appendChild(celda);
+
+                for (var i = 0; i < 5; i++) {
+                    celda = document.createElement("th");
+                    text = document.createTextNode((i + 1).toString());
+                    celda.appendChild(text);
+                    row.appendChild(celda);
+                }
+                
+                for (var i = 0; i < companyasOrdenadas.length; i++) {
+
+                    var row = document.createElement("tr");
+                    table.appendChild(row);
+
+                    celda = document.createElement("td");
+                    text = document.createTextNode(companyasOrdenadas[i][0] + " (Ultimos cinco dias): ");
+                    celda.appendChild(text);
+                    row.appendChild(celda);
+
+                    for (var j = 16; j < 20; j++) {
+                        celda = document.createElement("td");
+                        img = document.createElement("img");
+                        if (companyasOrdenadas[i][j] > companyasOrdenadas[i][j - 1]) {
+                            img.setAttribute("src", "img/up.png");
+                            img.setAttribute("alt", "up");
+                            img.setAttribute("height", "40");
+                            img.setAttribute("width", "40");
+                        } else if (companyasOrdenadas[i][j] < companyasOrdenadas[i][j - 1]) {
+                            img.setAttribute("src", "img/down.png");
+                            img.setAttribute("alt", "down");
+                            img.setAttribute("height", "40");
+                            img.setAttribute("width", "40");
+                        } else {
+                            img.setAttribute("src", "img/eq.ico");
+                            img.setAttribute("alt", "igual");
+                            img.setAttribute("height", "40");
+                            img.setAttribute("width", "40");
+
+                        }
+                        img.setAttribute("alt", companyasOrdenadas[i][j]);
+                        img.setAttribute("id", ids);
+                        img.setAttribute("onmouseover", "mouseIn(this)");
+                        img.setAttribute("onclick", "mouseClick(this)");
+                        celda.appendChild(img);
+                        var precio = document.createElement("span");
+                        precio.textContent = companyas[i][j];
+                        precio.setAttribute("id", "s" + ids);
+                        celda.appendChild(precio);
+                        row.appendChild(celda);
+                        precio.style.opacity = 0;
+                        ids++;
+                    }
+
+                    celda = document.createElement("td");
+                    text = document.createTextNode(companyasOrdenadas[i][20]);
+                    celda.appendChild(text);
+                    row.appendChild(celda);
+                }
+
+
+
+                //Quitamos el boton
+                document.getElementById("mybtn").disabled = true;
+
+            }
+
+
+            function mouseIn(value) {
+                var text = value.getAttribute('alt');
+                var html = value.innerHTML;
+                var id = value.getAttribute('id');
+                $("#s" + id).animate({
+                    'opacity': '1'
+                }, 400);
+
+                $("#" + id).mouseout(function () {
+                    $("#s" + id).animate({
+                        'opacity': '0'
+                    }, 400);
+                });
+            }
+
+            function mouseClick(value) {
+
+                var id = value.getAttribute('id');
+                $("img").css({"opacity": "0.3", "width": "10px", "height": "10px"});
+                $("#" + id).css({"opacity": "1", "width": "25px", "height": "25px"});
+            }
+
+            function compare(a, b) {
+                if (a[20] < b[20])
+                    return 1;
+                if (a[20] > b[20])
+                    return -1;
+                return 0;
+            }
+        </script>
+    </head>
+    <body>
+
+        <div class="main">
+            <div class="header">
+                <h1>Inversi&oacute;n en Bolsa</h1>
+            </div>
+            <div id="wrap" class="wrap">
+                <form>
+                    <label>Introduzca n&uacute;mero de compa&ntilde;&iacute;as</label>
+                    <input id="in1" name="entrada" type="text"/>
+                    <input id="mybtn" type="button" name="boton" onclick="generarTabla()" value="Siguiente"/><br><br>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>
+
