@@ -6,58 +6,59 @@
         <title>LaTeX/Tips and Tricks - Wikibooks, open books for an open world</title>
 
         <script type="text/javascript">
-            //  $(document).ready(function(){
-            function abrirVentana() {
+            $(document).ready(function () {
+                $("button").click(function () {
+                    
+                    //obtiene la media de las palabras por párrafo de la página
+                    var parrafo = "";
+                    var espacios = 0;
+                    var palabras = 0;
+                    var media = 0.0;
+                    var parrafo1 = "";
+                    var parrafo2 = "";
+                    var rutahiperenlace1 = "";
+                    var rutahiperenlace2 = "";
 
-                //obtiene la media de las palabras por párrafo de la página
-                var parrafo = "";
-                var espacios = 0;
-                var palabras = 0;
-                var media = 0.0;
-                var parrafo1 = "";
-                var parrafo2 = "";
-                var rutahiperenlace1="";
-                var rutahiperenlace2="";
+                    $("p").each(function () {
 
-                $("p").each(function () {
+                        parrafo = $(this).text();
+                        for (var i = 0; i < parrafo.length; i++) {
 
-                    parrafo = $(this).text();
-                    for (var i = 0; i < parrafo.length; i++) {
+                            if (parrafo.charAt(i) == " ") {
+                                espacios++;
 
-                        if (parrafo.charAt(i) == " ") {
-                            espacios++;
-
+                            }
                         }
-                    }
-                    palabras = espacios += 1;
+                        palabras = espacios += 1;
+                    });
+                    media = palabras / $("p").length;
+                    var mediaRedondeada = Math.round(media); //redondeamos la media obtenida al alza
+
+
+                    //obtiene los textos alternativos de las imágenes 
+                    var textosAlternativos = [];
+                    $("img").each(function () {
+                        textosAlternativos.push($(this).attr("alt"));
+                    });
+
+
+                    //obtiene los dos primeros párrafos en negrita
+                    parrafo1 = $("p:first").text();
+
+                    parrafo2 = $("p:nth(1)").text();
+
+
+                    //mostrar la url del primer hiperenlace de la página
+                    rutahiperenlace1 = $("a:nth(0)").attr("href");//guardamos la url del primer enlace de la página
+                    //el primer enlace de esta página no tiene atributo href
+                    rutahiperenlace2 = $("a:nth(1)").attr("href");
+
+                    //enviamos las variables con sus correspondientes valores a estadisticas.html
+                    window.open('estadisticas.html?media=' + media + '?mediaRedondeada=' + mediaRedondeada + '?textosAlternativo0=' + textosAlternativos[0] + '?textoAlternativo1=' + textosAlternativos[1] + '?textoAlternativo2=' + textosAlternativos[2] + '?textoAlternativo3=' + textosAlternativos[3] + '?parrafo1=' + parrafo1 + '?parrafo2=' + parrafo2 + '?rutahiperenlace1=' + rutahiperenlace1 + '?rutahiperenlace2=' + rutahiperenlace2);
+
+                    //   }
                 });
-                media = palabras / $("p").length;
-               var mediaRedondeada = Math.round(media); //redondeamos la media obtenida al alza
-                
-
-                //obtiene los textos alternativos de las imágenes 
-                var textosAlternativos = [];
-                $("img").each(function () {
-                    textosAlternativos.push($(this).attr("alt"));
-                });
-               
-
-                //obtiene los dos primeros párrafos en negrita
-                parrafo1 = $("p:first").text();
-               
-                parrafo2 = $("p:nth(1)").text();
-               
-
-                //mostrar la url del primer hiperenlace de la página
-                rutahiperenlace1=$("a:nth(0)").attr("href");//guardamos la url del primer enlace de la página
-                //el primer enlace de esta página no tiene atributo href
-                rutahiperenlace2=$("a:nth(1)").attr("href");
-                
-                //enviamos las variables con sus correspondientes valores a estadisticas.html
-                 window.open('estadisticas.html?media=' + media + '?mediaRedondeada=' + mediaRedondeada + '?textosAlternativo0=' + textosAlternativos[0] + '?textoAlternativo1=' + textosAlternativos[1] + '?textoAlternativo2=' + textosAlternativos[2] + '?textoAlternativo3=' + textosAlternativos[3] + '?parrafo1=' + parrafo1 + '?parrafo2=' + parrafo2 + '?rutahiperenlace1=' + rutahiperenlace1 + '?rutahiperenlace2=' + rutahiperenlace2);
-
-            }
-            // });
+            });
         </script>
 
 
@@ -91,6 +92,7 @@
     </head>
     <div id="latex">
         <body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-LaTeX_Tips_and_Tricks rootpage-LaTeX skin-vector action-view" >		<div id="mw-page-base" class="noprint"></div>
+            <button style='float:right;margin-right:5%'>Calcular estad&iacute;sticas</button>
             <div id="mw-head-base" class="noprint"></div>
             <div id="content" class="mw-body" role="main">
                 <a id="top"></a>
@@ -592,9 +594,7 @@ pdflatex -output-directory tmp
             });</script><script>(window.RLQ = window.RLQ || []).push(function () {
                     mw.config.set({"wgBackendResponseTime": 69, "wgHostname": "mw1210"});
                 });</script>
-            <script type="text/javascript">
-                abrirVentana();
-            </script>
+
         </body>
     </div>
 
