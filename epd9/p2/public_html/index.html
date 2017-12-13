@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>EPD8-P3-Grupo8</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+        <script type="text/javascript">
+
+            //mostramos el valor actualizado de la barra de la etiqueta input de typo range
+            function mostrarValorRange() {
+                var barcosSelecc = document.getElementById("numBarcosSelecc");
+                var num = barcosSelecc.value;
+                var numeroNode = document.getElementById("numText");
+                numeroNode.removeChild(numeroNode.childNodes[0]);
+
+                var textoNode = document.createTextNode(num);
+                numeroNode.appendChild(textoNode);
+            }
+
+            //Comprobamos si se puede insertar un barco según la longitud del mismo o del número de barcos totales.
+            function celdaMarcada(x, y) {
+                if (barcoSeleccionado) {
+
+                    matriz[x][y] = 1;
+                    if (comprobarInsercion()) {
+                        alert("Barco introducido correctamente");
+                        //var celda = document.getElementById("aguaImg[" + x + "][" + y + "]");
+                        //celda.setAttribute("src", "imagenes/barco.jpg");
+
+                        $("td").click(function () {
+                            var rd = Math.random();
+                            if (rd < 0.5) {
+                                $(this).children().fadeOut(0).attr("src", "imagenes/barco.jpg").fadeIn(1000);
+                            } else {
+                                $(this).children().attr("src", "imagenes/barco.jpg").slideDown();
+                            }
+                        });
+                    } else {
+                        alert("No se puede introducir. Vuelva a intentarlo");
+                        matriz[x][y] = 0;
+                    }
+                } else if (aguaSeleccionada && !barcoSeleccionado) {
+                    matriz[x][y] = 0;
+                    $("td").click(function () {
+
+                        $(this).children().css("width","0px").css("height","10px").attr("src", "imagenes/agua.jpg").animate({width: "25px"},500).animate({height: "20px"},500);
+    
+
+
+                    });
+                } else if (aguaSeleccionada && barcoSeleccionado) {
+                    alert("No se pueden seleccionar el barco y el agua a la vez");
+                } else {
+                    alert("No ha seleccionado el icono del barco situado en la parte superior");
+                }
+            }
+            //calculamos el número de barcos y la longitud de los mismos recorriendo una matriz de 1 y 0.
+            //Si las condiciones son favorables, devolveremos un booleano de valor true y en caso contrario, un false.
+            function comprobarInsercion() {
+                continuar = true;
+                var longitudBarcoHoriz = 0;
+                var longitudBarcoVert = 0;
+                numBarco = 0;
+                var longitud = document.getElementById("numBarcosSelecc").value;
+
+                //recorrido horizontal
+                for (var i = 0; i < 25; i++) {
+
+                    for (var j = 0; j < 25; j++) {
+
+                        if (matriz[i][j] == 1) {
+                            longitudBarcoHoriz++;
+                            if (longitudBarcoHoriz > longitud) {
+                                alert("Longitud del barco superada");
+                                return false;
+                            }
+                        } else {
+                            if (longitudBarcoHoriz != 0 && matriz[(i - 1)][j - 1] == 0 && matriz[(i + 1)][j - 1] == 0) {
+
+                                numBarco++;
+                                if (numBarco > 6) {
+                                    alert("Número m&aacute;ximo de barcos superados");
+                                    return false;
+                                }
+                            }
+                            longitudBarcoHoriz = 0;
+                        }
+
+                    }
+
+                }
+
+                //recorrido vertical
+                for (var i = 0; i < 25; i++) {
+
+                    for (var j = 0; j < 25; j++) {
+
+                        if (matriz[j][i] == 1) {
+                            longitudBarcoVert++;
+                            if (longitudBarcoVert > longitud) {
+                                return false;
+                            }
+                        } else {
+//                           
+
+                            if (longitudBarcoVert > 1) {
+
+                                numBarco++;
+                                if (numBarco > 6) {
+                                    alert("Número m&aacute;ximo de barcos superados");
+                                    return false;
+                                }
+
+                            }
+                            longitudBarcoVert = 0;
+                        }
+
+                    }
+
+                }
+                return true;
+
+            }
+
+            //al seleccionar el barco le cambiamos el borde del mismo y el valor del booleano barcoSeleccionado.
+            function seleccionarBarco() {
+
+                if (!barcoSeleccionado) {
+                    document.getElementById("barco").setAttribute("style", "border: solid 1px red");
+                    barcoSeleccionado = true;
+                } else {
+                    document.getElementById("barco").setAttribute("style", "border: none");
+                    barcoSeleccionado = false;
+                }
+            }
+
+            function seleccionarAgua() {
+
+                if (!aguaSeleccionada) {
+                    document.getElementById("agua").setAttribute("style", "border: solid 1px red");
+                    aguaSeleccionada = true;
+                } else {
+                    document.getElementById("agua").setAttribute("style", "border: none");
+                    aguaSeleccionada = false;
+                }
+            }
+
+            //creamos una matriz que representar&aacute; los barcos seleccionados.
+            function crearMatriz() {
+
+                matriz = new Array(27);
+
+                for (var i = -1; i < 26; i++) {
+                    fila = new Array();
+                    for (var j = -1; j < 26; j++) {
+
+                        fila.push(0);
+                    }
+                    matriz[i] = fila;
+                }
+            }
+
+            //Representamos la tabla con las im&aacute;genes del agua
+            function representarTabla() {
+
+
+                var body = document.body;
+                var table = document.createElement("table");
+                table.setAttribute("id", "table");
+                table.setAttribute("border", "solid 1px grey");
+                body.appendChild(table);
+
+                for (var i = 0; i < 25; i++) {
+                    var trTabla = document.createElement("tr");
+                    trTabla.setAttribute("id", "trTabla" + i);
+                    document.getElementById("table").appendChild(trTabla);
+
+                    for (var j = 0; j < 25; j++) {
+                        var tdTabla = document.createElement("td");
+
+
+                        var tr = document.getElementById("trTabla" + i);
+                        var aguaImg = document.createElement("img");
+                        aguaImg.setAttribute("src", "./imagenes/agua.jpg");
+                        aguaImg.setAttribute("width", "25");
+                        aguaImg.setAttribute("id", "aguaImg[" + i + "][" + j + "]");
+                        aguaImg.setAttribute("onclick", "celdaMarcada(" + i + "," + j + ")");
+                        tdTabla.appendChild(aguaImg);
+                        tr.appendChild(tdTabla);
+                    }
+                }
+                barcoSeleccionado = false;
+                aguaSeleccionada = false;
+
+                crearMatriz();
+            }
+        </script>
+    </head>
+    <body onload="representarTabla()">
+
+        <div>
+            <form name="barco">
+                <input id="numBarcosSelecc" type="range" min="1" max="10" name="numBarcos" value = "5" onchange="mostrarValorRange()"> <strong id="numText">5</strong> 
+            </form>
+            <img id="barco" src="imagenes/barco.jpg" width="40" onclick="seleccionarBarco()"/>
+            <img id="agua" src="imagenes/agua.jpg" width="40" onclick="seleccionarAgua()"/>
+        </div>
+
+    </body>
+</html>
