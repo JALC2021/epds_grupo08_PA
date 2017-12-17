@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>EPD10-e1</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+        <script src="plugin-epd10-ex1.js"></script>
+        <script>
+            $(document).ready(function(){
+                $("input").plugin_epd10_ex1();
+            });
+        </script>
+    </head>
+    <body>
+        <form name="datos" action="#" method="POST">
+            <input type="text" name="nombre" value="" />
+            <input type="text" name="apellido1" value="" />
+            <input type="text" name="apellido2" value="" />
+            <input type="submit" name="envio" value="Enviar" />
+        </form>
+    </body>
+</html>
