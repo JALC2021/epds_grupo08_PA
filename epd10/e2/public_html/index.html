@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>EPD10-e2</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+        <script src="animatescroll.js"></script>
+    </head>
+    <body>
+        <img id="img1" src="img1.JPG" width="1000" height="500" />
+        <img id="img2" src="img2.JPG" width="1000" height="500" />
+        <img id="img3" src="img3.JPG" width="1000" height="500" />
+        <br /><br /><br /><br /><br />
+        <button name="but1" onclick="$('#img1').animatescroll({scrollSpedd:2000,easing:'easeInOutBack'});">
+            Efecto 1
+        </button>
+        <button name="but2" onclick="$('#img2').animatescroll({scrollSpedd:5000,easing:'easeInOutCubic'});">
+            Efecto 2
+        </button>
+        <button name="but3" onclick="$('#img3').animatescroll({scrollSpedd:8000,easing:'easeInOutQuart'});">
+            Efecto 3
+        </button>
+    </body>
+</html>
