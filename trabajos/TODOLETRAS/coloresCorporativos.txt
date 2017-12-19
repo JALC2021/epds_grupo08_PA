@@ -1,0 +1,8 @@
+Dos tipos de rojo
+oscuro
+#B81D22
+mas claro
+#671012
+dos tipos de negro
+#383838
+#707070

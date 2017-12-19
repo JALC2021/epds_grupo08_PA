@@ -1,0 +1,150 @@
+.container{
+    margin-top: 0.2%;
+    margin-bottom: 1%;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.logo figure{
+    width: 17em;
+    float: left;
+    margin: 0px;
+}
+
+.logo figure img{
+    width: 17em;
+}
+
+.carro{
+    width: 5em;
+    float: right;
+}
+
+.carro figure{
+    width: 5em;
+    margin: 0px;
+}
+
+.carro figure img{
+    width: 4em;
+    padding-top: 0.5em;
+}
+
+.menu{
+    clear: both;
+    background-color: #383838;
+    border-radius: 5px;
+    padding-right: 1em;
+    text-align: center;
+}
+
+.menu ul{
+    padding: 0.4em;
+}
+
+.menu ul li{
+    color: white;
+    padding: 0.4%;
+    list-style: none;
+    display: inline;
+    border-right: 1px solid white;
+}
+
+aside{
+    width: 20%;
+    margin-right: 80%;
+}
+
+.mas-vendidos{
+    width: 100%;
+    margin-bottom: 1em;
+    border: thin solid #EEEEEE;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.mas-vendidos ul, .ultimas-compras ul{
+    padding-left: 0.2em;
+}
+    
+.mas-vendidos ul li, .ultimas-compras ul li{
+    list-style: none;
+    display: inline;
+    overflow: auto;
+}
+
+.mas-vendidos ul li img, .ultimas-compras ul li img{
+    width: 4em;
+    height: 6.5em;
+    float: left;
+    padding: 0.2em;
+}
+
+.ultimas-compras{
+    width: 100%;
+    overflow: hidden;
+    border: thin solid #EEEEEE;
+    border-radius: 5px;
+}
+
+.slider, .insertar-carro, .borrar-carro, .consultar-carro, .ebooks, .libros, .login, .mi-cuenta, .cambiar-pass, .consultar-compras, .consultar-datos{
+	width: 79%;
+    border: thin ridge #EEEEEE;
+    border-radius: 5px;
+    margin-bottom: 1em;
+    float:right;
+}
+.registrar, .registro, .iniciar-sesion, .busqueda, .donar, .publicar-mensaje, .consultar-ebooks, .foro, .libro-detallado, .ayuda, .contacto, .noticias, .eliminar-mensaje, .admin{
+    width: 79%;
+    border: thin ridge #EEEEEE;
+    border-radius: 5px;
+    margin-bottom: 1em;
+    float:right;
+}
+
+.novedades{
+    width: 79%;
+    margin-left: 21%;
+    border: thin ridge #EEEEEE;
+    border-radius: 5px;
+    margin-bottom: 1em;
+    margin: 0 auto;
+    float: right;
+    text-align:center;
+}
+
+.novedad{
+    width: 8em;
+    height: 14em;
+    float: left;
+    padding: 1em;
+    padding-left: 1em;
+    margin: 0.5em;
+    display: inline-block;
+}
+
+.novedad img{
+    width: 8em;
+    height: 12em;
+}
+
+.informacion{
+    float: left;
+    width: 50%;
+    text-align: center;
+}
+
+.redes{
+    float: left;
+    width: 50%;
+    text-align: center;
+}
+
+.mini{
+ font-size: 0.7em;
+ margin-left: 5em;
+}
+
+.padding-center{
+    padding: 2em;
+}

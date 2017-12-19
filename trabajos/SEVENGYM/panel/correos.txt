@@ -1,0 +1,21 @@
+50,45,RE:Entrenamiento,Sin problemas,19/1/2015,1421627184
+
+
+
+50,45,Viernes 24,No podre ir,19/1/2015,1421627225
+
+
+
+20,20,Prueba,Correo,19/1/2015,1421662389
+
+
+
+50,20,Correo a socio,Prueba,19/1/2015,1421662430
+
+
+
+45,20,Prueba a monitor,Correo,19/1/2015,1421662459
+
+
+
+48,48,Ejemplo,Ejemplo,19/1/2015,1421670540

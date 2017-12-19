@@ -1,0 +1,237 @@
+body{
+    font-variant-caps: small-caps;
+    font-family: sans-serif;
+}
+
+.menu-sup{
+    width: 100%;
+    text-align: right;
+    border-bottom: thin solid #EEEEEE;
+}
+
+.menu-sup ul{
+    padding: 1%;
+    margin-bottom: 0px;
+}
+
+.menu-sup ul li{
+    padding-right: 0.5%;
+    list-style: none;
+    display: inline;
+    border-right: 1px solid;
+}
+
+.logo{
+    width: 100%;
+}
+
+.menu ul li:hover{
+    background-color: #B81D22;
+}
+
+.menu ul li a{
+    color: white;
+}
+
+.menu ul li a:hover{
+
+}
+
+.input-button{
+    background-color: #383838;
+    color: white;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.input-button:hover{
+    background-color: #B81D22;
+    color: white;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+input:not(.input-button):hover, select:hover, textArea:hover{
+    border: 2px solid #B81D22;
+    border-radius: 5px;
+}
+
+.slider ol{
+    list-style: none;
+    display: inline;
+}
+
+.slider ol li figure{
+   margin: 0px;
+}
+
+.slider ol li figure img{
+    width: 100%;
+}
+
+.novedades-aux{
+    text-align:center;
+    display: inline-block;
+}
+
+footer{
+    width: 100%;
+    clear: both;
+    overflow: auto;
+}
+
+.siguenos{
+    width: 10em;
+}
+
+.h4footer{
+    border-bottom: thin ridge #EEEEEE;
+    background-color: #EEEEEE;
+    background-color: #383838;
+    border-radius: 5px;
+    color: white;
+    padding-left: 1em;
+    padding-bottom: 0.5em;
+    padding-top: 0.5em;
+}
+
+.h4titulos{
+    color: white;
+    background-color: #B81D22;
+    padding: 2%;
+    margin-top: 0px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.h4novedades{
+    color: white;
+    background-color: #B81D22;
+    padding: 1%;
+    margin-top: 0px;
+    border-radius: 5px;
+}
+
+.h4novedades span{
+    float: right;
+}
+
+.h4novedades span a{
+    color: white;
+}
+
+.h4novedades span a:hover{
+    text-decoration: underline;
+}
+
+a{
+    text-decoration: none;
+    color: #383838;
+}
+
+a:hover{
+    color: #B81D22;
+}
+
+.libro{
+    float: left;
+    padding: 0.7em;
+    text-align: center;
+}
+
+.traductor{
+    text-align: center;
+    clear:both;
+}
+
+img.contacto{
+ width: 2em;
+ float:left;
+}
+img.contacto-grand{
+ width: 10em;
+ float:right;
+}
+img.ayuda1{
+ width: 80%;
+}
+img.ayuda2{
+ width: 40%;
+}
+.noticia{
+ margin:1em;
+}
+img.flecha{
+ width: 3%;
+ float:left;
+}
+img.update{
+    width: 1em;
+}
+.mensaje{
+    width: 70%;
+    margin:0 auto;
+    border: 2px solid #B81D22;
+    border-radius: 5px;
+    padding: 0.5em;
+    margin-bottom: 2em;
+}
+.mensaje strong{
+    float: right;
+}
+p.center{
+    text-align: center;
+}
+p.right{
+    text-align: right;
+}
+.ver-ebooks{
+    width: 90%;
+    margin:0 auto;
+    border: 2px solid #B81D22;
+    border-radius: 5px;
+    padding: 0.5em;
+    margin-bottom: 2em;
+}
+.ver-ebooks form{
+    //border-bottom:1px solid #B81D22;
+    //border-top:1px solid black;
+}
+img.pdf-icon{
+    width: 4%;
+}
+.mi-cuenta-opc{
+    width: 70%;
+    margin:0 auto;
+    padding: 1.5em;
+    margin-bottom: 2em;
+}
+.mi-cuenta-opc h2{
+   text-align: center;
+}
+img.mi-cuenta-img{
+    float:left;
+    margin-right: 1em;
+    width: 200px;
+}
+table.tabla-usuarios{
+    margin:0 auto;
+    margin-bottom: 1em;
+    border: 2px solid #B81D22;
+    border-radius: 5px;
+}
+.tabla-usuarios td{
+    border: 2px solid #B81D22;
+}
+
+td{
+    text-align: center;
+}
+
+
+.libro-explicito{
+    width: 143px;
+   height:230px;
+   float:left;
+   margin-right: 1em;
+}

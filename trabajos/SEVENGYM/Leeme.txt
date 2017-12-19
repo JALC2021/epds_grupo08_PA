@@ -1,0 +1,3 @@
+Carpeta Base de Datos contiene el sql a exportar
+Informe contiene la memoria y guia de usuario
+PANEL La carpeta panel contiene todos los ficheros del proyecto.

@@ -1,0 +1,70 @@
+*{
+    margin:0;
+    padding:0;
+}
+
+html {
+    float: left;
+    width: 100%;
+    background: url(../img/bgimg.png) left top repeat;
+}
+
+/*body {
+    font:14px/1.3 Arial,sans-serif;
+    background-image: url(../img/bgimg.jpg);
+}*/
+
+.headerlogo {
+    text-align: center;
+}
+
+.headerimage {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    object-fit: contain;
+    width:auto;
+    max-width:100%;
+}
+
+h2 {
+    text-align: center;
+}
+
+form {
+    text-align: center;
+}
+
+.container {
+    height: 58px;
+    margin: 5px auto;
+    width: 957px;
+    text-align: center;
+    font-size: 100px;
+}
+
+.content {
+    margin: 5px auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    object-fit: contain;
+    width:auto;
+    max-width:957px;
+}
+
+.greeting {
+    color: #fff;
+    padding-top: 1.5%;
+    font-size: 25px;
+}
+
+.acceptlogo {
+    width: 20%;
+    height: 65%;
+}
+
+.acceptlogo:hover {
+    width: 25%;
+    height: 70%;
+}
