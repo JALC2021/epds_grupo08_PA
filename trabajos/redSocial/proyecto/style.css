@@ -1,0 +1,434 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 23-dic-2016, 12:40:01
+    Author     : juanantoniolopezcano
+*/
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Helvetica, Arial, sans-serif;
+    background: cornsilk;
+    font-size: 100%;
+}
+
+header {
+    background: dimgray; 
+    display: inline-block;
+    color: white;
+    width: 100%;  
+    height: 12%;
+    padding: 1em;
+    margin: 0;
+    position: fixed;
+    z-index: 100;
+}
+
+em {
+    color: red;
+}
+
+.logo {
+    float: left;
+    text-decoration: none;
+    font-size: 2.5em;
+    margin: 0;
+    font-weight: bold;
+}
+
+nav {
+    float: right;
+    margin: 0;
+    padding: 0 ;
+}
+nav ul {
+    list-style-type: none;
+    overflow: hidden;
+}
+
+nav li {
+    /*    float: right;*/
+    text-align: center;
+    padding: 0.5em;
+    font-weight: bold;
+    font-size: 1em;
+}
+nav ul li {
+    /*float: right;*/
+    display: inline-block;
+
+}
+
+nav li a{
+    display:  block;
+    text-decoration: none;
+    color: white;
+}
+
+nav a:hover:not(.active) {
+    color: red;
+}
+
+
+#section_paginaPrincipal {
+    float: left;
+    width: 75%;
+    margin-top: 6em;
+    margin-bottom: 1.5em;
+    margin-left: 1em;
+}
+
+article {
+    text-align: justify;
+}
+
+.imagenes {
+    margin: 1em;
+    width: 15%; 
+    height: 15%; 
+    float: left;
+}
+
+#aside_paginaPrincipal {
+    float: right;
+    margin-top: 7em;
+    margin-right: 1em; 
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+#formulario_login{
+    background: green;
+}
+
+input[type=text], select {
+    width: 100%;
+    padding: 0.5em 1em;
+    margin: 1em 0;
+    display: inline-block;
+    border: 0.1em solid dimgrey;
+    border-radius: 0.4em;
+    box-sizing: border-box;
+}
+input[type=password], select {
+    width: 100%;
+    padding: 0.5em 1em;
+    margin: 1em 0;
+    display: inline-block;
+    border: 0.1em solid dimgrey;
+    border-radius: 0.4em;
+    box-sizing: border-box;
+}
+
+button[type=submit]:hover {
+    background: red;
+}
+
+#pregunta_registrado{
+    color: blue;
+    font-size: 0.9em;
+    text-align: center;
+}
+
+.enlace_registro {
+    color:blue;
+    font-size: 1.2em;
+}
+
+.enlace_registro:hover {
+    text-decoration: none;
+    color: red;
+}
+
+footer {
+    width: 100%;
+    background: dimgray;
+    color: white;
+    text-align: center;
+    padding-bottom:  1em;
+    padding-top: 1em;
+    clear: both;
+}
+
+.enlace_personal {
+    color: white;
+    font-size: 1em;
+    text-align: center;
+    text-decoration: none;
+}
+
+.enlace_personal:hover {
+    text-decoration: none;
+    color: red;
+}
+/*
+#section_registrarse {
+    width: 80%;
+    margin-left:2em;
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+#section_grupos {
+    float: left;
+    width: 72%;
+    margin-top: 2em;
+    margin-left: 1.5em;
+}
+
+#section_perfilusuario {
+    float: left;
+    width: 40%;
+    margin-top: 2em;
+    margin-left: 1.5em;
+}
+#article_perfil_usuario {
+    text-align: justify;
+    background-color: rgb(215, 250, 205); 
+    width: 100%; 
+    margin-bottom:8em; 
+}
+
+#section_nuevaPublicacion {
+    float: left;
+    width: 72%;
+    margin-top: 2em;
+    margin-left: 1.5em;
+}
+
+#imagen_perfil {
+    width:5%;
+    height:5%;
+    margin: 1em;
+}
+
+table, table td, table tr {     la tabla tengo que terminarr el css
+    padding:0;
+    margin:0;
+    border-spacing: 0;
+}
+
+#aside_registrado {
+    float: right;
+    margin-top: 2em;
+    width: 20%;
+    background: dimgray;
+}
+
+.contenido_aside_registrado {
+    margin-top: 2em;
+    margin-right: 2em;
+    padding: 1.5em;
+    margin: 0;
+    text-align: center;
+    font-size: 1em;
+    list-style: none;
+    font-family: Helvetica, Arial, sans-serif;
+}
+.contenido_aside_registrado a {
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.contenido_aside_registrado a:hover {
+    text-decoration: none;
+    color: red;
+}
+
+#aside_nueva_publicacion {
+    float: right;
+    margin-top: 2em;
+    width: 20%;
+    background: dimgray;
+}
+
+.contenido_aside_nuevaPublicacion {
+    margin-top: 2em;
+    margin-right: 2em;
+    padding: 1.5em;
+    margin: 0;
+    text-align: center;
+    font-size: 1em;
+    list-style: none;
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+.contenido_aside_nuevaPublicacion a {
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.contenido_aside_nuevaPublicacion a:hover {
+    text-decoration: none;
+    color: red;
+}
+
+#aside_grupos {
+    float: right;
+    margin-top: 1em;
+    margin-right: 1em;
+    padding: 0.6em;
+    width: 20%;
+}
+
+b {
+    color: dimgray;
+    text-align: justify;
+}
+
+#selectorTipo {
+    width: 10%;
+    padding: 1em 1em;
+    margin: 0.5em 0.5em;
+    display: inline-block;
+    border: 0.100em solid #ccc;
+    border-radius: 0.400em;
+    box-sizing: border-box;
+}
+input[type=text], select {
+    width: 100%;
+    padding: 12px 20px;
+    padding: 0.5em;
+    margin: 0.500em 0;
+    display: inline-block;
+    border: 0.100em solid dimgray;
+    border-radius: 0.400em;
+    font-size: 0.9em;
+    box-sizing: border-box;
+}
+
+input[type=password], select {
+    width: 93%;
+    padding: 12px 20px;
+    padding: 0.5em;
+    margin: 0.500em 0;
+    display: inline-block;
+    border: 0.100em solid dimgray;
+    border-radius: 0.400em;
+    box-sizing: border-box;
+    font-size: 0.9em;
+
+}
+*/
+.boton_entrar_pagPrincipal {
+    width: 100%;
+    padding: 0.5em 1em;
+    margin: 1em 0;
+    display: inline-block;
+    border: 0.1em solid dimgrey;
+    border-radius: 0.4em;
+    box-sizing: border-box;
+    background-color: dimgray;
+    color: white;
+    font-size: 1em;
+}
+/*
+.boton_enviar_registro {
+    width: 60%;
+    background-color: dimgray;
+    color: white;
+    padding: 0.875em 1.250em;
+    padding: 0.8em 1em;
+    margin: 0.500em 0;
+    margin: 1em 6.0em;
+    border-radius: 0.400em;
+    cursor: pointer;
+    font-size: 1em;
+    border: none;
+    position: relative;
+}
+
+.formularios_etiquetas {
+    color: black;
+    font-size: 1em;
+    text-align: justify;
+}
+/*
+input[type=date], select {
+    width: 15%;
+    padding: 1em 1em;
+    margin: 0.5em 0.5em;
+    display: inline-block;
+    border: 0.100em solid #ccc;
+    border-radius: 0.400em;
+    box-sizing: border-box;
+}
+
+input[type=time], select {
+    width: 12%;
+    padding: 1em 1em;
+    margin: 0.5em 0.5em;
+    display: inline-block;
+    border: 0.100em solid #ccc;
+    border-radius: 0.400em;
+    box-sizing: border-box;
+}
+
+textarea {
+    width: 100%;
+    padding: 0.5em;
+    margin: 0.500em 0;
+    display: inline-block;
+    border: 0.100em solid dimgray;
+    border-radius: 0.400em;
+    font-size: 0.9em;
+}
+
+input[type=email], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 0.500em 0;
+    display: inline-block;
+    border: 0.100em solid #ccc;
+    border-radius: 0.400em;
+    box-sizing: border-box;
+    width: 93%;
+    padding: 12px 20px;
+    padding: 0.5em;
+    margin: 0.500em 0;
+    display: inline-block;
+    border: 0.100em solid dimgray;
+    border-radius: 0.400em;
+    box-sizing: border-box;
+    font-size: 0.9em;
+}
+
+input[type=tel], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 0.500em 0;
+    display: inline-block;
+    border: 0.100em solid #ccc;
+    border-radius: 0.400em;
+    box-sizing: border-box;
+    width: 93%;
+    padding: 12px 20px;
+    padding: 0.5em;
+    margin: 0.500em 0;
+    display: inline-block;
+    border: 0.100em solid dimgray;
+    border-radius: 0.400em;
+    box-sizing: border-box;
+    font-size: 0.9em;
+}
+
+button[type=submit] {
+    align-items: center;
+    width: 83%;
+    background-color: dimgray;
+    color: white;
+    padding: 0.875em 1.250em;
+    padding: 0.8em 1em;
+    margin: 0.500em 0;
+    margin: 1em 6.0em;
+    border-radius: 0.400em;
+    cursor: pointer;
+    font-size: 0.8em;
+    border: none;
+}*/
