@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>epd10_ej1</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="text/javascript" src="jquery-3.2.1.js"></script>
+        <script type="text/javascript" src="jquery-3.2.1.min.js"></script>
+        <script type="text/javascript" src="oridomi.js"></script>
+        <script type="text/javascript" src="oridomi.min.js"></script>
+        <script type="text/javascript" src="oridomi.jquery.json"></script>
+        <script type="text/javascript">
+            //funcion anónima, es buen uso por si se usa otra framework que siempre sepa que es jquery
+            (function ($) {
+                //defino la funcion jquery
+                $.fn.oridomi = function (vPanels, hPanels, speed, ripple, shadingIntesity, perspective, maxAngle, img) {
+                    //creo evento
+                    this.dblclick(function () {
+                        var foto = new OriDomi(this, {
+                            vPanels: vPanels,
+                            hPanels: hPanels,
+                            speed: speed,
+                            ripple: ripple,
+                            shadingIntesity: shadingIntesity,
+                            perspective: perspective,
+                            maxAngle: maxAngle,
+                            shading: 'soft'
+
+                        });
+
+                        if (img === 1) {
+
+                            foto.twist(-57);
+
+                        } else if (img === 2) {
+
+                            foto.fracture(-44);
+
+                        } else {
+
+                            foto.accordion(55);
+
+                        }
+
+                    });
+
+                };
+
+            }(jQuery));
+
+            $(document).ready(function () {
+                //podemos introducir cualquier numero de parametro y efectuara distintos efectos.
+                $('#foto1').oridomi(5, 3, 1200, 2, .5, 800, 60, 1);
+                $('#foto2').oridomi(15, 23, 1200, 5, .6, 1000, 40, 2);
+                $('#foto3').oridomi(10, 20, 1200, 1, .7, 900, 30, 3);
+            });
+
+        </script>
+
+    </head>
+    <body>
+
+        <section>
+            <h1>Plugin OriDomi</h1>
+
+            <article id="foto1">
+                <h3>Foto 1</h3>
+                <img src="https://d1fl2om3sc0eid.cloudfront.net/img/destination/poi/bahia-de-halong.png" alt="bahiaHalong"/>
+            </article>
+
+            <article id="foto2" >
+                <h3>Foto 2</h3>
+                <img src="https://es.parisinfo.com/var/otcp/sites/images/node_43/node_51/node_233/seine-nuit-%7C-740x380-%7C-%C2%A9-thinkstock/12354-3-fre-FR/Seine-nuit-%7C-740x380-%7C-%C2%A9-Thinkstock.jpg" alt="paris"/>
+            </article>
+
+            <article id="foto3" >
+                <h3>Foto 3</h3>
+                <img src="https://www.cursosenelextranjero.net/pages/uploaded_images/promo-01-boscolo-roma/!" alt="roma"/>
+            </article>
+        </section>
+
+        <footer><h5>Grupo 8 PA -> Gonzalo - Juan Antonio - Susana</h5></footer>
+
+    </body>
+</html>
