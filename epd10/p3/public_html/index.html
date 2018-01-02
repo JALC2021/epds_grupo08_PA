@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<head>
+    <style>
+        body{
+            border-radius: 5px;
+            background-image: url("http://www.revistamoi.com/wp-content/uploads/2015/12/crayones-dibujo-familia-feliz.jpg");
+            padding: 10px;
+
+        }
+
+        label.error{
+            display: block;
+            color: red;
+            padding: 0;
+        }
+
+        input[type=text],input[type=url],input[type=number],input[type=tel],input[type=date],select{
+            width: 80%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 1em;
+        }
+
+        input[type=radio] {
+            display: inline-blockblock;
+            padding-left: 35px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            font-size: 22px;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+        }
+
+        input[type=submit] {
+            width: 80%;
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+        input[type=submit]:hover {
+            background-color:red ;
+        }
+
+        section{
+            width: 40%;
+            margin: 0 auto;
+            background-image: url("http://www.publicdomainpictures.net/pictures/20000/velka/white-and-gray-background.jpg");
+            padding: 10px;
+            box-sizing: border-box;
+            border-radius: 8px;
+            text-align: center;
+            font-family: fantasy;
+        }
+
+        article{
+            border: crimson;
+            border: 2px solid red;
+            border-radius: 8px;
+            box-sizing: border-box;
+            padding: 5px;
+            margin: 5px;
+        }
+        footer{
+            width: 40%;
+            margin: 0 auto;
+            background-image: url("http://www.publicdomainpictures.net/pictures/20000/velka/white-and-gray-background.jpg");
+            padding: 20px;
+            box-sizing: border-box;
+            border-radius: 8px;
+            text-align: center;
+            font-family: fantasy;
+        }
+
+    </style>
+    <title>Epd10_p3</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="chosen.jquery.min.js"></script>
+    <script type="text/javascript" src="jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="jquery.validate.min.js"></script>
+    <link type="text/css" rel="stylesheet" href="chosen.min.css"/>
+    <script>
+
+        var numeroFamiliares;
+
+        function nFamiliares() {
+            $("#numeroFamiliares").on("keydown", function (evento) {
+                //esta función compruea que solo puedas introducir numeros
+                var tecla = (evento.with) ? evento.with : evento.keyCode;
+                if (tecla !== 46 && tecla > 31 && (tecla < 48 || tecla > 57)) {
+                    return false;
+                } else {
+                    return true;
+                }
+            });
+
+            $("#numeroFamiliares").on("change", function () {
+                numeroFamiliares = $(this).val();
+                imprimeFormulario(numeroFamiliares);
+            });
+        }
+
+        function imprimeFormulario(numeroFamiliares) {
+
+            var sectionFormulario = $("section")[0];
+            sectionFormulario.removeChild(sectionFormulario.childNodes[2]);
+
+            //creo el formulario
+            var formulario = document.createElement("form");
+            formulario.setAttribute("id", "formularioFamiliares");
+            formulario.setAttribute("method", "post");
+
+            for (var i = 0, familiarNumero = 1; i < numeroFamiliares; i++, familiarNumero++) {
+
+                crearForm(formulario, familiarNumero);
+            }
+
+            //creo boton enviar
+            var botonEnviar = document.createElement("input");
+            botonEnviar.setAttribute("type", "submit");
+            botonEnviar.setAttribute("name", "enviar");
+            botonEnviar.setAttribute("value", "Enviar");
+            formulario.appendChild(botonEnviar);
+
+            sectionFormulario.appendChild(formulario);
+
+            //empiezo a valiar esto es así siempre
+            $.validator.setDefaults({
+                submitHandaler: function () {
+                    alert("Pulsa Enviar");
+                }
+            });
+
+            $.validator.setDefaults({ignore: ":hidden:not(select)"});
+
+            $.validator.addMethod("valueNotEquals", function (value, element, arg) {
+                return arg !== value;
+            }, "Value must not eqyal arg.");
+
+            $("#formularioFamiliares").validate({});
+
+            $('.inputNombre').each(function () {
+                $(this).rules('add', {
+                    required: true,
+                    messages: {
+                        required: "Introduce tu nombre"
+                    }
+                });
+            });
+
+            $('.inputApellidos').each(function () {
+                $(this).rules('add', {
+                    required: true,
+                    messages: {
+                        required: "Introduzca sus apellidos"
+                    }
+                });
+            });
+
+            $('.inputTalla').each(function () {
+                $(this).rules('add', {
+                    required: true,
+                    range: [100, 199],
+                    number: true,
+                    messages: {
+                        required: "Introduzca la talla",
+                        number: "Debe ser un numero",
+                        range: "Debe ser un numero entre 100 y 199"
+                    }
+                });
+            });
+
+            $('.selectEstadoCivil').each(function () {
+                $(this).rules('add', {
+                    valueNotEquals: "--> debe seleccione uno <--",
+                    messages: {
+                        valueNotEquals: "Seleccione un Estado de la lista"
+                    }
+                });
+            });
+
+
+            $('.inputWeb').each(function () {
+                $(this).rules('add', {
+                    required: true,
+                    url: true,
+                    messages: {
+                        required: "Introduzca una direccion url",
+                        url: "Introduzca un formato valido --> por ejemplo: http://www.url.edu/es"
+                    }
+                });
+            });
+
+            $(".chosen-select").chosen();
+        }
+
+        function crearForm(formulario, familiarNumero) {
+            //creo el articulo
+            var articulo = document.createElement("article");
+            //creo el h2 con el texto
+            articulo.setAttribute("id", "familiar" + familiarNumero);
+            var h2 = document.createElement("h2");
+            var texto = document.createTextNode("Familiar " + familiarNumero);
+            h2.appendChild(texto);
+            articulo.appendChild(h2);
+            //creo los inputs
+            var inputNombre = document.createElement("input");
+            inputNombre.setAttribute("type", "text");
+            inputNombre.setAttribute("name", "nombre" + familiarNumero);
+            inputNombre.setAttribute("class", "inputNombre");
+            inputNombre.setAttribute("id", "nombre" + familiarNumero);
+            inputNombre.setAttribute("placeholder", "Nombre");
+
+            articulo.appendChild(inputNombre);
+
+            var inputApellidos = document.createElement("input");
+            inputApellidos.setAttribute("type", "text");
+            inputApellidos.setAttribute("name", "apellidos" + familiarNumero);
+            inputApellidos.setAttribute("class", "inputApellidos");
+            inputApellidos.setAttribute("id", "apellidos" + familiarNumero);
+            inputApellidos.setAttribute("placeholder", "Apellidos");
+            articulo.appendChild(inputApellidos);
+
+            var inputTalla = document.createElement("input");
+            inputTalla.setAttribute("type", "number");
+            inputTalla.setAttribute("name", "talla" + familiarNumero);
+            inputTalla.setAttribute("class", "inputTalla");
+            inputTalla.setAttribute("id", "talla" + familiarNumero);
+            inputTalla.setAttribute("min", "100");
+            inputTalla.setAttribute("max", "199");
+            inputTalla.setAttribute("placeholder", "Talla");
+            articulo.appendChild(inputTalla);
+
+            var vEstadoCivil = ["Soltero", "Casado", "Divorciado", "Viudo"];
+            var selectEstadoCivil = document.createElement("select");
+            selectEstadoCivil.setAttribute("name", "estado" + familiarNumero);
+            selectEstadoCivil.setAttribute("class", "selectEstadoCivil");
+            selectEstadoCivil.setAttribute("id", "estado" + familiarNumero);
+
+            var opcion = document.createElement("option");
+            texto = document.createTextNode("Estado civil --> seleccione uno <--");
+            opcion.appendChild(texto);
+            selectEstadoCivil.appendChild(opcion);
+
+            for (var i = 0; i < vEstadoCivil.length; i++) {
+                opcion = document.createElement("option");
+                texto = document.createTextNode(vEstadoCivil[i]);
+                opcion.setAttribute("value", vEstadoCivil[i]);
+                opcion.appendChild(texto);
+
+                selectEstadoCivil.appendChild(opcion);
+
+            }
+            articulo.appendChild(selectEstadoCivil);
+
+            var inputFechaNacimiento = document.createElement("input");
+            inputFechaNacimiento.setAttribute("type", "date");
+            inputFechaNacimiento.setAttribute("name", "inputFechaNacimiento" + familiarNumero);
+            inputFechaNacimiento.setAttribute("id", "inputFechaNacimiento" + familiarNumero);
+            inputFechaNacimiento.setAttribute("placeholder", "Fecha de nacimiento");
+            articulo.appendChild(inputFechaNacimiento);
+
+            var inputWeb = document.createElement("input");
+            inputWeb.setAttribute("type", "url");
+            inputWeb.setAttribute("name", "inputWeb" + familiarNumero);
+            inputWeb.setAttribute("class", "inputWeb");
+            inputWeb.setAttribute("id", "inputWeb" + familiarNumero);
+            inputWeb.setAttribute("placeholder", "Página Web");
+            articulo.appendChild(inputWeb);
+
+            var inputTelefono = document.createElement("input");
+            inputTelefono.setAttribute("type", "tel");
+            inputTelefono.setAttribute("name", "inputTelefono" + familiarNumero);
+            inputTelefono.setAttribute("id", "inputTelefono" + familiarNumero);
+            inputTelefono.setAttribute("placeholder", "Número de teléfono");
+            articulo.appendChild(inputTelefono);
+            var br = document.createElement("br");
+            articulo.appendChild(br);
+
+            var labelHombre = document.createElement("label");
+            texto = document.createTextNode("Hombre");
+            labelHombre.appendChild(texto);
+
+            articulo.appendChild(labelHombre);
+
+            var inputHombre = document.createElement("input");
+            inputHombre.checked = true;
+            inputHombre.setAttribute("type", "radio");
+            inputHombre.setAttribute("name", "sexo" + familiarNumero);
+            inputHombre.setAttribute("value", "hombre");
+
+            articulo.appendChild(inputHombre);
+
+            var labelMujer = document.createElement("label");
+            texto = document.createTextNode("Mujer");
+            labelMujer.appendChild(texto);
+
+            articulo.appendChild(labelMujer);
+
+            var inputMujer = document.createElement("input");
+            inputMujer.setAttribute("type", "radio");
+            inputMujer.setAttribute("name", "sexo" + familiarNumero);
+            inputMujer.setAttribute("value", "mujer");
+
+            articulo.appendChild(inputMujer);
+
+
+            formulario.appendChild(articulo);
+
+            return articulo.getAttribute("id");
+        }
+
+        function validarNonmbre(input) {
+            var expRegular = /^[a-zA-Z]*$/;
+
+            return expRegular.test(input.value) && input.value !== "";
+        }
+
+        function validarApellidos(input) {
+            var expRegular = /^[a-zA-Z]*$/;
+
+            return expRegular.test(input.value) && input.value !== "";
+        }
+
+        function validarTalla(input) {
+            var expRegular = /^[1-2][0-9][0-9]$/;
+            return expRegular.test(input.value) && input.value !== "";
+        }
+
+        function validarEstadoCivil(input) {
+            switch (input.value) {
+                case "Soltero":
+                    valid = true;
+                    break;
+                case "Casado":
+                    valid = true;
+                    break;
+                case "Divorciado":
+                    valid = true;
+                    break;
+                case "Viudo":
+                    valid = true;
+                    break;
+                default:
+                    valid = false;
+                    break;
+            }
+            return valid;
+        }
+
+        function validarWeb(input) {
+            var expRegular = /^([w][w][w][.][a-z 0-9]{3,30}[.][a-z]{2,7}[/][a-z 0-9]{3,30})$/;
+
+            return expRegular.test(input.value) && input.value !== "";
+        }
+
+        function validarTelefono(input) {
+            var expRegular = /^6[0-9]{8}$/;
+
+            return expRegular.test(input.value) && input.value !== "";
+        }
+
+        function runEffect(elemt, type) {
+            $("#" + elemt).show(type, 900);
+        }
+
+        function runEffectTag(elemt, type) {
+            $(elemt).show(type, 900);
+        }
+
+        function removeAllChilds(parent) {
+            while (parent.hasChildNodes()) {
+                parent.removeChild(parent.firstChild);
+            }
+        }
+
+    </script>
+
+<body onload="nFamiliares()">
+    <section>
+        <h1>Web de Recogida Datos de la Familia</h1>
+
+        <form>
+            <script>alert("Introduce el numero de familiares y haz click fuera del recuadro");</script>
+            <input type="text" value="" name="numeroFamiliares" id="numeroFamiliares" placeholder="Introduzca el número de familiares">
+        </form>
+    </section>
+    <footer><h4>Grupo 8 - Epd 10 -> Gonzalo - Juan Antonio - Susana</h4></footer>
+</body>
+
+</html>
+
