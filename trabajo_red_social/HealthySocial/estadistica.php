@@ -85,6 +85,8 @@
 
         $suplemento = $row['suplemento'];
         $publicaciones = $dietas + $cientifico + $deportes + $suplemento;
+        
+        disconnectDB($con);
         ?>
 
     <html xmlns="http://www.w3.org/1999/xhtml" >

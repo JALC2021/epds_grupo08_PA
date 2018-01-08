@@ -31,7 +31,7 @@
         if (mysqli_num_rows($result) < 1) {
             ?>
         <script type="text/javascript">
-            alert("El usuario <?PHP echo $name ?> no existe. Puede registrarse si lo desea");
+            alert("Usuario y/o contraseña no válido.Vuelva a probar nuevamente");
         </script>
         <?PHP
     } else {
@@ -61,7 +61,7 @@
         } else {
             ?>
             <script type="text/javascript">
-                alert("Contraseña no válida. Vuelva a introducirla nuevamente");
+                alert("Usuario y/o contraseña no válido.Vuelva a probar nuevamente");
             </script>
             <?PHP
         }
@@ -69,7 +69,8 @@
 } else if (isset($_POST['registro'])) {
 
     if (preg_match("/^[[:upper:]][[:lower:]]{3,15}$/", $_POST['nombre']) && preg_match("/^[[:alnum:]]{6,15}$/", $_POST['password']) &&
-            preg_match("/^[[:alnum:]]{3,15}$/", $_POST['usuario']) && preg_match("/^[[:alnum:]]+@[[:lower:]]+\.[[:lower:]]+/", $_POST['email'])) {
+            preg_match("/^[[:alnum:]]{3,15}$/", $_POST['usuario']) && preg_match("/^[[:alnum:]]+@[[:lower:]]+\.[[:lower:]]+/", $_POST['email'])
+            && preg_match("/^[[:alpha:]]{3,15}$/", $_POST['apellidos']) && preg_match("/^[[:alpha:]]{3,15}$/", $_POST['localidad'])) {
         $con = connectDB();
 
         if (!$con) {
@@ -84,14 +85,17 @@
 
         //saneamos la entrada a la bbdd
         $name = mysqli_real_escape_string($con, $_POST['nombre']);
+        $apellidos = mysqli_real_escape_string($con, $_POST['apellidos']);
+        $localidad = mysqli_real_escape_string($con, $_POST['localidad']);
         $user = mysqli_real_escape_string($con, $_POST['usuario']);
+        
         $email = mysqli_real_escape_string($con, $_POST['email']);
         $sexo = mysqli_real_escape_string($con, $_POST['sexo']);
         //usamos el hash para insertarlo en la bbdd
         $pass = password_hash(mysqli_real_escape_string($con, $_POST['password']), PASSWORD_DEFAULT);
 
-        $result = mysqli_query($con, "INSERT INTO `usuario` (`id_usuario`, `usuario`, `password`, `tipo`, `nombre`, `email`, `sexo`)
-            VALUES (NULL, '" . $user . "', '" . $pass . "', 'cliente', '" . $name . "', '" . $email . "', '" . $sexo . "');");
+        $result = mysqli_query($con, "INSERT INTO `usuario` (`id_usuario`, `usuario`, `password`, `tipo`, `nombre`, `email`, `sexo`,`apellidos`, `localidad`)
+            VALUES (NULL, '" . $user . "', '" . $pass . "', 'cliente', '" . $name . "', '" . $email . "', '" . $sexo . "', '" . $apellidos . "', '" . $localidad . "');");
         if (!$result) {
             die("Error al ejecutar la consulta: " . mysqli_error($con));
         }
@@ -133,6 +137,22 @@
 
             <script type="text/javascript">
                 alert("No se ha introducido el email correctamente");
+            </script>
+            <?PHP
+        }
+        if (!preg_match("/^[[:alpha:]]{3,15}$/", $_POST['apellidos'])) {
+            ?>
+
+            <script type="text/javascript">
+                alert("No se ha introducido el apellido correctamente");
+            </script>
+            <?PHP
+        }
+        if (!preg_match("/^[[:alpha:]]{3,15}$/", $_POST['localidad'])) {
+            ?>
+
+            <script type="text/javascript">
+                alert("No se ha introducido la localizacion correctamente");
             </script>
             <?PHP
         }
@@ -221,6 +241,14 @@
                                 <div class="input-group">
                                     <label >Nombre:</label>
                                     <input type="text" name="nombre" class="form-control" aria-describedby="basic-addon1" required />
+                                </div>
+                                <div class="input-group">
+                                    <label >Apellidos:</label>
+                                    <input type="text" name="apellidos" class="form-control" aria-describedby="basic-addon1" required />
+                                </div>
+                                <div class="input-group">
+                                    <label >Localidad:</label>
+                                    <input type="text" name="localidad" class="form-control" aria-describedby="basic-addon1" required />
                                 </div>
                                 <div class="input-group">
                                     <label >E-mail:</label>
