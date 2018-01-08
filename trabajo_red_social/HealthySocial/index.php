@@ -1,4 +1,7 @@
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0
+    Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-
+    strict.dtd">
 <?PHP
 session_start();
 
@@ -9,9 +12,14 @@ if (isset($_SESSION['estado'])) {
     To change this template file, choose Tools | Templates
     and open the template in the editor.
     -->
-    <html>
+    <html xmlns="http://www.w3.org/1999/xhtml">
         <head>
-            <?PHP require_once './head.html'; ?>
+            <meta charset="UTF-8">
+            <title>SocialHealthy</title>
+            <meta name="viewport" content="width=device-width, user-scalabe=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+            <link rel="stylesheet" type="text/css" href="css/style_index.css">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+            <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         </head>
         <body>
 

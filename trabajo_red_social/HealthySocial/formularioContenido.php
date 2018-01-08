@@ -1,16 +1,19 @@
-<!DOCTYPE html>
-<?PHP
-session_start();
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0
+    Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-
+    strict.dtd">
+    <?PHP
+    session_start();
 
-require_once './functions.php';
+    require_once './functions.php';
 
 
-if (isset($_SESSION['estado'])) {
-    if (isset($_POST['alimentacion']) || isset($_POST['deportes']) || isset($_POST['suplemento'])) {
-        $insertar = true;
-        if (isset($_POST['alimentacion'])) {
-            if (!isset($_POST['dietaEstudio'])) {
-                ?>
+    if (isset($_SESSION['estado'])) {
+        if (isset($_POST['alimentacion']) || isset($_POST['deportes']) || isset($_POST['suplemento'])) {
+            $insertar = true;
+            if (isset($_POST['alimentacion'])) {
+                if (!isset($_POST['dietaEstudio'])) {
+                    ?>
                 <script type="text/javascript">
                     alert("Debe seleccionar si la dieta es un estudio Científico o una dieta");
                 </script>
@@ -88,9 +91,9 @@ if (isset($_SESSION['estado'])) {
                     die("Error al ejecutar la consulta: " . mysqli_error($con));
                 }
                 $row2 = (mysqli_fetch_array($result3));
-                
-                if($_POST['foto']!= ""){
-                    $result = mysqli_query($con, "INSERT INTO `foto` (`id_foto`, `id_usuario`, `id_contenido`, `url`) VALUES (NULL, '".$row['id_usuario']."', '" . $row2['id_contenido'] . "', '".$foto."');");
+
+                if ($_POST['foto'] != "") {
+                    $result = mysqli_query($con, "INSERT INTO `foto` (`id_foto`, `id_usuario`, `id_contenido`, `url`) VALUES (NULL, '" . $row['id_usuario'] . "', '" . $row2['id_contenido'] . "', '" . $foto . "');");
                     if (!$result) {
                         die("Error al ejecutar la consulta: " . mysqli_error($con));
                     }
@@ -157,9 +160,14 @@ if (isset($_SESSION['estado'])) {
     To change this template file, choose Tools | Templates
     and open the template in the editor.
     -->
-    <html>
+    <html xmlns="http://www.w3.org/1999/xhtml">
         <head>
-            <?PHP require_once './head.html'; ?>
+            <meta charset="UTF-8">
+            <title>SocialHealthy</title>
+            <meta name="viewport" content="width=device-width, user-scalabe=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+            <link rel="stylesheet" type="text/css" href="css/style_index.css">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+            <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
             <script type="text/javascript">
 
                 function mostrar(num) {
