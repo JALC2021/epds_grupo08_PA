@@ -73,7 +73,7 @@ button{
     margin-right: 50px;
     border-radius: 40%; 
     border:hidden 1px #000000;
-    
+
 }
 
 button:hover {
@@ -103,7 +103,7 @@ button.active {
 }
 
 .menu a {
-   background-color: #eee; 
+    background-color: #eee; 
     color: black; 
     display: block; 
     padding: 12px;
@@ -124,8 +124,8 @@ button.active {
     border-top-right-radius:9px;
     border-bottom-left-radius:9px;
     border-bottom-right-radius:9px;
-    
-    
+
+
 }
 
 .menu a:hover {
@@ -202,10 +202,10 @@ article{
     border-top-right-radius:30%;
     border-bottom-left-radius:30%;
     border-bottom-right-radius:30%;
-    
+
 }
 .imagenesArticulos{
-    
+
     display: block;
     margin: auto;
     width: 650px;
@@ -275,6 +275,39 @@ footer {
     border-bottom-right-radius:9px;
 }
 
+.tabla{
+    background: #a2dece;
+    border: 1px solid #36752D;
+    margin-left: 1%;
+    margin-top: 1%;
+
+}
+table{
+    padding-left: 5%;
+    text-align: left;
+
+    font: normal 15px/150% Arial, Helvetica, sans-serif; 
+    overflow: hidden; 
+
+    -webkit-border-radius: 3px; 
+    -moz-border-radius: 3px; 
+    border-radius: 3px;
+}
+table td{
+    width: 300px;
+    height: 50px;
+    color: #242424;
+}
+
+.estadistica{
+    text-align: center;
+}
+
+
+.estadistica{
+    padding-left: 15%;
+    padding-right: 15%;
+}
 
 
 /* Eso es para que la página sea responsive*/

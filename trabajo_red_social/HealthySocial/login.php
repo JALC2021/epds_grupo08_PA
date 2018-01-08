@@ -2,34 +2,34 @@
     Strict//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-
     strict.dtd">
-<?php
-session_start();
+    <?php
+    session_start();
 
-require_once './functions.php';
+    require_once './functions.php';
 
-if (isset($_POST['login'])) {
+    if (isset($_POST['login'])) {
 
-    $con = connectDB();
+        $con = connectDB();
 
-    $db_selected = mysqli_select_db($con, "healthysocial");
+        $db_selected = mysqli_select_db($con, "healthysocial");
 
-    if (!$db_selected) {
-        die("Conexión a basde de datos fallida");
-    }
+        if (!$db_selected) {
+            die("Conexión a basde de datos fallida");
+        }
 
-    //sanear la entrada
-    $name = mysqli_real_escape_string($con, $_POST['usuario']);
-    $pass = mysqli_real_escape_string($con, $_POST['password']);
+        //sanear la entrada
+        $name = mysqli_real_escape_string($con, $_POST['usuario']);
+        $pass = mysqli_real_escape_string($con, $_POST['password']);
 
 
-    $result = mysqli_query($con, "SELECT * FROM usuario WHERE usuario like '" . $name . "';");
+        $result = mysqli_query($con, "SELECT * FROM usuario WHERE usuario like '" . $name . "';");
 
-    if (!$result) {
-        die("Error al ejecutar la consulta: " . mysqli_error($con));
-    }
+        if (!$result) {
+            die("Error al ejecutar la consulta: " . mysqli_error($con));
+        }
 
-    if (mysqli_num_rows($result) < 1) {
-        ?>
+        if (mysqli_num_rows($result) < 1) {
+            ?>
         <script type="text/javascript">
             alert("El usuario <?PHP echo $name ?> no existe. Puede registrarse si lo desea");
         </script>
@@ -184,69 +184,69 @@ if (isset($_POST['login'])) {
                                 <div class="input-group">
                                     <span class="input-group-addon" aria-hidden="true" id="user"><i class="fa fa-user-circle" aria-hidden="true"></i></span>
                                     <?PHP if (isset($_COOKIE['user'])) { ?>
-                                        <input type="text" name="usuario" value="<?PHP echo $_COOKIE['user']; ?>" class="form-control" aria-describedby="basic-addon1" autofocus required>
-                                        <?PHP } else {
-                                            ?>
-                                            <input type="text" name="usuario" class="form-control" aria-describedby="basic-addon1" autofocus="autofocus" required>
-                                            <?PHP }
-                                            ?>
-                                            </div>
-                                            <div class="input-group">
-                                                <span class="input-group-addon" aria-hidden="true" id="pass"><i class="fa fa-unlock" aria-hidden="true"></i></span>
-                                                <input type="password" name="password" class="form-control" aria-describedby="basic-addon1" required>
-                                            </div>
-                                            <div id="buttonsContainer">
-                                                <input type="submit" name="login" value="Login" class="button" id="btn-register-now" />
-                                                <div class="button" id="btn-register">Registro</div>
-                                            </div>
-                                            </form>
-                                            </div>
-                                            </div>
+                                        <input type="text" name="usuario" value="<?PHP echo $_COOKIE['user']; ?>" class="form-control" aria-describedby="basic-addon1" autofocus required />
+                                    <?PHP } else {
+                                        ?>
+                                        <input type="text" name="usuario" class="form-control" aria-describedby="basic-addon1" autofocus="autofocus" required />
+                                    <?PHP }
+                                    ?>
+                                </div>
+                                <div class="input-group">
+                                    <span class="input-group-addon" aria-hidden="true" id="pass"><i class="fa fa-unlock" aria-hidden="true"></i></span>
+                                    <input type="password" name="password" class="form-control" aria-describedby="basic-addon1" required />
+                                </div>
+                                <div id="buttonsContainer">
+                                    <input type="submit" name="login" value="Login" class="button" id="btn-register-now" />
+                                    <div class="button" id="btn-register">Registro</div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
 
-                                            <div id="register">
-                                                <div id="registerHead" class="form-head">
-                                                    <h1>Registro</h1>
-                                                </div>
-                                                <div id="registerForm" class="form">
-                                                    <!--<h2>Are you new?</h2>-->
-                                                    <form action="#" method="POST">
-                                                        <div class="input-group">
-                                                            <label >Usuario:</label>
-                                                            <input type="text" name="usuario" class="form-control" aria-describedby="basic-addon1" required>
-                                                        </div>
-                                                        <div class="input-group">
-                                                            <label >Password:</label>
-                                                            <input type="password" name="password" class="form-control" aria-describedby="basic-addon1" required>
-                                                        </div>
-                                                        <div class="input-group">
-                                                            <label >Nombre:</label>
-                                                            <input type="text" name="nombre" class="form-control" aria-describedby="basic-addon1" required>
-                                                        </div>
-                                                        <div class="input-group">
-                                                            <label >E-mail:</label>
-                                                            <input type="text" name="email" class="form-control" aria-describedby="basic-addon1" required>
-                                                        </div>
-                                                        <div class="input-group">
-                                                            <label >Sexo:</label>
+                    <div id="register">
+                        <div id="registerHead" class="form-head">
+                            <h1>Registro</h1>
+                        </div>
+                        <div id="registerForm" class="form">
+                            <!--<h2>Are you new?</h2>-->
+                            <form action="#" method="POST">
+                                <div class="input-group">
+                                    <label >Usuario:</label>
+                                    <input type="text" name="usuario" class="form-control" aria-describedby="basic-addon1" required />
+                                </div>
+                                <div class="input-group">
+                                    <label >Password:</label>
+                                    <input type="password" name="password" class="form-control" aria-describedby="basic-addon1" required />
+                                </div>
+                                <div class="input-group">
+                                    <label >Nombre:</label>
+                                    <input type="text" name="nombre" class="form-control" aria-describedby="basic-addon1" required />
+                                </div>
+                                <div class="input-group">
+                                    <label >E-mail:</label>
+                                    <input type="text" name="email" class="form-control" aria-describedby="basic-addon1" required />
+                                </div>
+                                <div class="input-group">
+                                    <label >Sexo:</label>
 
-                                                            <label >Hombre:</label><input type="radio" name="sexo" value="hombre" required/>
+                                    <label >Hombre:</label><input type="radio" name="sexo" value="hombre" required/>
 
-                                                            <label >Mujer:</label><input type="radio" name="sexo" value="mujer"  required/>
-                                                        </div>
+                                    <label >Mujer:</label><input type="radio" name="sexo" value="mujer"  required/>
+                                </div>
 
-                                                        <div id="buttonsContainer">
-                                                            <div class="button" id="btn-back">< Login</div>
+                                <div id="buttonsContainer">
+                                    <div class="button" id="btn-back">< Login</div>
 
-                                                            <input type="submit" name="registro" value="Enviar" class="button" id="btn-register-now" />
+                                    <input type="submit" name="registro" value="Enviar" class="button" id="btn-register-now" />
 
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
 
-                                            </div>
-                                            <div class="col-xl-4 col-md-4 col-sm-2 col-xs-1"></div>
-                                            </div>
-                                            </div>
-                                            </body>
-                                            </html>
+                </div>
+                <div class="col-xl-4 col-md-4 col-sm-2 col-xs-1"></div>
+            </div>
+        </div>
+    </body>
+</html>

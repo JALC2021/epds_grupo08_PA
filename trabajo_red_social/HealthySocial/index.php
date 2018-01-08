@@ -2,11 +2,11 @@
     Strict//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-
     strict.dtd">
-<?PHP
-session_start();
+    <?PHP
+    session_start();
 
-if (isset($_SESSION['estado'])) {
-    ?>
+    if (isset($_SESSION['estado'])) {
+        ?>
     <!--
     To change this license header, choose License Headers in Project Properties.
     To change this template file, choose Tools | Templates
@@ -14,12 +14,12 @@ if (isset($_SESSION['estado'])) {
     -->
     <html xmlns="http://www.w3.org/1999/xhtml">
         <head>
-            <meta charset="UTF-8">
+            <meta charset="UTF-8" />
             <title>SocialHealthy</title>
-            <meta name="viewport" content="width=device-width, user-scalabe=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-            <link rel="stylesheet" type="text/css" href="css/style_index.css">
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-            <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+            <meta name="viewport" content="width=device-width, user-scalabe=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+            <link rel="stylesheet" type="text/css" href="css/style_index.css" />
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+            <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
         </head>
         <body>
 
@@ -27,32 +27,32 @@ if (isset($_SESSION['estado'])) {
 
             <div class="contendioPrincipal">
 
-              <?PHP include_once './menuPrincipal.php'; ?>
+                <?PHP include_once './menuPrincipal.php'; ?>
 
                 <section class="section">
 
                     <article>
                         <img class="imagenesArticulos" src="https://guiafitness.com/wp-content/uploads/tipos-deportes-invierno.jpg" alt="deporte">
-                        <button style="font-size:24px"><i class="fa fa-thumbs-o-up"></i></button>
-                        <button style="font-size:24px">Total <i class="fa fa-heart"></i></button>
-                        <button style="font-size:24px"><i class="fa fa-thumbs-o-down"></i></button>
-                        <button style="font-size:24px"><i class="fa fa-align-justify"></i></button>
+                            <button style="font-size:24px"><i class="fa fa-thumbs-o-up"></i></button>
+                            <button style="font-size:24px">Total <i class="fa fa-heart"></i></button>
+                            <button style="font-size:24px"><i class="fa fa-thumbs-o-down"></i></button>
+                            <button style="font-size:24px"><i class="fa fa-align-justify"></i></button>
                     </article>
 
                     <article>
                         <img class="imagenesArticulos"src="http://ideasdeeventos.com/wp-content/uploads/2014/10/vida-sana-recetas-vegetarianas1.jpg" alt="comidaSana">
-                        <button style="font-size:24px"><i class="fa fa-thumbs-o-up"></i></button>
-                        <button style="font-size:24px">Total <i class="fa fa-heart"></i></button>
-                        <button style="font-size:24px"><i class="fa fa-thumbs-o-down"></i></button>
-                        <button style="font-size:24px"><i class="fa fa-align-justify"></i></button>
+                            <button style="font-size:24px"><i class="fa fa-thumbs-o-up"></i></button>
+                            <button style="font-size:24px">Total <i class="fa fa-heart"></i></button>
+                            <button style="font-size:24px"><i class="fa fa-thumbs-o-down"></i></button>
+                            <button style="font-size:24px"><i class="fa fa-align-justify"></i></button>
                     </article>
 
                     <article>
                         <img class="imagenesArticulos" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRuWgUVl2yOjS85pcgImwvW2VIBMf8O29aF2mPX7JxAt5S5M3abqA" alt="vidaSana">
-                        <button style="font-size:24px"><i class="fa fa-thumbs-o-up"></i></button>
-                        <button style="font-size:24px">Total <i class="fa fa-heart"></i></button>
-                        <button style="font-size:24px"><i class="fa fa-thumbs-o-down"></i></button>
-                        <button style="font-size:24px"><i class="fa fa-align-justify"></i></button>
+                            <button style="font-size:24px"><i class="fa fa-thumbs-o-up"></i></button>
+                            <button style="font-size:24px">Total <i class="fa fa-heart"></i></button>
+                            <button style="font-size:24px"><i class="fa fa-thumbs-o-down"></i></button>
+                            <button style="font-size:24px"><i class="fa fa-align-justify"></i></button>
                     </article>
 
                 </section>

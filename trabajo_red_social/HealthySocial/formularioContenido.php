@@ -108,6 +108,7 @@
                         alert("El contenido de alimentación se ha publicado correctamente");
                     </script>
                     <?PHP
+                    disconnectDB($con);
                 } else if (isset($_POST['deportes'])) {
                     $nivel = mysqli_real_escape_string($con, $_POST['nivel']);
                     $localidad = mysqli_real_escape_string($con, $_POST['localidad']);
@@ -121,6 +122,7 @@
                         alert("El contenido de deportes se ha publicado correctamente");
                     </script>
                     <?PHP
+                    disconnectDB($con);
                 } else if (isset($_POST['suplemento'])) {
                     if ($_POST['dosis'] > 0) {
                         $dosis = mysqli_real_escape_string($con, $_POST['dosis']);
@@ -133,12 +135,14 @@
                             alert("El contenido de suplemento se ha publicado correctamente");
                         </script>
                         <?PHP
+                        disconnectDB($con);
                     } else {
                         ?>
                         <script type="text/javascript">
                             alert("La dosis debe ser mayor a 0");
                         </script>
                         <?PHP
+                        disconnectDB($con);
                     }
                 }
             }
@@ -163,57 +167,57 @@
     <html xmlns="http://www.w3.org/1999/xhtml">
         <head>
             <meta charset="UTF-8">
-            <title>SocialHealthy</title>
-            <meta name="viewport" content="width=device-width, user-scalabe=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-            <link rel="stylesheet" type="text/css" href="css/style_index.css">
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-            <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-            <script type="text/javascript">
+                <title>SocialHealthy</title>
+                <meta name="viewport" content="width=device-width, user-scalabe=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+                <link rel="stylesheet" type="text/css" href="css/style_index.css" />
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+                <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+                <script type="text/javascript">
 
-                function mostrar(num) {
-                    if (num == 0) {
-                        document.getElementById('c' + (num + 2)).setAttribute("style", "display: none");
-                        document.getElementById('c' + (num + 1)).setAttribute("style", "display: none");
-                        document.getElementById('c' + (num)).removeAttribute("style");
-                    } else if (num == 1) {
-                        document.getElementById('c' + (num - 1)).setAttribute("style", "display: none");
-                        document.getElementById('c' + (num)).removeAttribute("style");
-                        document.getElementById('c' + (num + 1)).setAttribute("style", "display: none");
-                    } else if (num == 2) {
-                        document.getElementById('c' + (num - 2)).setAttribute("style", "display: none");
-                        document.getElementById('c' + (num - 1)).setAttribute("style", "display: none");
-                        document.getElementById('c' + (num)).removeAttribute("style");
+                    function mostrar(num) {
+                        if (num == 0) {
+                            document.getElementById('c' + (num + 2)).setAttribute("style", "display: none");
+                            document.getElementById('c' + (num + 1)).setAttribute("style", "display: none");
+                            document.getElementById('c' + (num)).removeAttribute("style");
+                        } else if (num == 1) {
+                            document.getElementById('c' + (num - 1)).setAttribute("style", "display: none");
+                            document.getElementById('c' + (num)).removeAttribute("style");
+                            document.getElementById('c' + (num + 1)).setAttribute("style", "display: none");
+                        } else if (num == 2) {
+                            document.getElementById('c' + (num - 2)).setAttribute("style", "display: none");
+                            document.getElementById('c' + (num - 1)).setAttribute("style", "display: none");
+                            document.getElementById('c' + (num)).removeAttribute("style");
+                        }
+
+                    }
+                </script>
+                <style>
+
+                    section{
+                        background: #a2dece;
+                        border: 1px solid #36752D;
+                        margin-left: 1%;
+                        margin-top: 1%;
+
+                    }
+                    table{
+                        padding-left: 5%;
+                        text-align: left;
+
+                        font: normal 15px/150% Arial, Helvetica, sans-serif; 
+                        overflow: hidden; 
+
+                        -webkit-border-radius: 3px; 
+                        -moz-border-radius: 3px; 
+                        border-radius: 3px;
+                    }
+                    table td{
+                        width: 200px;
+                        height: 50px;
+                        color: #242424;
                     }
 
-                }
-            </script>
-            <style>
-
-                section{
-                    background: #a2dece;
-                    border: 1px solid #36752D;
-                    margin-left: 1%;
-                    margin-top: 1%;
-
-                }
-                table{
-                    padding-left: 5%;
-                    text-align: left;
-
-                    font: normal 15px/150% Arial, Helvetica, sans-serif; 
-                    overflow: hidden; 
-
-                    -webkit-border-radius: 3px; 
-                    -moz-border-radius: 3px; 
-                    border-radius: 3px;
-                }
-                table td{
-                    width: 200px;
-                    height: 50px;
-                    color: #242424;
-                }
-
-            </style>
+                </style>
         </head>
         <body>
 
@@ -223,7 +227,7 @@
 
                 <?PHP include_once './menuPrincipal.php'; ?>
 
-                <section class="section">
+                <section class="tabla">
                     <h2>Publicaciones</h2>
                     <form method="POST" action="#">
                         <table>
@@ -283,7 +287,7 @@
             <?php
             include_once './footer.php';
         } else {
-            $_SESSION['url'] = "index.php";
+            $_SESSION['url'] = "formularioContenido.php";
             header("location:login.php");
         }
         ?>
