@@ -182,7 +182,6 @@
                 background-repeat: not-repeat;
                 background-attachment: fixed;
                 background-size: cover;
-
             }
         </style>
 

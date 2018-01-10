@@ -175,15 +175,15 @@
                 <script type="text/javascript">
 
                     function mostrar(num) {
-                        if (num == 0) {
+                        if (num === 0) {
                             document.getElementById('c' + (num + 2)).setAttribute("style", "display: none");
                             document.getElementById('c' + (num + 1)).setAttribute("style", "display: none");
                             document.getElementById('c' + (num)).removeAttribute("style");
-                        } else if (num == 1) {
+                        } else if (num === 1) {
                             document.getElementById('c' + (num - 1)).setAttribute("style", "display: none");
                             document.getElementById('c' + (num)).removeAttribute("style");
                             document.getElementById('c' + (num + 1)).setAttribute("style", "display: none");
-                        } else if (num == 2) {
+                        } else if (num === 2) {
                             document.getElementById('c' + (num - 2)).setAttribute("style", "display: none");
                             document.getElementById('c' + (num - 1)).setAttribute("style", "display: none");
                             document.getElementById('c' + (num)).removeAttribute("style");
@@ -191,33 +191,7 @@
 
                     }
                 </script>
-                <style>
 
-                    section{
-                        background: #a2dece;
-                        border: 1px solid #36752D;
-                        margin-left: 1%;
-                        margin-top: 1%;
-
-                    }
-                    table{
-                        padding-left: 5%;
-                        text-align: left;
-
-                        font: normal 15px/150% Arial, Helvetica, sans-serif; 
-                        overflow: hidden; 
-
-                        -webkit-border-radius: 3px; 
-                        -moz-border-radius: 3px; 
-                        border-radius: 3px;
-                    }
-                    table td{
-                        width: 200px;
-                        height: 50px;
-                        color: #242424;
-                    }
-
-                </style>
         </head>
         <body>
 
@@ -227,58 +201,135 @@
 
                 <?PHP include_once './menuPrincipal.php'; ?>
 
-                <section class="tabla">
-                    <h2>Publicaciones</h2>
-                    <form method="POST" action="#">
-                        <table>
+                <section class="sectionPublicaciones">
 
-                            <tr><td>Categor&iacute;a</td><td><select name="contenido" id="select" onchange="mostrar(this.selectedIndex)" required>
-                                        <option value="alimentacion" selected>Alimentaci&oacute;n</option>
+                    <div class="container">
+                        <h2>Publicaciones</h2>
+                        <form method="POST" action="#">
+
+                            <div class="row">
+                                <div class="col-25">
+                                    <label for="categoria">Categoria</label>
+                                </div>
+                                <div class="col-75">
+                                    <select id="categoria" name="categoria" onchange="mostrar(this.selectedIndex)" required>
+                                        <option value="alimentacion">Alimentaci&oacute;n</option>
                                         <option value="deportes">Deportes</option>
                                         <option value="suplemento">Suplemento</option>
                                     </select>
-                                </td>
-                            </tr>
+                                </div>
+                            </div>
+                   
+                            <div class="row">
+                                <div class="col-25">
+                                    <label for="tipo">Tipo</label>
+                                </div>
+                                <div class="col-75">
+                                    <input type="text" id="tipo" name="tipo" required autofocus placeholder="Introduzca tipo..." />
+                                </div>
+                            </div>
 
-                            <tr><td>Tipo</td><td><input type="text" name="tipo" required autofocus/></td></tr>
+                            <div class="row">
+                                <div class="col-25">
+                                    <label for="duracion">Duraci&oacute;n</label>
+                                </div>
+                                <div class="col-75">
+                                    <input type="time" id="duracion" name="duracion" required placeholder="Introduzca duración..." />
+                                </div>
+                            </div>
 
-                            <tr><td>Duraci&oacute;n</td><td><input type="time" name="duracion" required /></td></tr>
+                            <div class="row">
+                                <div class="col-25">
+                                    <label for="descripcion">Descripci&oacute;n</label>
+                                </div>
+                                <div class="col-75">
+                                    <textarea id="descripcion" name="descripcion" placeholder="Introduce descripción..." style="height:100px"></textarea>
+                                </div>
+                            </div>
 
-                            <tr><td>Descripci&oacute;n</td><td><textarea name="descripcion" rows="4" cols="50" required>Introduce texto aqui...</textarea></td></tr>
+                            <div class="row">
+                                <div class="col-25">
+                                    <label for="foto">Foto</label>
+                                </div>
+                                <div class="col-75">
+                                    <input type="url" id="foto" name="foto" placeholder="Introduzca url..." />
+                                </div>
+                            </div>
 
-                            <tr><td>Foto (url)</td><td><input type="text" name="foto" /></td></tr> 
-                        </table>
-                        <div id="c0">
-                            <table>
-                                <tr><td>Dieta</td><td><input type="radio" name="dietaEstudio" value="dieta" /></td></tr>
-                                <tr><td>Estudio Cient&iacute;fico</td><td><input type="radio" name="dietaEstudio" value="cientifico" /></td></tr>
 
-                                <tr><td><input type="submit" name="alimentacion" value="Publicar"/></td></tr>
+                            <div id="c0">
+                                <div class="row">
+                                    <div class="col-25">
+                                        <label for="dieta">Dieta</label>
+                                    </div>
+                                    <div class="col-75">
+                                        <input type="radio" id="dieta" name="dietaEstudio" value="dieta" />
+                                    </div>
+                                </div>
 
-                            </table>
-                        </div>
+                                <div class="row">
+                                    <div class="col-25">
+                                        <label for="dieta">Estudio Cient&iacute;fico</label>
+                                    </div>
+                                    <div class="col-75">
+                                        <input type="radio" id="estudiocientifico" name="dietaEstudio" value="cientifico" />
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <input type="submit" name="publicar" value="Publicar"/>
+                                </div>
+                            </div>
+                    
+                   
                         <div id="c1" style="display:none">
-                            <table>
-                                <tr><td>Nivel</td><td><select name="nivel" >
-                                            <option value="bajo" selected>Nivel bajo</option>
-                                            <option value="medio">Nivel medio</option>
-                                            <option value="alto">Nivel Alto</option>
-                                        </select>
-                                    </td></tr>
-                                <tr><td>Localidad</td><td><input type="text" name="localidad"  /></td></tr>
-                                <tr><td><input type="submit" name="deportes" value="Publicar"/></td></tr>
-                            </table>
+                            <div class="row">
+                                <div class="col-25">
+                                    <label for="nivel">Nivel</label>
+                                </div>
+                                <div class="col-75">
+                                    <select id="categoria" name="nivel" required>
+                                        <option value="bajo" selected>Nivel bajo</option>
+                                        <option value="medio">Nivel medio</option>
+                                        <option value="alto">Nivel Alto</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-25">
+                                    <label for="localidad">Localidad</label>
+                                </div>
+                                <div class="col-75">
+                                    <input type="text" id="localidad" name="localidad" />
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <input type="submit" name="publicar" value="Publicar"/>
+                            </div>
                         </div>
+                    
+
                         <div id="c2" style="display:none">
-                            <table>
-                                <tr><td>Dosis</td><td><input type="number" name="dosis"  /></td></tr>
+                            <div class="row">
+                                <div class="col-25">
+                                    <label for="dosis">Dosis</label>
+                                </div>
+                                <div class="col-75">
+                                    <input type="text" id="dosis" name="dosis" />
+                                </div>
+                            </div>
 
-                                <tr><td><input type="submit" name="suplemento" value="Publicar"/></td></tr>
-                            </table>
+                            <div class="row">
+                                <input type="submit" name="publicar" value="Publicar"/>
+                            </div>
                         </div>
+                        </form>
+                    </div>
 
-                    </form>
                 </section>
+
                 <?php
                 include_once './aside.php';
                 ?>

@@ -85,7 +85,7 @@
 
         $suplemento = $row['suplemento'];
         $publicaciones = $dietas + $cientifico + $deportes + $suplemento;
-        
+
         disconnectDB($con);
         ?>
 
@@ -107,22 +107,23 @@
 
                 <?PHP include_once './menuPrincipal.php'; ?>
 
-                <section class="tabla">
-                    <h2>Estadisticas de todos los usuarios</h2>
-                    <table class="estadistica">
-                        <tr><th>Estad&iacute;stica</th><th>Cantidad</th></tr>
-                        <tr><td>N&uacute;mero de likes realizados</td><td><?PHP echo $votosRecibidos; ?></td></tr>
-                        <tr><td>N&uacute;mero de likes recibidos</td><td><?PHP echo $votosRealizados; ?></td></tr>
-                        <tr><td>N&uacute;mero de publicaciones</td><td><?PHP echo $publicaciones; ?></td></tr>
-                        <tr><td>Comentarios recibidos</td><td><?PHP echo $comentariosRecibidos; ?></td></tr>
-                        <tr><td>Comentarios Realizados</td><td><?PHP echo $comentariosRealizados; ?></td></tr>
-                        <tr><td>Dietas publicadas</td><td><?PHP echo $dietas; ?></td></tr>
-                        <tr><td>Estudios cientificos publicados</td><td><?PHP echo $cientifico; ?></td></tr>
-                        <tr><td>Deportes publicados</td><td><?PHP echo $deportes; ?></td></tr>
-                        <tr><td>Suplementos publicados</td><td><?PHP echo $suplemento; ?></td></tr>
-                        <tr><td>Tiempo invertido en hacer deporte</td><td><?PHP echo $time; ?></td></tr>
-                    </table>
-
+                <section class="sectionEstadistica">
+                    <div class="container">
+                        <h2>Estadisticas de todos los usuarios</h2>
+                        <table class="estadistica">
+                            <tr><th>Estad&iacute;stica</th><th>Cantidad</th></tr>
+                            <tr><td>N&uacute;mero de likes realizados</td><td><?PHP echo $votosRecibidos; ?></td></tr>
+                            <tr><td>N&uacute;mero de likes recibidos</td><td><?PHP echo $votosRealizados; ?></td></tr>
+                            <tr><td>N&uacute;mero de publicaciones</td><td><?PHP echo $publicaciones; ?></td></tr>
+                            <tr><td>Comentarios recibidos</td><td><?PHP echo $comentariosRecibidos; ?></td></tr>
+                            <tr><td>Comentarios Realizados</td><td><?PHP echo $comentariosRealizados; ?></td></tr>
+                            <tr><td>Dietas publicadas</td><td><?PHP echo $dietas; ?></td></tr>
+                            <tr><td>Estudios cientificos publicados</td><td><?PHP echo $cientifico; ?></td></tr>
+                            <tr><td>Deportes publicados</td><td><?PHP echo $deportes; ?></td></tr>
+                            <tr><td>Suplementos publicados</td><td><?PHP echo $suplemento; ?></td></tr>
+                            <tr><td>Tiempo invertido en hacer deporte</td><td><?PHP echo $time; ?></td></tr>
+                        </table>
+                    </div>
                 </section>
                 <?php
                 include_once './aside.php';

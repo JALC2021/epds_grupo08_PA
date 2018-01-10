@@ -1,11 +1,11 @@
 <nav class="menu">
-    <a href="./index.php" id="botonMenu" class="material-icons">MEN&Uacute; &#xe7fd; </a>
-    <a href="#">PAGINA PERSONAL</a>
+    <a href="./index.php" id="menu">MEN&Uacute; <i class="fa fa-user" style="font-size:110%;color:red"></i></a>
+    <a href="#">PERSONAL</a>
     <a href="./formularioContenido.php">Publicar contenido</a>
-    <a href="#">Modificar datos personales</a>
+    <a href="#">Modificar datos</a>
     <a href="./estadistica.php">Consultar estadísticas</a>
-    <a href="#">Darse de baja</a>
-    <a href="#">PUBLICACIONES AMIGOS</a>
-    <a href="#">BUSCAR AMIGOS</a>
-    <a href="logout.php"id="botonCerrarSesion"<button><i class="material-icons">CERRAR SESI&Oacute;N power_settings_new</i></button></a>
+    <a href="#">Baja</a>
+    <a href="#">AMIGOS</a>
+    <a href="#">BUSCAR</a>
+    <a href="logout.php"id="cerrarSesion">CERRAR SESI&Oacute;N <i class="fa fa-power-off" style="font-size:110%;color:red"></i></a>
 </nav>

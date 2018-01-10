@@ -18,10 +18,10 @@ body{
 
 header {
     background-image: url("https://us.123rf.com/450wm/bimdeedee/bimdeedee1507/bimdeedee150700044/42287432-dibujado-a-mano-sobre-el-estilo-de-vida-saludable-en-el-fondo-blanco.jpg?ver=6");
-    padding: 12px;
+    padding: 1px;
     text-align: center;
     border-bottom-color: black;
-    border:hidden 2px #000000;
+    border:hidden 1px;
     -moz-border-radius-topleft: 9px;
     -moz-border-radius-topright:9px;
     -moz-border-radius-bottomleft:9px;
@@ -35,9 +35,14 @@ header {
     border-bottom-left-radius:9px;
     border-bottom-right-radius:9px;
 }
+h1{
+    font-family: fantasy;
+    font-size: 4em;
+    font-weight: bold;
+}
 
 aside{
-    width: 20%;
+    width: 10%;
     float: left;
     padding: 12px;
     text-align: center;
@@ -63,30 +68,73 @@ nav{
 
 }
 
-#botonMenu,#botonCerrarSesion{
+
+#menu, #cerrarSesion{
     background-color: #a2dece;
+    font-size: 120%;
+    font-weight: bold;
+    border:solid 1px  #b0bec5 ;
+    -moz-border-radius-topleft: 9px;
+    -moz-border-radius-topright:9px;
+    -moz-border-radius-bottomleft:9px;
+    -moz-border-radius-bottomright:9px;
+    -webkit-border-top-left-radius:9px;
+    -webkit-border-top-right-radius:9px;
+    -webkit-border-bottom-left-radius:9px;
+    -webkit-border-bottom-right-radius:9px;
+    border-top-left-radius:9px;
+    border-top-right-radius:9px;
+    border-bottom-left-radius:9px;
+    border-bottom-right-radius:9px;
+
 }
 
-button{
+#menu:hover, #cerrarSesion:hover{
+
+    border:solid 1px  #2196f3;
+    -moz-border-radius-topleft: 9px;
+    -moz-border-radius-topright:9px;
+    -moz-border-radius-bottomleft:9px;
+    -moz-border-radius-bottomright:9px;
+    -webkit-border-top-left-radius:9px;
+    -webkit-border-top-right-radius:9px;
+    -webkit-border-bottom-left-radius:9px;
+    -webkit-border-bottom-right-radius:9px;
+    border-top-left-radius:9px;
+    border-top-right-radius:9px;
+    border-bottom-left-radius:9px;
+    border-bottom-right-radius:9px;
+}
+
+#menu:active, #cerrarSesion:active{
+    background-color:   #ffa000  ;
+    color: white;
+}
+
+.botonesSection{
     padding: 10px;
     margin-top: 10px;
     margin-right: 50px;
-    border-radius: 40%; 
-    border:hidden 1px #000000;
+    border-radius: 100%;
+    border:solid 1px #000000;
+    background-color: #f9fbe7; 
+    font-size: 120%;
+    font-weight: bold;
 
 }
 
-button:hover {
-    background-color: #ccc; 
+.botonesSection:hover {
+    border:solid 1px  #2196f3;
 }
 
-button.active {
-    background-color: #4CAF50;
+.botonesSection:active {
+    background-color:   #ffa000  ;
     color: white;
 }
 
 .menu {
-    width: 250px;
+
+    width: 20%;
     border:hidden 1px #000000;
     -moz-border-radius-topleft: 9px;
     -moz-border-radius-topright:9px;
@@ -103,15 +151,15 @@ button.active {
 }
 
 .menu a {
-    background-color: #eee; 
+    background-color:   #f9fbe7; 
     color: black; 
     display: block; 
-    padding: 12px;
+    padding: 20px;
     text-decoration: none; 
     margin: auto;
     width: 100%;
     text-align: center;
-    border:hidden 1px #000000;
+    border:solid 1px  #ffab91 ;
     -moz-border-radius-topleft: 9px;
     -moz-border-radius-topright:9px;
     -moz-border-radius-bottomleft:9px;
@@ -129,19 +177,23 @@ button.active {
 }
 
 .menu a:hover {
-    background-color: #ccc; 
+    background-color:  #ef9a9a; 
 }
 
-.menu a.active {
-    background-color: #4CAF50;
+.menu a:active {
+    background-color:  #81d4fa;
     color: white;
 }
 
-section{
-
-    width: 60%;
+.sectionPaginaPersonal{
+    background-image: url("../images/background.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    width: 70%;
     float: left;
-    padding: 12px; 
+    margin-top: 12px;
+    /*padding: 7px; */
     text-align: center;
     border:hidden 1px #000000;
     -moz-border-radius-topleft: 9px;
@@ -158,12 +210,41 @@ section{
     border-bottom-right-radius:9px;
 }
 
+.sectionPublicaciones, .sectionEstadistica{
+
+    width: 70%;
+    /*background-color: #a2dece;*/
+    background-image: url("../images/background.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    float: left;
+    padding: 12px; 
+    margin-top: 12px;
+    margin-bottom: 5px;
+    text-align: center;
+    border:hidden 1px #000000;
+    -moz-border-radius-topleft: 9px;
+    -moz-border-radius-topright:9px;
+    -moz-border-radius-bottomleft:9px;
+    -moz-border-radius-bottomright:9px;
+    -webkit-border-top-left-radius:9px;
+    -webkit-border-top-right-radius:9px;
+    -webkit-border-bottom-left-radius:9px;
+    -webkit-border-bottom-right-radius:9px;
+    border-top-left-radius:9px;
+    border-top-right-radius:9px;
+    border-bottom-left-radius:9px;
+    border-bottom-right-radius:9px;
+}
+
+
 article{
 
     padding: 12px; 
     margin-top: 5px;
     margin-bottom: 5px;
-    border:solid 1px #000000;
+    border:hidden 1px #000000;
     -moz-border-radius-topleft: 9px;
     -moz-border-radius-topright:9px;
     -moz-border-radius-bottomleft:9px;
@@ -204,12 +285,13 @@ article{
     border-bottom-right-radius:30%;
 
 }
+
 .imagenesArticulos{
 
     display: block;
     margin: auto;
-    width: 650px;
-    height: 300px;
+    width: auto;
+    height: auto;
     text-align: center;
     border:hidden 1px #000000;
     -moz-border-radius-topleft: 9px;
@@ -234,7 +316,10 @@ article{
 
 .contendioPrincipal{
     background-image: url("http://s1.1zoom.me/big3/963/Texture_Boards_Wooden_478676.jpg");
-    background-repeat: repeat-x;
+    /*background-repeat: repeat-x;*/
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
     padding-top: 12px;
     display: block;
     margin: auto;
@@ -275,13 +360,14 @@ footer {
     border-bottom-right-radius:9px;
 }
 
-.tabla{
+/*.tabla{
     background: #a2dece;
     border: 1px solid #36752D;
     margin-left: 1%;
     margin-top: 1%;
 
-}
+}*/
+
 table{
     padding-left: 5%;
     text-align: left;
@@ -289,14 +375,14 @@ table{
     font: normal 15px/150% Arial, Helvetica, sans-serif; 
     overflow: hidden; 
 
-    -webkit-border-radius: 3px; 
-    -moz-border-radius: 3px; 
-    border-radius: 3px;
+    -webkit-border-radius: 10px; 
+    -moz-border-radius: 10px; 
+    border-radius: 10px;
 }
 table td{
-    width: 300px;
+    width: 200px;
     height: 50px;
-    color: #242424;
+
 }
 
 .estadistica{
@@ -305,8 +391,8 @@ table td{
 
 
 .estadistica{
-    padding-left: 15%;
-    padding-right: 15%;
+    padding-left: 5%;
+    padding-right: 5%;
 }
 
 
@@ -315,4 +401,154 @@ table td{
     nav,aside,section {
         width: 100%;
     }
+}
+
+/*esto es el formulario de publicar contenido*/
+input[type=text],input[type=time],input[type=url], select, textarea{
+
+    /*width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    resize: vertical;*/
+
+    font-size: 100%;
+    box-sizing: border-box;
+    resize: vertical;
+    background-color:   #f9fbe7; 
+    color: black; 
+    display: block; 
+    padding: 12px;
+    text-decoration: none; 
+    margin: auto;
+    width: 100%;
+    text-align: justify;
+    border:solid 1px  #ffab91 ;
+    -moz-border-radius-topleft: 9px;
+    -moz-border-radius-topright:9px;
+    -moz-border-radius-bottomleft:9px;
+    -moz-border-radius-bottomright:9px;
+    -webkit-border-top-left-radius:9px;
+    -webkit-border-top-right-radius:9px;
+    -webkit-border-bottom-left-radius:9px;
+    -webkit-border-bottom-right-radius:9px;
+    border-top-left-radius:9px;
+    border-top-right-radius:9px;
+    border-bottom-left-radius:9px;
+    border-bottom-right-radius:9px;
+}
+
+label {
+    padding: 10px 10px 10px 0;
+    display: inline-block;
+}
+
+input[type=submit] {
+    /*width: 30%;
+    background-color: #4CAF50;
+    color: white;
+    margin-top: 4%;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;*/
+
+    cursor: pointer;
+    background-color: #f9fbe7; 
+    margin-top: 4%;
+    padding: 12px 20px;
+    width: 30%;
+    font-size: 100%;
+    font-weight: bold;
+    border:solid 1px #000000;
+    -moz-border-radius-topleft: 9px;
+    -moz-border-radius-topright:9px;
+    -moz-border-radius-bottomleft:9px;
+    -moz-border-radius-bottomright:9px;
+    -webkit-border-top-left-radius:9px;
+    -webkit-border-top-right-radius:9px;
+    -webkit-border-bottom-left-radius:9px;
+    -webkit-border-bottom-right-radius:9px;
+    border-top-left-radius:9px;
+    border-top-right-radius:9px;
+    border-bottom-left-radius:9px;
+    border-bottom-right-radius:9px;
+
+}
+
+input[type=submit]:hover {
+    border:solid 1px  #2196f3;
+    background-color:   #f9fbe7; 
+    -moz-border-radius-topleft: 9px;
+    -moz-border-radius-topright:9px;
+    -moz-border-radius-bottomleft:9px;
+    -moz-border-radius-bottomright:9px;
+    -webkit-border-top-left-radius:9px;
+    -webkit-border-top-right-radius:9px;
+    -webkit-border-bottom-left-radius:9px;
+    -webkit-border-bottom-right-radius:9px;
+    border-top-left-radius:9px;
+    border-top-right-radius:9px;
+    border-bottom-left-radius:9px;
+    border-bottom-right-radius:9px;
+}
+
+input[type=submit]:active {
+    background-color:   #ffa000  ;
+    color: white;
+}
+
+.container {
+    border-radius: 9px;
+    padding: 8px;
+    font-weight: bold;
+    color: #000000;
+    margin: 5px;
+    background-color: #ffffff;
+    border: 1px hidden;
+    opacity: 0.7;
+    filter: alpha(opacity=60); /* For IE8 and earlier */
+    -moz-border-radius-topleft: 9px;
+    -moz-border-radius-topright:9px;
+    -moz-border-radius-bottomleft:9px;
+    -moz-border-radius-bottomright:9px;
+    -webkit-border-top-left-radius:9px;
+    -webkit-border-top-right-radius:9px;
+    -webkit-border-bottom-left-radius:9px;
+    -webkit-border-bottom-right-radius:9px;
+    border-top-left-radius:9px;
+    border-top-right-radius:9px;
+    border-bottom-left-radius:9px;
+    border-bottom-right-radius:9px;
+}
+
+
+.col-25 {
+    float: left;
+    width: 20%;
+    margin-top: 6px;
+}
+
+.col-75 {
+    float: left;
+    width: 70%;
+    margin-top:8px;
+}
+
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media (max-width: 720px) {
+    .col-25, .col-75, input[type=submit] {
+        width: 100%;
+        margin-top: 0;
+    }
+
 }

@@ -1,3 +1,3 @@
 <header>
-    <h1>Healthy Social</h1>
+    <h1>Social Healthy</h1>
 </header>
