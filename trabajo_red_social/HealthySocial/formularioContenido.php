@@ -9,6 +9,7 @@
 
 
     if (isset($_SESSION['estado'])) {
+
         if (isset($_POST['alimentacion']) || isset($_POST['deportes']) || isset($_POST['suplemento'])) {
             $insertar = true;
             if (isset($_POST['alimentacion'])) {
@@ -166,37 +167,36 @@
     -->
     <html xmlns="http://www.w3.org/1999/xhtml">
         <head>
-            <meta charset="UTF-8">
-                <title>SocialHealthy</title>
-                <meta name="viewport" content="width=device-width, user-scalabe=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
-                <link rel="stylesheet" type="text/css" href="css/style_index.css" />
-                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-                <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-                <script type="text/javascript">
+            <meta charset="UTF-8" />
+            <title>SocialHealthy</title>
+            <meta name="viewport" content="width=device-width, user-scalabe=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+            <link rel="stylesheet" type="text/css" href="css/style_index.css" />
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+            <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+            <script type="text/javascript">
 
-                    function mostrar(num) {
-                        if (num === 0) {
-                            document.getElementById('c' + (num + 2)).setAttribute("style", "display: none");
-                            document.getElementById('c' + (num + 1)).setAttribute("style", "display: none");
-                            document.getElementById('c' + (num)).removeAttribute("style");
-                        } else if (num === 1) {
-                            document.getElementById('c' + (num - 1)).setAttribute("style", "display: none");
-                            document.getElementById('c' + (num)).removeAttribute("style");
-                            document.getElementById('c' + (num + 1)).setAttribute("style", "display: none");
-                        } else if (num === 2) {
-                            document.getElementById('c' + (num - 2)).setAttribute("style", "display: none");
-                            document.getElementById('c' + (num - 1)).setAttribute("style", "display: none");
-                            document.getElementById('c' + (num)).removeAttribute("style");
-                        }
-
+                function mostrar(num) {
+                    if (num === 0) {
+                        document.getElementById('c' + (num + 2)).setAttribute("style", "display: none");
+                        document.getElementById('c' + (num + 1)).setAttribute("style", "display: none");
+                        document.getElementById('c' + (num)).removeAttribute("style");
+                    } else if (num === 1) {
+                        document.getElementById('c' + (num - 1)).setAttribute("style", "display: none");
+                        document.getElementById('c' + (num)).removeAttribute("style");
+                        document.getElementById('c' + (num + 1)).setAttribute("style", "display: none");
+                    } else if (num === 2) {
+                        document.getElementById('c' + (num - 2)).setAttribute("style", "display: none");
+                        document.getElementById('c' + (num - 1)).setAttribute("style", "display: none");
+                        document.getElementById('c' + (num)).removeAttribute("style");
                     }
-                </script>
+
+                }
+            </script>
 
         </head>
         <body>
 
             <?PHP include_once './header.php'; ?>
-
             <div class="contendioPrincipal">
 
                 <?PHP include_once './menuPrincipal.php'; ?>
@@ -219,7 +219,7 @@
                                     </select>
                                 </div>
                             </div>
-                   
+
                             <div class="row">
                                 <div class="col-25">
                                     <label for="tipo">Tipo</label>
@@ -277,54 +277,54 @@
                                 </div>
 
                                 <div class="row">
-                                    <input type="submit" name="publicar" value="Publicar"/>
-                                </div>
-                            </div>
-                    
-                   
-                        <div id="c1" style="display:none">
-                            <div class="row">
-                                <div class="col-25">
-                                    <label for="nivel">Nivel</label>
-                                </div>
-                                <div class="col-75">
-                                    <select id="categoria" name="nivel" required>
-                                        <option value="bajo" selected>Nivel bajo</option>
-                                        <option value="medio">Nivel medio</option>
-                                        <option value="alto">Nivel Alto</option>
-                                    </select>
+                                    <input type="submit" name="alimentacion" value="Publicar"/>
                                 </div>
                             </div>
 
-                            <div class="row">
-                                <div class="col-25">
-                                    <label for="localidad">Localidad</label>
+
+                            <div id="c1" style="display:none">
+                                <div class="row">
+                                    <div class="col-25">
+                                        <label for="nivel">Nivel</label>
+                                    </div>
+                                    <div class="col-75">
+                                        <select id="categoria" name="nivel" required>
+                                            <option value="bajo" selected>Nivel bajo</option>
+                                            <option value="medio">Nivel medio</option>
+                                            <option value="alto">Nivel Alto</option>
+                                        </select>
+                                    </div>
                                 </div>
-                                <div class="col-75">
-                                    <input type="text" id="localidad" name="localidad" />
+
+                                <div class="row">
+                                    <div class="col-25">
+                                        <label for="localidad">Localidad</label>
+                                    </div>
+                                    <div class="col-75">
+                                        <input type="text" id="localidad" name="localidad" />
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <input type="submit" name="deportes" value="Publicar"/>
                                 </div>
                             </div>
 
-                            <div class="row">
-                                <input type="submit" name="publicar" value="Publicar"/>
-                            </div>
-                        </div>
-                    
 
-                        <div id="c2" style="display:none">
-                            <div class="row">
-                                <div class="col-25">
-                                    <label for="dosis">Dosis</label>
+                            <div id="c2" style="display:none">
+                                <div class="row">
+                                    <div class="col-25">
+                                        <label for="dosis">Dosis</label>
+                                    </div>
+                                    <div class="col-75">
+                                        <input type="text" id="dosis" name="dosis" />
+                                    </div>
                                 </div>
-                                <div class="col-75">
-                                    <input type="text" id="dosis" name="dosis" />
-                                </div>
-                            </div>
 
-                            <div class="row">
-                                <input type="submit" name="publicar" value="Publicar"/>
+                                <div class="row">
+                                    <input type="submit" name="suplemento" value="Publicar"/>
+                                </div>
                             </div>
-                        </div>
                         </form>
                     </div>
 

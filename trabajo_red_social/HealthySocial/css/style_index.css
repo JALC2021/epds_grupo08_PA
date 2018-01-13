@@ -406,13 +406,6 @@ table td{
 /*esto es el formulario de publicar contenido*/
 input[type=text],input[type=time],input[type=url], select, textarea{
 
-    /*width: 100%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    resize: vertical;*/
-
     font-size: 100%;
     box-sizing: border-box;
     resize: vertical;
