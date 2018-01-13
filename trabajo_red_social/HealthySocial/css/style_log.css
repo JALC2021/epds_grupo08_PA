@@ -26,8 +26,7 @@ body{
     border-bottom-right-radius:9px;
 }
 
-#register input[type=text],register input[type=radio], #register input[type=time],#register input[type=url],#register input[type=password], #register select,#register  textarea{
-
+#register input[type=text],#register input[type=email],#register input[type=radio], #register input[type=time],#register input[type=url],#register input[type=password], #register select,#register  textarea{
 
     font-size: 100%;
     box-sizing: border-box;
@@ -51,21 +50,24 @@ label {
 
 .container{
     height: 100%;
-
 }
 
 #login{
     width: 50%;
+    margin-top: 3%;
     background:#F0ECE8;
     text-align: center;
     margin-left: 25%;
+    padding-bottom: 3px;
 }
 
 #register{
     width: 80%;
+    margin-top: 3%;
     background:#F0ECE8;
     text-align: center;
     margin-left: 10%;
+    padding-bottom: 3px;
 }
 
 /**
@@ -88,13 +90,13 @@ Login FORM:
     text-align: center;
     color:#F0ECE8;
     font-family: 'Comfortaa', cursive;
-    font-size: 3.5em;
+    font-size: 35px;
 }
 .form h2{
     text-align: center;
     font-family: 'Lobster', cursive;
     color:#68BA8A;
-    font-size: 3em;
+    font-size: 25px;
 
 }
 .input-group{
