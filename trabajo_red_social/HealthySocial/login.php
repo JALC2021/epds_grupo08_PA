@@ -51,12 +51,19 @@
             setcookie("user", $name, time() + 30 * 60 * 60);
             $_SESSION['estado'] = TRUE;
             $_SESSION['user'] = $name;
-            echo $_SESSION['url'];
+
             if (!isset($_SESSION['url'])) {
-                $_SESSION['url'] = "index.php";
+                
+                if ($fila['tipo'] == 'cliente') {
+                    $_SESSION['url'] = "index.php";
+                } else if ($fila['tipo'] == 'administrador') {
+                    $_SESSION['url'] = "indexAdministrador.php";
+                }
             }
-            echo $_SESSION['url'];
+
             header("location:" . $_SESSION['url']);
+
+
 //si no coincide vuelve a mostrar la página de login.
         } else {
             ?>
@@ -169,7 +176,7 @@
         <link rel="stylesheet" type="text/css" href="css/style_log.css" />
         <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
         <script type="text/javascript" src="js/login.js" ></script>
-         <script type="text/javascript">
+        <script type="text/javascript">
     function comprobar(campo, expr) {
         if (!expr.test(campo.value)) {
             campo.value = "";
@@ -201,10 +208,10 @@
             }
         }
     }
-    </script>
+        </script>
     </head>
 
-   
+
     <body>
         <div class="container"
 
@@ -287,13 +294,13 @@
                                 < Login
                             </div>
                         </div>
-                        
+
                         <div >
-                                <div id="requerido">
-                                    (*) Todos los campos son requeridos
-                                </div>
-                                
+                            <div id="requerido">
+                                (*) Todos los campos son requeridos
                             </div>
+
+                        </div>
 
                 </div>
             </div>
