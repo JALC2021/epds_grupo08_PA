@@ -5,7 +5,7 @@
     <?PHP
     session_start();
 
-    require_once './functions.php';
+    require_once '../functions.php';
 
 
     if (isset($_SESSION['estado'])) {
@@ -183,7 +183,7 @@
             <meta charset="UTF-8" />
             <title>SocialHealthy</title>
             <meta name="viewport" content="width=device-width, user-scalabe=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
-            <link rel="stylesheet" type="text/css" href="css/style_index.css" />
+            <link rel="stylesheet" type="text/css" href="../css/style_index.css" />
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
             <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
             <script type="text/javascript">
@@ -230,7 +230,7 @@
         </head>
         <body>
 
-            <?PHP include_once './header.php'; ?>
+            <?PHP include_once '../header.php'; ?>
             <div class="contendioPrincipal">
 
                 <?PHP include_once './menuPrincipal.php'; ?>
@@ -371,15 +371,15 @@
                 </section>
 
                 <?php
-                include_once './aside.php';
+                include_once '../aside.php';
                 ?>
             </div>
 
             <?php
-            include_once './footer.php';
+            include_once '../footer.php';
         } else {
             $_SESSION['url'] = "formularioContenido.php";
-            header("location:login.php");
+            header("location:../login.php");
         }
         ?>
     </body>

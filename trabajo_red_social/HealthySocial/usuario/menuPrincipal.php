@@ -7,5 +7,5 @@
     <a href="#">Baja</a>
     <a href="#">AMIGOS</a>
     <a href="#">BUSCAR</a>
-    <a href="logout.php"id="cerrarSesion">CERRAR SESI&Oacute;N <i class="fa fa-power-off" style="font-size:110%;color:red"></i></a>
+    <a href="../logout.php"id="cerrarSesion">CERRAR SESI&Oacute;N <i class="fa fa-power-off" style="font-size:110%;color:red"></i></a>
 </nav>

@@ -55,7 +55,7 @@
             if (!isset($_SESSION['url'])) {
                 
                 if ($fila['tipo'] == 'cliente') {
-                    $_SESSION['url'] = "index.php";
+                    $_SESSION['url'] = "usuario/index.php";
                 } else if ($fila['tipo'] == 'administrador') {
                     $_SESSION['url'] = "indexAdministrador.php";
                 }
