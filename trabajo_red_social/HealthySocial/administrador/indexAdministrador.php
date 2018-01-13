@@ -5,7 +5,7 @@
     <?PHP
     session_start();
 
-    if (isset($_SESSION['cliente'])) {
+    if (isset($_SESSION['administrador'])) {
         ?>
     <!--
     To change this license header, choose License Headers in Project Properties.
@@ -28,7 +28,7 @@
 
             <div class="contendioPrincipal">
 
-                <?PHP include_once './menuPrincipal.php'; ?>
+                <?PHP include_once './menuPrincipalAdministrador.php'; ?>
 
                 <section class="sectionPaginaPersonal">
 
@@ -66,8 +66,8 @@
             <?php
             include_once '../footer.php';
         } else {
-            $_SESSION['url'] = "usuario/index.php";
-            $_SESSION['tipo'] = 'cliente';
+            $_SESSION['url'] = "administrador/indexAdministrador.php";
+            $_SESSION['tipo'] = 'administrador';
             header("location:../login.php");
         }
         ?>

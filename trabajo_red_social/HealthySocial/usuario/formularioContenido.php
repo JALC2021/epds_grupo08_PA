@@ -8,7 +8,7 @@
     require_once '../functions.php';
 
 
-    if (isset($_SESSION['estado'])) {
+    if (isset($_SESSION['cliente'])) {
 
         if (isset($_POST['alimentacion']) || isset($_POST['deportes']) || isset($_POST['suplemento'])) {
             $insertar = true;
@@ -378,7 +378,8 @@
             <?php
             include_once '../footer.php';
         } else {
-            $_SESSION['url'] = "formularioContenido.php";
+            $_SESSION['url'] = "usuario/formularioContenido.php";
+            $_SESSION['tipo'] = 'cliente';
             header("location:../login.php");
         }
         ?>

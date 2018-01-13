@@ -49,19 +49,34 @@
             disconnectDB($con);
 //guardamos la cookie con el nombre del usuario durante 30 días
             setcookie("user", $name, time() + 30 * 60 * 60);
-            $_SESSION['estado'] = TRUE;
+            
+            if ($fila['tipo'] == 'cliente') {
+                    $_SESSION['cliente'] = TRUE;
+                } else if ($fila['tipo'] == 'administrador') {
+                    $_SESSION['administrador'] = TRUE;
+                }
             $_SESSION['user'] = $name;
 
+
             if (!isset($_SESSION['url'])) {
-                
+
                 if ($fila['tipo'] == 'cliente') {
                     $_SESSION['url'] = "usuario/index.php";
                 } else if ($fila['tipo'] == 'administrador') {
-                    $_SESSION['url'] = "indexAdministrador.php";
+                    $_SESSION['url'] = "administrador/indexAdministrador.php";
                 }
             }
 
-            header("location:" . $_SESSION['url']);
+            if ($_SESSION['tipo'] == $fila['tipo']) {
+                header("location:" . $_SESSION['url']);
+            } else {
+                if ($fila['tipo'] == 'cliente') {
+                    header("location:usuario/index.php");
+                } else if ($fila['tipo'] == 'administrador') {
+                    header("location:administrador/indexAdministrador.php");
+                }
+            }
+
 
 
 //si no coincide vuelve a mostrar la página de login.

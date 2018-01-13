@@ -8,7 +8,7 @@
     require_once '../functions.php';
 
 
-    if (isset($_SESSION['estado'])) {
+    if (isset($_SESSION['cliente'])) {
 
         $con = connectDB();
 
@@ -109,7 +109,7 @@
 
                 <section class="sectionEstadistica">
                     <div class="container">
-                        <h2>Estadisticas de todos los usuarios</h2>
+                        <h2>Estadisticas</h2>
                         <table class="estadistica">
                             <tr><th>Estad&iacute;stica</th><th>Cantidad</th></tr>
                             <tr><td>N&uacute;mero de likes realizados</td><td><?PHP echo $votosRecibidos; ?></td></tr>
@@ -133,7 +133,8 @@
             <?php
             include_once '../footer.php';
         } else {
-            $_SESSION['url'] = "estadistica.php";
+            $_SESSION['url'] = "usuario/estadistica.php";
+            $_SESSION['tipo'] = 'cliente';
             header("location:../login.php");
         }
         ?>
