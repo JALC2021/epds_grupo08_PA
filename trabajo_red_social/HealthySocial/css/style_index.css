@@ -529,6 +529,10 @@ input[type=submit]:active {
     margin-top:8px;
 }
 
+#requerido{
+    color: #ff3333;
+}
+
 
 /* Clear floats after the columns */
 .row:after {

@@ -70,6 +70,10 @@ label {
     padding-bottom: 3px;
 }
 
+#requerido{
+    color: #ff3333;
+}
+
 /**
 Login FORM:
 **/

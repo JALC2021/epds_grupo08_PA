@@ -50,7 +50,9 @@
             }
         }
 
-        if ($insertar && preg_match("/^[0-2][0-9]:[0-5][0-9]$/", $_POST['duracion'])) {
+        if ($insertar && preg_match("/^[0-2][0-9]:[0-5][0-9]$/", $_POST['duracion']) &&
+                preg_match("/^([a-zA-ZÁÉÍÓÚñáéíóú0-9]*[\s]*)+$/", $_POST['tipo']) &&
+                preg_match("/^([a-zA-ZÁÉÍÓÚñáéíóú0-9]*[\s]*)+$/", $_POST['descripcion'])) {
             $con = connectDB();
 
             if (!$con) {
@@ -151,9 +153,20 @@
 
             if (!preg_match("/^[0-2][0-9]:[0-5][0-9]$/", $_POST['duracion'])) {
                 ?>
-                }
                 <script type="text/javascript">
                     alert("Duración incorrecta.Ej:22:22");
+                </script>
+                <?PHP
+            }if (!preg_match("/^([a-zA-ZÁÉÍÓÚñáéíóú0-9]*[\s]*)+$/", $_POST['tipo'])) {
+                ?>
+                <script type="text/javascript">
+                    alert("El tipo debe contener carácteres alfanuméricos");
+                </script>
+                <?PHP
+            }if (!preg_match("/^([a-zA-ZÁÉÍÓÚñáéíóú0-9]*[\s]*)+$/", $_POST['descripcion'])) {
+                ?>  
+                <script type="text/javascript">
+                    alert("La descripción debe contener carácteres alfanuméricos");
                 </script>
                 <?PHP
             }
@@ -191,6 +204,27 @@
                     }
 
                 }
+
+                function comprobar(campo, expr) {
+                    if (!expr.test(campo.value)) {
+                        campo.value = "";
+
+                        if (campo.getAttribute('id') == "duración") {
+                            alert('El campo ' +
+                                    campo.getAttribute('id') +
+                                    ' tiene una duración incorrecta.Ej:22:22');
+                        } else if (campo.getAttribute('id') == "tipo") {
+                            alert('El campo ' +
+                                    campo.getAttribute('id') +
+                                    ' debe tener carácteres alfanuméricos');
+                        } else if (campo.getAttribute('id') == "descripcion") {
+                            alert('El campo ' +
+                                    campo.getAttribute('id') +
+                                    ' debe tener carácteres alfanuméricos');
+                        }
+                    }
+                }
+
             </script>
 
         </head>
@@ -209,7 +243,7 @@
 
                             <div class="row">
                                 <div class="col-25">
-                                    <label for="categoria">Categoria</label>
+                                    <label for="categoria">Categoria<span id="requerido">(*)</span></label>
                                 </div>
                                 <div class="col-75">
                                     <select id="categoria" name="categoria" onchange="mostrar(this.selectedIndex)" required>
@@ -222,28 +256,28 @@
 
                             <div class="row">
                                 <div class="col-25">
-                                    <label for="tipo">Tipo</label>
+                                    <label for="tipo">Tipo<span id="requerido">(*)</span></label>
                                 </div>
                                 <div class="col-75">
-                                    <input type="text" id="tipo" name="tipo" required autofocus placeholder="Introduzca tipo..." />
+                                    <input type="text" id="tipo" name="tipo" onchange="comprobar(this,/^([a-zA-ZÁÉÍÓÚñáéíóú0-9]*[\s]*)+$/)" required autofocus placeholder="Introduzca tipo..." />
                                 </div>
                             </div>
 
                             <div class="row">
                                 <div class="col-25">
-                                    <label for="duracion">Duraci&oacute;n</label>
+                                    <label for="duracion">Duraci&oacute;n<span id="requerido">(*)</span></label>
                                 </div>
                                 <div class="col-75">
-                                    <input type="time" id="duracion" name="duracion" required placeholder="Introduzca duración..." />
+                                    <input type="time" id="duracion" name="duracion" onchange="comprobar(this,/^[0-2][0-9]:[0-5][0-9]$/)" required placeholder="Introduzca duración..." />
                                 </div>
                             </div>
 
                             <div class="row">
                                 <div class="col-25">
-                                    <label for="descripcion">Descripci&oacute;n</label>
+                                    <label for="descripcion">Descripci&oacute;n<span id="requerido">(*)</span></label>
                                 </div>
                                 <div class="col-75">
-                                    <textarea id="descripcion" name="descripcion" placeholder="Introduce descripción..." style="height:100px"></textarea>
+                                    <textarea id="descripcion" name="descripcion" onchange="comprobar(this,/^([a-zA-ZÁÉÍÓÚñáéíóú0-9]*[\s]*)+$/)" placeholder="Introduce descripción..." style="height:100px"></textarea>
                                 </div>
                             </div>
 
@@ -252,7 +286,7 @@
                                     <label for="foto">Foto</label>
                                 </div>
                                 <div class="col-75">
-                                    <input type="url" id="foto" name="foto" placeholder="Introduzca url..." />
+                                    <input type="url" id="foto" name="foto" placeholder="Introduzca url..." /> 
                                 </div>
                             </div>
 
@@ -260,7 +294,7 @@
                             <div id="c0">
                                 <div class="row">
                                     <div class="col-25">
-                                        <label for="dieta">Dieta</label>
+                                        <label for="dieta">Dieta<span id="requerido">(*)</span></label>
                                     </div>
                                     <div class="col-75">
                                         <input type="radio" id="dieta" name="dietaEstudio" value="dieta" />
@@ -269,7 +303,7 @@
 
                                 <div class="row">
                                     <div class="col-25">
-                                        <label for="dieta">Estudio Cient&iacute;fico</label>
+                                        <label for="dieta">Estudio Cient&iacute;fico<span id="requerido">(*)</span></label>
                                     </div>
                                     <div class="col-75">
                                         <input type="radio" id="estudiocientifico" name="dietaEstudio" value="cientifico" />
@@ -285,7 +319,7 @@
                             <div id="c1" style="display:none">
                                 <div class="row">
                                     <div class="col-25">
-                                        <label for="nivel">Nivel</label>
+                                        <label for="nivel">Nivel<span id="requerido">(*)</span></label>
                                     </div>
                                     <div class="col-75">
                                         <select id="categoria" name="nivel" required>
@@ -298,7 +332,7 @@
 
                                 <div class="row">
                                     <div class="col-25">
-                                        <label for="localidad">Localidad</label>
+                                        <label for="localidad">Localidad<span id="requerido">(*)</span></label>
                                     </div>
                                     <div class="col-75">
                                         <input type="text" id="localidad" name="localidad" />
@@ -317,13 +351,19 @@
                                         <label for="dosis">Dosis</label>
                                     </div>
                                     <div class="col-75">
-                                        <input type="text" id="dosis" name="dosis" />
+                                        <input type="text" name="dosis" />
                                     </div>
                                 </div>
 
                                 <div class="row">
                                     <input type="submit" name="suplemento" value="Publicar"/>
                                 </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-25" id="requerido">
+                                    (*) Campo requerido
+                                </div>
+                                
                             </div>
                         </form>
                     </div>

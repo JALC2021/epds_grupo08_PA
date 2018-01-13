@@ -287,6 +287,13 @@
                                 < Login
                             </div>
                         </div>
+                        
+                        <div >
+                                <div id="requerido">
+                                    (*) Todos los campos son requeridos
+                                </div>
+                                
+                            </div>
 
                 </div>
             </div>
