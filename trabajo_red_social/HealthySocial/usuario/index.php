@@ -1,12 +1,9 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0
-    Strict//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-
-    strict.dtd">
-    <?PHP
-    session_start();
+<!DOCTYPE html>
+<?PHP
+session_start();
 
-    if (isset($_SESSION['cliente'])) {
-        ?>
+if (isset($_SESSION['cliente'])) {
+    ?>
     <!--
     To change this license header, choose License Headers in Project Properties.
     To change this template file, choose Tools | Templates
@@ -37,7 +34,7 @@
                             <button class="botonesSection" style="font-size:24px"><i class="fa fa-thumbs-o-up"></i></button>
                             <button class="botonesSection" style="font-size:24px">Total <i class="fa fa-heart"></i></button>
                             <button class="botonesSection"  style="font-size:24px"><i class="fa fa-thumbs-o-down"></i></button>
-                            <button class="botonesSection"  style="font-size:24px"><i class="fa fa-align-justify"></i></button>
+                            <button class="botonesSection"  style="font-size:24px"><i class="fa fa-commenting-o"></i></button>
                     </article>
 
                     <article>

@@ -1,7 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0
-    Strict//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-
-    strict.dtd">
+<!DOCTYPE html>
     <?php
     session_start();
 
@@ -49,12 +46,12 @@
             disconnectDB($con);
 //guardamos la cookie con el nombre del usuario durante 30 días
             setcookie("user", $name, time() + 30 * 60 * 60);
-            
+
             if ($fila['tipo'] == 'cliente') {
-                    $_SESSION['cliente'] = TRUE;
-                } else if ($fila['tipo'] == 'administrador') {
-                    $_SESSION['administrador'] = TRUE;
-                }
+                $_SESSION['cliente'] = TRUE;
+            } else if ($fila['tipo'] == 'administrador') {
+                $_SESSION['administrador'] = TRUE;
+            }
             $_SESSION['user'] = $name;
 
 
@@ -189,40 +186,41 @@
         <title>SocialHealthy</title>
         <meta name="viewport" content="width=device-width, user-scalabe=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
         <link rel="stylesheet" type="text/css" href="css/style_log.css" />
+        <link rel="shortcut icon" type="image/x-icon" href="images/logoUrl.ico" />
         <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
         <script type="text/javascript" src="js/login.js" ></script>
         <script type="text/javascript">
-    function comprobar(campo, expr) {
-        if (!expr.test(campo.value)) {
-            campo.value = "";
+                function comprobar(campo, expr) {
+                    if (!expr.test(campo.value)) {
+                        campo.value = "";
 
-            if (campo.getAttribute('id') == "nombre") {
-                alert('El campo ' +
-                        campo.getAttribute('id') +
-                        ' debe tener la primera letra mayúscula y de 3 a 15 carácteres alfabéticos');
-            } else if (campo.getAttribute('id') == "apellidos") {
-                alert('El campo ' +
-                        campo.getAttribute('id') +
-                        ' debe tener de 1 a 15 carácteres alfabéticos');
-            } else if (campo.getAttribute('id') == "usuario") {
-                alert('El campo ' +
-                        campo.getAttribute('id') +
-                        ' debe tener de 3 a 15 carácteres alfanuméricos');
-            } else if (campo.getAttribute('id') == "password") {
-                alert('El campo ' +
-                        campo.getAttribute('id') +
-                        ' debe tener de 6 a 15 carácteres alfanuméricos');
-            } else if (campo.getAttribute('id') == "localidad") {
-                alert('El campo ' +
-                        campo.getAttribute('id') +
-                        ' debe tener de 1 a 15 carácteres alfabéticos');
-            } else if (campo.getAttribute('id') == "email") {
-                alert('El campo ' +
-                        campo.getAttribute('id') +
-                        ' no se ha introducido correctamente.Ej:ejemplo@ejemplo.com');
-            }
-        }
-    }
+                        if (campo.getAttribute('id') == "nombre") {
+                            alert('El campo ' +
+                                    campo.getAttribute('id') +
+                                    ' debe tener la primera letra mayúscula y de 3 a 15 carácteres alfabéticos');
+                        } else if (campo.getAttribute('id') == "apellidos") {
+                            alert('El campo ' +
+                                    campo.getAttribute('id') +
+                                    ' debe tener de 1 a 15 carácteres alfabéticos');
+                        } else if (campo.getAttribute('id') == "usuario") {
+                            alert('El campo ' +
+                                    campo.getAttribute('id') +
+                                    ' debe tener de 3 a 15 carácteres alfanuméricos');
+                        } else if (campo.getAttribute('id') == "password") {
+                            alert('El campo ' +
+                                    campo.getAttribute('id') +
+                                    ' debe tener de 6 a 15 carácteres alfanuméricos');
+                        } else if (campo.getAttribute('id') == "localidad") {
+                            alert('El campo ' +
+                                    campo.getAttribute('id') +
+                                    ' debe tener de 1 a 15 carácteres alfabéticos');
+                        } else if (campo.getAttribute('id') == "email") {
+                            alert('El campo ' +
+                                    campo.getAttribute('id') +
+                                    ' no se ha introducido correctamente.Ej:ejemplo@ejemplo.com');
+                        }
+                    }
+                }
         </script>
     </head>
 
@@ -290,37 +288,95 @@
                         </div>
                         <div class="input-group">
                             <label >Localidad:</label>
-                            <input type="text" id="localidad" name="localidad" class="form-control" onchange="comprobar(this, /^([a-zA-ZÁÉÍÓÚñáéíóú]{1,15}[\s]*)+$/)" required />
+
+                            <select id="localidad" class="form-control" name="localidad" required>
+                                <option value='A Coruña' >A Coruña</option>
+                                <option value='álava'>Alava</option>
+                                <option value='Albacete' >Albacete</option>
+                                <option value='Alicante'>Alicante</option>
+                                <option value='Almería' >Almería</option>
+                                <option value='Asturias' >Asturias</option>
+                                <option value='ávila' >Ávila</option>
+                                <option value='Badajoz' >Badajoz</option>
+                                <option value='Barcelona'>Barcelona</option>
+                                <option value='Burgos' >Burgos</option>
+                                <option value='Cáceres' >Cáceres</option>
+                                <option value='Cádiz' >Cádiz</option>
+                                <option value='Cantabria' >Cantabria</option>
+                                <option value='Castellón' >Castellón</option>
+                                <option value='Ceuta' >Ceuta</option>
+                                <option value='Ciudad Real' >Ciudad Real</option>
+                                <option value='Córdoba' >Córdoba</option>
+                                <option value='Cuenca' >Cuenca</option>
+                                <option value='Gerona' >Gerona</option>
+                                <option value='Girona' >Girona</option>
+                                <option value='Las Palmas' >Las Palmas</option>
+                                <option value='Granada' >Granada</option>
+                                <option value='Guadalajara' >Guadalajara</option>
+                                <option value='Guipúzcoa' >Guipúzcoa</option>
+                                <option value='Huelva' >Huelva</option>
+                                <option value='Huesca' >Huesca</option>
+                                <option value='Jaén' >Jaén</option>
+                                <option value='La Rioja' >La Rioja</option>
+                                <option value='León' >León</option>
+                                <option value='Lleida' >Lleida</option>
+                                <option value='Lugo' >Lugo</option>
+                                <option value='Madrid' >Madrid</option>
+                                <option value='Malaga' >Málaga</option>
+                                <option value='Mallorca' >Mallorca</option>
+                                <option value='Melilla' >Melilla</option>
+                                <option value='Murcia' >Murcia</option>
+                                <option value='Navarra' >Navarra</option>
+                                <option value='Orense' >Orense</option>
+                                <option value='Palencia' >Palencia</option>
+                                <option value='Pontevedra'>Pontevedra</option>
+                                <option value='Salamanca'>Salamanca</option>
+                                <option value='Segovia' >Segovia</option>
+                                <option value='Sevilla' >Sevilla</option>
+                                <option value='Soria' >Soria</option>
+                                <option value='Tarragona' >Tarragona</option>
+                                <option value='Tenerife' >Tenerife</option>
+                                <option value='Teruel' >Teruel</option>
+                                <option value='Toledo' >Toledo</option>
+                                <option value='Valencia' >Valencia</option>
+                                <option value='Valladolid' >Valladolid</option>
+                                <option value='Vizcaya' >Vizcaya</option>
+                                <option value='Zamora' >Zamora</option>
+                                <option value='Zaragoza'>Zaragoza</option>
+                            </select>
+
+
 
                             <label >E-mail:</label>
                             <input type="email" id="email" name="email" class="form-control" onchange="comprobar(this, /^[a-zA-z0-9]+@[a-z]+\.[a-z]+/)" required />
                         </div>
-                        <div class="input-group">
+                </div>
+                <div class="input-group">
 
-                            <label >Hombre:</label><input type="radio" name="sexo" value="hombre"  required/>
+                    <label >Hombre:</label><input type="radio" name="sexo" value="hombre"  required/>
 
-                            <label >Mujer:</label><input type="radio" name="sexo" value="mujer"  required/>
-
-                        </div>
-                        <div id="buttonsContainer">
-                            <input type="submit" name="registro" class="button" id="btn-register-now" value="Enviar"  />
-
-                            <div class="button" id="btn-back">
-                                < Login
-                            </div>
-                        </div>
-
-                        <div >
-                            <div id="requerido">
-                                (*) Todos los campos son requeridos
-                            </div>
-
-                        </div>
+                    <label >Mujer:</label><input type="radio" name="sexo" value="mujer"  required/>
 
                 </div>
-            </div>
+                <div id="buttonsContainer">
+                    <input type="submit" name="registro" class="button" id="btn-register-now" value="Enviar"  />
 
-            </form>
+                    <div class="button" id="btn-back">
+                        < Login
+                    </div>
+                </div>
+
+                <div >
+                    <div id="requerido">
+                        (*) Todos los campos son requeridos
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+        </form>
 
         </div>
 

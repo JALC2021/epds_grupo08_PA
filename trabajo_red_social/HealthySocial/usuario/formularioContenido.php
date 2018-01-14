@@ -1,20 +1,17 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0
-    Strict//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-
-    strict.dtd">
-    <?PHP
-    session_start();
+<!DOCTYPE html>
+<?PHP
+session_start();
 
-    require_once '../functions.php';
+require_once '../functions.php';
 
 
-    if (isset($_SESSION['cliente'])) {
+if (isset($_SESSION['cliente'])) {
 
-        if (isset($_POST['alimentacion']) || isset($_POST['deportes']) || isset($_POST['suplemento'])) {
-            $insertar = true;
-            if (isset($_POST['alimentacion'])) {
-                if (!isset($_POST['dietaEstudio'])) {
-                    ?>
+    if (isset($_POST['alimentacion']) || isset($_POST['deportes']) || isset($_POST['suplemento'])) {
+        $insertar = true;
+        if (isset($_POST['alimentacion'])) {
+            if (!isset($_POST['dietaEstudio'])) {
+                ?>
                 <script type="text/javascript">
                     alert("Debe seleccionar si la dieta es un estudio Científico o una dieta");
                 </script>
@@ -31,7 +28,7 @@
                 <?PHP
                 $insertar = false;
             }
-            if ($_POST['localidad'] == "") {
+            if (!isset($_POST['localidad'])) {
                 ?>
                 <script type="text/javascript">
                     alert("Debe insertar una localidad");
@@ -83,7 +80,7 @@
 
                 $row = mysqli_fetch_array($result1);
 
-                $result2 = mysqli_query($con, "INSERT INTO `contenido` (`id_contenido`, `id_usuario`, `duracion`, `tipo`) VALUES (NULL, '" . $row['id_usuario'] . "', '" . $duracion . "', '" . $tipo . "');");
+                $result2 = mysqli_query($con, "INSERT INTO `contenido` (`id_contenido`, `id_usuario`, `duracion`, `tipo`, `descripcion`) VALUES (NULL, '" . $row['id_usuario'] . "', '" . $duracion . "', '" . $tipo . "','" . $descripcion . "');");
                 if (!$result2) {
                     die("Error al ejecutar la consulta: " . mysqli_error($con));
                 }
@@ -186,6 +183,7 @@
             <link rel="stylesheet" type="text/css" href="../css/style_index.css" />
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
             <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+            <link rel="shortcut icon" type="image/x-icon" href="images/logoUrl.ico" />
             <script type="text/javascript">
 
                 function mostrar(num) {
@@ -209,15 +207,15 @@
                     if (!expr.test(campo.value)) {
                         campo.value = "";
 
-                        if (campo.getAttribute('id') == "duración") {
+                        if (campo.getAttribute('id') === "duración") {
                             alert('El campo ' +
                                     campo.getAttribute('id') +
                                     ' tiene una duración incorrecta.Ej:22:22');
-                        } else if (campo.getAttribute('id') == "tipo") {
+                        } else if (campo.getAttribute('id') === "tipo") {
                             alert('El campo ' +
                                     campo.getAttribute('id') +
                                     ' debe tener carácteres alfanuméricos');
-                        } else if (campo.getAttribute('id') == "descripcion") {
+                        } else if (campo.getAttribute('id') === "descripcion") {
                             alert('El campo ' +
                                     campo.getAttribute('id') +
                                     ' debe tener carácteres alfanuméricos');
@@ -225,6 +223,11 @@
                     }
                 }
 
+            </script>
+            <script>
+                function myFunction() {
+                    alert("Por ejemplo futbol");
+                }
             </script>
 
         </head>
@@ -238,12 +241,12 @@
                 <section class="sectionPublicaciones">
 
                     <div class="container">
-                        <h2>Publicaciones</h2>
+                        <h2>Publicar</h2>
                         <form method="POST" action="#">
 
                             <div class="row">
                                 <div class="col-25">
-                                    <label for="categoria">Categoria<span id="requerido">(*)</span></label>
+                                    <label for="categoria">Categor&iacute;a <span id="requerido"> (*)</span></label>
                                 </div>
                                 <div class="col-75">
                                     <select id="categoria" name="categoria" onchange="mostrar(this.selectedIndex)" required>
@@ -253,31 +256,31 @@
                                     </select>
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col-25">
+                                    <label for="tipo">Tipo <span id="requerido"> (*)</span></label>
+                                </div>
+                                <div class="col-75">
+                                    <input onmouseover="myFunction()" type="text" id="tipo" name="tipo" required autofocus placeholder="Introduzca tipo..." />
+                                </div>
+                            </div>
+
 
                             <div class="row">
                                 <div class="col-25">
-                                    <label for="tipo">Tipo<span id="requerido">(*)</span></label>
+                                    <label for="duracion">Duraci&oacute;n <span id="requerido"> (*)</span></label>
                                 </div>
                                 <div class="col-75">
-                                    <input type="text" id="tipo" name="tipo" onchange="comprobar(this,/^([a-zA-ZÁÉÍÓÚñáéíóú0-9]*[\s]*)+$/)" required autofocus placeholder="Introduzca tipo..." />
+                                    <input type="time" id="duracion" name="duracion" onchange="comprobar(this, /^[0-2][0-9]:[0-5][0-9]$/)" required placeholder="Introduzca duración..." />
                                 </div>
                             </div>
 
                             <div class="row">
                                 <div class="col-25">
-                                    <label for="duracion">Duraci&oacute;n<span id="requerido">(*)</span></label>
+                                    <label for="descripcion">Descripci&oacute;n <span id="requerido"> (*)</span></label>
                                 </div>
                                 <div class="col-75">
-                                    <input type="time" id="duracion" name="duracion" onchange="comprobar(this,/^[0-2][0-9]:[0-5][0-9]$/)" required placeholder="Introduzca duración..." />
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-25">
-                                    <label for="descripcion">Descripci&oacute;n<span id="requerido">(*)</span></label>
-                                </div>
-                                <div class="col-75">
-                                    <textarea id="descripcion" name="descripcion" onchange="comprobar(this,/^([a-zA-ZÁÉÍÓÚñáéíóú0-9]*[\s]*)+$/)" placeholder="Introduce descripción..." style="height:100px"></textarea>
+                                    <textarea id="descripcion" name="descripcion" onchange="comprobar(this, /^([a-zA-ZÁÉÍÓÚñáéíóú0-9]*[\s]*)+$/)" placeholder="Introduce descripción..." style="height:100px"></textarea>
                                 </div>
                             </div>
 
@@ -290,12 +293,28 @@
                                 </div>
                             </div>
 
-
+                            <!--alimentacion-->
                             <div id="c0">
+
+                                <!--                                <div class="row">
+                                                                    <div class="col-25">
+                                                                        <label for="tipo">Tipo <span id="requerido"> (*)</span></label>
+                                                                    </div>
+                                                                    <div class="col-75">
+                                                                        <select id="tipoAlimentacion" name="tipo" required>                                    
+                                                                            <option value="omnivora">Omn&iacute;vora</option>
+                                                                            <option value="vegetariana">Vegetariana</option>
+                                                                            <option value="vegana">Vegana</option>
+                                                                            <option value="crudista">Crudista</option>
+                                                                            <option value="macrobiotica">Macrobi&oacute;tica</option>
+                                                                            <option value="ovolactovegetariana">Ovolactovegetariana</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>-->
                                 <div class="row">
                                     <div class="col-25">
-                                        <label for="dieta">Dieta<span id="requerido">(*)</span></label>
-                                    </div>
+                                        <label for="dieta">Dieta <span id="requerido"> (*)</span></label>
+                                    </div> 
                                     <div class="col-75">
                                         <input type="radio" id="dieta" name="dietaEstudio" value="dieta" />
                                     </div>
@@ -303,7 +322,7 @@
 
                                 <div class="row">
                                     <div class="col-25">
-                                        <label for="dieta">Estudio Cient&iacute;fico<span id="requerido">(*)</span></label>
+                                        <label for="dieta">Estudio Cient&iacute;fico <span id="requerido"> (*)</span></label>
                                     </div>
                                     <div class="col-75">
                                         <input type="radio" id="estudiocientifico" name="dietaEstudio" value="cientifico" />
@@ -315,27 +334,100 @@
                                 </div>
                             </div>
 
-
+                            <!--deportes-->
                             <div id="c1" style="display:none">
+
+                                <!--                                <div class="row">
+                                                                    <div class="col-25">
+                                                                        <label for="tipo">Tipo <span id="requerido"> (*)</span></label>
+                                                                    </div>
+                                                                    <div class="col-75">
+                                                                        <select id="tipoDeporte" name="tipo" required>
+                                                                            <option value="futbol">F&uacute;tbol</option>
+                                                                            <option value="tenis">Tenis</option>
+                                                                            <option value="paddel">Paddel</option>
+                                                                            <option value="surf">Surf</option>
+                                                                            <option value="baloncesto">Baloncesto&oacute;tica</option>
+                                                                            <option value="running">Runnig</option>
+                                                                            <option value="natacion">Nataci&oacute;n</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>-->
+
                                 <div class="row">
                                     <div class="col-25">
-                                        <label for="nivel">Nivel<span id="requerido">(*)</span></label>
+                                        <label for="nivel">Nivel <span id="requerido"> (*)</span></label>
                                     </div>
                                     <div class="col-75">
                                         <select id="categoria" name="nivel" required>
-                                            <option value="bajo" selected>Nivel bajo</option>
-                                            <option value="medio">Nivel medio</option>
-                                            <option value="alto">Nivel Alto</option>
+                                            <option value="bajo">Bajo</option>
+                                            <option value="medio">Medio</option>
+                                            <option value="alto">Alto</option>
                                         </select>
                                     </div>
                                 </div>
 
                                 <div class="row">
+
                                     <div class="col-25">
-                                        <label for="localidad">Localidad<span id="requerido">(*)</span></label>
+                                        <label for="localidad">Localidad <span id="requerido"> (*)</span></label>
                                     </div>
                                     <div class="col-75">
-                                        <input type="text" id="localidad" name="localidad" />
+                                        <select id="localidad" name="localidad" required>
+                                            <option value='A Coruña' >A Coruña</option>
+                                            <option value='álava'>Alava</option>
+                                            <option value='Albacete' >Albacete</option>
+                                            <option value='Alicante'>Alicante</option>
+                                            <option value='Almería' >Almería</option>
+                                            <option value='Asturias' >Asturias</option>
+                                            <option value='ávila' >Ávila</option>
+                                            <option value='Badajoz' >Badajoz</option>
+                                            <option value='Barcelona'>Barcelona</option>
+                                            <option value='Burgos' >Burgos</option>
+                                            <option value='Cáceres' >Cáceres</option>
+                                            <option value='Cádiz' >Cádiz</option>
+                                            <option value='Cantabria' >Cantabria</option>
+                                            <option value='Castellón' >Castellón</option>
+                                            <option value='Ceuta' >Ceuta</option>
+                                            <option value='Ciudad Real' >Ciudad Real</option>
+                                            <option value='Córdoba' >Córdoba</option>
+                                            <option value='Cuenca' >Cuenca</option>
+                                            <option value='Gerona' >Gerona</option>
+                                            <option value='Girona' >Girona</option>
+                                            <option value='Las Palmas' >Las Palmas</option>
+                                            <option value='Granada' >Granada</option>
+                                            <option value='Guadalajara' >Guadalajara</option>
+                                            <option value='Guipúzcoa' >Guipúzcoa</option>
+                                            <option value='Huelva' >Huelva</option>
+                                            <option value='Huesca' >Huesca</option>
+                                            <option value='Jaén' >Jaén</option>
+                                            <option value='La Rioja' >La Rioja</option>
+                                            <option value='León' >León</option>
+                                            <option value='Lleida' >Lleida</option>
+                                            <option value='Lugo' >Lugo</option>
+                                            <option value='Madrid' >Madrid</option>
+                                            <option value='Malaga' >Málaga</option>
+                                            <option value='Mallorca' >Mallorca</option>
+                                            <option value='Melilla' >Melilla</option>
+                                            <option value='Murcia' >Murcia</option>
+                                            <option value='Navarra' >Navarra</option>
+                                            <option value='Orense' >Orense</option>
+                                            <option value='Palencia' >Palencia</option>
+                                            <option value='Pontevedra'>Pontevedra</option>
+                                            <option value='Salamanca'>Salamanca</option>
+                                            <option value='Segovia' >Segovia</option>
+                                            <option value='Sevilla' >Sevilla</option>
+                                            <option value='Soria' >Soria</option>
+                                            <option value='Tarragona' >Tarragona</option>
+                                            <option value='Tenerife' >Tenerife</option>
+                                            <option value='Teruel' >Teruel</option>
+                                            <option value='Toledo' >Toledo</option>
+                                            <option value='Valencia' >Valencia</option>
+                                            <option value='Valladolid' >Valladolid</option>
+                                            <option value='Vizcaya' >Vizcaya</option>
+                                            <option value='Zamora' >Zamora</option>
+                                            <option value='Zaragoza'>Zaragoza</option>
+                                        </select>
                                     </div>
                                 </div>
 
@@ -344,14 +436,27 @@
                                 </div>
                             </div>
 
-
+                            <!--suplemento-->
                             <div id="c2" style="display:none">
+
+                                <!--                                <div class="row">
+                                                                    <div class="col-25">
+                                                                        <label for="tipo">Tipo <span id="requerido"> (*)</span></label>
+                                                                    </div>
+                                                                    <div class="col-75">
+                                                                        <select id="tipoSuplemento" name="tipo" required>
+                                                                            <option value="alimentario">Alimentario</option>
+                                                                            <option value="deportivo">Deportivo</option>                                          
+                                                                        </select>
+                                                                    </div>
+                                                                </div>-->
+
                                 <div class="row">
                                     <div class="col-25">
-                                        <label for="dosis">Dosis</label>
+                                        <label for="dosis">D&oacute;sis</label>
                                     </div>
                                     <div class="col-75">
-                                        <input type="text" name="dosis" />
+                                        <input type="text" name="dosis" placeholder="En miligramos..."/>
                                     </div>
                                 </div>
 
@@ -363,7 +468,7 @@
                                 <div class="col-25" id="requerido">
                                     (*) Campo requerido
                                 </div>
-                                
+
                             </div>
                         </form>
                     </div>

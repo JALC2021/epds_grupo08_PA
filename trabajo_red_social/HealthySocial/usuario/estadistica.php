@@ -1,93 +1,90 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0
-    Strict//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-
-    strict.dtd">
-    <?PHP
-    session_start();
+<!DOCTYPE html>
+<?PHP
+session_start();
 
-    require_once '../functions.php';
+require_once '../functions.php';
 
 
-    if (isset($_SESSION['cliente'])) {
+if (isset($_SESSION['cliente'])) {
 
-        $con = connectDB();
+    $con = connectDB();
 
-        if (!$con) {
-            die("Conexión fallida");
-        }
+    if (!$con) {
+        die("Conexión fallida");
+    }
 
-        $db_selected = mysqli_select_db($con, "healthysocial");
+    $db_selected = mysqli_select_db($con, "healthysocial");
 
-        if (!$db_selected) {
-            die("Conexión a basde de datos fallida");
-        }
+    if (!$db_selected) {
+        die("Conexión a basde de datos fallida");
+    }
 
-        $user = $_SESSION['user'];
+    $user = $_SESSION['user'];
 
-        $result = mysqli_query($con, "SELECT `id_usuario` FROM `usuario` WHERE `usuario` LIKE '" . $user . "';");
+    $result = mysqli_query($con, "SELECT `id_usuario` FROM `usuario` WHERE `usuario` LIKE '" . $user . "';");
 
-        $row = mysqli_fetch_array($result);
+    $row = mysqli_fetch_array($result);
 
-        $id_usuario = $row["id_usuario"];
+    $id_usuario = $row["id_usuario"];
 
-        $result = mysqli_query($con, "select COUNT(*) AS \"votosRecibidos\"  FROM contenido c , voto v WHERE c.id_contenido = v.id_contenido and c.id_usuario = '" . $id_usuario . "';");
+    $result = mysqli_query($con, "select COUNT(*) AS \"votosRecibidos\"  FROM contenido c , voto v WHERE c.id_contenido = v.id_contenido and c.id_usuario = '" . $id_usuario . "';");
 
-        $row = mysqli_fetch_array($result);
+    $row = mysqli_fetch_array($result);
 
-        $votosRecibidos = $row["votosRecibidos"];
+    $votosRecibidos = $row["votosRecibidos"];
 
-        $result = mysqli_query($con, "SELECT COUNT(*) AS \"votosRealizados\" FROM voto WHERE id_usuario = '" . $id_usuario . "';");
+    $result = mysqli_query($con, "SELECT COUNT(*) AS \"votosRealizados\" FROM voto WHERE id_usuario = '" . $id_usuario . "';");
 
-        $row = mysqli_fetch_array($result);
+    $row = mysqli_fetch_array($result);
 
-        $votosRealizados = $row["votosRealizados"];
+    $votosRealizados = $row["votosRealizados"];
 
-        $result = mysqli_query($con, "select SEC_TO_TIME(SUM(TIME_TO_SEC(c.duracion))) as \"time\" from contenido c NATURAL JOIN deportes d;");
+    $result = mysqli_query($con, "select SEC_TO_TIME(SUM(TIME_TO_SEC(c.duracion))) as \"time\" from contenido c NATURAL JOIN deportes d;");
 
-        $row = mysqli_fetch_array($result);
+    $row = mysqli_fetch_array($result);
 
-        $time = $row['time'];
+    $time = $row['time'];
 
-        $result = mysqli_query($con, "SELECT COUNT(*) AS \"comentariosRecibidos\" FROM comentario cm, contenido cn where cm.id_contenido = cn.id_contenido and cn.id_usuario = '" . $id_usuario . "';");
+    $result = mysqli_query($con, "SELECT COUNT(*) AS \"comentariosRecibidos\" FROM comentario cm, contenido cn where cm.id_contenido = cn.id_contenido and cn.id_usuario = '" . $id_usuario . "';");
 
-        $row = mysqli_fetch_array($result);
+    $row = mysqli_fetch_array($result);
 
-        $comentariosRecibidos = $row['comentariosRecibidos'];
+    $comentariosRecibidos = $row['comentariosRecibidos'];
 
-        $result = mysqli_query($con, "SELECT COUNT(*) AS \"comentariosRealizados\" FROM comentario WHERE id_usuario = '" . $id_usuario . "';");
+    $result = mysqli_query($con, "SELECT COUNT(*) AS \"comentariosRealizados\" FROM comentario WHERE id_usuario = '" . $id_usuario . "';");
 
-        $row = mysqli_fetch_array($result);
+    $row = mysqli_fetch_array($result);
 
-        $comentariosRealizados = $row['comentariosRealizados'];
+    $comentariosRealizados = $row['comentariosRealizados'];
 
 
-        $result = mysqli_query($con, "SELECT count(*) AS \"dieta\" FROM alimentacion a NATURAL JOIN contenido c where c.id_usuario = '" . $id_usuario . "' and a.dieta_estudio like 'dieta';");
+    $result = mysqli_query($con, "SELECT count(*) AS \"dieta\" FROM alimentacion a NATURAL JOIN contenido c where c.id_usuario = '" . $id_usuario . "' and a.dieta_estudio like 'dieta';");
 
-        $row = mysqli_fetch_array($result);
+    $row = mysqli_fetch_array($result);
 
-        $dietas = $row['dieta'];
+    $dietas = $row['dieta'];
 
-        $result = mysqli_query($con, "SELECT count(*) AS \"cientifico\" FROM alimentacion a NATURAL JOIN contenido c where c.id_usuario = '" . $id_usuario . "' and a.dieta_estudio like 'cientifico';");
+    $result = mysqli_query($con, "SELECT count(*) AS \"cientifico\" FROM alimentacion a NATURAL JOIN contenido c where c.id_usuario = '" . $id_usuario . "' and a.dieta_estudio like 'cientifico';");
 
-        $row = mysqli_fetch_array($result);
+    $row = mysqli_fetch_array($result);
 
-        $cientifico = $row['cientifico'];
+    $cientifico = $row['cientifico'];
 
-        $result = mysqli_query($con, "SELECT count(*) AS \"deportes\" FROM deportes a NATURAL JOIN contenido c where c.id_usuario = '" . $id_usuario . "';");
+    $result = mysqli_query($con, "SELECT count(*) AS \"deportes\" FROM deportes a NATURAL JOIN contenido c where c.id_usuario = '" . $id_usuario . "';");
 
-        $row = mysqli_fetch_array($result);
+    $row = mysqli_fetch_array($result);
 
-        $deportes = $row['deportes'];
+    $deportes = $row['deportes'];
 
-        $result = mysqli_query($con, "SELECT count(*) AS \"suplemento\" FROM suplemento a NATURAL JOIN contenido c where c.id_usuario = '" . $id_usuario . "';");
+    $result = mysqli_query($con, "SELECT count(*) AS \"suplemento\" FROM suplemento a NATURAL JOIN contenido c where c.id_usuario = '" . $id_usuario . "';");
 
-        $row = mysqli_fetch_array($result);
+    $row = mysqli_fetch_array($result);
 
-        $suplemento = $row['suplemento'];
-        $publicaciones = $dietas + $cientifico + $deportes + $suplemento;
+    $suplemento = $row['suplemento'];
+    $publicaciones = $dietas + $cientifico + $deportes + $suplemento;
 
-        disconnectDB($con);
-        ?>
+    disconnectDB($con);
+    ?>
 
     <html xmlns="http://www.w3.org/1999/xhtml" >
         <head>
@@ -97,6 +94,7 @@
             <link rel="stylesheet" type="text/css" href="../css/style_index.css" />
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
             <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+            <link rel="shortcut icon" type="image/x-icon" href="images/logoUrl.ico" />
         </head>
         <body>
 
