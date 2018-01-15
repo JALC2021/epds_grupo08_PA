@@ -7,7 +7,7 @@ require_once '../functions.php';
 
 if (isset($_SESSION['usuario'])) {
     if (isset($_POST['alimentacion']) || isset($_POST['deportes']) || isset($_POST['suplemento'])) {
-        
+
         $insertar = true;
         if (isset($_POST['alimentacion'])) {
             if (!isset($_POST['dietaEstudio'])) {
@@ -98,7 +98,7 @@ if (isset($_SESSION['usuario'])) {
                     //saneamos las entradas
                     $tipoAlimentacion = mysqli_real_escape_string($con, $_POST['tipoAlimentacion']);
                     $duracionAlimentacion = mysqli_real_escape_string($con, $_POST['duracionAlimentacion']);
-                    
+
                     $result = mysqli_query($con, "INSERT INTO `alimentacion` (`id_contenido`, `dieta_estudio`,`tipo`, `duracion`) VALUES ('" . $row2['id_contenido'] . "', '" . $_POST['dietaEstudio'] . "', '" . $tipoAlimentacion . "', '" . $duracionAlimentacion . "');");
                     if (!$result) {
                         die("Error al ejecutar la consulta: " . mysqli_error($con));
@@ -113,11 +113,11 @@ if (isset($_SESSION['usuario'])) {
                     //saneamos las entradas
                     $nivel = mysqli_real_escape_string($con, $_POST['nivel']);
                     $localidad = mysqli_real_escape_string($con, $_POST['localidad']);
-                    
+
                     $tipoDeporte = mysqli_real_escape_string($con, $_POST['tipoDeporte']);
                     $duracionDeporte = mysqli_real_escape_string($con, $_POST['duracionDeporte']);
 
-                    $result = mysqli_query($con, "INSERT INTO `deportes` (`id_contenido`, `nivel`, `localizacion`,`tipo`, `duracion`) VALUES ('" . $row2['id_contenido'] . "', '" . $nivel . "', '" . $localidad . "', '" . $tipoDeporte. "', '" . $duracionDeporte . "');");
+                    $result = mysqli_query($con, "INSERT INTO `deportes` (`id_contenido`, `nivel`, `localizacion`,`tipo`, `duracion`) VALUES ('" . $row2['id_contenido'] . "', '" . $nivel . "', '" . $localidad . "', '" . $tipoDeporte . "', '" . $duracionDeporte . "');");
                     if (!$result) {
                         die("Error al ejecutar la consulta: " . mysqli_error($con));
                     }
@@ -190,7 +190,7 @@ if (isset($_SESSION['usuario'])) {
             <link rel="stylesheet" type="text/css" href="../css/style_index.css" />
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
             <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-            <link rel="shortcut icon" type="image/x-icon" href="images/logoUrl.ico" />
+            <link rel="shortcut icon" type="image/x-icon" href="../images/logoUrl.ico" />
             <script type="text/javascript">
 
                 function mostrar(num) {
@@ -463,8 +463,8 @@ if (isset($_SESSION['usuario'])) {
                                         </select>
                                     </div>
                                 </div>
-                                
-                                  <div class="row">
+
+                                <div class="row">
                                     <div class="col-25">
                                         <label>Duraci&oacute;n <span id="requerido"> (*)</span></label>
                                     </div>
