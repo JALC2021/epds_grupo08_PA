@@ -261,7 +261,7 @@ if (isset($_SESSION['cliente'])) {
                                     <label for="tipo">Tipo <span id="requerido"> (*)</span></label>
                                 </div>
                                 <div class="col-75">
-                                    <input onmouseover="myFunction()" type="text" id="tipo" name="tipo" required autofocus placeholder="Introduzca tipo..." />
+                                    <input type="tipo" required autofocus placeholder="Introduzca tipo..." />
                                 </div>
                             </div>
 
@@ -375,7 +375,7 @@ if (isset($_SESSION['cliente'])) {
                                     <div class="col-75">
                                         <select id="localidad" name="localidad" required>
                                             <option value='A Coruña' >A Coruña</option>
-                                            <option value='álava'>Alava</option>
+                                            <option value='&Aacute;lava'>Alava</option>
                                             <option value='Albacete' >Albacete</option>
                                             <option value='Alicante'>Alicante</option>
                                             <option value='Almería' >Almería</option>

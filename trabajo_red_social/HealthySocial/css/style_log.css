@@ -155,18 +155,7 @@ REGISTER FORM:
 #registerForm > form > .input-group{
     margin: 10px 15px;
     display: block;
-     -moz-border-radius-topleft: 9px;
-    -moz-border-radius-topright:9px;
-    -moz-border-radius-bottomleft:9px;
-    -moz-border-radius-bottomright:9px;
-    -webkit-border-top-left-radius:9px;
-    -webkit-border-top-right-radius:9px;
-    -webkit-border-bottom-left-radius:9px;
-    -webkit-border-bottom-right-radius:9px;
-    border-top-left-radius:9px;
-    border-top-right-radius:9px;
-    border-bottom-left-radius:9px;
-    border-bottom-right-radius:9px;
+    
 }
 #registerForm > form > .input-group > .form-control{
     height: 40px;
