@@ -5,9 +5,9 @@ session_start();
 require_once '../functions.php';
 
 
-if (isset($_SESSION['cliente'])) {
-
+if (isset($_SESSION['usuario'])) {
     if (isset($_POST['alimentacion']) || isset($_POST['deportes']) || isset($_POST['suplemento'])) {
+        
         $insertar = true;
         if (isset($_POST['alimentacion'])) {
             if (!isset($_POST['dietaEstudio'])) {
@@ -47,9 +47,7 @@ if (isset($_SESSION['cliente'])) {
             }
         }
 
-        if ($insertar && preg_match("/^[0-2][0-9]:[0-5][0-9]$/", $_POST['duracion']) &&
-                preg_match("/^([a-zA-ZÁÉÍÓÚñáéíóú0-9]*[\s]*)+$/", $_POST['tipo']) &&
-                preg_match("/^([a-zA-ZÁÉÍÓÚñáéíóú0-9]*[\s]*)+$/", $_POST['descripcion'])) {
+        if ($insertar && preg_match("/^([a-zA-ZÁÉÍÓÚñáéíóú0-9]*[\s]*)+$/", $_POST['descripcion'])) {
             $con = connectDB();
 
             if (!$con) {
@@ -63,8 +61,6 @@ if (isset($_SESSION['cliente'])) {
             }
 
             //saneamos la entrada a la bbdd
-            $tipo = mysqli_real_escape_string($con, $_POST['tipo']);
-            $duracion = mysqli_real_escape_string($con, $_POST['duracion']);
             $descripcion = mysqli_real_escape_string($con, $_POST['descripcion']);
             $foto = filter_var($_POST['foto'], FILTER_SANITIZE_URL);
 
@@ -80,7 +76,7 @@ if (isset($_SESSION['cliente'])) {
 
                 $row = mysqli_fetch_array($result1);
 
-                $result2 = mysqli_query($con, "INSERT INTO `contenido` (`id_contenido`, `id_usuario`, `duracion`, `tipo`, `descripcion`) VALUES (NULL, '" . $row['id_usuario'] . "', '" . $duracion . "', '" . $tipo . "','" . $descripcion . "');");
+                $result2 = mysqli_query($con, "INSERT INTO `contenido` (`id_contenido`, `id_usuario`, `descripcion`) VALUES (NULL, '" . $row['id_usuario'] . "','" . $descripcion . "');");
                 if (!$result2) {
                     die("Error al ejecutar la consulta: " . mysqli_error($con));
                 }
@@ -99,7 +95,11 @@ if (isset($_SESSION['cliente'])) {
                     }
                 }
                 if (isset($_POST['alimentacion'])) {
-                    $result = mysqli_query($con, "INSERT INTO `alimentacion` (`id_contenido`, `dieta_estudio`) VALUES ('" . $row2['id_contenido'] . "', '" . $_POST['dietaEstudio'] . "');");
+                    //saneamos las entradas
+                    $tipoAlimentacion = mysqli_real_escape_string($con, $_POST['tipoAlimentacion']);
+                    $duracionAlimentacion = mysqli_real_escape_string($con, $_POST['duracionAlimentacion']);
+                    
+                    $result = mysqli_query($con, "INSERT INTO `alimentacion` (`id_contenido`, `dieta_estudio`,`tipo`, `duracion`) VALUES ('" . $row2['id_contenido'] . "', '" . $_POST['dietaEstudio'] . "', '" . $tipoAlimentacion . "', '" . $duracionAlimentacion . "');");
                     if (!$result) {
                         die("Error al ejecutar la consulta: " . mysqli_error($con));
                     }
@@ -110,10 +110,14 @@ if (isset($_SESSION['cliente'])) {
                     <?PHP
                     disconnectDB($con);
                 } else if (isset($_POST['deportes'])) {
+                    //saneamos las entradas
                     $nivel = mysqli_real_escape_string($con, $_POST['nivel']);
                     $localidad = mysqli_real_escape_string($con, $_POST['localidad']);
+                    
+                    $tipoDeporte = mysqli_real_escape_string($con, $_POST['tipoDeporte']);
+                    $duracionDeporte = mysqli_real_escape_string($con, $_POST['duracionDeporte']);
 
-                    $result = mysqli_query($con, "INSERT INTO `deportes` (`id_contenido`, `nivel`, `localizacion`) VALUES ('" . $row2['id_contenido'] . "', '" . $nivel . "', '" . $localidad . "');");
+                    $result = mysqli_query($con, "INSERT INTO `deportes` (`id_contenido`, `nivel`, `localizacion`,`tipo`, `duracion`) VALUES ('" . $row2['id_contenido'] . "', '" . $nivel . "', '" . $localidad . "', '" . $tipoDeporte. "', '" . $duracionDeporte . "');");
                     if (!$result) {
                         die("Error al ejecutar la consulta: " . mysqli_error($con));
                     }
@@ -125,8 +129,11 @@ if (isset($_SESSION['cliente'])) {
                     disconnectDB($con);
                 } else if (isset($_POST['suplemento'])) {
                     if ($_POST['dosis'] > 0) {
+                        //saneamos las entradas
                         $dosis = mysqli_real_escape_string($con, $_POST['dosis']);
-                        $result = mysqli_query($con, "INSERT INTO `suplemento` (`id_contenido`, `dosis`) VALUES ('" . $row2['id_contenido'] . "', '" . $_POST['dosis'] . "');");
+                        $tipoSuplemento = mysqli_real_escape_string($con, $_POST['tipoSuplemento']);
+                        $duracionSuplemento = mysqli_real_escape_string($con, $_POST['duracionSuplemento']);
+                        $result = mysqli_query($con, "INSERT INTO `suplemento` (`id_contenido`, `dosis`,`tipo`, `duracion`) VALUES ('" . $row2['id_contenido'] . "', '" . $_POST['dosis'] . "', '" . $tipoSuplemento . "', '" . $duracionSuplemento . "');");
                         if (!$result) {
                             die("Error al ejecutar la consulta: " . mysqli_error($con));
                         }
@@ -246,7 +253,7 @@ if (isset($_SESSION['cliente'])) {
 
                             <div class="row">
                                 <div class="col-25">
-                                    <label for="categoria">Categor&iacute;a <span id="requerido"> (*)</span></label>
+                                    <label>Categor&iacute;a <span id="requerido"> (*)</span></label>
                                 </div>
                                 <div class="col-75">
                                     <select id="categoria" name="categoria" onchange="mostrar(this.selectedIndex)" required>
@@ -256,37 +263,19 @@ if (isset($_SESSION['cliente'])) {
                                     </select>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-25">
-                                    <label for="tipo">Tipo <span id="requerido"> (*)</span></label>
-                                </div>
-                                <div class="col-75">
-                                    <input type="tipo" required autofocus placeholder="Introduzca tipo..." />
-                                </div>
-                            </div>
-
 
                             <div class="row">
                                 <div class="col-25">
-                                    <label for="duracion">Duraci&oacute;n <span id="requerido"> (*)</span></label>
+                                    <label>Descripci&oacute;n <span id="requerido"> (*)</span></label>
                                 </div>
                                 <div class="col-75">
-                                    <input type="time" id="duracion" name="duracion" onchange="comprobar(this, /^[0-2][0-9]:[0-5][0-9]$/)" required placeholder="Introduzca duración..." />
+                                    <textarea id="descripcion" name="descripcion" onchange="comprobar(this, /^([a-zA-ZÁÉÍÓÚñáéíóú0-9]*[\s]*)+$/)" required placeholder="Introduce descripción..." style="height:100px"></textarea>
                                 </div>
                             </div>
 
                             <div class="row">
                                 <div class="col-25">
-                                    <label for="descripcion">Descripci&oacute;n <span id="requerido"> (*)</span></label>
-                                </div>
-                                <div class="col-75">
-                                    <textarea id="descripcion" name="descripcion" onchange="comprobar(this, /^([a-zA-ZÁÉÍÓÚñáéíóú0-9]*[\s]*)+$/)" placeholder="Introduce descripción..." style="height:100px"></textarea>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-25">
-                                    <label for="foto">Foto</label>
+                                    <label>Foto</label>
                                 </div>
                                 <div class="col-75">
                                     <input type="url" id="foto" name="foto" placeholder="Introduzca url..." /> 
@@ -296,24 +285,39 @@ if (isset($_SESSION['cliente'])) {
                             <!--alimentacion-->
                             <div id="c0">
 
-                                <!--                                <div class="row">
-                                                                    <div class="col-25">
-                                                                        <label for="tipo">Tipo <span id="requerido"> (*)</span></label>
-                                                                    </div>
-                                                                    <div class="col-75">
-                                                                        <select id="tipoAlimentacion" name="tipo" required>                                    
-                                                                            <option value="omnivora">Omn&iacute;vora</option>
-                                                                            <option value="vegetariana">Vegetariana</option>
-                                                                            <option value="vegana">Vegana</option>
-                                                                            <option value="crudista">Crudista</option>
-                                                                            <option value="macrobiotica">Macrobi&oacute;tica</option>
-                                                                            <option value="ovolactovegetariana">Ovolactovegetariana</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>-->
                                 <div class="row">
                                     <div class="col-25">
-                                        <label for="dieta">Dieta <span id="requerido"> (*)</span></label>
+                                        <label>Tipo <span id="requerido"> (*)</span></label>
+                                    </div>
+                                    <div class="col-75">
+                                        <select id="tipoAlimentacion" name="tipoAlimentacion" >                                    
+                                            <option value="omnivora">Omn&iacute;vora</option>
+                                            <option value="vegetariana">Vegetariana</option>
+                                            <option value="vegana">Vegana</option>
+                                            <option value="crudista">Crudista</option>
+                                            <option value="macrobiotica">Macrobi&oacute;tica</option>
+                                            <option value="ovolactovegetariana">Ovolactovegetariana</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-25">
+                                        <label>Duraci&oacute;n <span id="requerido"> (*)</span></label>
+                                    </div>
+                                    <div class="col-75">
+                                        <select id="duracionAlimentacion" name="duracionAlimentacion" >                                    
+                                            <option value="1semana">1 semana</option>
+                                            <option value="2semanas">2 semanas</option>
+                                            <option value="3semanas">3 semanas</option>
+                                            <option value="4semanas">4 semanas</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-25">
+                                        <label>Dieta <span id="requerido"> (*)</span></label>
                                     </div> 
                                     <div class="col-75">
                                         <input type="radio" id="dieta" name="dietaEstudio" value="dieta" />
@@ -322,7 +326,7 @@ if (isset($_SESSION['cliente'])) {
 
                                 <div class="row">
                                     <div class="col-25">
-                                        <label for="dieta">Estudio Cient&iacute;fico <span id="requerido"> (*)</span></label>
+                                        <label>Estudio Cient&iacute;fico <span id="requerido"> (*)</span></label>
                                     </div>
                                     <div class="col-75">
                                         <input type="radio" id="estudiocientifico" name="dietaEstudio" value="cientifico" />
@@ -337,29 +341,38 @@ if (isset($_SESSION['cliente'])) {
                             <!--deportes-->
                             <div id="c1" style="display:none">
 
-                                <!--                                <div class="row">
-                                                                    <div class="col-25">
-                                                                        <label for="tipo">Tipo <span id="requerido"> (*)</span></label>
-                                                                    </div>
-                                                                    <div class="col-75">
-                                                                        <select id="tipoDeporte" name="tipo" required>
-                                                                            <option value="futbol">F&uacute;tbol</option>
-                                                                            <option value="tenis">Tenis</option>
-                                                                            <option value="paddel">Paddel</option>
-                                                                            <option value="surf">Surf</option>
-                                                                            <option value="baloncesto">Baloncesto&oacute;tica</option>
-                                                                            <option value="running">Runnig</option>
-                                                                            <option value="natacion">Nataci&oacute;n</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>-->
+                                <div class="row">
+                                    <div class="col-25">
+                                        <label>Tipo <span id="requerido"> (*)</span></label>
+                                    </div>
+                                    <div class="col-75">
+                                        <select id="tipoDeporte" name="tipoDeporte" >
+                                            <option value="futbol">F&uacute;tbol</option>
+                                            <option value="tenis">Tenis</option>
+                                            <option value="paddel">Paddel</option>
+                                            <option value="surf">Surf</option>
+                                            <option value="baloncesto">Baloncesto&oacute;tica</option>
+                                            <option value="running">Runnig</option>
+                                            <option value="natacion">Nataci&oacute;n</option>
+                                        </select>
+                                    </div>
+                                </div>
 
                                 <div class="row">
                                     <div class="col-25">
-                                        <label for="nivel">Nivel <span id="requerido"> (*)</span></label>
+                                        <label>Duraci&oacute;n <span id="requerido"> (*)</span></label>
                                     </div>
                                     <div class="col-75">
-                                        <select id="categoria" name="nivel" required>
+                                        <input type="time" id="duracion" name="duracionDeporte" onchange="comprobar(this, /^[0-2][0-9]:[0-5][0-9]$/)"  placeholder="Introduzca duración..." />
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-25">
+                                        <label>Nivel <span id="requerido"> (*)</span></label>
+                                    </div>
+                                    <div class="col-75">
+                                        <select id="categoria" name="nivel" >
                                             <option value="bajo">Bajo</option>
                                             <option value="medio">Medio</option>
                                             <option value="alto">Alto</option>
@@ -370,10 +383,10 @@ if (isset($_SESSION['cliente'])) {
                                 <div class="row">
 
                                     <div class="col-25">
-                                        <label for="localidad">Localidad <span id="requerido"> (*)</span></label>
+                                        <label>Localidad <span id="requerido"> (*)</span></label>
                                     </div>
                                     <div class="col-75">
-                                        <select id="localidad" name="localidad" required>
+                                        <select id="localidad" name="localidad" >
                                             <option value='A Coruña' >A Coruña</option>
                                             <option value='&Aacute;lava'>Alava</option>
                                             <option value='Albacete' >Albacete</option>
@@ -439,21 +452,35 @@ if (isset($_SESSION['cliente'])) {
                             <!--suplemento-->
                             <div id="c2" style="display:none">
 
-                                <!--                                <div class="row">
-                                                                    <div class="col-25">
-                                                                        <label for="tipo">Tipo <span id="requerido"> (*)</span></label>
-                                                                    </div>
-                                                                    <div class="col-75">
-                                                                        <select id="tipoSuplemento" name="tipo" required>
-                                                                            <option value="alimentario">Alimentario</option>
-                                                                            <option value="deportivo">Deportivo</option>                                          
-                                                                        </select>
-                                                                    </div>
-                                                                </div>-->
+                                <div class="row">
+                                    <div class="col-25">
+                                        <label>Tipo <span id="requerido"> (*)</span></label>
+                                    </div>
+                                    <div class="col-75">
+                                        <select id="tipoSuplemento" name="tipoSuplemento" >
+                                            <option value="alimentario">Alimentario</option>
+                                            <option value="deportivo">Deportivo</option>                                          
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                  <div class="row">
+                                    <div class="col-25">
+                                        <label>Duraci&oacute;n <span id="requerido"> (*)</span></label>
+                                    </div>
+                                    <div class="col-75">
+                                        <select id="duracionSuplemento" name="duracionSuplemento" >                                    
+                                            <option value="1semana">1 semana</option>
+                                            <option value="2semanas">2 semanas</option>
+                                            <option value="3semanas">3 semanas</option>
+                                            <option value="4semanas">4 semanas</option>
+                                        </select>
+                                    </div>
+                                </div>
 
                                 <div class="row">
                                     <div class="col-25">
-                                        <label for="dosis">D&oacute;sis</label>
+                                        <label>D&oacute;sis</label>
                                     </div>
                                     <div class="col-75">
                                         <input type="text" name="dosis" placeholder="En miligramos..."/>
@@ -484,7 +511,7 @@ if (isset($_SESSION['cliente'])) {
             include_once '../footer.php';
         } else {
             $_SESSION['url'] = "usuario/formularioContenido.php";
-            $_SESSION['tipo'] = 'cliente';
+            $_SESSION['tipo'] = 'usuario';
             header("location:../login.php");
         }
         ?>

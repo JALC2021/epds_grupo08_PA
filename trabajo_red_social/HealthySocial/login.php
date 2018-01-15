@@ -47,8 +47,8 @@
 //guardamos la cookie con el nombre del usuario durante 30 días
             setcookie("user", $name, time() + 30 * 60 * 60);
 
-            if ($fila['tipo'] == 'cliente') {
-                $_SESSION['cliente'] = TRUE;
+            if ($fila['tipo'] == 'usuario') {
+                $_SESSION['usuario'] = TRUE;
             } else if ($fila['tipo'] == 'administrador') {
                 $_SESSION['administrador'] = TRUE;
             }
@@ -57,7 +57,7 @@
 
             if (!isset($_SESSION['url'])) {
 
-                if ($fila['tipo'] == 'cliente') {
+                if ($fila['tipo'] == 'usuario') {
                     $_SESSION['url'] = "usuario/index.php";
                 } else if ($fila['tipo'] == 'administrador') {
                     $_SESSION['url'] = "administrador/indexAdministrador.php";
@@ -67,7 +67,7 @@
             if ($_SESSION['tipo'] == $fila['tipo']) {
                 header("location:" . $_SESSION['url']);
             } else {
-                if ($fila['tipo'] == 'cliente') {
+                if ($fila['tipo'] == 'usuario') {
                     header("location:usuario/index.php");
                 } else if ($fila['tipo'] == 'administrador') {
                     header("location:administrador/indexAdministrador.php");
@@ -114,7 +114,7 @@
         $pass = password_hash(mysqli_real_escape_string($con, $_POST['password']), PASSWORD_DEFAULT);
 
         $result = mysqli_query($con, "INSERT INTO `usuario` (`id_usuario`, `usuario`, `password`, `tipo`, `nombre`, `email`, `sexo`,`apellidos`, `localidad`)
-            VALUES (NULL, '" . $user . "', '" . $pass . "', 'cliente', '" . $name . "', '" . $email . "', '" . $sexo . "', '" . $apellidos . "', '" . $localidad . "');");
+            VALUES (NULL, '" . $user . "', '" . $pass . "', 'usuario', '" . $name . "', '" . $email . "', '" . $sexo . "', '" . $apellidos . "', '" . $localidad . "');");
         if (!$result) {
             die("Error al ejecutar la consulta: " . mysqli_error($con));
         }
@@ -344,8 +344,6 @@
                                 <option value='Zamora' >Zamora</option>
                                 <option value='Zaragoza'>Zaragoza</option>
                             </select>
-
-
 
                             <label >E-mail:</label>
                             <input type="email" id="email" name="email" class="form-control" onchange="comprobar(this, /^[a-zA-z0-9]+@[a-z]+\.[a-z]+/)" required />

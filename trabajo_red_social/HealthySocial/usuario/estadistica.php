@@ -5,7 +5,7 @@ session_start();
 require_once '../functions.php';
 
 
-if (isset($_SESSION['cliente'])) {
+if (isset($_SESSION['usuario'])) {
 
     $con = connectDB();
 
@@ -132,7 +132,7 @@ if (isset($_SESSION['cliente'])) {
             include_once '../footer.php';
         } else {
             $_SESSION['url'] = "usuario/estadistica.php";
-            $_SESSION['tipo'] = 'cliente';
+            $_SESSION['tipo'] = 'usuario';
             header("location:../login.php");
         }
         ?>

@@ -2,7 +2,7 @@
 <?PHP
 session_start();
 
-if (isset($_SESSION['cliente'])) {
+if (isset($_SESSION['usuario'])) {
     ?>
     <!--
     To change this license header, choose License Headers in Project Properties.
@@ -64,7 +64,7 @@ if (isset($_SESSION['cliente'])) {
             include_once '../footer.php';
         } else {
             $_SESSION['url'] = "usuario/index.php";
-            $_SESSION['tipo'] = 'cliente';
+            $_SESSION['tipo'] = 'usuario';
             header("location:../login.php");
         }
         ?>
