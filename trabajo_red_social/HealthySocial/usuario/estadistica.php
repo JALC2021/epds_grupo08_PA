@@ -39,7 +39,7 @@ if (isset($_SESSION['usuario'])) {
 
     $votosRealizados = $row["votosRealizados"];
 
-    $result = mysqli_query($con, "select SEC_TO_TIME(SUM(TIME_TO_SEC(c.duracion))) as \"time\" from contenido c NATURAL JOIN deportes d;");
+    $result = mysqli_query($con, "select SEC_TO_TIME(SUM(TIME_TO_SEC(d.duracion))) as \"time\" from contenido c NATURAL JOIN deportes d where c.id_usuario ='" . $id_usuario . "';");
 
     $row = mysqli_fetch_array($result);
 
