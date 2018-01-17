@@ -86,15 +86,15 @@ if (isset($_SESSION['usuario'])) {
     disconnectDB($con);
     ?>
 
-    <html xmlns="http://www.w3.org/1999/xhtml" >
+    <html>
         <head>
             <meta charset="UTF-8" />
             <title>SocialHealthy</title>
             <meta name="viewport" content="width=device-width, user-scalabe=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
-            <link rel="stylesheet" type="text/css" href="../css/style_index.css" />
+            <link rel="stylesheet" type="text/css" href="../css/style_base.css" />
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
             <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-            <link rel="shortcut icon" type="image/x-icon" href="../images/logoUrl.ico" />
+            <link rel="shortcut icon" type="image/x-icon" href="../images/logo2.png" />
         </head>
         <body>
 
@@ -107,19 +107,19 @@ if (isset($_SESSION['usuario'])) {
 
                 <section class="sectionEstadistica">
                     <div class="container">
-                        <h2>Estadisticas</h2>
+                        <h2>Mis estad&iacute;sticas</h2>
                         <table class="estadistica">
                             <tr><th>Estad&iacute;stica</th><th>Cantidad</th></tr>
-                            <tr><td>N&uacute;mero de likes realizados</td><td><?PHP echo $votosRecibidos; ?></td></tr>
-                            <tr><td>N&uacute;mero de likes recibidos</td><td><?PHP echo $votosRealizados; ?></td></tr>
-                            <tr><td>N&uacute;mero de publicaciones</td><td><?PHP echo $publicaciones; ?></td></tr>
+                            <tr><td>Likes realizados</td><td><?PHP echo $votosRecibidos; ?></td></tr>
+                            <tr><td>Likes recibidos</td><td><?PHP echo $votosRealizados; ?></td></tr>
+                            <tr><td>Publicaciones realizadas</td><td><?PHP echo $publicaciones; ?></td></tr>
                             <tr><td>Comentarios recibidos</td><td><?PHP echo $comentariosRecibidos; ?></td></tr>
                             <tr><td>Comentarios Realizados</td><td><?PHP echo $comentariosRealizados; ?></td></tr>
                             <tr><td>Dietas publicadas</td><td><?PHP echo $dietas; ?></td></tr>
                             <tr><td>Estudios cientificos publicados</td><td><?PHP echo $cientifico; ?></td></tr>
                             <tr><td>Deportes publicados</td><td><?PHP echo $deportes; ?></td></tr>
                             <tr><td>Suplementos publicados</td><td><?PHP echo $suplemento; ?></td></tr>
-                            <tr><td>Tiempo invertido en hacer deporte</td><td><?PHP echo $time; ?></td></tr>
+                            <tr><td>Tiempo invertido en hacer deporte</td><td><?PHP echo $time; ?> horas</td></tr>
                         </table>
                     </div>
                 </section>

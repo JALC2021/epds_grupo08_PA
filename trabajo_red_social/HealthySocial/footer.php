@@ -1,3 +1,3 @@
 <footer class="footer">
-    <h3>Gonzalo - Juan Antonio - Susana</h3>
+    <h4>Social Healthy © Espa&ntilde;a 2018. Todos los derechos reservados</h4>
 </footer>

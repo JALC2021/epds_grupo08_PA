@@ -1,0 +1,588 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 02-ene-2018, 12:50:04
+    Author     : juanantoniolopezcano
+*/
+/* Rules for sizing the icon. */
+.material-icons.md-18 { font-size: 18px; }
+.material-icons.md-24 { font-size: 24px; }
+.material-icons.md-36 { font-size: 36px; }
+.material-icons.md-48 { font-size: 48px; }
+
+/* Rules for using icons as black on a light background. */
+.material-icons.md-dark { color: rgba(0, 0, 0, 0.54); }
+.material-icons.md-dark.md-inactive { color: rgba(0, 0, 0, 0.26); }
+
+/* Rules for using icons as white on a dark background. */
+.material-icons.md-light { color: rgba(255, 255, 255, 1); }
+.material-icons.md-light.md-inactive { color: rgba(255, 255, 255, 0.3); }
+
+* {
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0%;
+}
+
+header {
+    background-image:url("../images/headerYfooter.jpg");
+    z-index:1;
+    padding: 1px;
+    text-align: center;
+    border-bottom-color: black;
+    border:hidden 1px;
+    -moz-border-radius-topleft: 9px;
+    -moz-border-radius-topright:9px;
+    -moz-border-radius-bottomleft:9px;
+    -moz-border-radius-bottomright:9px;
+    -webkit-border-top-left-radius:9px;
+    -webkit-border-top-right-radius:9px;
+    -webkit-border-bottom-left-radius:9px;
+    -webkit-border-bottom-right-radius:9px;
+    border-top-left-radius:9px;
+    border-top-right-radius:9px;
+    border-bottom-left-radius:9px;
+    border-bottom-right-radius:9px;
+}
+h1{
+    font-family: fantasy;
+    font-size: 3em;
+    font-weight: bold;
+}
+
+aside{
+    width: 10%;
+    float: left;
+    padding: 12px;
+    text-align: center;
+    border:hidden 1px #000000;
+    -moz-border-radius-topleft: 9px;
+    -moz-border-radius-topright:9px;
+    -moz-border-radius-bottomleft:9px;
+    -moz-border-radius-bottomright:9px;
+    -webkit-border-top-left-radius:9px;
+    -webkit-border-top-right-radius:9px;
+    -webkit-border-bottom-left-radius:9px;
+    -webkit-border-bottom-right-radius:9px;
+    border-top-left-radius:9px;
+    border-top-right-radius:9px;
+    border-bottom-left-radius:9px;
+    border-bottom-right-radius:9px;
+}
+
+nav{
+    width: 25%;
+    float: left;
+    padding: 12px;
+
+}
+
+
+#menu, #cerrarSesion, #amigos, #buscar, #personal{
+    background-color: #a2dece;
+    font-size: 120%;
+    font-weight: bold;
+    border:solid 1px  #b0bec5 ;
+    -moz-border-radius-topleft: 9px;
+    -moz-border-radius-topright:9px;
+    -moz-border-radius-bottomleft:9px;
+    -moz-border-radius-bottomright:9px;
+    -webkit-border-top-left-radius:9px;
+    -webkit-border-top-right-radius:9px;
+    -webkit-border-bottom-left-radius:9px;
+    -webkit-border-bottom-right-radius:9px;
+    border-top-left-radius:9px;
+    border-top-right-radius:9px;
+    border-bottom-left-radius:9px;
+    border-bottom-right-radius:9px;
+
+}
+
+#menu:hover, #cerrarSesion:hover, #amigos:active, #buscar:active, #personal:active{
+
+    border:solid 1px  #2196f3;
+    -moz-border-radius-topleft: 9px;
+    -moz-border-radius-topright:9px;
+    -moz-border-radius-bottomleft:9px;
+    -moz-border-radius-bottomright:9px;
+    -webkit-border-top-left-radius:9px;
+    -webkit-border-top-right-radius:9px;
+    -webkit-border-bottom-left-radius:9px;
+    -webkit-border-bottom-right-radius:9px;
+    border-top-left-radius:9px;
+    border-top-right-radius:9px;
+    border-bottom-left-radius:9px;
+    border-bottom-right-radius:9px;
+}
+
+#menu:active, #cerrarSesion:active, #amigos:active, #buscar:active, #personal:active{
+    background-color:   #ffa000  ;
+    color: white;
+}
+
+.botonesSection{
+    padding: 10px;
+    margin-top: 10px;
+    margin-right: 50px;
+    border:solid 1px #000000;
+    background-color: #f9fbe7; 
+    font-size: 10%;
+    font-weight: bold;
+    -moz-border-radius-topleft: 9px;
+    -moz-border-radius-topright:9px;
+    -moz-border-radius-bottomleft:9px;
+    -moz-border-radius-bottomright:9px;
+    -webkit-border-top-left-radius:9px;
+    -webkit-border-top-right-radius:9px;
+    -webkit-border-bottom-left-radius:9px;
+    -webkit-border-bottom-right-radius:9px;
+    border-top-left-radius:9px;
+    border-top-right-radius:9px;
+    border-bottom-left-radius:9px;
+    border-bottom-right-radius:9px;
+
+}
+
+.botonesSection:hover {
+    border:solid 1px  #2196f3;
+    -moz-border-radius-topleft: 9px;
+    -moz-border-radius-topright:9px;
+    -moz-border-radius-bottomleft:9px;
+    -moz-border-radius-bottomright:9px;
+    -webkit-border-top-left-radius:9px;
+    -webkit-border-top-right-radius:9px;
+    -webkit-border-bottom-left-radius:9px;
+    -webkit-border-bottom-right-radius:9px;
+    border-top-left-radius:9px;
+    border-top-right-radius:9px;
+    border-bottom-left-radius:9px;
+    border-bottom-right-radius:9px;
+}
+
+.botonesSection:active {
+    background-color:   #ffa000  ;
+    color: white;
+}
+
+.menu {
+    width: 20%;
+    border:hidden 1px #000000;
+    -moz-border-radius-topleft: 9px;
+    -moz-border-radius-topright:9px;
+    -moz-border-radius-bottomleft:9px;
+    -moz-border-radius-bottomright:9px;
+    -webkit-border-top-left-radius:9px;
+    -webkit-border-top-right-radius:9px;
+    -webkit-border-bottom-left-radius:9px;
+    -webkit-border-bottom-right-radius:9px;
+    border-top-left-radius:9px;
+    border-top-right-radius:9px;
+    border-bottom-left-radius:9px;
+    border-bottom-right-radius:9px;
+}
+
+.menu a {
+    background-color:   #f9fbe7; 
+    color: black; 
+    display: block; 
+    padding: 20px;
+    text-decoration: none; 
+    margin: auto;
+    width: 100%;
+    text-align: center;
+    border:solid 1px  #ffab91 ;
+    -moz-border-radius-topleft: 9px;
+    -moz-border-radius-topright:9px;
+    -moz-border-radius-bottomleft:9px;
+    -moz-border-radius-bottomright:9px;
+    -webkit-border-top-left-radius:9px;
+    -webkit-border-top-right-radius:9px;
+    -webkit-border-bottom-left-radius:9px;
+    -webkit-border-bottom-right-radius:9px;
+    border-top-left-radius:9px;
+    border-top-right-radius:9px;
+    border-bottom-left-radius:9px;
+    border-bottom-right-radius:9px;
+
+}
+
+.menu a:hover {
+    background-color:  #ef9a9a; 
+}
+
+.menu a:active {
+    background-color:  #81d4fa;
+    color: white;
+}
+
+.sectionPaginaPersonal{
+    /*    background-image: url("../images/background.jpg");*/
+    background-color:#a2dece;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    width: 70%;
+    float: left;
+    margin-top: 12px;
+    /*padding: 7px; */
+    text-align: center;
+    border:hidden 1px #000000;
+    -moz-border-radius-topleft: 9px;
+    -moz-border-radius-topright:9px;
+    -moz-border-radius-bottomleft:9px;
+    -moz-border-radius-bottomright:9px;
+    -webkit-border-top-left-radius:9px;
+    -webkit-border-top-right-radius:9px;
+    -webkit-border-bottom-left-radius:9px;
+    -webkit-border-bottom-right-radius:9px;
+    border-top-left-radius:9px;
+    border-top-right-radius:9px;
+    border-bottom-left-radius:9px;
+    border-bottom-right-radius:9px;
+}
+
+.sectionPublicaciones, .sectionEstadistica, .sectionModificar{
+    width: 70%;
+    /*background-color: #a2dece;*/
+    /*    background-image: url("../images/background.jpg");
+        background-repeat: no-repeat;*/
+    background-color:#ef8d17;
+    background-attachment: fixed;
+    background-size: cover;
+    float: left;
+    padding: 12px; 
+    margin-top: 12px;
+    margin-bottom: 5px;
+    text-align: center;
+    border:hidden 1px #000000;
+    -moz-border-radius-topleft: 9px;
+    -moz-border-radius-topright:9px;
+    -moz-border-radius-bottomleft:9px;
+    -moz-border-radius-bottomright:9px;
+    -webkit-border-top-left-radius:9px;
+    -webkit-border-top-right-radius:9px;
+    -webkit-border-bottom-left-radius:9px;
+    -webkit-border-bottom-right-radius:9px;
+    border-top-left-radius:9px;
+    border-top-right-radius:9px;
+    border-bottom-left-radius:9px;
+    border-bottom-right-radius:9px;
+}
+
+
+article{
+    padding: 12px; 
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border:hidden 1px #000000;
+    -moz-border-radius-topleft: 9px;
+    -moz-border-radius-topright:9px;
+    -moz-border-radius-bottomleft:9px;
+    -moz-border-radius-bottomright:9px;
+    -webkit-border-top-left-radius:9px;
+    -webkit-border-top-right-radius:9px;
+    -webkit-border-bottom-left-radius:9px;
+    -webkit-border-bottom-right-radius:9px;
+    border-top-left-radius:9px;
+    border-top-right-radius:9px;
+    border-bottom-left-radius:9px;
+    border-bottom-right-radius:9px;
+}
+
+.imagenesAside{
+    display: block;
+    padding-bottom: 10px;
+    margin: auto;
+    width: 105px;
+    height: 105px;
+    /*max-height: 100%;
+    max-width: 100%;*/
+    text-align: center;
+    border:hidden 1px #000000;
+    -moz-border-radius-topleft: 30%;
+    -moz-border-radius-topright:30%;
+    -moz-border-radius-bottomleft:30%;
+    -moz-border-radius-bottomright:30%;
+    -webkit-border-top-left-radius:30%;
+    -webkit-border-top-right-radius:30%;
+    -webkit-border-bottom-left-radius:30%;
+    -webkit-border-bottom-right-radius:30%;
+    border-top-left-radius:30%;
+    border-top-right-radius:30%;
+    border-bottom-left-radius:30%;
+    border-bottom-right-radius:30%;
+}
+
+.imagenesAside a{
+    text-decoration: none;
+}
+
+.imagenesArticulos{
+
+    display: block;
+    margin: auto;
+    width: 80%;
+    height: 80%;
+    text-align: center;
+    border:hidden 1px #000000;
+    -moz-border-radius-topleft: 9px;
+    -moz-border-radius-topright:9px;
+    -moz-border-radius-bottomleft:9px;
+    -moz-border-radius-bottomright:9px;
+    -webkit-border-top-left-radius:9px;
+    -webkit-border-top-right-radius:9px;
+    -webkit-border-bottom-left-radius:9px;
+    -webkit-border-bottom-right-radius:9px;
+    border-top-left-radius:9px;
+    border-top-right-radius:9px;
+    border-bottom-left-radius:9px;
+    border-bottom-right-radius:9px;
+}
+
+.contendioPrincipal:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.contendioPrincipal{
+    /*    background-image: url("http://s1.1zoom.me/big3/963/Texture_Boards_Wooden_478676.jpg");*/
+    /*    background-image: url(../images/background.jpg);*/
+    background-color:#ef8d17;
+    /*#002471*/
+    /*background-repeat: repeat-x;*/
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    padding-top: 12px;
+    display: block;
+    margin: auto;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    border:hidden 1px #000000;
+    -moz-border-radius-topleft: 9px;
+    -moz-border-radius-topright:9px;
+    -moz-border-radius-bottomleft:9px;
+    -moz-border-radius-bottomright:9px;
+    -webkit-border-top-left-radius:9px;
+    -webkit-border-top-right-radius:9px;
+    -webkit-border-bottom-left-radius:9px;
+    -webkit-border-bottom-right-radius:9px;
+    border-top-left-radius:9px;
+    border-top-right-radius:9px;
+    border-bottom-left-radius:9px;
+    border-bottom-right-radius:9px;
+}
+
+footer {
+    background-image:url("../images/headerYfooter.jpg");
+    padding: 12px;
+    text-align: left;
+    border:hidden 1px #000000;
+    -moz-border-radius-topleft: 9px;
+    -moz-border-radius-topright:9px;
+    -moz-border-radius-bottomleft:9px;
+    -moz-border-radius-bottomright:9px;
+    -webkit-border-top-left-radius:9px;
+    -webkit-border-top-right-radius:9px;
+    -webkit-border-bottom-left-radius:9px;
+    -webkit-border-bottom-right-radius:9px;
+    border-top-left-radius:9px;
+    border-top-right-radius:9px;
+    border-bottom-left-radius:9px;
+    border-bottom-right-radius:9px;
+}
+
+table{
+    padding-left: 5%;
+    text-align: left;
+
+    font: normal 15px/150% Arial, Helvetica, sans-serif; 
+    overflow: hidden; 
+
+    -webkit-border-radius: 10px; 
+    -moz-border-radius: 10px; 
+    border-radius: 10px;
+}
+table td{
+    width: 200px;
+    height: 50px;
+
+}
+
+.estadistica{
+    text-align: center;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+
+
+/* Eso es para que la página sea responsive*/
+@media (max-width: 720px) {
+    nav,aside,section {
+        width: 100%;
+    }
+}
+
+/*esto es el formulario de publicar contenido*/
+input[type=text],input[type=time],input[type=url], input[type=email], input[type=password], select, option, textarea {
+
+    font-size: 100%;
+    box-sizing: border-box;
+    resize: vertical;
+    background-color:   #f9fbe7; 
+    color: black; 
+    display: block; 
+    padding: 12px;
+    text-decoration: none; 
+    margin: auto;
+    width: 100%;
+    text-align: justify;
+    border:solid 1px  #ffab91 ;
+    -moz-border-radius-topleft: 9px;
+    -moz-border-radius-topright:9px;
+    -moz-border-radius-bottomleft:9px;
+    -moz-border-radius-bottomright:9px;
+    -webkit-border-top-left-radius:9px;
+    -webkit-border-top-right-radius:9px;
+    -webkit-border-bottom-left-radius:9px;
+    -webkit-border-bottom-right-radius:9px;
+    border-top-left-radius:9px;
+    border-top-right-radius:9px;
+    border-bottom-left-radius:9px;
+    border-bottom-right-radius:9px;
+}
+
+label {
+    padding: 10px 10px 10px 0;
+    display: inline-block;
+}
+
+input[type=submit] {
+    cursor: pointer;
+    background-color: #f9fbe7; 
+    margin-top: 4%;
+    padding: 12px 20px;
+    width: 30%;
+    font-size: 100%;
+    font-weight: bold;
+    border:solid 1px #000000;
+    -moz-border-radius-topleft: 9px;
+    -moz-border-radius-topright:9px;
+    -moz-border-radius-bottomleft:9px;
+    -moz-border-radius-bottomright:9px;
+    -webkit-border-top-left-radius:9px;
+    -webkit-border-top-right-radius:9px;
+    -webkit-border-bottom-left-radius:9px;
+    -webkit-border-bottom-right-radius:9px;
+    border-top-left-radius:9px;
+    border-top-right-radius:9px;
+    border-bottom-left-radius:9px;
+    border-bottom-right-radius:9px;
+}
+
+input[type=submit]:hover {
+    border:solid 1px  #2196f3;
+    background-color:   #f9fbe7; 
+    -moz-border-radius-topleft: 9px;
+    -moz-border-radius-topright:9px;
+    -moz-border-radius-bottomleft:9px;
+    -moz-border-radius-bottomright:9px;
+    -webkit-border-top-left-radius:9px;
+    -webkit-border-top-right-radius:9px;
+    -webkit-border-bottom-left-radius:9px;
+    -webkit-border-bottom-right-radius:9px;
+    border-top-left-radius:9px;
+    border-top-right-radius:9px;
+    border-bottom-left-radius:9px;
+    border-bottom-right-radius:9px;
+}
+
+input[type=submit]:active {
+    background-color:   #ffa000  ;
+    color: white;
+}
+
+.container {
+    border-radius: 9px;
+    padding: 8px;
+    font-weight: bold;
+    color: #000000;
+    margin: 5px;
+    background-color: #a2dece;
+    border: 1px hidden;
+/*    opacity: 0.7;*/
+/*    filter: alpha(opacity=60);*/
+    -moz-border-radius-topleft: 9px;
+    -moz-border-radius-topright:9px;
+    -moz-border-radius-bottomleft:9px;
+    -moz-border-radius-bottomright:9px;
+    -webkit-border-top-left-radius:9px;
+    -webkit-border-top-right-radius:9px;
+    -webkit-border-bottom-left-radius:9px;
+    -webkit-border-bottom-right-radius:9px;
+    border-top-left-radius:9px;
+    border-top-right-radius:9px;
+    border-bottom-left-radius:9px;
+    border-bottom-right-radius:9px;
+}
+
+
+.col-25 {
+    float: left;
+    width: 20%;
+    margin-top: 6px;
+}
+
+.col-75 {
+    float: left;
+    width: 70%;
+    margin-top:8px;
+}
+
+#requerido{
+    color: #ff3333;
+}
+
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media (max-width: 720px) {
+    .col-25, .col-75, input[type=submit] {
+        width: 100%;
+        margin-top: 0;
+    }
+
+    .logoIndex{
+        width: 100%;
+        height: 70%;
+        -moz-border-radius-topleft: 14px;
+        -moz-border-radius-topright:14px;
+        -moz-border-radius-bottomleft:14px;
+        -moz-border-radius-bottomright:14px;
+        -webkit-border-top-left-radius:14px;
+        -webkit-border-top-right-radius:14px;
+        -webkit-border-bottom-left-radius:14px;
+        -webkit-border-bottom-right-radius:14px;
+        border-top-left-radius:14px;
+        border-top-right-radius:14px;
+        border-bottom-left-radius:14px;
+        border-bottom-right-radius:14px;
+        border-radius: 14px;
+
+    }
+
+}

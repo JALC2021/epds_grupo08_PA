@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 4.6.5.2
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 15-01-2018 a las 20:40:12
--- Versión del servidor: 10.1.26-MariaDB
--- Versión de PHP: 7.1.9
+-- Tiempo de generación: 17-01-2018 a las 12:32:39
+-- Versión del servidor: 10.1.21-MariaDB
+-- Versión de PHP: 5.6.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -59,7 +57,10 @@ INSERT INTO `alimentacion` (`id_contenido`, `dieta_estudio`, `tipo`, `duracion`)
 (25, 'sdaf', 'sadf', 'asdfsdf'),
 (66, 'cientifico', 'omnivora', '1semana'),
 (67, 'dieta', 'omnivora', '1semana'),
-(68, 'dieta', 'omnivora', '1semana');
+(68, 'dieta', 'omnivora', '1semana'),
+(69, 'dieta', 'omnivora', '1semana'),
+(71, 'dieta', 'omnivora', '1semana'),
+(72, 'dieta', 'omnivora', '1semana');
 
 -- --------------------------------------------------------
 
@@ -144,7 +145,11 @@ INSERT INTO `contenido` (`id_contenido`, `id_usuario`, `descripcion`) VALUES
 (65, 1, 'sadfsdfs'),
 (66, 1, 'sdafsdfsd'),
 (67, 1, 'dsf'),
-(68, 1, 'sdafdsf');
+(68, 1, 'sdafdsf'),
+(69, 21, 'prueba alimentaciÃ³n'),
+(70, 21, 'prueba deportes'),
+(71, 21, 'alimentavion 2'),
+(72, 21, 'alimentavion 2');
 
 -- --------------------------------------------------------
 
@@ -176,7 +181,8 @@ INSERT INTO `deportes` (`id_contenido`, `nivel`, `localizacion`, `tipo`, `duraci
 (62, 'bajo', 'Cuenca', 'futbol', '21:15:00'),
 (63, 'bajo', 'A CoruÃ±a', 'futbol', '21:20:00'),
 (64, 'bajo', 'A CoruÃ±a', 'futbol', '21:22:00'),
-(65, 'bajo', 'A CoruÃ±a', 'futbol', '00:59:00');
+(65, 'bajo', 'A CoruÃ±a', 'futbol', '00:59:00'),
+(70, 'bajo', 'A CoruÃ±a', 'futbol', '23:34:00');
 
 -- --------------------------------------------------------
 
@@ -188,7 +194,7 @@ CREATE TABLE `foto` (
   `id_foto` int(11) NOT NULL,
   `id_usuario` int(11) NOT NULL,
   `id_contenido` int(11) NOT NULL,
-  `url` varchar(150) COLLATE utf8_spanish_ci NOT NULL,
+  `url` varchar(500) COLLATE utf8_spanish_ci NOT NULL,
   `formato` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
   `tamano` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
@@ -200,7 +206,9 @@ CREATE TABLE `foto` (
 INSERT INTO `foto` (`id_foto`, `id_usuario`, `id_contenido`, `url`, `formato`, `tamano`) VALUES
 (4, 1, 48, 'sdf', '', 0),
 (5, 1, 49, '', '', 0),
-(6, 1, 50, 'wewer', '', 0);
+(6, 1, 50, 'wewer', '', 0),
+(7, 21, 71, 'https://i1.wp.com/educanimando.com/wp-content/uploads/2014/04/ALIMENTOS-NUTRITIVOS-dibujos-1024x496.jpg', '', 0),
+(8, 21, 72, 'https://i1.wp.com/educanimando.com/wp-content/uploads/2014/04/ALIMENTOS-NUTRITIVOS-dibujos-1024x496.jpg', '', 0);
 
 -- --------------------------------------------------------
 
@@ -240,16 +248,18 @@ CREATE TABLE `usuario` (
   `sexo` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
   `ultimo_acceso` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `apellidos` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
-  `localidad` varchar(50) COLLATE utf8_spanish_ci NOT NULL
+  `localidad` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
+  `fecha_alta` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `usuario` (`id_usuario`, `usuario`, `password`, `tipo`, `nombre`, `email`, `sexo`, `ultimo_acceso`, `apellidos`, `localidad`) VALUES
-(1, 'gon', '$2y$10$5oj94q6tkxZfoIBuooWefuvgY2CuMCBk6e7rT2sqlYe1EKvM5zBxu', 'usuario', 'Gonzalo', 'gonzq@gmail.com', 'hombre', '2018-01-15 19:34:12', '', ''),
-(19, 'admin', '$2y$10$oRrW/oOARFsdHdwBUMB5H.nyZp10kVK8gweABol/CR.DGNSFMHzja', 'administrador', 'Admin', 'admin@admin.com', 'hombre', '2018-01-15 19:39:18', 'admin', 'Sevilla');
+INSERT INTO `usuario` (`id_usuario`, `usuario`, `password`, `tipo`, `nombre`, `email`, `sexo`, `ultimo_acceso`, `apellidos`, `localidad`, `fecha_alta`) VALUES
+(1, 'gon', '$2y$10$5oj94q6tkxZfoIBuooWefuvgY2CuMCBk6e7rT2sqlYe1EKvM5zBxu', 'usuario', 'Gonzalo', 'gonzq@gmail.com', 'hombre', '2018-01-16 17:18:58', '', '', '0000-00-00 00:00:00'),
+(19, 'admin', '$2y$10$oRrW/oOARFsdHdwBUMB5H.nyZp10kVK8gweABol/CR.DGNSFMHzja', 'administrador', 'Admin', 'admin@admin.com', 'hombre', '2018-01-15 19:39:18', 'admin', 'Sevilla', '0000-00-00 00:00:00'),
+(21, 'susana', '$2y$10$K.ej5pkEMbn7NZzVtfGCpODC9a4AHWlNQ8ljZTULNpyIuHDYfDMJW', 'usuario', 'Susana', 'susana@gmail.com', 'mujer', '2018-01-17 11:30:18', 'iglesias', 'A CoruÃ±a', '2018-01-16 17:52:32');
 
 -- --------------------------------------------------------
 
@@ -259,6 +269,7 @@ INSERT INTO `usuario` (`id_usuario`, `usuario`, `password`, `tipo`, `nombre`, `e
 
 CREATE TABLE `voto` (
   `id_voto` int(11) NOT NULL,
+  `total_votos` int(11) NOT NULL,
   `id_contenido` int(11) NOT NULL,
   `id_usuario` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
@@ -267,10 +278,10 @@ CREATE TABLE `voto` (
 -- Volcado de datos para la tabla `voto`
 --
 
-INSERT INTO `voto` (`id_voto`, `id_contenido`, `id_usuario`) VALUES
-(1, 47, 1),
-(2, 37, 1),
-(3, 30, 1);
+INSERT INTO `voto` (`id_voto`, `total_votos`, `id_contenido`, `id_usuario`) VALUES
+(1, 0, 47, 1),
+(2, 0, 37, 1),
+(3, 0, 30, 1);
 
 --
 -- Índices para tablas volcadas
@@ -347,31 +358,26 @@ ALTER TABLE `voto`
 --
 ALTER TABLE `comentario`
   MODIFY `id_comentario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
 --
 -- AUTO_INCREMENT de la tabla `contenido`
 --
 ALTER TABLE `contenido`
-  MODIFY `id_contenido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
-
+  MODIFY `id_contenido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
 --
 -- AUTO_INCREMENT de la tabla `foto`
 --
 ALTER TABLE `foto`
-  MODIFY `id_foto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
+  MODIFY `id_foto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
-
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 --
 -- AUTO_INCREMENT de la tabla `voto`
 --
 ALTER TABLE `voto`
   MODIFY `id_voto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
 --
 -- Restricciones para tablas volcadas
 --
@@ -426,7 +432,6 @@ ALTER TABLE `suplemento`
 ALTER TABLE `voto`
   ADD CONSTRAINT `FK_voto_contenido` FOREIGN KEY (`id_contenido`) REFERENCES `contenido` (`id_contenido`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `FK_voto_usuario` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE;
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

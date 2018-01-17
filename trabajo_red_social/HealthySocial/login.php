@@ -58,7 +58,7 @@
             if (!isset($_SESSION['url'])) {
 
                 if ($fila['tipo'] == 'usuario') {
-                    $_SESSION['url'] = "usuario/index.php";
+                    $_SESSION['url'] = "usuario/publicacionAmigos.php";
                 } else if ($fila['tipo'] == 'administrador') {
                     $_SESSION['url'] = "administrador/indexAdministrador.php";
                 }
@@ -68,7 +68,7 @@
                 header("location:" . $_SESSION['url']);
             } else {
                 if ($fila['tipo'] == 'usuario') {
-                    header("location:usuario/index.php");
+                    header("location:usuario/publicacionAmigos.php");
                 } else if ($fila['tipo'] == 'administrador') {
                     header("location:administrador/indexAdministrador.php");
                 }
@@ -180,13 +180,13 @@
 ?>
 
 
-<html xmlns="http://www.w3.org/1999/xhtml" >
+<html>
     <head>
         <meta charset="UTF-8" />
         <title>SocialHealthy</title>
         <meta name="viewport" content="width=device-width, user-scalabe=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
         <link rel="stylesheet" type="text/css" href="css/style_log.css" />
-        <link rel="shortcut icon" type="image/x-icon" href="images/logoUrl.ico" />
+        <link rel="shortcut icon" type="image/x-icon" href="images/logo2.png" />
         <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
         <script type="text/javascript" src="js/login.js" ></script>
         <script type="text/javascript">
@@ -226,7 +226,7 @@
 
 
     <body>
-        <div class="container"
+        <div class="container">
 
              <div id="login">
                 <div class="form-head">

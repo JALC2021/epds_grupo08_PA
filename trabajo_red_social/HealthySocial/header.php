@@ -1,3 +1,6 @@
 <header>
-    <h1>Social Healthy</h1>
+   
+   
+    <img id="logoIndex" src="../images/logoAPP.PNG" alt="logo">
+    
 </header>
