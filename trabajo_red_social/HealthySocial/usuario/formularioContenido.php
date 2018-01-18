@@ -113,6 +113,7 @@ if (isset($_SESSION['usuario'])) {
                     </script>
                     <?PHP
                     disconnectDB($con);
+                    header("location:personal.php");
                 } else if (isset($_POST['deportes'])) {
                     //saneamos las entradas
                     $nivel = mysqli_real_escape_string($con, $_POST['nivel']);
@@ -131,6 +132,7 @@ if (isset($_SESSION['usuario'])) {
                     </script>
                     <?PHP
                     disconnectDB($con);
+                    header("location:personal.php");
                 } else if (isset($_POST['suplemento'])) {
                     if ($_POST['dosis'] > 0) {
                         //saneamos las entradas
@@ -147,6 +149,7 @@ if (isset($_SESSION['usuario'])) {
                         </script>
                         <?PHP
                         disconnectDB($con);
+                        header("location:personal.php");
                     } else {
                         ?>
                         <script type="text/javascript">

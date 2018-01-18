@@ -200,7 +200,7 @@ if (isset($_SESSION['usuario'])) {
             <?php
             include_once '../footer.php';
         } else {
-            $_SESSION['url'] = "usuario/publicacionAmigos.php";
+            $_SESSION['url'] = "usuario/modificarDatos.php";
             $_SESSION['tipo'] = 'usuario';
             header("location:../login.php");
         }
