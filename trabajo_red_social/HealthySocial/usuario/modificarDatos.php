@@ -2,7 +2,118 @@
 <?PHP
 session_start();
 
+require_once '../functions.php';
+
 if (isset($_SESSION['usuario'])) {
+    
+     $con = connectDB();
+
+        if (!$con) {
+            die("Conexión fallida");
+        }
+
+        $db_selected = mysqli_select_db($con, "healthysocial");
+
+        if (!$db_selected) {
+            die("Conexión a basde de datos fallida");
+        }
+
+     $consulta=mysqli_query($con,"SELECT * FROM `usuario` WHERE `usuario` LIKE '".$_SESSION['user']."';");
+     if (!$consulta) {
+            die("Error al ejecutar la consulta: " . mysqli_error($con));
+        }
+       
+    $datosUsu = mysqli_fetch_array($consulta);
+        
+       
+    if (isset($_POST['modificar'])) {
+     
+    if (preg_match("/^[A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]{2,15}$/", $_POST['nombre']) && preg_match("/^[[:alnum:]]{6,15}$/", $_POST['password']) &&
+            preg_match("/^[[:alnum:]]{3,15}$/", $_POST['usuario']) && preg_match("/^[a-zA-z0-9]+@[a-z]+\.[a-z]+/", $_POST['email']) &&
+            preg_match("/^([a-zA-ZÁÉÍÓÚñáéíóú]{1,15}[\s]*)+$/", $_POST['apellidos']) && preg_match("/^([a-zA-ZÁÉÍÓÚñáéíóú]{1,15}[\s]*)+$/", $_POST['localidad'])) {
+       
+       
+
+//saneamos la entrada a la bbdd
+        $name = mysqli_real_escape_string($con, $_POST['nombre']);
+        $apellidos = mysqli_real_escape_string($con, $_POST['apellidos']);
+        $localidad = mysqli_real_escape_string($con, $_POST['localidad']);
+        $user = mysqli_real_escape_string($con, $_POST['usuario']);
+
+        $email = mysqli_real_escape_string($con, $_POST['email']);
+      
+//usamos el hash para insertarlo en la bbdd
+        $pass = password_hash(mysqli_real_escape_string($con, $_POST['password']), PASSWORD_DEFAULT);
+        
+        
+        $result = mysqli_query($con, "UPDATE `usuario` SET `usuario`='".$user."',`password`='".$pass."',`tipo`='usuario',`nombre`='".$name."',`email`='".$email."',`sexo`='".$datosUsu['sexo']."',`apellidos`='".$apellidos."',`localidad`='".$localidad."',`fecha_alta`='".$datosUsu['fecha_alta']."' WHERE `usuario` LIKE '".$_SESSION['user']."';");
+
+   
+        if (!$result) {
+            die("Error al ejecutar la consulta: " . mysqli_error($con));
+        }
+        ?>
+        <script type="text/javascript">
+            alert("El usuario <?PHP echo $user ?> se ha modificado correctamente");
+        </script>
+        <?PHP
+        disconnectDB($con);
+    } else { //el problema viene aquí. Habra k poner alguna condición. Esto entonces tb un if else¿
+
+        if (!preg_match('/^[[:alnum:]]{3,15}$/', $_POST['usuario'])) {
+            ?>
+            }
+            <script type="text/javascript">
+                alert("Usuario incorrecto. De 3 a 15 carácteres alfanuméricos");
+            </script>
+            <?PHP
+        }
+        if (!preg_match("/^[[:alnum:]]{6,15}$/", $_POST['password'])) {
+            ?>
+
+            <script type="text/javascript">
+                alert("La contraseña es incorrecta. De 6 a 15 carácteres alfanuméricos");
+            </script>
+            <?PHP
+        }
+        if (!preg_match("/^[A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]{2,15}$/", $_POST['nombre'])) {
+            ?>
+
+            <script type="text/javascript">
+                alert("No se ha introducido el nombre correctamente. La primera letra mayúscula y de 3 a 15 carácteres alfanuméricos");
+            </script>
+            <?PHP
+        }
+
+        if (!preg_match("/^[a-zA-z0-9]+@[a-z]+\.[a-z]+/", $_POST['email'])) {
+            ?>
+
+            <script type="text/javascript">
+                alert("No se ha introducido el email correctamente.Ej:ejemplo@ejemplo.com");
+            </script>
+            <?PHP
+        }
+        if (!preg_match("/^([a-zA-ZÁÉÍÓÚñáéíóú]{1,15}[\s]*)+$/", $_POST['apellidos'])) {
+            ?>
+
+            <script type="text/javascript">
+                alert("No se ha introducido el apellido correctamente");
+            </script>
+            <?PHP
+        }
+        if (!preg_match("/^([a-zA-ZÁÉÍÓÚñáéíóú]{1,15}[\s]*)+$/", $_POST['localidad'])) {
+            ?>
+
+            <script type="text/javascript">
+                alert("No se ha introducido la localidad correctamente");
+            </script>
+            <?PHP
+        }
+    }
+}
+    
+    
+    
     ?>
 
     <html>
@@ -50,11 +161,11 @@ if (isset($_SESSION['usuario'])) {
         </head>
         <body>
 
-            <?PHP include_once '../header.php'; ?>
+    <?PHP include_once '../header.php'; ?>
 
             <div class="contendioPrincipal">
 
-                <?PHP include_once './menuPrincipal.php'; ?>
+    <?PHP include_once './menuPrincipal.php'; ?>
 
                 <section class="sectionModificar">
 
@@ -64,46 +175,48 @@ if (isset($_SESSION['usuario'])) {
 
                             <div class="row">
                                 <div class="col-25">
-                                    <label>Usuario <span id="requerido"> (*)</span></label>
+                                    <label>Usuario</label>
                                 </div>
                                 <div class="col-75">
-                                    <input type="text" id="usuario" name="usuario" class="form-control" onchange="comprobar(this, /^[a-zA-z0-9]{3,15}$/)" required /> 
+                                    <input type="text" id="usuario" value="<?PHP echo $datosUsu['usuario']?>" name="usuario" class="form-control"  onchange="comprobar(this, /^[a-zA-z0-9]{3,15}$/)" /> 
+                                
                                 </div>
                             </div>
 
                             <div class="row">
                                 <div class="col-25">
-                                    <label>Contrase&ntilde;a <span id="requerido"> (*)</span></label>
+                                    <label>Contrase&ntilde;a</label>
                                 </div>
 
                                 <div class="col-75">
-                                    <input type="password" id="password" name="password" class="form-control" onchange="comprobar(this, /^[a-zA-z0-9]{6,15}$/)" required />
+                                    <input type="password" size="8"  id="password" name="password" class="form-control" onchange="comprobar(this, /^[a-zA-z0-9]{6,15}$/)" required placeholder="Si lo desea puede modificar su contrase&ntilde;a o introducir la que tiene" />
                                 </div>
                             </div>
 
 
                             <div class="row">
                                 <div class="col-25">
-                                    <label>Nombre <span id="requerido"> (*)</span></label>
+                                    <label>Nombre</label>
                                 </div>
                                 <div class="col-75">
-                                    <input type="text" id="nombre" name="nombre" class="form-control" onchange="comprobar(this, /^[A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]{2,15}$/)" required />
+                                    <input type="text"  id="nombre" value="<?PHP echo $datosUsu['nombre']?>" name="nombre" class="form-control" onchange="comprobar(this, /^[A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]{2,15}$/)"  />
                                 </div>
                             </div>
 
                             <div class="row">
                                 <div class="col-25">
-                                    <label>Apellidos <span id="requerido"> (*)</span></label>
+                                    <label>Apellidos</label>
                                 </div>
                                 <div class="col-75">
-                                    <input type="text" id="apellidos" name="apellidos" class="form-control" onchange="comprobar(this, /^([a-zA-ZÁÉÍÓÚñáéíóú]{1,15}[\s]*)+$/)" required />
+                                    
+                                    <input type="text" id="apellidos" value="<?PHP echo $datosUsu['apellidos']; ?>" name="apellidos" class="form-control" onchange="comprobar(this, /^([a-zA-ZÁÉÍÓÚñáéíóú]{1,15}[\s]*)+$/)" />
                                 </div>
                             </div>
 
                             <div class="row">
 
                                 <div class="col-25">
-                                    <label>Localidad <span id="requerido"> (*)</span></label>
+                                    <label></label>
                                 </div>
 
                                 <div class="col-75">
@@ -169,10 +282,10 @@ if (isset($_SESSION['usuario'])) {
                             <div class="row">
 
                                 <div class="col-25">
-                                    <label>E-mail <span id="requerido"> (*)</span></label>
+                                    <label>E-mail</label>
                                 </div>
                                 <div class="col-75">
-                                    <input type="email" id="email" name="email" class="form-control" onchange="comprobar(this, /^[a-zA-z0-9]+@[a-z]+\.[a-z]+/)" required />
+                                    <input type="email" id="email" value="<?php echo $datosUsu['email'] ?>" name="email" class="form-control" onchange="comprobar(this, /^[a-zA-z0-9]+@[a-z]+\.[a-z]+/)"/>
                                 </div>
                             </div>
 
@@ -183,7 +296,7 @@ if (isset($_SESSION['usuario'])) {
                             <div>
                                 <div class="row">
                                     <div class="col-25" id="requerido">
-                                        (*) Campo requerido
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -192,18 +305,18 @@ if (isset($_SESSION['usuario'])) {
                 </section>
 
 
-                <?php
-                include_once '../aside.php';
-                ?>
+    <?php
+    include_once '../aside.php';
+    ?>
             </div>
 
-            <?php
-            include_once '../footer.php';
-        } else {
-            $_SESSION['url'] = "usuario/modificarDatos.php";
-            $_SESSION['tipo'] = 'usuario';
-            header("location:../login.php");
-        }
-        ?>
+                <?php
+                include_once '../footer.php';
+            } else {
+                $_SESSION['url'] = "usuario/publicacionAmigos.php";
+                $_SESSION['tipo'] = 'usuario';
+                header("location:../login.php");
+            }
+            ?>
     </body>
 </html>
