@@ -1,0 +1,213 @@
+
+body{
+    background-image: url("../images/background.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+
+#login input[type=text], #login input[type=time],#login input[type=url],#login input[type=password], #login select,#login  textarea{
+
+
+    font-size: 100%;
+    box-sizing: border-box;
+    resize: vertical;
+    background-color:   #f9fbe7; 
+    color: black; 
+    display: block; 
+    padding: 12px;
+    text-decoration: none; 
+    margin: auto;
+    border:solid 1px  #ffab91 ;
+    border-top-left-radius:9px;
+    border-top-right-radius:9px;
+    border-bottom-left-radius:9px;
+    border-bottom-right-radius:9px;
+}
+
+#register input[type=text],#register input[type=email],#register input[type=radio], #register input[type=time],#register input[type=url],#register input[type=password], #register select,#register  textarea{
+
+    font-size: 100%;
+    box-sizing: border-box;
+    resize: vertical;
+    background-color:   #f9fbe7; 
+    color: black; 
+    padding: 12px;
+    text-decoration: none; 
+    margin: auto;
+    border:solid 1px  #ffab91 ;
+    border-top-left-radius:9px;
+    border-top-right-radius:9px;
+    border-bottom-left-radius:9px;
+    border-bottom-right-radius:9px;
+}
+
+label {
+    padding: 10px 10px 10px 0;
+    display: inline-block;
+}
+
+.container{
+    height: 100%;
+    
+}
+
+#login{
+    width: 50%;
+    margin-top: 3%;
+    background:#F0ECE8;
+    text-align: center;
+    margin-left: 25%;
+    padding-bottom: 3px;
+}
+
+#register{
+    width: 80%;
+    margin-top: 3%;
+    background:#F0ECE8;
+    text-align: center;
+    margin-left: 10%;
+    padding-bottom: 3px;
+}
+
+#requerido{
+    color: #ff3333;
+}
+
+/**
+Login FORM:
+**/
+
+#container-form{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    overfloat: auto;
+    
+}
+
+.form-head{
+    background:#68BA8A;
+}
+.form-head h1{
+    margin: 0px;
+    padding: 20px 0px;
+    text-align: center;
+    color:#F0ECE8;
+    font-family: 'Comfortaa', cursive;
+    font-size: 35px;
+}
+.form h2{
+    text-align: center;
+    font-family: 'Lobster', cursive;
+    color:#68BA8A;
+    font-size: 25px;
+
+}
+.input-group{
+    margin: 20px 15px;
+}
+
+.form-control, .input-group-addon{
+    font-size: 1.5em;
+    height: 50px;
+    border:none;
+    
+}
+.form-control{
+    text-align: center;
+    font-family: 'Comfortaa', cursive;
+}
+
+#buttonsContainer{
+    margin: 30px auto;
+    text-align: center;
+}
+.button{
+    background:#CA4E3B;
+    padding: 10px;
+    max-width: 100px;
+    width: 100px;
+    color:#fff;
+    font-size: 1.5em ;
+    font-family: 'Comfortaa', cursive;
+    border-radius: 5px;
+    margin:10px;
+    border:none;
+    display: inline-block;
+    cursor: pointer;
+}
+.button:hover{
+    background:#68BA8A;
+}
+
+
+
+/**
+REGISTER FORM:
+**/
+
+.displayNone{
+    display: none;
+}
+
+#registerForm > form > .input-group{
+    margin: 10px 15px;
+    display: block;
+    
+}
+#registerForm > form > .input-group > .form-control{
+    height: 40px;
+}
+label{
+    font-family: 'Comfortaa', cursive;
+    margin-top:10px;
+    font-size: 1.2em;
+    color:#68BA8A;
+}
+
+#register label{
+    width: 10%;
+}
+
+@media all and (max-height: 500px){
+    #container-form{
+        align-items: flex-start;
+        overflow-y: scroll;
+        padding: 20px 0;
+    }
+    .form-head h1{
+        font-size: 2em;
+        padding: 10px 0px;
+    }
+    .form h2{
+        font-size: 2em;
+    }
+    .input-group{
+        margin:10px 15px;
+    }
+    .form-control, .input-group-addon{
+        height: 35px;
+    }
+    #buttonsContainer{
+        margin:10px auto;
+    }
+    .button{
+        font-size: 1.2em ;
+        max-width: 90px;
+    }
+    #registerForm > form > .input-group > .form-control{
+        height: 35px;
+    }
+    input{
+        width: 100%
+    }
+    #login, #register{
+        width: 100%;
+        margin-left: 0%;
+    }
+    .container{
+        overfloat: auto;
+    }
+}
