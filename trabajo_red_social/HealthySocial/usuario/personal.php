@@ -182,6 +182,8 @@ if (isset($_SESSION['usuario'])) {
                                     $usuario = mysqli_fetch_array($rowUser);
                                     ?><p><b>Usuario: </b><?PHP echo $usuario['usuario'];; ?></p>
                                     <p><b>Escribi&oacute;: </b><?PHP echo $comentario['texto'] ?></p><?PHP
+                                    
+                                    
                                 }
                             }
                             ?>
