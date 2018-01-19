@@ -5,115 +5,122 @@ session_start();
 require_once '../functions.php';
 
 if (isset($_SESSION['usuario'])) {
-    
-     $con = connectDB();
 
-        if (!$con) {
-            die("Conexión fallida");
-        }
+    $con = connectDB();
 
-        $db_selected = mysqli_select_db($con, "healthysocial");
+    if (!$con) {
+        die("Conexión fallida");
+    }
 
-        if (!$db_selected) {
-            die("Conexión a basde de datos fallida");
-        }
+    $db_selected = mysqli_select_db($con, "healthysocial");
 
-     $consulta=mysqli_query($con,"SELECT * FROM `usuario` WHERE `usuario` LIKE '".$_SESSION['user']."';");
-     if (!$consulta) {
-            die("Error al ejecutar la consulta: " . mysqli_error($con));
-        }
-       
+    if (!$db_selected) {
+        die("Conexión a basde de datos fallida");
+    }
+
+    $consulta = mysqli_query($con, "SELECT * FROM `usuario` WHERE `usuario` LIKE '" . $_SESSION['user'] . "';");
+    if (!$consulta) {
+        die("Error al ejecutar la consulta: " . mysqli_error($con));
+    }
+
     $datosUsu = mysqli_fetch_array($consulta);
-        
-       
+
+
     if (isset($_POST['modificar'])) {
-     
-    if (preg_match("/^[A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]{2,15}$/", $_POST['nombre']) && preg_match("/^[[:alnum:]]{6,15}$/", $_POST['password']) &&
-            preg_match("/^[[:alnum:]]{3,15}$/", $_POST['usuario']) && preg_match("/^[a-zA-z0-9]+@[a-z]+\.[a-z]+/", $_POST['email']) &&
-            preg_match("/^([a-zA-ZÁÉÍÓÚñáéíóú]{1,15}[\s]*)+$/", $_POST['apellidos']) && preg_match("/^([a-zA-ZÁÉÍÓÚñáéíóú]{1,15}[\s]*)+$/", $_POST['localidad'])) {
-       
-       
+        $result = mysqli_query($con, "SELECT usuario FROM usuario WHERE usuario like '" . $_POST['usuario'] . "';");
 
-//saneamos la entrada a la bbdd
-        $name = mysqli_real_escape_string($con, $_POST['nombre']);
-        $apellidos = mysqli_real_escape_string($con, $_POST['apellidos']);
-        $localidad = mysqli_real_escape_string($con, $_POST['localidad']);
-        $user = mysqli_real_escape_string($con, $_POST['usuario']);
-
-        $email = mysqli_real_escape_string($con, $_POST['email']);
-      
-//usamos el hash para insertarlo en la bbdd
-        $pass = password_hash(mysqli_real_escape_string($con, $_POST['password']), PASSWORD_DEFAULT);
-        
-        
-        $result = mysqli_query($con, "UPDATE `usuario` SET `usuario`='".$user."',`password`='".$pass."',`tipo`='usuario',`nombre`='".$name."',`email`='".$email."',`sexo`='".$datosUsu['sexo']."',`apellidos`='".$apellidos."',`localidad`='".$localidad."',`fecha_alta`='".$datosUsu['fecha_alta']."' WHERE `usuario` LIKE '".$_SESSION['user']."';");
-
-   
         if (!$result) {
             die("Error al ejecutar la consulta: " . mysqli_error($con));
         }
-        ?>
-        <script type="text/javascript">
-            alert("El usuario <?PHP echo $user ?> se ha modificado correctamente");
-        </script>
-        <?PHP
-        disconnectDB($con);
-    } else { //el problema viene aquí. Habra k poner alguna condición. Esto entonces tb un if else¿
 
-        if (!preg_match('/^[[:alnum:]]{3,15}$/', $_POST['usuario'])) {
+        if (mysqli_num_rows($result) > 0) {
             ?>
+            <script type="text/javascript">
+                alert("El usuario introducido ya existe. Pruebe a insertar uno nuevo");
+            </script>
+            <?PHP
+        } else if (preg_match("/^[A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]{2,15}$/", $_POST['nombre']) && preg_match("/^[[:alnum:]]{6,15}$/", $_POST['password']) &&
+                preg_match("/^[[:alnum:]]{3,15}$/", $_POST['usuario']) && preg_match("/^[a-zA-z0-9]+@[a-z]+\.[a-z]+/", $_POST['email']) &&
+                preg_match("/^([a-zA-ZÁÉÍÓÚñáéíóú]{1,15}[\s]*)+$/", $_POST['apellidos']) && preg_match("/^([a-zA-ZÁÉÍÓÚñáéíóú]{1,15}[\s]*)+$/", $_POST['localidad'])) {
+
+
+
+            //saneamos la entrada a la bbdd
+            $name = mysqli_real_escape_string($con, $_POST['nombre']);
+            $apellidos = mysqli_real_escape_string($con, $_POST['apellidos']);
+            $localidad = mysqli_real_escape_string($con, $_POST['localidad']);
+            $user = mysqli_real_escape_string($con, $_POST['usuario']);
+
+            $email = mysqli_real_escape_string($con, $_POST['email']);
+
+            //usamos el hash para insertarlo en la bbdd
+            $pass = password_hash(mysqli_real_escape_string($con, $_POST['password']), PASSWORD_DEFAULT);
+
+
+            $result = mysqli_query($con, "UPDATE `usuario` SET `usuario`='" . $user . "',`password`='" . $pass . "',`tipo`='usuario',`nombre`='" . $name . "',`email`='" . $email . "',`sexo`='" . $datosUsu['sexo'] . "',`apellidos`='" . $apellidos . "',`localidad`='" . $localidad . "',`fecha_alta`='" . $datosUsu['fecha_alta'] . "' WHERE `usuario` LIKE '" . $_SESSION['user'] . "';");
+
+
+            if (!$result) {
+                die("Error al ejecutar la consulta: " . mysqli_error($con));
             }
-            <script type="text/javascript">
-                alert("Usuario incorrecto. De 3 a 15 carácteres alfanuméricos");
-            </script>
-            <?PHP
-        }
-        if (!preg_match("/^[[:alnum:]]{6,15}$/", $_POST['password'])) {
             ?>
-
             <script type="text/javascript">
-                alert("La contraseña es incorrecta. De 6 a 15 carácteres alfanuméricos");
+                alert("El usuario <?PHP echo $user ?> se ha modificado correctamente");
             </script>
             <?PHP
-        }
-        if (!preg_match("/^[A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]{2,15}$/", $_POST['nombre'])) {
-            ?>
+            disconnectDB($con);
+        } else { //el problema viene aquí. Habra k poner alguna condición. Esto entonces tb un if else¿
+            if (!preg_match('/^[[:alnum:]]{3,15}$/', $_POST['usuario'])) {
+                ?>
+                }
+                <script type="text/javascript">
+                    alert("Usuario incorrecto. De 3 a 15 carácteres alfanuméricos");
+                </script>
+                <?PHP
+            }
+            if (!preg_match("/^[[:alnum:]]{6,15}$/", $_POST['password'])) {
+                ?>
 
-            <script type="text/javascript">
-                alert("No se ha introducido el nombre correctamente. La primera letra mayúscula y de 3 a 15 carácteres alfanuméricos");
-            </script>
-            <?PHP
-        }
+                <script type="text/javascript">
+                    alert("La contraseña es incorrecta. De 6 a 15 carácteres alfanuméricos");
+                </script>
+                <?PHP
+            }
+            if (!preg_match("/^[A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]{2,15}$/", $_POST['nombre'])) {
+                ?>
 
-        if (!preg_match("/^[a-zA-z0-9]+@[a-z]+\.[a-z]+/", $_POST['email'])) {
-            ?>
+                <script type="text/javascript">
+                    alert("No se ha introducido el nombre correctamente. La primera letra mayúscula y de 3 a 15 carácteres alfanuméricos");
+                </script>
+                <?PHP
+            }
 
-            <script type="text/javascript">
-                alert("No se ha introducido el email correctamente.Ej:ejemplo@ejemplo.com");
-            </script>
-            <?PHP
-        }
-        if (!preg_match("/^([a-zA-ZÁÉÍÓÚñáéíóú]{1,15}[\s]*)+$/", $_POST['apellidos'])) {
-            ?>
+            if (!preg_match("/^[a-zA-z0-9]+@[a-z]+\.[a-z]+/", $_POST['email'])) {
+                ?>
 
-            <script type="text/javascript">
-                alert("No se ha introducido el apellido correctamente");
-            </script>
-            <?PHP
-        }
-        if (!preg_match("/^([a-zA-ZÁÉÍÓÚñáéíóú]{1,15}[\s]*)+$/", $_POST['localidad'])) {
-            ?>
+                <script type="text/javascript">
+                    alert("No se ha introducido el email correctamente.Ej:ejemplo@ejemplo.com");
+                </script>
+                <?PHP
+            }
+            if (!preg_match("/^([a-zA-ZÁÉÍÓÚñáéíóú]{1,15}[\s]*)+$/", $_POST['apellidos'])) {
+                ?>
 
-            <script type="text/javascript">
-                alert("No se ha introducido la localidad correctamente");
-            </script>
-            <?PHP
+                <script type="text/javascript">
+                    alert("No se ha introducido el apellido correctamente");
+                </script>
+                <?PHP
+            }
+            if (!preg_match("/^([a-zA-ZÁÉÍÓÚñáéíóú]{1,15}[\s]*)+$/", $_POST['localidad'])) {
+                ?>
+
+                <script type="text/javascript">
+                    alert("No se ha introducido la localidad correctamente");
+                </script>
+                <?PHP
+            }
         }
     }
-}
-    
-    
-    
     ?>
 
     <html>
@@ -161,11 +168,11 @@ if (isset($_SESSION['usuario'])) {
         </head>
         <body>
 
-    <?PHP include_once '../header.php'; ?>
+            <?PHP include_once '../header.php'; ?>
 
             <div class="contendioPrincipal">
 
-    <?PHP include_once './menuPrincipal.php'; ?>
+                <?PHP include_once './menuPrincipal.php'; ?>
 
                 <section class="sectionModificar">
 
@@ -178,8 +185,8 @@ if (isset($_SESSION['usuario'])) {
                                     <label>Usuario</label>
                                 </div>
                                 <div class="col-75">
-                                    <input type="text" id="usuario" value="<?PHP echo $datosUsu['usuario']?>" name="usuario" class="form-control"  onchange="comprobar(this, /^[a-zA-z0-9]{3,15}$/)" /> 
-                                
+                                    <input type="text" id="usuario" value="<?PHP echo $datosUsu['usuario'] ?>" name="usuario" class="form-control"  onchange="comprobar(this, /^[a-zA-z0-9]{3,15}$/)" /> 
+
                                 </div>
                             </div>
 
@@ -199,7 +206,7 @@ if (isset($_SESSION['usuario'])) {
                                     <label>Nombre</label>
                                 </div>
                                 <div class="col-75">
-                                    <input type="text"  id="nombre" value="<?PHP echo $datosUsu['nombre']?>" name="nombre" class="form-control" onchange="comprobar(this, /^[A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]{2,15}$/)"  />
+                                    <input type="text"  id="nombre" value="<?PHP echo $datosUsu['nombre'] ?>" name="nombre" class="form-control" onchange="comprobar(this, /^[A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]{2,15}$/)"  />
                                 </div>
                             </div>
 
@@ -208,7 +215,7 @@ if (isset($_SESSION['usuario'])) {
                                     <label>Apellidos</label>
                                 </div>
                                 <div class="col-75">
-                                    
+
                                     <input type="text" id="apellidos" value="<?PHP echo $datosUsu['apellidos']; ?>" name="apellidos" class="form-control" onchange="comprobar(this, /^([a-zA-ZÁÉÍÓÚñáéíóú]{1,15}[\s]*)+$/)" />
                                 </div>
                             </div>
@@ -305,18 +312,18 @@ if (isset($_SESSION['usuario'])) {
                 </section>
 
 
-    <?php
-    include_once '../aside.php';
-    ?>
+                <?php
+                include_once '../aside.php';
+                ?>
             </div>
 
-                <?php
-                include_once '../footer.php';
-            } else {
-                $_SESSION['url'] = "usuario/modificarDatos.php";
-                $_SESSION['tipo'] = 'usuario';
-                header("location:../login.php");
-            }
-            ?>
+            <?php
+            include_once '../footer.php';
+        } else {
+            $_SESSION['url'] = "usuario/modificarDatos.php";
+            $_SESSION['tipo'] = 'usuario';
+            header("location:../login.php");
+        }
+        ?>
     </body>
 </html>

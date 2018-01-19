@@ -1,32 +1,32 @@
 <!DOCTYPE html>
-    <?php
-    session_start();
+<?php
+session_start();
 
-    require_once './functions.php';
+require_once './functions.php';
 
-    if (isset($_POST['login'])) {
+if (isset($_POST['login'])) {
 
-        $con = connectDB();
+    $con = connectDB();
 
-        $db_selected = mysqli_select_db($con, "healthysocial");
+    $db_selected = mysqli_select_db($con, "healthysocial");
 
-        if (!$db_selected) {
-            die("Conexión a basde de datos fallida");
-        }
+    if (!$db_selected) {
+        die("Conexión a basde de datos fallida");
+    }
 
-        //sanear la entrada
-        $name = mysqli_real_escape_string($con, $_POST['usuario']);
-        $pass = mysqli_real_escape_string($con, $_POST['password']);
+    //sanear la entrada
+    $name = mysqli_real_escape_string($con, $_POST['usuario']);
+    $pass = mysqli_real_escape_string($con, $_POST['password']);
 
 
-        $result = mysqli_query($con, "SELECT * FROM usuario WHERE usuario like '" . $name . "';");
+    $result = mysqli_query($con, "SELECT * FROM usuario WHERE usuario like '" . $name . "';");
 
-        if (!$result) {
-            die("Error al ejecutar la consulta: " . mysqli_error($con));
-        }
+    if (!$result) {
+        die("Error al ejecutar la consulta: " . mysqli_error($con));
+    }
 
-        if (mysqli_num_rows($result) < 1) {
-            ?>
+    if (mysqli_num_rows($result) < 1) {
+        ?>
         <script type="text/javascript">
             alert("Usuario y/o contraseña no válido.Vuelva a probar nuevamente");
         </script>
@@ -87,20 +87,35 @@
     }
 } else if (isset($_POST['registro'])) {
 
-    if (preg_match("/^[A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]{2,15}$/", $_POST['nombre']) && preg_match("/^[[:alnum:]]{6,15}$/", $_POST['password']) &&
+    $con = connectDB();
+
+    if (!$con) {
+        die("Conexión fallida");
+    }
+
+    $db_selected = mysqli_select_db($con, "healthysocial");
+
+    if (!$db_selected) {
+        die("Conexión a basde de datos fallida");
+    }
+
+
+    $result = mysqli_query($con, "SELECT usuario FROM usuario WHERE usuario like '" . $_POST['usuario'] . "';");
+
+    if (!$result) {
+        die("Error al ejecutar la consulta: " . mysqli_error($con));
+    }
+
+    if (mysqli_num_rows($result) > 0) {
+        ?>
+        <script type="text/javascript">
+            alert("El usuario introducido ya existe. Pruebe a insertar uno nuevo");
+        </script>
+        <?PHP
+    }else if (preg_match("/^[A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]{2,15}$/", $_POST['nombre']) && preg_match("/^[[:alnum:]]{6,15}$/", $_POST['password']) &&
             preg_match("/^[[:alnum:]]{3,15}$/", $_POST['usuario']) && preg_match("/^[a-zA-z0-9]+@[a-z]+\.[a-z]+/", $_POST['email']) &&
             preg_match("/^([a-zA-ZÁÉÍÓÚñáéíóú]{1,15}[\s]*)+$/", $_POST['apellidos']) && preg_match("/^([a-zA-ZÁÉÍÓÚñáéíóú]{1,15}[\s]*)+$/", $_POST['localidad'])) {
-        $con = connectDB();
 
-        if (!$con) {
-            die("Conexión fallida");
-        }
-
-        $db_selected = mysqli_select_db($con, "healthysocial");
-
-        if (!$db_selected) {
-            die("Conexión a basde de datos fallida");
-        }
 
 //saneamos la entrada a la bbdd
         $name = mysqli_real_escape_string($con, $_POST['nombre']);
@@ -190,37 +205,37 @@
         <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
         <script type="text/javascript" src="js/login.js" ></script>
         <script type="text/javascript">
-                function comprobar(campo, expr) {
-                    if (!expr.test(campo.value)) {
-                        campo.value = "";
+    function comprobar(campo, expr) {
+        if (!expr.test(campo.value)) {
+            campo.value = "";
 
-                        if (campo.getAttribute('id') == "nombre") {
-                            alert('El campo ' +
-                                    campo.getAttribute('id') +
-                                    ' debe tener la primera letra mayúscula y de 3 a 15 carácteres alfabéticos');
-                        } else if (campo.getAttribute('id') == "apellidos") {
-                            alert('El campo ' +
-                                    campo.getAttribute('id') +
-                                    ' debe tener de 1 a 15 carácteres alfabéticos');
-                        } else if (campo.getAttribute('id') == "usuario") {
-                            alert('El campo ' +
-                                    campo.getAttribute('id') +
-                                    ' debe tener de 3 a 15 carácteres alfanuméricos');
-                        } else if (campo.getAttribute('id') == "password") {
-                            alert('El campo ' +
-                                    campo.getAttribute('id') +
-                                    ' debe tener de 6 a 15 carácteres alfanuméricos');
-                        } else if (campo.getAttribute('id') == "localidad") {
-                            alert('El campo ' +
-                                    campo.getAttribute('id') +
-                                    ' debe tener de 1 a 15 carácteres alfabéticos');
-                        } else if (campo.getAttribute('id') == "email") {
-                            alert('El campo ' +
-                                    campo.getAttribute('id') +
-                                    ' no se ha introducido correctamente.Ej:ejemplo@ejemplo.com');
-                        }
-                    }
-                }
+            if (campo.getAttribute('id') == "nombre") {
+                alert('El campo ' +
+                        campo.getAttribute('id') +
+                        ' debe tener la primera letra mayúscula y de 3 a 15 carácteres alfabéticos');
+            } else if (campo.getAttribute('id') == "apellidos") {
+                alert('El campo ' +
+                        campo.getAttribute('id') +
+                        ' debe tener de 1 a 15 carácteres alfabéticos');
+            } else if (campo.getAttribute('id') == "usuario") {
+                alert('El campo ' +
+                        campo.getAttribute('id') +
+                        ' debe tener de 3 a 15 carácteres alfanuméricos');
+            } else if (campo.getAttribute('id') == "password") {
+                alert('El campo ' +
+                        campo.getAttribute('id') +
+                        ' debe tener de 6 a 15 carácteres alfanuméricos');
+            } else if (campo.getAttribute('id') == "localidad") {
+                alert('El campo ' +
+                        campo.getAttribute('id') +
+                        ' debe tener de 1 a 15 carácteres alfabéticos');
+            } else if (campo.getAttribute('id') == "email") {
+                alert('El campo ' +
+                        campo.getAttribute('id') +
+                        ' no se ha introducido correctamente.Ej:ejemplo@ejemplo.com');
+            }
+        }
+    }
         </script>
     </head>
 
@@ -228,7 +243,7 @@
     <body>
         <div class="container">
 
-             <div id="login">
+            <div id="login">
                 <div class="form-head">
                     <h1>Acceder</h1>
                 </div>
@@ -374,9 +389,9 @@
             </div>
         </div>
 
-        </form>
+    </form>
 
-        </div>
+</div>
 
-    </body>
+</body>
 </html>
