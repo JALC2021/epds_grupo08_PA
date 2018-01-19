@@ -185,7 +185,7 @@ if (isset($_SESSION['usuario'])) {
 
                             <div class="row">
                                 <div class="col-25">
-                                    <label>Contrase&ntilde;a</label>
+                                    <label>Contrase&ntilde;a<span id="requerido"> (*)</span></label>
                                 </div>
 
                                 <div class="col-75">
@@ -296,7 +296,7 @@ if (isset($_SESSION['usuario'])) {
                             <div>
                                 <div class="row">
                                     <div class="col-25" id="requerido">
-                                        
+                                        (*) Campo requerido
                                     </div>
                                 </div>
                             </div>
@@ -313,7 +313,7 @@ if (isset($_SESSION['usuario'])) {
                 <?php
                 include_once '../footer.php';
             } else {
-                $_SESSION['url'] = "usuario/publicacionAmigos.php";
+                $_SESSION['url'] = "usuario/modificarDatos.php";
                 $_SESSION['tipo'] = 'usuario';
                 header("location:../login.php");
             }
