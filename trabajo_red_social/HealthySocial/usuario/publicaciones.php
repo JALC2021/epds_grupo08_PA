@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <?PHP
-session_start();
 require_once '../functions.php';
 
 if (isset($_SESSION['usuario'])) {
@@ -69,9 +68,15 @@ if (isset($_SESSION['usuario'])) {
     }
 
 
+    if ($_SESSION['amigo'] == TRUE) {
+        //obtenemos el contenido del usuario amigo
+        $rowContenido = mysqli_query($con, "SELECT * FROM `contenido` c , `amigo` a WHERE c.id_usuario = a.id_usuario_amigo and a.`id_usuario` = " . $row['id_usuario'] . " ORDER BY `id_contenido` DESC");
+    } else {
+        //obtenemos el contenido del usuario
+        $rowContenido = mysqli_query($con, "SELECT * FROM `contenido` WHERE `id_usuario` = " . $row['id_usuario'] . " ORDER BY `id_contenido` DESC");
+    }
 
-    //obtenemos el contenido del usuario
-    $rowContenido = mysqli_query($con, "SELECT * FROM `contenido` WHERE `id_usuario` = " . $row['id_usuario'] . " ORDER BY `id_contenido` DESC");
+
 
     if (!$rowContenido) {
         die("Error al ejecutar la consulta: " . mysqli_error($con));
@@ -113,7 +118,14 @@ if (isset($_SESSION['usuario'])) {
                 <?PHP include_once './menuPrincipal.php'; ?>
 
                 <section class="sectionPaginaPersonal">
-                    <h2>Publicaciones Personales</h2>
+                    <?PHP
+                    if ($_SESSION['amigo'] == TRUE) {
+                        ?><h2>Publicaciones Amigos</h2><?PHP
+                    } else {
+                        ?><h2>Publicaciones Personales</h2><?PHP
+                    }
+                    ?>
+
                     <article>
                         <?PHP
                         while ($contenido = mysqli_fetch_array($rowContenido)) {
@@ -124,7 +136,18 @@ if (isset($_SESSION['usuario'])) {
                                 if (!$rowFoto) {
                                     die("Error al ejecutar la consulta: " . mysqli_error($con));
                                 }
-                     
+                                if ($_SESSION['amigo'] == TRUE) {
+                                    $rowAmigo = mysqli_query($con, "SELECT usuario FROM `usuario` WHERE `id_usuario` = " . $contenido['id_usuario_amigo'] . ";");
+                                    if (!$rowAmigo) {
+                                        die("Error al ejecutar la consulta: " . mysqli_error($con));
+                                    }
+                                    $amigo = mysqli_fetch_array($rowAmigo);
+                                    ?> 
+                                    <p><b>Usuario: </b><?PHP echo $amigo['usuario']; ?></p>
+
+                                    <?PHP
+                                }
+
                                 //si hay 1 fila de una foto, se mostrará por pantalla
                                 if (mysqli_num_rows($rowFoto) == 1) {
                                     $foto = mysqli_fetch_array($rowFoto);
@@ -230,7 +253,11 @@ if (isset($_SESSION['usuario'])) {
         <?php
         include_once '../footer.php';
     } else {
-        $_SESSION['url'] = "usuario/pulicacionAmigos.php";
+        if ($_SESSION['amigo'] == TRUE) {
+            $_SESSION['url'] = "usuario/publicacionAmigos.php";
+        } else {
+            $_SESSION['url'] = "usuario/publicacionesPersonales.php";
+        }
         $_SESSION['tipo'] = 'usuario';
         header("location:../login.php");
     }
