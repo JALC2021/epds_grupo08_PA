@@ -164,6 +164,7 @@ if (isset($_SESSION['usuario'])) {
                         }
                     }
                 }
+
             </script>
         </head>
         <body>
@@ -223,7 +224,7 @@ if (isset($_SESSION['usuario'])) {
                             <div class="row">
 
                                 <div class="col-25">
-                                    <label></label>
+                                    <label>Localidad</label>
                                 </div>
 
                                 <div class="col-75">

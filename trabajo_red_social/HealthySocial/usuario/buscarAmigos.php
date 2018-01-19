@@ -4,8 +4,8 @@ session_start();
 require_once '../functions.php';
 
 if (isset($_SESSION['usuario'])) {
-    
-     $con = connectDB();
+
+    $con = connectDB();
 
     if (!$con) {
         die("Conexión fallida");
@@ -16,70 +16,133 @@ if (isset($_SESSION['usuario'])) {
     if (!$db_selected) {
         die("Conexión a basde de datos fallida");
     }
-    
-    ///A PARTIR DE AQUÍ 
-     if (isset($_POST['enviar'])) {
-       
-        //si el campo no está vacío hacemos las comprobaciones y luego concatenamos los campos rellenos en una sql para solo hacer una sql select
-            
-        if (preg_match("/^[A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]{2,15}$/", $_POST['nombre']) &&
-                preg_match("/^[[:alnum:]]{3,15}$/", $_POST['usuario']) && preg_match("/^[a-zA-z0-9]+@[a-z]+\.[a-z]+/", $_POST['email']) &&
-                preg_match("/^([a-zA-ZÁÉÍÓÚñáéíóú]{1,15}[\s]*)+$/", $_POST['apellidos']) && preg_match("/^([a-zA-ZÁÉÍÓÚñáéíóú]{1,15}[\s]*)+$/", $_POST['localidad'])) {
 
+///A PARTIR DE AQUÍ 
+    $condInicial = isset($_POST['enviar']) && ($_POST['usuario'] != "" || $_POST['nombre'] != "" || $_POST['email'] != "" || $_POST['localidad'] != "" || $_POST['apellidos'] != "");
+    if ($condInicial) {
 
+//si el campo no está vacío hacemos las comprobaciones y luego concatenamos los campos rellenos en una sql para solo hacer una sql select
 
-            
-            disconnectDB($con);
-        } else { 
-            if (!preg_match('/^[[:alnum:]]{3,15}$/', $_POST['usuario'])) {
+        $sql = "select * from usuario where tipo like 'usuario' and usuario <> '" . $_SESSION['user'] . "' ";
+
+        $condUsuario = preg_match("/^[[:alnum:]]{3,15}$/", $_POST['usuario']);
+        if ($_POST['usuario'] != "") {
+            if ($condUsuario) {
+                $sql .= "and usuario like '" . $_POST['usuario'] . "'";
+            } else {
                 ?>
-                }
                 <script type="text/javascript">
                     alert("Usuario incorrecto. De 3 a 15 carácteres alfanuméricos");
                 </script>
                 <?PHP
             }
-            
-            if (!preg_match("/^[A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]{2,15}$/", $_POST['nombre'])) {
+        }
+
+        $condEmail = preg_match("/^[a-zA-z0-9]+@[a-z]+\.[a-z]+/", $_POST['email']);
+
+        if ($_POST['email'] != "") {
+            if ($condEmail) {
+                $sql .= "and email like '" . $_POST['email'] . "'";
+            } else {
                 ?>
-
-                <script type="text/javascript">
-                    alert("No se ha introducido el nombre correctamente. La primera letra mayúscula y de 3 a 15 carácteres alfanuméricos");
-                </script>
-                <?PHP
-            }
-
-            if (!preg_match("/^[a-zA-z0-9]+@[a-z]+\.[a-z]+/", $_POST['email'])) {
-                ?>
-
                 <script type="text/javascript">
                     alert("No se ha introducido el email correctamente.Ej:ejemplo@ejemplo.com");
                 </script>
                 <?PHP
             }
-            if (!preg_match("/^([a-zA-ZÁÉÍÓÚñáéíóú]{1,15}[\s]*)+$/", $_POST['apellidos'])) {
-                ?>
+        }
 
+        $condApellidos = preg_match("/^([a-zA-ZÁÉÍÓÚñáéíóú]{1,15}[\s]*)+$/", $_POST['apellidos']);
+
+        if ($_POST['apellidos'] != "") {
+            if ($condApellidos) {
+                $sql .= "and apellidos like '" . $_POST['apellidos'] . "'";
+            } else {
+                ?>
                 <script type="text/javascript">
                     alert("No se ha introducido el apellido correctamente");
                 </script>
                 <?PHP
             }
-            if (!preg_match("/^([a-zA-ZÁÉÍÓÚñáéíóú]{1,15}[\s]*)+$/", $_POST['localidad'])) {
-                ?>
+        }
 
+        $condNombre = preg_match("/^[A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]{2,15}$/", $_POST['nombre']);
+
+        if ($_POST['nombre'] != "") {
+            if ($condNombre) {
+                $sql .= "and nombre like '" . $_POST['nombre'] . "';";
+            } else {
+                ?>
+                <script type="text/javascript">
+                    alert("No se ha introducido el nombre correctamente. La primera letra mayúscula y de 3 a 15 carácteres alfanuméricos");
+                </script>
+                <?PHP
+            }
+        }
+
+
+        $condLocalidad = preg_match("/^([a-zA-ZÁÉÍÓÚñáéíóú]{1,15}[\s]*)+$/", $_POST['localidad']);
+
+        if ($_POST['localidad'] != "") {
+
+            if ($condLocalidad) {
+                $sql .= " and localidad like '" . $_POST['localidad'] . "'";
+            } else {
+                ?>
                 <script type="text/javascript">
                     alert("No se ha introducido la localidad correctamente");
                 </script>
                 <?PHP
             }
         }
+        $rowUsuario = mysqli_query($con, $sql);
+
+        if (!$rowUsuario) {
+            die("Error al ejecutar la consulta: " . mysqli_error($con));
+        }
+
+        disconnectDB($con);
+    } else if (isset($_POST['agregar'])) {
+        if (isset($_POST['id_usuario_agregar'])) {
+            $rowIdUsuario = mysqli_query($con, "SELECT * FROM `usuario` WHERE `usuario` LIKE '" . $_SESSION['user'] . "';");
+            if (!$rowIdUsuario) {
+                die("Error al ejecutar la consulta: " . mysqli_error($con));
+            }
+
+            $idUsuario = mysqli_fetch_array($rowIdUsuario);
+
+            $rowComprobacion = mysqli_query($con, "SELECT * FROM `amigo` WHERE `id_usuario_amigo`= " . $_POST['id_usuario_agregar'] . " and `id_usuario` = " . $idUsuario['id_usuario'] . ";");
+
+            if (mysqli_num_rows($rowComprobacion) > 0) {
+                ?>
+                    <script type="text/javascript">
+                        alert("No puedes agregar a este usuario porque ya es tu amigo");
+                    </script>
+                    <?PHP
+            } else {
+                $rowInsertar = mysqli_query($con, "INSERT INTO `amigo` (`id_usuario_amigo`, `id_usuario`) VALUES ('" . $_POST['id_usuario_agregar'] . "', '" . $idUsuario['id_usuario'] . "');");
+
+                if (!$rowInsertar) {
+                    die("Error al ejecutar la consulta: " . mysqli_error($con));
+                }
+
+                if (mysqli_affected_rows($con) > 0) {
+                    ?>
+                    <script type="text/javascript">
+                        alert("Usuario agregado correctamente");
+                    </script>
+                    <?PHP
+                }
+            }
+        } else {
+            echo "no ha seleccionado ningún usuario";
+        }
+        disconnectDB($con);
     }
+    ?>
 
-?>
 
-
-<html>
+    <html>
         <head>
             <meta charset="UTF-8" />
             <title>SocialHealthy</title>
@@ -105,7 +168,7 @@ if (isset($_SESSION['usuario'])) {
                             alert('El campo ' +
                                     campo.getAttribute('id') +
                                     ' debe tener de 3 a 15 carácteres alfanuméricos');
-                  
+
                         } else if (campo.getAttribute('id') == "localidad") {
                             alert('El campo ' +
                                     campo.getAttribute('id') +
@@ -117,6 +180,8 @@ if (isset($_SESSION['usuario'])) {
                         }
                     }
                 }
+
+
             </script>
         </head>
         <body>
@@ -127,10 +192,36 @@ if (isset($_SESSION['usuario'])) {
 
                 <?PHP include_once './menuPrincipal.php'; ?>
 
-                <section class="sectionbuscarAmigos">
+                <section class="sectionModificar">
 
                     <div class="container">
-                        <h2>Buscar amigos</h2>
+                        <h2>Agregar amigos</h2>
+
+                        <?PHP
+                        if (isset($_POST['enviar']) && $condInicial) {
+                            if (mysqli_num_rows($rowUsuario) == 0) {
+                                echo "<p>No se encontraron coincidencias</p>";
+                            } else {
+                                ?>
+
+                                <form method="POST">
+                                    <table>
+                                        <tr><th></th><th>Usuario</th><th>Nombre</th><th>Apellidos</th><th>Email</th><th>localidad</th></tr>
+                                        <?PHP
+                                        while ($usuarios = mysqli_fetch_array($rowUsuario)) {
+                                            ?>
+                                            <tr><td><input type="radio" name="id_usuario_agregar" value="<?PHP echo $usuarios['id_usuario'] ?>" /></td><td><?PHP echo $usuarios['usuario'] ?></td><td><?PHP echo $usuarios['nombre'] ?></td><td><?PHP echo $usuarios['apellidos'] ?></td><td><?PHP echo $usuarios['email'] ?></td><td><?PHP echo $usuarios['localidad'] ?></td></tr>
+                                            <?PHP
+                                        }
+                                        ?>
+                                    </table>
+                                    <input type="submit" name="agregar" value="Agregar" />
+                                </form>
+
+                                <?PHP
+                            }
+                        }
+                        ?>
                         <form method="POST" action="#">
 
                             <div class="row">
@@ -165,11 +256,12 @@ if (isset($_SESSION['usuario'])) {
                             <div class="row">
 
                                 <div class="col-25">
-                                    <label></label>
+                                    <label>Localidad</label>
                                 </div>
 
                                 <div class="col-75">
                                     <select id="localidad" name="localidad" >
+                                        <option value='' >---</option>
                                         <option value='A Coruña' >A Coruña</option>
                                         <option value='&Aacute;lava'>Alava</option>
                                         <option value='Albacete' >Albacete</option>
@@ -239,16 +331,17 @@ if (isset($_SESSION['usuario'])) {
                             </div>
 
                             <div id="buttonsContainer">
-                                <input type="submit" name="enviar" class="button" id="btn-register-now" value="Enviar"  />
+                                <input type="submit" name="enviar" class="button" id="btn-register-now" value="Buscar"  />
                             </div>
 
                             <div>
                                 <div class="row">
                                     <div class="col-25" id="requerido">
-                                        
+
                                     </div>
                                 </div>
                             </div>
+
                         </form>
                     </div>
                 </section>
