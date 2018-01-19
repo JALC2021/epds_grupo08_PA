@@ -113,7 +113,7 @@ if (isset($_SESSION['usuario'])) {
                 <?PHP include_once './menuPrincipal.php'; ?>
 
                 <section class="sectionPaginaPersonal">
-
+                    <h2>Publicaciones Personales</h2>
                     <article>
                         <?PHP
                         while ($contenido = mysqli_fetch_array($rowContenido)) {
@@ -124,7 +124,7 @@ if (isset($_SESSION['usuario'])) {
                                 if (!$rowFoto) {
                                     die("Error al ejecutar la consulta: " . mysqli_error($con));
                                 }
-
+                     
                                 //si hay 1 fila de una foto, se mostrará por pantalla
                                 if (mysqli_num_rows($rowFoto) == 1) {
                                     $foto = mysqli_fetch_array($rowFoto);
