@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 18-01-2018 a las 02:16:33
+-- Tiempo de generación: 19-01-2018 a las 11:14:52
 -- Versión del servidor: 10.1.26-MariaDB
 -- Versión de PHP: 7.1.9
 
@@ -43,7 +43,8 @@ CREATE TABLE `alimentacion` (
 
 INSERT INTO `alimentacion` (`id_contenido`, `dieta_estudio`, `tipo`, `duracion`) VALUES
 (88, 'dieta', 'omnivora', '1semana'),
-(89, 'cientifico', 'omnivora', '1semana');
+(89, 'cientifico', 'omnivora', '1semana'),
+(95, 'dieta', 'omnivora', '1semana');
 
 -- --------------------------------------------------------
 
@@ -55,6 +56,15 @@ CREATE TABLE `amigo` (
   `id_usuario_amigo` int(11) NOT NULL,
   `id_usuario` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `amigo`
+--
+
+INSERT INTO `amigo` (`id_usuario_amigo`, `id_usuario`) VALUES
+(1, 22),
+(21, 1),
+(21, 22);
 
 -- --------------------------------------------------------
 
@@ -75,7 +85,12 @@ CREATE TABLE `comentario` (
 
 INSERT INTO `comentario` (`id_comentario`, `id_usuario`, `id_contenido`, `texto`) VALUES
 (1, 1, 83, 'fdgsdg'),
-(10, 1, 90, 'Hola esto es una prueba');
+(10, 1, 90, 'Hola esto es una prueba'),
+(11, 1, 95, 'aqgadsd'),
+(12, 1, 90, ''),
+(13, 1, 90, 'Hola que tal'),
+(14, 1, 90, 'Buenas tardes'),
+(15, 1, 91, 'Hola que tal');
 
 -- --------------------------------------------------------
 
@@ -103,7 +118,9 @@ INSERT INTO `contenido` (`id_contenido`, `id_usuario`, `descripcion`) VALUES
 (88, 21, 'prueba'),
 (89, 21, 'prueba'),
 (90, 1, 'wfasf'),
-(91, 1, 'fdg');
+(91, 1, 'fdg'),
+(95, 1, 'ewqtqwetqwetwetweqtwet'),
+(96, 21, 'Ultima publicacion');
 
 -- --------------------------------------------------------
 
@@ -125,7 +142,8 @@ CREATE TABLE `deportes` (
 
 INSERT INTO `deportes` (`id_contenido`, `nivel`, `localizacion`, `tipo`, `duracion`) VALUES
 (90, 'bajo', 'A CoruÃ±a', 'futbol', '23:57:00'),
-(91, 'bajo', 'A CoruÃ±a', 'futbol', '01:57:00');
+(91, 'bajo', 'A CoruÃ±a', 'futbol', '01:57:00'),
+(96, 'medio', 'Sevilla', 'Pádel', '00:56:00');
 
 -- --------------------------------------------------------
 
@@ -189,9 +207,10 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`id_usuario`, `usuario`, `password`, `tipo`, `nombre`, `email`, `sexo`, `ultimo_acceso`, `apellidos`, `localidad`, `fecha_alta`) VALUES
-(1, 'gon', '$2y$10$5oj94q6tkxZfoIBuooWefuvgY2CuMCBk6e7rT2sqlYe1EKvM5zBxu', 'usuario', 'Gonzalo', 'gonzq@gmail.com', 'hombre', '2018-01-16 17:18:58', '', '', '0000-00-00 00:00:00'),
+(1, 'gon', '$2y$10$5oj94q6tkxZfoIBuooWefuvgY2CuMCBk6e7rT2sqlYe1EKvM5zBxu', 'usuario', 'Gonzalo', 'gonzq@gmail.com', 'hombre', '2018-01-19 09:46:01', '', '', '0000-00-00 00:00:00'),
 (19, 'admin', '$2y$10$oRrW/oOARFsdHdwBUMB5H.nyZp10kVK8gweABol/CR.DGNSFMHzja', 'administrador', 'Admin', 'admin@admin.com', 'hombre', '2018-01-15 19:39:18', 'admin', 'Sevilla', '0000-00-00 00:00:00'),
-(21, 'susana', '$2y$10$K.ej5pkEMbn7NZzVtfGCpODC9a4AHWlNQ8ljZTULNpyIuHDYfDMJW', 'usuario', 'Susana', 'susana@gmail.com', 'mujer', '2018-01-17 21:05:30', 'iglesias', 'A CoruÃ±a', '2018-01-16 17:52:32');
+(21, 'susana', '$2y$10$K.ej5pkEMbn7NZzVtfGCpODC9a4AHWlNQ8ljZTULNpyIuHDYfDMJW', 'usuario', 'Susana', 'susana@gmail.com', 'mujer', '2018-01-17 21:05:30', 'iglesias', 'A CoruÃ±a', '2018-01-16 17:52:32'),
+(22, 'maria', '$2y$10$IheRh8vjcGc9qeVFVWB/i.AP3DdiP/eXRlwtxWv0dlt3TDK2K9qWe', 'usuario', 'Maria', 'maria@maria.com', 'mujer', '2018-01-19 09:54:23', 'ladron', 'Sevilla', '2018-01-19 09:54:16');
 
 -- --------------------------------------------------------
 
@@ -204,6 +223,14 @@ CREATE TABLE `voto` (
   `id_contenido` int(11) NOT NULL,
   `id_usuario` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `voto`
+--
+
+INSERT INTO `voto` (`id_voto`, `id_contenido`, `id_usuario`) VALUES
+(37, 90, 1),
+(41, 91, 1);
 
 --
 -- Índices para tablas volcadas
@@ -219,8 +246,8 @@ ALTER TABLE `alimentacion`
 -- Indices de la tabla `amigo`
 --
 ALTER TABLE `amigo`
-  ADD PRIMARY KEY (`id_usuario_amigo`),
-  ADD KEY `FK_usuario_amigo` (`id_usuario`);
+  ADD KEY `FK_usuario_amigo` (`id_usuario`),
+  ADD KEY `FK_id_usuario_amigo` (`id_usuario_amigo`);
 
 --
 -- Indices de la tabla `comentario`
@@ -279,13 +306,13 @@ ALTER TABLE `voto`
 -- AUTO_INCREMENT de la tabla `comentario`
 --
 ALTER TABLE `comentario`
-  MODIFY `id_comentario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_comentario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de la tabla `contenido`
 --
 ALTER TABLE `contenido`
-  MODIFY `id_contenido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=95;
+  MODIFY `id_contenido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
 
 --
 -- AUTO_INCREMENT de la tabla `foto`
@@ -297,13 +324,13 @@ ALTER TABLE `foto`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT de la tabla `voto`
 --
 ALTER TABLE `voto`
-  MODIFY `id_voto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id_voto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- Restricciones para tablas volcadas
@@ -319,7 +346,8 @@ ALTER TABLE `alimentacion`
 -- Filtros para la tabla `amigo`
 --
 ALTER TABLE `amigo`
-  ADD CONSTRAINT `FK_usuario_amigo` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `FK_id_usuario` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `FK_id_usuario_amigo` FOREIGN KEY (`id_usuario_amigo`) REFERENCES `usuario` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `comentario`
