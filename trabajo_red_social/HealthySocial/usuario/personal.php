@@ -95,6 +95,16 @@ if (isset($_SESSION['usuario'])) {
         </head>
 
         <body>
+            <!-- mantenemos la posición actual de la página al enviar el formulario -->
+            <script>
+                window.onload = function () {
+                    var pos = window.name || 0;
+                    window.scrollTo(0, pos);
+                }
+                window.onunload = function () {
+                    window.name = self.pageYOffset || (document.documentElement.scrollTop + document.documentElement.scrollTop);
+                }
+            </script>
 
             <?PHP include_once '../header.php'; ?>
 
