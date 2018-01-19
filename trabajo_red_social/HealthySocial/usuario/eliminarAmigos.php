@@ -102,35 +102,35 @@ if (isset($_SESSION['usuario'])) {
         </head>
         <body>
 
-    <?PHP include_once '../header.php'; ?>
+            <?PHP include_once '../header.php'; ?>
 
             <div class="contendioPrincipal">
 
-    <?PHP include_once './menuPrincipal.php'; ?>
+                <?PHP include_once './menuPrincipal.php'; ?>
 
                 <section class="sectionModificar">
 
                     <div class="container">
                         <h2>Eliminar amigos</h2>
 
-    <?PHP
-    if (mysqli_num_rows($rowUsuario) == 0) {
-        echo "<p>No tienes amigos actualmente</p>";
-    } else {
-        ?>
+                        <?PHP
+                        if (mysqli_num_rows($rowUsuario) == 0) {
+                            echo "<p>No tienes amigos actualmente</p>";
+                        } else {
+                            ?>
 
                             <form method="POST">
                                 <table>
                                     <tr><th></th><th>Usuario</th><th>Nombre</th><th>Apellidos</th><th>Email</th><th>localidad</th></tr>
-        <?PHP
-        while ($usuarios = mysqli_fetch_array($rowUsuario)) {
-            $rowIdAmigo = mysqli_query($con, "select * from usuario where id_usuario = " . $usuarios['id_usuario_amigo'] . ";");
-            if (!$rowIdAmigo) {
-                die("Error al ejecutar la consulta: " . mysqli_error($con));
-            }
+                                    <?PHP
+                                    while ($usuarios = mysqli_fetch_array($rowUsuario)) {
+                                        $rowIdAmigo = mysqli_query($con, "select * from usuario where id_usuario = " . $usuarios['id_usuario_amigo'] . ";");
+                                        if (!$rowIdAmigo) {
+                                            die("Error al ejecutar la consulta: " . mysqli_error($con));
+                                        }
 
-            $idAmigo = mysqli_fetch_array($rowIdAmigo);
-            ?>
+                                        $idAmigo = mysqli_fetch_array($rowIdAmigo);
+                                        ?>
                                         <tr><td><input type="radio" name="id_usuario_eliminar" value="<?PHP echo $idAmigo['id_usuario'] ?>" /></td><td><?PHP echo $idAmigo['usuario'] ?></td><td><?PHP echo $idAmigo['nombre'] ?></td><td><?PHP echo $idAmigo['apellidos'] ?></td><td><?PHP echo $idAmigo['email'] ?></td><td><?PHP echo $idAmigo['localidad'] ?></td></tr>
                                         <?PHP
                                     }
@@ -139,9 +139,9 @@ if (isset($_SESSION['usuario'])) {
                                 <input type="submit" name="eliminar" value="Eliminar" />
                             </form>
 
-        <?PHP
-    }
-    ?>
+                            <?PHP
+                        }
+                        ?>
 
 
 
@@ -149,19 +149,19 @@ if (isset($_SESSION['usuario'])) {
                 </section>
 
 
-    <?php
-    include_once '../aside.php';
-    ?>
+                <?php
+                include_once '../aside.php';
+                ?>
             </div>
 
-    <?php
-    include_once '../footer.php';
-} else {
-    $_SESSION['url'] = "usuario/eliminarAmigos.php";
-    $_SESSION['tipo'] = 'usuario';
-    header("location:../login.php");
-}
-?>
+            <?php
+            include_once '../footer.php';
+        } else {
+            $_SESSION['url'] = "usuario/eliminarAmigos.php";
+            $_SESSION['tipo'] = 'usuario';
+            header("location:../login.php");
+        }
+        ?>
     </body>
 </html>
 
