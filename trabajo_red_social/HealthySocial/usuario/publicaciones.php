@@ -30,6 +30,44 @@ if (isset($_SESSION['usuario'])) {
         die("Error al ejecutar la consulta: " . mysqli_error($con));
     }
 
+    //si queremos modificar el comentario
+
+    if (isset($_POST['modificarDescripcion'])) {
+        if (preg_match("/^([a-zA-ZÁÉÍÓÚñáéíóú0-9]*[\s]*)+$/", $_POST['nuevaDescripcion'])) {
+            $row1 = mysqli_query($con, "UPDATE `contenido` SET `descripcion` = '" . $_POST['nuevaDescripcion'] . "' WHERE `contenido`.`id_contenido` = " . $_POST['modificarDescripcion'] . ";");
+
+            if (!$row1) {
+                die("Error al ejecutar la consulta: " . mysqli_error($con));
+            }
+        } else {
+            ?>  
+            <script type="text/javascript">
+                alert("La descripción debe contener carácteres alfanuméricos");
+            </script>
+            <?PHP
+        }
+    }
+
+    if (isset($_POST['modificarFoto'])) {
+
+        $row1 = mysqli_query($con, "UPDATE `foto` SET `url` = '" . $_POST['nuevaFoto'] . "' WHERE `id_foto` = " . $_POST['modificarFoto'] . ";");
+
+        if (!$row1) {
+            die("Error al ejecutar la consulta: " . mysqli_error($con));
+        }
+    }
+
+    if (isset($_POST['insertarFoto'])) {
+
+        $row1 = mysqli_query($con, "INSERT INTO `foto` (`id_foto`, `id_usuario`, `id_contenido`, `url`) VALUES (NULL, '" . $row['id_usuario'] . "', '". $_POST['insertarFoto'] ."', '". $_POST['nuevaFoto'] ."');");
+
+        if (!$row1) {
+            die("Error al ejecutar la consulta: " . mysqli_error($con));
+        }
+    }
+
+
+
     //si queremos borrar un contenido
     if (isset($_POST['like']) || isset($_POST['unlike']) || isset($_POST['comentario']) || isset($_POST['borrar'])) {
 
@@ -109,158 +147,227 @@ if (isset($_SESSION['usuario'])) {
                 window.onunload = function () {
                     window.name = self.pageYOffset || (document.documentElement.scrollTop + document.documentElement.scrollTop);
                 }
+                mostradoDescrip = true;
+                function mostrarDescripcion(id) {
+
+
+                    if (mostradoDescrip) {
+                        document.getElementById("mostrarDescripcion" + id).setAttribute("style", "display:block");
+                        mostradoDescrip = false;
+                    } else {
+                        document.getElementById("mostrarDescripcion" + id).setAttribute("style", "display:none");
+                        mostradoDescrip = true;
+                    }
+
+
+                }
+                mostradoFoto = true;
+                function mostrarFoto(id) {
+
+
+                    if (mostradoFoto) {
+                        document.getElementById("mostrarFoto" + id).setAttribute("style", "display:block");
+                        mostradoFoto = false;
+                    } else {
+                        document.getElementById("mostrarFoto" + id).setAttribute("style", "display:none");
+                        mostradoFoto = true;
+                    }
+
+
+                }
+
+                function comprobar(campo, expr) {
+                    if (!expr.test(campo.value)) {
+                        campo.value = "";
+
+                        if (campo.getAttribute('id') === "descripcion") {
+                            alert('El campo ' +
+                                    campo.getAttribute('id') +
+                                    ' debe tener carácteres alfanuméricos');
+                        }
+                    }
+                }
             </script>
 
-            <?PHP include_once '../header.php'; ?>
+    <?PHP include_once '../header.php'; ?>
 
             <div class="contendioPrincipal">
 
-                <?PHP include_once './menuPrincipal.php'; ?>
+    <?PHP include_once './menuPrincipal.php'; ?>
 
                 <section class="sectionPaginaPersonal">
-                    <?PHP
-                    if ($_SESSION['amigo'] == TRUE) {
-                        ?><h2>Publicaciones Amigos</h2><?PHP
+    <?PHP
+    if ($_SESSION['amigo'] == TRUE) {
+        ?><h2>Publicaciones Amigos</h2><?PHP
                     } else {
                         ?><h2>Publicaciones Personales</h2><?PHP
                     }
                     ?>
 
                     <article>
-                        <?PHP
-                        while ($contenido = mysqli_fetch_array($rowContenido)) {
-                            ?><form method="post"><?php
-                                //realizamo una consulta para ver si el contenido tiene una foto asociada
-                                $rowFoto = mysqli_query($con, "SELECT url FROM `foto` WHERE `id_contenido` = " . $contenido['id_contenido'] . ";");
+    <?PHP
+    while ($contenido = mysqli_fetch_array($rowContenido)) {
+        ?><form method="post"><?php
+                            //realizamo una consulta para ver si el contenido tiene una foto asociada
+                            $rowFoto = mysqli_query($con, "SELECT * FROM `foto` WHERE `id_contenido` = " . $contenido['id_contenido'] . ";");
 
-                                if (!$rowFoto) {
+                            if (!$rowFoto) {
+                                die("Error al ejecutar la consulta: " . mysqli_error($con));
+                            }
+                            if ($_SESSION['amigo'] == TRUE) {
+                                $rowAmigo = mysqli_query($con, "SELECT usuario FROM `usuario` WHERE `id_usuario` = " . $contenido['id_usuario_amigo'] . ";");
+                                if (!$rowAmigo) {
                                     die("Error al ejecutar la consulta: " . mysqli_error($con));
                                 }
-                                if ($_SESSION['amigo'] == TRUE) {
-                                    $rowAmigo = mysqli_query($con, "SELECT usuario FROM `usuario` WHERE `id_usuario` = " . $contenido['id_usuario_amigo'] . ";");
-                                    if (!$rowAmigo) {
-                                        die("Error al ejecutar la consulta: " . mysqli_error($con));
-                                    }
-                                    $amigo = mysqli_fetch_array($rowAmigo);
-                                    ?> 
+                                $amigo = mysqli_fetch_array($rowAmigo);
+                                ?> 
                                     <p><b>Usuario: </b><?PHP echo $amigo['usuario']; ?></p>
 
-                                    <?PHP
-                                }
+            <?PHP
+        }
+        //si hay 1 fila de una foto, se mostrará por pantalla
+        if (mysqli_num_rows($rowFoto) == 1) {
+            $foto = mysqli_fetch_array($rowFoto);
+            ?> 
 
-                                //si hay 1 fila de una foto, se mostrará por pantalla
-                                if (mysqli_num_rows($rowFoto) == 1) {
-                                    $foto = mysqli_fetch_array($rowFoto);
-                                    ?> 
-                                    <figure>
-                                        <img  class="imagenesArticulos" src="<?php echo $foto['url']; ?>">
+                                    <img  class="imagenesArticulos" src="<?php echo $foto['url']; ?>">
+
+            <?PHP if ($_SESSION['amigo'] == FALSE) { ?>
+
+
+                                        <label onclick="mostrarFoto(<?PHP echo $foto['id_foto'] ?>)" >  -> Modificar Foto</label>
+                                        <div id="<?PHP echo "mostrarFoto" . $foto['id_foto'] ?>" style="display:none" >
+                                            <input id="nuevaFoto" type="url" name="nuevaFoto"  /> 
+                                            <button type="submit" name="modificarFoto" value="<?PHP echo $foto['id_foto'] ?>" >Modificar Foto</button>
+                                        </div>
+
+                <?PHP
+            }
+        } else {
+            if ($_SESSION['amigo'] == FALSE) {
+                ?>
+
+
+                                        <label onclick="mostrarFoto(<?PHP echo $contenido['id_contenido'] ?>)" >  -> Insertar Foto</label>
+                                        <div id="<?PHP echo "mostrarFoto" . $contenido['id_contenido'] ?>" style="display:none" >
+                                            <input id="nuevaFoto" type="url" name="nuevaFoto"  /> 
+                                            <button type="submit" name="insertarFoto" value="<?PHP echo $contenido['id_contenido'] ?>" >Insertar Foto</button>
+                                        </div>
 
                                         <?PHP
                                     }
-                                    ?>
-                                    <p id="descripcion"><b>Descripci&oacute;n: </b><?PHP echo $contenido['descripcion']; ?></p>
-                                    <?PHP
-                                    //comprobamos si el contenido es de deportes,alimentación o suplementos
-                                    $rowAlimentacion = mysqli_query($con, "SELECT * FROM `contenido` NATURAL JOIN `alimentacion` WHERE `id_contenido` = " . $contenido['id_contenido'] . ";");
-                                    $rowDeportes = mysqli_query($con, "SELECT * FROM `contenido` NATURAL JOIN `deportes` WHERE `id_contenido` = " . $contenido['id_contenido'] . ";");
-                                    $rowSuplemento = mysqli_query($con, "SELECT * FROM `contenido` NATURAL JOIN `suplemento` WHERE `id_contenido` = " . $contenido['id_contenido'] . ";");
+                                }
+                                ?>
+                                <p id="descripcion"><b>Descripci&oacute;n: </b><?PHP echo $contenido['descripcion']; ?></p>
+                                <?PHP if ($_SESSION['amigo'] == FALSE) { ?>
+                                    <label onclick="mostrarDescripcion(<?PHP echo $contenido['id_contenido'] ?>)">  -> Modificar Descripcion</label>
+                                    <div id="<?PHP echo "mostrarDescripcion" . $contenido['id_contenido'] ?>" style="display:none" >
+                                        <input id="descripcion" type="text" name="nuevaDescripcion" onchange="comprobar(this, /^([a-zA-ZÁÉÍÓÚñáéíóú0-9]*[\s]*)+$/)" /> 
+                                        <button type="submit" name="modificarDescripcion" value="<?PHP echo $contenido['id_contenido'] ?>" >Modificar Descripci&oacute;n</button>
+                                    </div>
 
-                                    if (mysqli_num_rows($rowAlimentacion) == 1) {
-                                        $alimentacion = mysqli_fetch_array($rowAlimentacion);
-                                        ?>
+            <?PHP
+        }
+        //comprobamos si el contenido es de deportes,alimentación o suplementos
+        $rowAlimentacion = mysqli_query($con, "SELECT * FROM `contenido` NATURAL JOIN `alimentacion` WHERE `id_contenido` = " . $contenido['id_contenido'] . ";");
+        $rowDeportes = mysqli_query($con, "SELECT * FROM `contenido` NATURAL JOIN `deportes` WHERE `id_contenido` = " . $contenido['id_contenido'] . ";");
+        $rowSuplemento = mysqli_query($con, "SELECT * FROM `contenido` NATURAL JOIN `suplemento` WHERE `id_contenido` = " . $contenido['id_contenido'] . ";");
 
-                                        <button class="botonesSection" style="font-size:24px"><details><summary><i class="fa fa-plus-square"></i></summary
-                                                <p><b>Dieta o estudio: </b><?PHP echo $alimentacion['dieta_estudio']; ?></p>
-                                                <p><b>Tipo alimentaci&oacute;n: </b><?PHP echo $alimentacion['tipo']; ?></p>
-                                                <p><b>Duraci&oacute;n: </b><?PHP echo $alimentacion['duracion']; ?></p>
-                                            </details></button><?PHP
-                                    } else if (mysqli_num_rows($rowDeportes) == 1) {
-                                        $deportes = mysqli_fetch_array($rowDeportes);
-                                        ?>
-                                        <details><summary>M&aacute;s</summary>
-                                            <p><b>Nivel: </b><?PHP echo $deportes['nivel']; ?></p>
-                                            <p><b>Localicaci&oacute;n: </b><?PHP echo $deportes['localizacion']; ?></p>
-                                            <p><b>Tipo deporte: </b><?PHP echo $deportes['tipo']; ?></p>
-                                            <p><b>Duraci&oacute;n: </b><?PHP echo $deportes['duracion']; ?></p>
-                                        </details><?PHP
-                                    } else if (mysqli_num_rows($rowSuplemento) == 1) {
-                                        $suplemento = mysqli_fetch_array($rowSuplemento);
-                                        ?><details><summary>M&aacute;s</summary>
-                                            <p><b>Dosis: </b><?PHP echo $suplemento['dosis']; ?></p>
-                                            <p><b>Tipo suplemento: </b><?PHP echo $suplemento['tipo']; ?></p>
-                                            <p><b>Duraci&oacute;n: </b><?PHP echo $suplemento['duracion']; ?></p>
-                                        </details><?PHP
-                                    }
-                                    ?>
-                                    <figcaption
-                            </figure>
-                            <?php
-                            //consultamos el total de votos
-                            $rowVoto = mysqli_query($con, "select count(*) as \"totalVotos\" from voto where id_contenido = " . $contenido['id_contenido'] . ";");
-                            if (!$rowVoto) {
-                                die("Error al ejecutar la consulta: " . mysqli_error($con));
-                            }
+        if (mysqli_num_rows($rowAlimentacion) == 1) {
+            $alimentacion = mysqli_fetch_array($rowAlimentacion);
+            ?>
 
-                            $votos = mysqli_fetch_array($rowVoto);
-
-
-                            $idContenido = $contenido['id_contenido'];
-                            ?>
-
-                            <button type="submit" value="<?PHP echo $idContenido; ?>"  name="like" class="botonesSection" style="font-size:24px"><i class="fa fa-thumbs-o-up" ></i></button>
-                            <button class="botonesSection" style="font-size:24px"><?PHP echo $votos['totalVotos']; ?> <i class="fa fa-heart"></i></button>
-                            <button type="submit" value="<?PHP echo $idContenido; ?>" name="unlike" class="botonesSection"  style="font-size:24px"><i class="fa fa-thumbs-o-down"></i></button>
-                            <button  type="submit" value="<?PHP echo $idContenido; ?>"  name="borrar"  class="botonesSection"  style="font-size:24px" /><i class="fa fa-trash"></i></button>
-                            <button type="submit" value="<?PHP echo $idContenido; ?>" name="comentario" class="botonesSection"  style="font-size:24px" ><i class="fa fa-commenting-o"></i></button>
-                            <input id="comentarioPersonal" type="text" name="comment" />
-                            <?PHP
-                            $rowComentario = mysqli_query($con, "SELECT * FROM `comentario` WHERE `id_contenido` = " . $idContenido . ";");
-
-                            if (!$rowComentario) {
-                                die("Error al ejecutar la consulta: " . mysqli_error($con));
-                            }
-
-                            if (mysqli_num_rows($rowComentario) > 0) {
-                                ?><details  id="comentario"><summary>Comentarios</summary><?php
-                                        while ($comentario = mysqli_fetch_array($rowComentario)) {
-
-                                            $rowUser = mysqli_query($con, "SELECT usuario FROM `usuario` WHERE `id_usuario` = " . $comentario['id_usuario'] . ";");
-
-                                            if (!$rowUser) {
-                                                die("Error al ejecutar la consulta: " . mysqli_error($con));
-                                            }
-                                            $usuario = mysqli_fetch_array($rowUser);
-                                            ?><p><b><?PHP echo $usuario['usuario']; ?>: </b><?PHP echo $comentario['texto'] ?> </p><?PHP
-                                        }
-                                        ?></details><?php
-                                    }
-                                    ?>
-                        </form>
-                        <hr />
-                        <?PHP
+                                    <details><summary>M&aacute;s</summary>
+                                        <p><b>Dieta o estudio: </b><?PHP echo $alimentacion['dieta_estudio']; ?></p>
+                                        <p><b>Tipo alimentaci&oacute;n: </b><?PHP echo $alimentacion['tipo']; ?></p>
+                                        <p><b>Duraci&oacute;n: </b><?PHP echo $alimentacion['duracion']; ?></p>
+                                    </details><?PHP
+                    } else if (mysqli_num_rows($rowDeportes) == 1) {
+                        $deportes = mysqli_fetch_array($rowDeportes);
+            ?>
+                                    <details><summary>M&aacute;s</summary>
+                                        <p><b>Nivel: </b><?PHP echo $deportes['nivel']; ?></p>
+                                        <p><b>Localicaci&oacute;n: </b><?PHP echo $deportes['localizacion']; ?></p>
+                                        <p><b>Tipo deporte: </b><?PHP echo $deportes['tipo']; ?></p>
+                                        <p><b>Duraci&oacute;n: </b><?PHP echo $deportes['duracion']; ?></p>
+                                    </details><?PHP
+                    } else if (mysqli_num_rows($rowSuplemento) == 1) {
+                        $suplemento = mysqli_fetch_array($rowSuplemento);
+            ?><details><summary>M&aacute;s</summary>
+                                        <p><b>Dosis: </b><?PHP echo $suplemento['dosis']; ?></p>
+                                        <p><b>Tipo suplemento: </b><?PHP echo $suplemento['tipo']; ?></p>
+                                        <p><b>Duraci&oacute;n: </b><?PHP echo $suplemento['duracion']; ?></p>
+                                    </details><?PHP
                     }
                     ?>
-                </article>
 
-            </section>
+                                <?php
+                                //consultamos el total de votos
+                                $rowVoto = mysqli_query($con, "select count(*) as \"totalVotos\" from voto where id_contenido = " . $contenido['id_contenido'] . ";");
+                                if (!$rowVoto) {
+                                    die("Error al ejecutar la consulta: " . mysqli_error($con));
+                                }
 
-            <?Php
-            disconnectDB($con);
-            include_once '../aside.php';
-            ?>
-        </div>
+                                $votos = mysqli_fetch_array($rowVoto);
 
-        <?php
-        include_once '../footer.php';
-    } else {
-        if ($_SESSION['amigo'] == TRUE) {
-            $_SESSION['url'] = "usuario/publicacionAmigos.php";
-        } else {
-            $_SESSION['url'] = "usuario/publicacionesPersonales.php";
+
+                                $idContenido = $contenido['id_contenido'];
+                                ?>
+
+                                <button type="submit" value="<?PHP echo $idContenido; ?>"  name="like" class="botonesSection" style="font-size:24px"><i class="fa fa-thumbs-o-up" ></i></button>
+                                <button class="botonesSection" style="font-size:24px"><?PHP echo $votos['totalVotos']; ?> <i class="fa fa-heart"></i></button>
+                                <button type="submit" value="<?PHP echo $idContenido; ?>" name="unlike" class="botonesSection"  style="font-size:24px"><i class="fa fa-thumbs-o-down"></i></button>
+                                <button  type="submit" value="<?PHP echo $idContenido; ?>"  name="borrar"  class="botonesSection"  style="font-size:24px" /><i class="fa fa-trash"></i></button>
+                                <button type="submit" value="<?PHP echo $idContenido; ?>" name="comentario" class="botonesSection"  style="font-size:24px" ><i class="fa fa-commenting-o"></i></button>
+                                <input id="comentarioPersonal" type="text" name="comment" />
+        <?PHP
+        $rowComentario = mysqli_query($con, "SELECT * FROM `comentario` WHERE `id_contenido` = " . $idContenido . ";");
+
+        if (!$rowComentario) {
+            die("Error al ejecutar la consulta: " . mysqli_error($con));
         }
-        $_SESSION['tipo'] = 'usuario';
-        header("location:../login.php");
+
+        if (mysqli_num_rows($rowComentario) > 0) {
+            ?><details  id="comentario"><summary>Comentarios</summary><?php
+                                    while ($comentario = mysqli_fetch_array($rowComentario)) {
+
+                                        $rowUser = mysqli_query($con, "SELECT usuario FROM `usuario` WHERE `id_usuario` = " . $comentario['id_usuario'] . ";");
+
+                                        if (!$rowUser) {
+                                            die("Error al ejecutar la consulta: " . mysqli_error($con));
+                                        }
+                                        $usuario = mysqli_fetch_array($rowUser);
+                                        ?><p><b><?PHP echo $usuario['usuario']; ?>: </b><?PHP echo $comentario['texto'] ?> </p><?PHP
+                                            }
+                                            ?></details><?php
+                                        }
+                                        ?>
+                            </form>
+                            <hr />
+        <?PHP
     }
     ?>
-</body>
+                    </article>
+
+                </section>
+
+    <?Php
+    disconnectDB($con);
+    include_once '../aside.php';
+    ?>
+            </div>
+
+    <?php
+    include_once '../footer.php';
+} else {
+    if ($_SESSION['amigo'] == TRUE) {
+        $_SESSION['url'] = "usuario/publicacionAmigos.php";
+    } else {
+        $_SESSION['url'] = "usuario/publicacionesPersonales.php";
+    }
+    $_SESSION['tipo'] = 'usuario';
+    header("location:../login.php");
+}
+?>
+    </body>
 </html>
