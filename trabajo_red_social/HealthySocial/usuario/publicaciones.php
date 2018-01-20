@@ -291,11 +291,11 @@ if (isset($_SESSION['usuario'])) {
                             if ($_SESSION['amigo'] == TRUE) {
                                 ?><p>Para iniciar la actividad, debes agregar primeramente 
                                     a un amigo en la secci&oacute;n "AGREGAR" situado en el
-                                    padel a la izquierda de la pantalla</p><?PHP
+                                    panel a la izquierda de la pantalla</p><?PHP
                             } else {
                                 ?><p>Para iniciar la actividad, debes publicar primeramente 
                                     un contenido en la secci&oacute;n "PUBLICAR" situado en el
-                                    padel a la izquierda de la pantalla</p><?PHP
+                                    panel a la izquierda de la pantalla</p><?PHP
                             }
                             ?>
 

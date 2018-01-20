@@ -67,7 +67,7 @@ if (isset($_SESSION['usuario'])) {
             }
         }
 
-        $condNombre = preg_match("/^[A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]{2,15}$/", $_POST['nombre']);
+        $condNombre = preg_match("/^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]{2,15}[\s]{0,1}){1,2}$/", $_POST['nombre']);
 
         if ($_POST['nombre'] != "") {
             if ($condNombre) {
@@ -240,7 +240,7 @@ if (isset($_SESSION['usuario'])) {
                                     <label>Nombre</label>
                                 </div>
                                 <div class="col-75">
-                                    <input type="text"  id="nombre" name="nombre" class="form-control" onchange="comprobar(this, /^[A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]{2,15}$/)"  />
+                                    <input type="text"  id="nombre" name="nombre" class="form-control" onchange="comprobar(this, /^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]{2,15}[\s]{0,1}){1,2}$/)"  />
                                 </div>
                             </div>
 
