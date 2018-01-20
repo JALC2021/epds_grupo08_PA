@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-    <?PHP
-    session_start();
+<?PHP
+session_start();
 
-    if (isset($_SESSION['administrador'])) {
-        ?>
+if (isset($_SESSION['administrador'])) {
+    ?>
     <!--
     To change this license header, choose License Headers in Project Properties.
     To change this template file, choose Tools | Templates
@@ -29,7 +29,12 @@
 
                 <section class="sectionPaginaPersonal">
 
-                    <p>Bienvenido echo $_SESSION['user'];</p>
+                    <p><b>Bienvenido <?PHP echo $_SESSION['user']; ?></b></p>
+                    <ol>Como administrador del sistema podrás realizar las siguientes funciones:
+                        <li>Eliminar un usuario en concreto</li>
+                        <li>Eliminar el contenido de un usuario</li>
+                        <li>Ver estadísticas de los usuarios para mejorar la aplicación</li>
+                    </ol>
 
                 </section>
 
