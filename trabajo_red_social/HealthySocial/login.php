@@ -112,7 +112,7 @@ if (isset($_POST['login'])) {
             alert("El usuario introducido ya existe. Pruebe a insertar uno nuevo");
         </script>
         <?PHP
-    }else if (preg_match("/^[A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]{2,15}$/", $_POST['nombre']) && preg_match("/^[[:alnum:]]{6,15}$/", $_POST['password']) &&
+    }else if (preg_match("/^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]{2,15}[\s]{0,1}){1,2}$/", $_POST['nombre']) && preg_match("/^[[:alnum:]]{6,15}$/", $_POST['password']) &&
             preg_match("/^[[:alnum:]]{3,15}$/", $_POST['usuario']) && preg_match("/^[a-zA-z0-9]+@[a-z]+\.[a-z]+/", $_POST['email']) &&
             preg_match("/^([a-zA-ZÁÉÍÓÚñáéíóú]{1,15}[\s]*)+$/", $_POST['apellidos']) && preg_match("/^([a-zA-ZÁÉÍÓÚñáéíóú]{1,15}[\s]*)+$/", $_POST['localidad'])) {
 
@@ -157,11 +157,11 @@ if (isset($_POST['login'])) {
             </script>
             <?PHP
         }
-        if (!preg_match("/^[A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]{2,15}$/", $_POST['nombre'])) {
+        if (!preg_match("/^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]{2,15}[\s]{0,1}){1,2}$/", $_POST['nombre'])) {
             ?>
 
             <script type="text/javascript">
-                alert("No se ha introducido el nombre correctamente. La primera letra mayúscula y de 3 a 15 carácteres alfanuméricos");
+                alert("No se ha introducido el nombre correctamente. La primera letra mayúscula y de 3 a 15 carácteres alfanuméricos. Ej:Gonzalo / Juan Antonio");
             </script>
             <?PHP
         }
@@ -296,7 +296,7 @@ if (isset($_POST['login'])) {
                         </div>
                         <div class="input-group">
                             <label >Nombre:</label>
-                            <input type="text" id="nombre" name="nombre" class="form-control" onchange="comprobar(this, /^[A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]{2,15}$/)" required />
+                            <input type="text" id="nombre" name="nombre" class="form-control" onchange="comprobar(this, /^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]{2,15}[\s]{0,1}){1,2}$/)" required />
                             <span></span>
                             <label >Apellidos:</label>
                             <input type="text" id="apellidos" name="apellidos" class="form-control" onchange="comprobar(this, /^([a-zA-ZÁÉÍÓÚñáéíóú]{1,15}[\s]*)+$/)" required />

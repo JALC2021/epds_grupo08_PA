@@ -215,7 +215,7 @@ if (isset($_SESSION['administrador'])) {
                 <section class="sectionModificar">
 
                     <div class="container">
-                        <h2>Eliminar usuarios</h2>
+                        <h2>Eliminar usuarios/contenido</h2>
 
                         <?PHP
                         $rowUsuario = mysqli_query($con, $sql);
