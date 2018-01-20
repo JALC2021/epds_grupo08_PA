@@ -99,6 +99,7 @@ if (isset($_SESSION['usuario'])) {
                     $duracionAlimentacion = mysqli_real_escape_string($con, $_POST['duracionAlimentacion']);
 
                     $result = mysqli_query($con, "INSERT INTO `alimentacion` (`id_contenido`, `dieta_estudio`,`tipo`, `duracion`) VALUES ('" . $row2['id_contenido'] . "', '" . $_POST['dietaEstudio'] . "', '" . $tipoAlimentacion . "', '" . $duracionAlimentacion . "');");
+                    disconnectDB($con);
                     if (!$result) {
                         die("Error al ejecutar la consulta: " . mysqli_error($con));
                     }
@@ -107,7 +108,7 @@ if (isset($_SESSION['usuario'])) {
                         alert("El contenido de alimentación se ha publicado correctamente");
                     </script>
                     <?PHP
-                    disconnectDB($con);
+                    
                     header("location:publicacionesPersonales.php");
                 } else if (isset($_POST['deportes'])) {
                     //saneamos las entradas
@@ -118,6 +119,7 @@ if (isset($_SESSION['usuario'])) {
                     $duracionDeporte = mysqli_real_escape_string($con, $_POST['duracionDeporte']);
 
                     $result = mysqli_query($con, "INSERT INTO `deportes` (`id_contenido`, `nivel`, `localizacion`,`tipo`, `duracion`) VALUES ('" . $row2['id_contenido'] . "', '" . $nivel . "', '" . $localidad . "', '" . $tipoDeporte . "', '" . $duracionDeporte . "');");
+                    disconnectDB($con);
                     if (!$result) {
                         die("Error al ejecutar la consulta: " . mysqli_error($con));
                     }
@@ -126,7 +128,6 @@ if (isset($_SESSION['usuario'])) {
                         alert("El contenido de deportes se ha publicado correctamente");
                     </script>
                     <?PHP
-                    disconnectDB($con);
                     header("location:publicacionesPersonales.php");
                 } else if (isset($_POST['suplemento'])) {
                     if ($_POST['dosis'] > 0) {
@@ -135,6 +136,7 @@ if (isset($_SESSION['usuario'])) {
                         $tipoSuplemento = mysqli_real_escape_string($con, $_POST['tipoSuplemento']);
                         $duracionSuplemento = mysqli_real_escape_string($con, $_POST['duracionSuplemento']);
                         $result = mysqli_query($con, "INSERT INTO `suplemento` (`id_contenido`, `dosis`,`tipo`, `duracion`) VALUES ('" . $row2['id_contenido'] . "', '" . $_POST['dosis'] . "', '" . $tipoSuplemento . "', '" . $duracionSuplemento . "');");
+                        disconnectDB($con);
                         if (!$result) {
                             die("Error al ejecutar la consulta: " . mysqli_error($con));
                         }
@@ -143,7 +145,6 @@ if (isset($_SESSION['usuario'])) {
                             alert("El contenido de suplemento se ha publicado correctamente");
                         </script>
                         <?PHP
-                        disconnectDB($con);
                         header("location:publicacionesPersonales.php");
                     } else {
                         ?>
