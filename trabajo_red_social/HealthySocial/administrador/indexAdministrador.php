@@ -1,7 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0
-    Strict//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-
-    strict.dtd">
+<!DOCTYPE html>
     <?PHP
     session_start();
 
@@ -32,17 +29,7 @@
 
                 <section class="sectionPaginaPersonal">
 
-                    <article>
-                      
-                    </article>
-
-                    <article>
-                       
-                    </article>
-
-                    <article>
-                        
-                    </article>
+                    <p>Bienvenido echo $_SESSION['user'];</p>
 
                 </section>
 
