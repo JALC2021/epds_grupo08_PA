@@ -68,7 +68,7 @@ if (isset($_SESSION['usuario'])) {
 
     if (isset($_POST['modificarComentario'])) {
 
-        if (preg_match("/^([a-zA-ZÁÉÍÓÚñáéíóú0-9]*[\s]*)+$/", $_POST['nuevoComentario' . $_POST['modificarComentario']])) {
+        if (preg_match("/^([a-zA-ZÁÉÍÓÚñáéíóú?¿!!<>*0-9]*[\s]*)+$/", $_POST['nuevoComentario' . $_POST['modificarComentario']])) {
             $row1 = mysqli_query($con, "UPDATE `comentario` SET `texto` = '" . $_POST['nuevoComentario' . $_POST['modificarComentario']] . "' WHERE `comentario`.`id_comentario` = " . $_POST['modificarComentario'] . ";");
 
             if (!$row1) {
@@ -153,7 +153,7 @@ if (isset($_SESSION['usuario'])) {
             }
         } else if (isset($_POST['comentario'])) {
 
-            if (preg_match("/^([a-zA-ZÁÉÍÓÚñáéíóú0-9]*[\s]*)+$/", $_POST['comentario'])) {
+            if (preg_match("/^([a-zA-ZÁÉÍÓÚñáéíóú?¿!!<>*0-9]*[\s]*)+$/", $_POST['comentario'])) {
                 $row1 = mysqli_query($con, "INSERT INTO `comentario` (`id_comentario`, `id_usuario`, `id_contenido`, `texto`) VALUES (NULL, '" . $row['id_usuario'] . "', '" . $_POST['comentario'] . "', '" . $_POST['comment'] . "');");
 
                 if (!$row1) {
@@ -359,7 +359,7 @@ if (isset($_SESSION['usuario'])) {
                                     <?PHP if ($_SESSION['amigo'] == FALSE) { ?>
                                         <label onclick="mostrarDescripcion(<?PHP echo $contenido['id_contenido'] ?>)">  -> Modificar Descripcion</label>
                                         <div id="<?PHP echo "mostrarDescripcion" . $contenido['id_contenido'] ?>" style="display:none" >
-                                            <input id="descripcion" type="text" name="nuevaDescripcion" onchange="comprobar(this, /^([a-zA-ZÁÉÍÓÚñáéíóú0-9]*[\s]*)+$/)" /> 
+                                            <input id="descripcion" type="text" name="nuevaDescripcion" onchange="comprobar(this, /^([a-zA-ZÁÉÍÓÚñáéíóú?¿!!<>*0-9]*[\s]*)+$/)" /> 
                                             <button type="submit" name="modificarDescripcion" value="<?PHP echo $contenido['id_contenido'] ?>" >Modificar Descripci&oacute;n</button>
                                         </div>
 
@@ -440,7 +440,7 @@ if (isset($_SESSION['usuario'])) {
                                                 <?PHP if ($row['id_usuario'] == $comentario['id_usuario']) { ?>
                                                     <label onclick="mostrarComentario(<?PHP echo $comentario['id_comentario'] ?>)" >  -> Modificar/eliminar Comentario</label>
                                                     <div id="<?PHP echo "mostrarComentario" . $comentario['id_comentario'] ?>" style="display:none" >
-                                                        <input id="comentario" type="text" onchange="comprobar(this, /^([a-zA-ZÁÉÍÓÚñáéíóú0-9]*[\s]*)+$/)" name="<?PHP echo "nuevoComentario" . $comentario['id_comentario'] ?>" /> 
+                                                        <input id="comentario" type="text" onchange="comprobar(this, /^([a-zA-ZÁÉÍÓÚñáéíóú?¿!!<>*0-9]*[\s]*)+$/)" name="<?PHP echo "nuevoComentario" . $comentario['id_comentario'] ?>" /> 
                                                         <button itype="submit" name="modificarComentario"  value="<?PHP echo $comentario['id_comentario'] ?>" >Modificar Comentario</button>
                                                         <button itype="submit" name="eliminarComentario"  value="<?PHP echo $comentario['id_comentario'] ?>" >Eliminar Comentario</button>
                                                     </div><?PHP
