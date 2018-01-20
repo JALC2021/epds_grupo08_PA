@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <?php
 session_start();
 
@@ -12,11 +11,7 @@ if (isset($_SESSION['administrador'])) {
         die("Conexión fallida");
     }
 
-    $db_selected = mysqli_select_db($con, "healthysocial");
-
-    if (!$db_selected) {
-        die("Conexión a basde de datos fallida");
-    }
+    $db_selected = selectDB($con);
 
     if (isset($_POST['eliminarUsuario']) || isset($_POST['eliminarContenido'])) {
         if (isset($_POST['id_usuario_eliminar'])) {
@@ -56,12 +51,12 @@ if (isset($_SESSION['administrador'])) {
     $TAMANO_PAGINA = 5;
 
 //examino la página a mostrar y el inicio del registro a mostrar
-    if(isset($_GET["pagina"])){
+    if (isset($_GET["pagina"])) {
         $pagina = $_GET["pagina"];
-    }else{
+    } else {
         $pagina = False;
     }
-    
+
     if (!$pagina) {
         $inicio = 0;
         $pagina = 1;
@@ -161,7 +156,7 @@ if (isset($_SESSION['administrador'])) {
     }
     ?>
 
-
+    <!DOCTYPE html>
     <html>
         <head>
             <meta charset="UTF-8" />
@@ -236,24 +231,24 @@ if (isset($_SESSION['administrador'])) {
                                     }
                                     ?>
                                 </table>
-                                
-                                <?PHP 
+
+                                <?PHP
                                 //muestro los distintos índices de las páginas, si es que hay varias páginas
-                                    if ($total_paginas > 1) {
-                                        echo "<p>";
-                                        echo "Número de páginas: ";
-                                        for ($i = 1; $i <= $total_paginas; $i++) {  
-                                            if ($pagina == $i) {
-                                                //si muestro el índice de la página actual, no coloco enlace
-                                                echo $pagina . " ";
-                                            } else {
-                                                //si el índice no corresponde con la página mostrada actualmente, coloco el enlace para ir a esa página
-                                                echo "<a href='eliminarUsuario.php?pagina=" . $i . "'>" . $i . "</a> ";
-                                            }
+                                if ($total_paginas > 1) {
+                                    echo "<p>";
+                                    echo "Número de páginas: ";
+                                    for ($i = 1; $i <= $total_paginas; $i++) {
+                                        if ($pagina == $i) {
+                                            //si muestro el índice de la página actual, no coloco enlace
+                                            echo $pagina . " ";
+                                        } else {
+                                            //si el índice no corresponde con la página mostrada actualmente, coloco el enlace para ir a esa página
+                                            echo "<a href='eliminarUsuario.php?pagina=" . $i . "'>" . $i . "</a> ";
                                         }
-                                        echo "</p>";
                                     }
-                                    ?>
+                                    echo "</p>";
+                                }
+                                ?>
                                 <input type="submit" name="eliminarUsuario" value="Eliminar Usuario" />
                                 <input type="submit" name="eliminarContenido" value="Eliminar Contenido" />
                             </form>

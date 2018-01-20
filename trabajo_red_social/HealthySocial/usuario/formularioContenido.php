@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <?PHP
 session_start();
 
@@ -54,11 +53,7 @@ if (isset($_SESSION['usuario'])) {
                 die("Conexión fallida");
             }
 
-            $db_selected = mysqli_select_db($con, "healthysocial");
-
-            if (!$db_selected) {
-                die("Conexión a basde de datos fallida");
-            }
+            $db_selected = selectDB($con);
 
             //saneamos la entrada a la bbdd
             $descripcion = mysqli_real_escape_string($con, $_POST['descripcion']);
@@ -184,11 +179,7 @@ if (isset($_SESSION['usuario'])) {
         }
     }
     ?>
-    <!--
-    To change this license header, choose License Headers in Project Properties.
-    To change this template file, choose Tools | Templates
-    and open the template in the editor.
-    -->
+    <!DOCTYPE html>
     <html>
         <head>
             <meta charset="UTF-8" />

@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <?PHP
 require_once '../functions.php';
 
@@ -11,11 +10,7 @@ if (isset($_SESSION['usuario'])) {
     }
 
     $user = $_SESSION['user'];
-    $db_selected = mysqli_select_db($con, "healthysocial");
-
-    if (!$db_selected) {
-        die("Conexión a base de datos fallida");
-    }
+    $db_selected = selectDB($con);
 
 //consultamos el id_usuario
     $id_usuario = mysqli_query($con, "SELECT `id_usuario` FROM `usuario` WHERE `usuario` LIKE '" . $user . "';");
@@ -185,11 +180,7 @@ if (isset($_SESSION['usuario'])) {
     }
     ?>
 
-    <!--
-    To change this license header, choose License Headers in Project Properties.
-    To change this template file, choose Tools | Templates
-    and open the template in the editor.
-    -->
+    <!DOCTYPE html>
     <html>
         <head>
             <meta charset="UTF-8" />

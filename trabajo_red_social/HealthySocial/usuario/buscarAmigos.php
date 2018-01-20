@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <?php
 session_start();
 
@@ -12,11 +11,7 @@ if (isset($_SESSION['usuario'])) {
         die("Conexión fallida");
     }
 
-    $db_selected = mysqli_select_db($con, "healthysocial");
-
-    if (!$db_selected) {
-        die("Conexión a basde de datos fallida");
-    }
+    $db_selected = selectDB($con);
 
 ///A PARTIR DE AQUÍ 
     $condInicial = isset($_POST['enviar']) && ($_POST['usuario'] != "" || $_POST['nombre'] != "" || $_POST['email'] != "" || $_POST['localidad'] != "" || $_POST['apellidos'] != "");
@@ -142,7 +137,7 @@ if (isset($_SESSION['usuario'])) {
     }
     ?>
 
-
+<!DOCTYPE html>
     <html>
         <head>
             <meta charset="UTF-8" />

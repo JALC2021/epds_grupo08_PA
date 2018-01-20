@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <?php
 session_start();
 
@@ -8,11 +7,7 @@ if (isset($_POST['login'])) {
 
     $con = connectDB();
 
-    $db_selected = mysqli_select_db($con, "healthysocial");
-
-    if (!$db_selected) {
-        die("Conexión a basde de datos fallida");
-    }
+    $db_selected = selectDB($con);
 
     //sanear la entrada
     $name = mysqli_real_escape_string($con, $_POST['usuario']);
@@ -93,11 +88,7 @@ if (isset($_POST['login'])) {
         die("Conexión fallida");
     }
 
-    $db_selected = mysqli_select_db($con, "healthysocial");
-
-    if (!$db_selected) {
-        die("Conexión a basde de datos fallida");
-    }
+    $db_selected = selectDB($con);
 
 
     $result = mysqli_query($con, "SELECT usuario FROM usuario WHERE usuario like '" . $_POST['usuario'] . "';");
@@ -194,7 +185,7 @@ if (isset($_POST['login'])) {
 }
 ?>
 
-
+<!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8" />

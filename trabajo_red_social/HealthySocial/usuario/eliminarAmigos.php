@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <?php
 session_start();
 
@@ -12,11 +11,7 @@ if (isset($_SESSION['usuario'])) {
         die("Conexión fallida");
     }
 
-    $db_selected = mysqli_select_db($con, "healthysocial");
-
-    if (!$db_selected) {
-        die("Conexión a basde de datos fallida");
-    }
+    $db_selected = selectDB($con);
 
     if (isset($_POST['eliminar'])) {
         if (isset($_POST['id_usuario_eliminar'])) {
@@ -58,7 +53,7 @@ if (isset($_SESSION['usuario'])) {
 //    disconnectDB($con);
     ?>
 
-
+    <!DOCTYPE html>
     <html>
         <head>
             <meta charset="UTF-8" />

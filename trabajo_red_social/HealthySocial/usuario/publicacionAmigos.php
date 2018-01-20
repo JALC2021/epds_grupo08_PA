@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <?PHP
 session_start();
 $_SESSION['amigo'] = TRUE;
