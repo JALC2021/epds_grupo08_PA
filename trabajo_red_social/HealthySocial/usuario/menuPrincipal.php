@@ -1,5 +1,5 @@
 <nav class="menu"> 
-    <a href="#" id="menu">¡ Hola  <?php echo $_SESSION['user']; ?> !</a>
+    <a id="menu">¡ Hola  <?php echo $_SESSION['user']; ?> !</a>
     <a href="./publicacionesPersonales.php" id="personal">PERSONAL <i class="fa fa-drivers-license" style="font-size:110%"></i></a>
     <a href="./formularioContenido.php">Publicar <i class="fa fa-user-plus" style="font-size:110%"></i></a>
     <a href="./modificarDatos.php">Modificar datos <i class="fa fa-cog" style="font-size:110%"></i></a>
