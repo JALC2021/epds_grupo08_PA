@@ -22,17 +22,17 @@ if (isset($_SESSION['usuario'])) {
 
     $id_usuario = $row["id_usuario"];
 
-    $result = mysqli_query($con, "select COUNT(*) AS \"votosRecibidos\"  FROM contenido c , voto v WHERE c.id_contenido = v.id_contenido and c.id_usuario = '" . $id_usuario . "';");
-
-    $row = mysqli_fetch_array($result);
-
-    $votosRecibidos = $row["votosRecibidos"];
-
-    $result = mysqli_query($con, "SELECT COUNT(*) AS \"votosRealizados\" FROM voto WHERE id_usuario = '" . $id_usuario . "';");
+    $result = mysqli_query($con, "select COUNT(*) AS \"votosRealizados\"  FROM contenido c , voto v WHERE c.id_contenido = v.id_contenido and c.id_usuario = '" . $id_usuario . "';");
 
     $row = mysqli_fetch_array($result);
 
     $votosRealizados = $row["votosRealizados"];
+
+    $result = mysqli_query($con, "SELECT COUNT(*) AS \"votosRecibidos\" FROM voto WHERE id_usuario = '" . $id_usuario . "';");
+
+    $row = mysqli_fetch_array($result);
+
+    $votosRecibidos = $row["votosRecibidos"];
 
     $result = mysqli_query($con, "select SEC_TO_TIME(SUM(TIME_TO_SEC(d.duracion))) as \"time\" from contenido c NATURAL JOIN deportes d where c.id_usuario ='" . $id_usuario . "';");
 
