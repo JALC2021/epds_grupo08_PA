@@ -82,6 +82,45 @@ if (isset($_SESSION['usuario'])) {
             <?PHP
         }
     }
+    if (isset($_POST['eliminarComentario'])) {
+        $row1 = mysqli_query($con, "DELETE FROM `comentario` WHERE `id_comentario` = '" . $_POST['eliminarComentario'] . "';");
+
+        if (!$row1) {
+            die("Error al ejecutar la consulta: " . mysqli_error($con));
+        }
+        
+        if(mysqli_affected_rows($con)){
+            ?>  
+            <script type="text/javascript">
+                alert("El comentario se ha eliminado correctamente");
+            </script>
+            <?PHP
+        }
+    }
+    
+    if (isset($_POST['eliminarFoto'])) {
+        $row1 = mysqli_query($con, "DELETE FROM `foto` WHERE `id_foto` = '" . $_POST['eliminarFoto'] . "';");
+
+        if (!$row1) {
+            die("Error al ejecutar la consulta: " . mysqli_error($con));
+        }
+        
+        if(mysqli_affected_rows($con)){
+            ?>  
+            <script type="text/javascript">
+                alert("La foto se ha eliminado correctamente");
+            </script>
+            <?PHP
+        }
+    }
+
+    if (isset($_POST['borrar'])) {
+        $row1 = mysqli_query($con, "DELETE FROM `contenido` WHERE `id_contenido` = '" . $_POST['borrar'] . "';");
+
+        if (!$row1) {
+            die("Error al ejecutar la consulta: " . mysqli_error($con));
+        }
+    }
 
 
 
@@ -276,10 +315,11 @@ if (isset($_SESSION['usuario'])) {
                                     <?PHP if ($_SESSION['amigo'] == FALSE) { ?>
 
 
-                                        <label onclick="mostrarFoto(<?PHP echo $foto['id_foto'] ?>)" >  -> Modificar Foto</label>
+                                        <label onclick="mostrarFoto(<?PHP echo $foto['id_foto'] ?>)" >  -> Modificar/Eliminar Foto</label>
                                         <div id="<?PHP echo "mostrarFoto" . $foto['id_foto'] ?>" style="display:none" >
                                             <input id="nuevaFoto" type="url" name="nuevaFoto"  /> 
                                             <button type="submit" name="modificarFoto" value="<?PHP echo $foto['id_foto'] ?>" >Modificar Foto</button>
+                                            <button type="submit" name="eliminarFoto" value="<?PHP echo $foto['id_foto'] ?>" >Eliminar Foto</button>
                                         </div>
 
                                         <?PHP
@@ -382,10 +422,11 @@ if (isset($_SESSION['usuario'])) {
 
                                             <!--Modificar comentario si eres el propietario del mismo-->
                                             <?PHP if ($row['id_usuario'] == $comentario['id_usuario']) { ?>
-                                                <label onclick="mostrarComentario(<?PHP echo $comentario['id_comentario'] ?>)" >  -> Modificar Comentario</label>
+                                                <label onclick="mostrarComentario(<?PHP echo $comentario['id_comentario'] ?>)" >  -> Modificar/eliminar Comentario</label>
                                                 <div id="<?PHP echo "mostrarComentario" . $comentario['id_comentario'] ?>" style="display:none" >
                                                     <input id="comentario" type="text" onchange="comprobar(this, /^([a-zA-ZÁÉÍÓÚñáéíóú0-9]*[\s]*)+$/)" name="<?PHP echo "nuevoComentario" . $comentario['id_comentario'] ?>" /> 
                                                     <button itype="submit" name="modificarComentario"  value="<?PHP echo $comentario['id_comentario'] ?>" >Modificar Comentario</button>
+                                                    <button itype="submit" name="eliminarComentario"  value="<?PHP echo $comentario['id_comentario'] ?>" >Eliminar Comentario</button>
                                                 </div><?PHP
                                             }
                                         }
