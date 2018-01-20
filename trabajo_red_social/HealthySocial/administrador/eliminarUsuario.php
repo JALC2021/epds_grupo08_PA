@@ -56,7 +56,12 @@ if (isset($_SESSION['administrador'])) {
     $TAMANO_PAGINA = 5;
 
 //examino la página a mostrar y el inicio del registro a mostrar
-    $pagina = $_GET["pagina"];
+    if(isset($_GET["pagina"])){
+        $pagina = $_GET["pagina"];
+    }else{
+        $pagina = False;
+    }
+    
     if (!$pagina) {
         $inicio = 0;
         $pagina = 1;
@@ -70,11 +75,6 @@ if (isset($_SESSION['administrador'])) {
     $num_total_registros = mysqli_num_rows($rs);
 //calculo el total de páginas
     $total_paginas = ceil($num_total_registros / $TAMANO_PAGINA);
-
-//pongo el número de registros total, el tamaño de página y la página que se muestra
-    echo "Número de registros encontrados: " . $num_total_registros . "<br>";
-    echo "Se muestran páginas de " . $TAMANO_PAGINA . " registros cada una<br>";
-//    echo "Mostrando la página " . $pagina . " de " . $total_paginas . "<p>";
 
     $sql = "select * from usuario where tipo like 'usuario' order by usuario limit " . $inicio . "," . $TAMANO_PAGINA . ";";
 
