@@ -180,7 +180,9 @@ if (isset($_SESSION['usuario'])) {
     }
     ?>
 
-    <!DOCTYPE html>
+    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-
+        strict.dtd">
     <html>
         <head>
             <meta charset="UTF-8" />
@@ -349,7 +351,7 @@ if (isset($_SESSION['usuario'])) {
                                         ?>
                                         <p id="descripcion"><b><u>Descripci&oacute;n:</u> </b><?PHP echo $contenido['descripcion']; ?></p>
                                         <?PHP if ($_SESSION['amigo'] == FALSE) { ?>
-                                        <label class="botonesSection" onclick="mostrarDescripcion(<?PHP echo $contenido['id_contenido'] ?>)"><i class="fa fa-plus" aria-hidden="true"></i></label>
+                                            <label class="botonesSection" onclick="mostrarDescripcion(<?PHP echo $contenido['id_contenido'] ?>)"><i class="fa fa-plus" aria-hidden="true"></i></label>
                                             <div class="botones" id="<?PHP echo "mostrarDescripcion" . $contenido['id_contenido'] ?>" style="display:none" >
                                                 <input id="descripcion" type="text" name="nuevaDescripcion" onchange="comprobar(this, /^([a-zA-ZÁÉÍÓÚñáéíóú?¿!!<>\*\.0-9]*[\s]*)+$/)" placeholder="Introduzca descripci&oacute;n..." style="width:75%" /> 
                                                 <button class="botonesSection" type="submit" name="modificarDescripcion" value="<?PHP echo $contenido['id_contenido'] ?>" >Modificar Descripci&oacute;n</button>
