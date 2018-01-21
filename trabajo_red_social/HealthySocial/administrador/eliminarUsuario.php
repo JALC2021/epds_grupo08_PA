@@ -74,8 +74,6 @@ if (isset($_SESSION['administrador'])) {
     $sql = "select * from usuario where tipo like 'usuario' order by usuario limit " . $inicio . "," . $TAMANO_PAGINA . ";";
 
 
-
-///A PARTIR DE AQUÍ 
     $condInicial = isset($_POST['enviar']) && ($_POST['usuario'] != "" || $_POST['nombre'] != "" || $_POST['email'] != "" || $_POST['localidad'] != "" || $_POST['apellidos'] != "");
     if ($condInicial) {
 
