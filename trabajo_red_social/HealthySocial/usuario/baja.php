@@ -49,7 +49,7 @@ if (isset($_SESSION['usuario'])) {
                 alert("Su valoración se ha enviado correctamente");
             </script>
             <?php
-            //header("refresh:2;url=despedida.php");
+          
              header("location:despedida.php");
             
         } else {

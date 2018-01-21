@@ -3,7 +3,7 @@ session_start();
 
 if (isset($_SESSION['usuario'])) {
     ?>
-<!DOCTYPE html>
+    <!DOCTYPE html>
     <html> 
         <head>
             <meta charset="UTF-8" />
@@ -20,19 +20,18 @@ if (isset($_SESSION['usuario'])) {
 
             <div class="contendioPrincipal">
 
-                <?PHP include_once './menuPrincipal.php'; ?>
-
                 <section class="sectionModificar">
 
                     <div class="container">
 
                         <h2>Baja usuario</h2>
                         <p><?php $_SESSION['user'] ?> Lamentamos su p&eacute;rdida, pero tal y como nos ha solicitado, ha sido dado de baja</p>
+                        <p>Redirigiendo al login...</p>
 
                     </div>
 
                 </section>
-                <?php include_once '../aside.php'; ?>
+                <?PHP include_once '../aside.php'; ?>
             </div>
 
         </body>
