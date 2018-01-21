@@ -322,12 +322,12 @@ if (isset($_SESSION['usuario'])) {
                                             <?PHP if ($_SESSION['amigo'] == FALSE) { ?>
 
 
-                                                <label class="botonesSection" onclick="mostrarFoto(<?PHP echo $foto['id_foto'] ?>)" ><i class="fa fa-plus" aria-hidden="true"></i></label>
+                                                <label class="botonesSection" onclick="mostrarFoto(<?PHP echo $foto['id_foto'] ?>)" style="font-size: 1em;">Editar</label>
 
                                                 <div class="botones" id="<?PHP echo "mostrarFoto" . $foto['id_foto'] ?>" style="display:none" >
                                                     <input id="nuevaFoto" type="url" name="nuevaFoto" placeholder="Introduzca url..." style="width: 75%" /> 
-                                                    <button class="botonesSection" type="submit" name="modificarFoto" value="<?PHP echo $foto['id_foto'] ?>" >Modificar Foto</button>
-                                                    <button class="botonesSection" type="submit" name="eliminarFoto" value="<?PHP echo $foto['id_foto'] ?>" >Eliminar Foto</button>
+                                                    <button class="botonesSection" type="submit" name="modificarFoto" value="<?PHP echo $foto['id_foto'] ?>">Modificar Foto</button>
+                                                    <button class="botonesSection" type="submit" name="eliminarFoto" value="<?PHP echo $foto['id_foto'] ?>">Eliminar Foto</button>
                                                 </div>
 
                                                 <?PHP
