@@ -47,7 +47,7 @@ if (isset($_SESSION['usuario'])) {
             }
         }
 
-        if ($insertar && preg_match("/^([a-zA-ZÁÉÍÓÚñáéíóú?¿!!<>\*\.0-9]*[\s]*)+$/", $_POST['descripcion'])) {
+        if ($insertar && preg_match("/^([a-zA-ZÁÉÍÓÚñáéíóú?¿!!-<>\*\.0-9]*[\s]*)+$/", $_POST['descripcion'])) {
             $con = connectDB();
 
             if (!$con) {
@@ -253,7 +253,7 @@ if (isset($_SESSION['usuario'])) {
                                     <label>Descripci&oacute;n <span id="requerido"> (*)</span></label>
                                 </div>
                                 <div class="col-75">
-                                    <textarea id="descripcion" name="descripcion" onchange="comprobar(this, /^([a-zA-ZÁÉÍÓÚñáéíóú?¿!!<>\*\.0-9]*[\s]*)+$/)" required placeholder="Introduce descripción..." style="height:100px"></textarea>
+                                    <textarea id="descripcion" name="descripcion" onchange="comprobar(this, /^([a-zA-ZÁÉÍÓÚñáéíóú-?¿!!<>\*\.0-9]*[\s]*)+$/)" required placeholder="Introduce descripción..." style="height:100px"></textarea>
                                 </div>
                             </div>
 
@@ -335,7 +335,7 @@ if (isset($_SESSION['usuario'])) {
                                             <option value="tenis">Tenis</option>
                                             <option value="paddel">Paddel</option>
                                             <option value="surf">Surf</option>
-                                            <option value="baloncesto">Baloncesto&oacute;tica</option>
+                                            <option value="baloncesto">Baloncesto</option>
                                             <option value="running">Runnig</option>
                                             <option value="natacion">Nataci&oacute;n</option>
                                         </select>
