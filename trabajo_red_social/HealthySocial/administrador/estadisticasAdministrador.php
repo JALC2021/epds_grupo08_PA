@@ -6,19 +6,9 @@
     if (isset($_SESSION['administrador'])) {
 
         $con = connectDB();
-
-        if (!$con) {
-            die("Conexión fallida");
-        }
         
   $db_selected = selectDB($con);
-       
-
-        if (!$db_selected) {
-            die("Conexión a basde de datos fallida");
-        }
-
-
+  
         $numMujeres = mysqli_query($con, "SELECT COUNT(*) AS numeroMujeres FROM `estadisticasapp` WHERE `sexo` LIKE 'mujer';");
 
         if (!$numMujeres) {
