@@ -5,7 +5,7 @@ require_once '../functions.php';
 
 
 if (isset($_SESSION['usuario'])) {
-    
+
     if (isset($_POST['alimentacion']) || isset($_POST['deportes']) || isset($_POST['suplemento'])) {
 
         $insertar = true;
@@ -104,12 +104,6 @@ if (isset($_SESSION['usuario'])) {
                     if (!$result) {
                         die("Error al ejecutar la consulta: " . mysqli_error($con));
                     }
-                    ?>
-                    <script type="text/javascript">
-                        alert("El contenido de alimentación se ha publicado correctamente");
-                    </script>
-                    <?PHP
-                    
                     header("location:publicacionesPersonales.php");
                 } else if (isset($_POST['deportes'])) {
                     //saneamos las entradas
@@ -124,11 +118,6 @@ if (isset($_SESSION['usuario'])) {
                     if (!$result) {
                         die("Error al ejecutar la consulta: " . mysqli_error($con));
                     }
-                    ?>
-                    <script type="text/javascript">
-                        alert("El contenido de deportes se ha publicado correctamente");
-                    </script>
-                    <?PHP
                     header("location:publicacionesPersonales.php");
                 } else if (isset($_POST['suplemento'])) {
                     if ($_POST['dosis'] > 0) {
@@ -141,11 +130,6 @@ if (isset($_SESSION['usuario'])) {
                         if (!$result) {
                             die("Error al ejecutar la consulta: " . mysqli_error($con));
                         }
-                        ?>
-                        <script type="text/javascript">
-                            alert("El contenido de suplemento se ha publicado correctamente");
-                        </script>
-                        <?PHP
                         header("location:publicacionesPersonales.php");
                     } else {
                         ?>
