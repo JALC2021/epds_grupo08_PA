@@ -193,7 +193,7 @@ if (isset($_SESSION['usuario'])) {
                                 </div>
 
                                 <div class="col-75">
-                                    <input type="password" size="8"  id="password" name="password" class="form-control" onchange="comprobar(this, /^[a-zA-z0-9]{6,15}$/)" required placeholder="Si lo desea puede modificar su contrase&ntilde;a o introducir la que tiene" />
+                                    <input type="password" size="8"  id="password" name="password" class="form-control" onchange="comprobar(this, /^[a-zA-z0-9]{6,15}$/)" required placeholder="Modifique su contrase&ntilde;a &oacute; introduzca la actual." />
                                 </div>
                             </div>
 

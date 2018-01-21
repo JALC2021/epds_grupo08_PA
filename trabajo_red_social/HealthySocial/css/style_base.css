@@ -49,11 +49,6 @@ header {
     border-bottom-left-radius:9px;
     border-bottom-right-radius:9px;
 }
-h1{
-    font-family: fantasy;
-    font-size: 3em;
-    font-weight: bold;
-}
 
 aside{
     width: 10%;
@@ -261,10 +256,10 @@ nav{
 
 .sectionPublicaciones, .sectionEstadistica, .sectionModificar{
     width: 70%;
-    /*background-color: #a2dece;*/
-    /*    background-image: url("../images/background.jpg");
+/*    background-color: #a2dece;
+        background-image: url("../images/background.jpg");
         background-repeat: no-repeat;*/
-    background-color:#ef8d17;
+    background-color: #a2dece;
     background-attachment: fixed;
     background-size: cover;
     float: left;
@@ -363,6 +358,16 @@ article{
     clear: both;
 }
 
+hr{
+    color: #ef8d17;
+    display: block;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: inset;
+    border-width: 2px;
+}
 .contendioPrincipal{
     /*    background-image: url("http://s1.1zoom.me/big3/963/Texture_Boards_Wooden_478676.jpg");*/
     /*    background-image: url(../images/background.jpg);*/
@@ -523,7 +528,7 @@ input[type=submit]:active {
     color: white;
 }
 
-.container {
+/*.container {
     border-radius: 9px;
     padding: 8px;
     font-weight: bold;
@@ -531,8 +536,8 @@ input[type=submit]:active {
     margin: 5px;
     background-color: #a2dece;
     border: 1px hidden;
-    /*    opacity: 0.7;*/
-    /*    filter: alpha(opacity=60);*/
+        opacity: 0.7;
+        filter: alpha(opacity=60);
     -moz-border-radius-topleft: 9px;
     -moz-border-radius-topright:9px;
     -moz-border-radius-bottomleft:9px;
@@ -545,7 +550,7 @@ input[type=submit]:active {
     border-top-right-radius:9px;
     border-bottom-left-radius:9px;
     border-bottom-right-radius:9px;
-}
+}*/
 
 
 .col-25 {
@@ -602,5 +607,6 @@ input[type=submit]:active {
             margin-bottom: 15px;
             width: 40%;
         }*/
+
 
 }

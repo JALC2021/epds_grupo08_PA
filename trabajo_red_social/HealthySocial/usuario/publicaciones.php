@@ -416,8 +416,7 @@ if (isset($_SESSION['usuario'])) {
                                     }
 
                                     if (mysqli_num_rows($rowComentario) > 0) {
-                                         
-//                                            
+                                                                                   
                                         
                                         ?><label class="botonesSection"  onclick="mostrarComentario(<?PHP echo $contenido['id_contenido'] ?>)"><i class="fa fa-plus" aria-hidden="true"></i></label><?php
                                         while ($comentario = mysqli_fetch_array($rowComentario)) {
