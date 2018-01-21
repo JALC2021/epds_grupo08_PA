@@ -17,9 +17,7 @@ if (isset($_SESSION['usuario'])) {
     if (!$consulta) {
         die("Error al ejecutar la consulta: " . mysqli_error($con));
     }
-
     $datosUsu = mysqli_fetch_array($consulta);
-
 
     if (isset($_POST['modificar'])) {
         $result = mysqli_query($con, "SELECT usuario FROM usuario WHERE usuario like '" . $_POST['usuario'] . "';");
@@ -28,13 +26,9 @@ if (isset($_SESSION['usuario'])) {
             die("Error al ejecutar la consulta: " . mysqli_error($con));
         }
 
-        if (mysqli_num_rows($result) > 0) {
-            ?>
-            <script type="text/javascript">
-                alert("El usuario introducido ya existe. Pruebe a insertar uno nuevo");
-            </script>
-            <?PHP
-        } else if (preg_match("/^[A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]{2,15}$/", $_POST['nombre']) && preg_match("/^[[:alnum:]]{6,15}$/", $_POST['password']) &&
+
+
+        if (preg_match("/^[A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]{2,15}$/", $_POST['nombre']) && preg_match("/^[[:alnum:]]{6,15}$/", $_POST['password']) &&
                 preg_match("/^[[:alnum:]]{3,15}$/", $_POST['usuario']) && preg_match("/^[a-zA-z0-9]+@[a-z]+\.[a-z]+/", $_POST['email']) &&
                 preg_match("/^([a-zA-ZÁÉÍÓÚñáéíóú]{1,15}[\s]*)+$/", $_POST['apellidos']) && preg_match("/^([a-zA-ZÁÉÍÓÚñáéíóú]{1,15}[\s]*)+$/", $_POST['localidad'])) {
 
@@ -53,7 +47,7 @@ if (isset($_SESSION['usuario'])) {
 
 
             $result = mysqli_query($con, "UPDATE `usuario` SET `usuario`='" . $user . "',`password`='" . $pass . "',`tipo`='usuario',`nombre`='" . $name . "',`email`='" . $email . "',`sexo`='" . $datosUsu['sexo'] . "',`apellidos`='" . $apellidos . "',`localidad`='" . $localidad . "',`fecha_alta`='" . $datosUsu['fecha_alta'] . "' WHERE `usuario` LIKE '" . $_SESSION['user'] . "';");
-
+            
 
             if (!$result) {
                 die("Error al ejecutar la consulta: " . mysqli_error($con));
@@ -63,6 +57,12 @@ if (isset($_SESSION['usuario'])) {
                 alert("El usuario <?PHP echo $user ?> se ha modificado correctamente");
             </script>
             <?PHP
+            $_SESSION['user'] = $user;
+            $consulta = mysqli_query($con, "SELECT * FROM `usuario` WHERE `usuario` LIKE '" . $_SESSION['user'] . "';");
+            if (!$consulta) {
+                die("Error al ejecutar la consulta: " . mysqli_error($con));
+            }
+            $datosUsu = mysqli_fetch_array($consulta);
             disconnectDB($con);
         } else { //el problema viene aquí. Habra k poner alguna condición. Esto entonces tb un if else¿
             if (!preg_match('/^[[:alnum:]]{3,15}$/', $_POST['usuario'])) {
@@ -116,6 +116,7 @@ if (isset($_SESSION['usuario'])) {
             }
         }
     }
+   
     ?>
     <!DOCTYPE html>
     <html>

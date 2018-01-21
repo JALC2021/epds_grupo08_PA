@@ -5,6 +5,7 @@ require_once '../functions.php';
 
 
 if (isset($_SESSION['usuario'])) {
+    
     if (isset($_POST['alimentacion']) || isset($_POST['deportes']) || isset($_POST['suplemento'])) {
 
         $insertar = true;
@@ -46,7 +47,7 @@ if (isset($_SESSION['usuario'])) {
             }
         }
 
-        if ($insertar && preg_match("/^([a-zA-ZÁÉÍÓÚñáéíóú0-9]*[\s]*)+$/", $_POST['descripcion'])) {
+        if ($insertar && preg_match("/^([a-zA-ZÁÉÍÓÚñáéíóú?¿!!<>\*\.0-9]*[\s]*)+$/", $_POST['descripcion'])) {
             $con = connectDB();
 
             if (!$con) {
@@ -268,7 +269,7 @@ if (isset($_SESSION['usuario'])) {
                                     <label>Descripci&oacute;n <span id="requerido"> (*)</span></label>
                                 </div>
                                 <div class="col-75">
-                                    <textarea id="descripcion" name="descripcion" onchange="comprobar(this, /^([a-zA-ZÁÉÍÓÚñáéíóú0-9]*[\s]*)+$/)" required placeholder="Introduce descripción..." style="height:100px"></textarea>
+                                    <textarea id="descripcion" name="descripcion" onchange="comprobar(this, /^([a-zA-ZÁÉÍÓÚñáéíóú?¿!!<>\*\.0-9]*[\s]*)+$/)" required placeholder="Introduce descripción..." style="height:100px"></textarea>
                                 </div>
                             </div>
 

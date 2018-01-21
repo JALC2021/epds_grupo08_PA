@@ -13,7 +13,7 @@ if (isset($_SESSION['usuario'])) {
 
     $db_selected = selectDB($con);
 
-///A PARTIR DE AQUÍ 
+
     $condInicial = isset($_POST['enviar']) && ($_POST['usuario'] != "" || $_POST['nombre'] != "" || $_POST['email'] != "" || $_POST['localidad'] != "" || $_POST['apellidos'] != "");
     if ($condInicial) {
 
