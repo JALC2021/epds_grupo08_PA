@@ -126,9 +126,16 @@ nav{
 }
 
 .botonesSection{
-    padding: 10px;
-    margin-top: 10px;
-    margin-right: 50px;
+    
+    width: 100px;
+    overflow:hidden;
+    zoom: 1;
+    *display: inline;
+    display: inline-block;
+    vertical-align: top;
+    padding: 2px;
+    margin-top: 12px;
+    margin-bottom: 12px;
     border:solid 1px #000000;
     background-color: #f9fbe7; 
     font-size: 10%;
@@ -146,6 +153,12 @@ nav{
     border-bottom-left-radius:9px;
     border-bottom-right-radius:9px;
 
+
+}
+
+.botones{
+    margin:10px auto 20px;
+    text-align:center;
 }
 
 .botonesSection:hover {
@@ -304,18 +317,18 @@ article{
     max-width: 100%;*/
     text-align: center;
     border:hidden 1px #000000;
-    -moz-border-radius-topleft: 30%;
-    -moz-border-radius-topright:30%;
-    -moz-border-radius-bottomleft:30%;
-    -moz-border-radius-bottomright:30%;
-    -webkit-border-top-left-radius:30%;
-    -webkit-border-top-right-radius:30%;
-    -webkit-border-bottom-left-radius:30%;
-    -webkit-border-bottom-right-radius:30%;
-    border-top-left-radius:30%;
-    border-top-right-radius:30%;
-    border-bottom-left-radius:30%;
-    border-bottom-right-radius:30%;
+    -moz-border-radius-topleft: 9px;
+    -moz-border-radius-topright:9px;
+    -moz-border-radius-bottomleft:9px;
+    -moz-border-radius-bottomright:9px;
+    -webkit-border-top-left-radius:9px;
+    -webkit-border-top-right-radius:9px;
+    -webkit-border-bottom-left-radius:9px;
+    -webkit-border-bottom-right-radius:9px;
+    border-top-left-radius:9px;
+    border-top-right-radius:9px;
+    border-bottom-left-radius:9px;
+    border-bottom-right-radius:9px; 
 }
 
 .imagenesAside a{
@@ -518,8 +531,8 @@ input[type=submit]:active {
     margin: 5px;
     background-color: #a2dece;
     border: 1px hidden;
-/*    opacity: 0.7;*/
-/*    filter: alpha(opacity=60);*/
+    /*    opacity: 0.7;*/
+    /*    filter: alpha(opacity=60);*/
     -moz-border-radius-topleft: 9px;
     -moz-border-radius-topright:9px;
     -moz-border-radius-bottomleft:9px;
@@ -584,5 +597,10 @@ input[type=submit]:active {
         border-radius: 14px;
 
     }
+
+    /*    .comentarioPersonal{
+            margin-bottom: 15px;
+            width: 40%;
+        }*/
 
 }

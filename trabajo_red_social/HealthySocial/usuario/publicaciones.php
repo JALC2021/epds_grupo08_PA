@@ -316,79 +316,71 @@ if (isset($_SESSION['usuario'])) {
                                     if (mysqli_num_rows($rowFoto) == 1) {
                                         $foto = mysqli_fetch_array($rowFoto);
                                         ?> 
+                                        <figure>
+                                            <img  class="imagenesArticulos" src="<?php echo $foto['url']; ?>">
 
-                                        <img  class="imagenesArticulos" src="<?php echo $foto['url']; ?>">
+                                            <?PHP if ($_SESSION['amigo'] == FALSE) { ?>
 
+
+                                                <label onclick="mostrarFoto(<?PHP echo $foto['id_foto'] ?>)" >  -> Modificar/Eliminar Foto</label>
+                                                <div id="<?PHP echo "mostrarFoto" . $foto['id_foto'] ?>" style="display:none" >
+                                                    <input id="nuevaFoto" type="url" name="nuevaFoto"  /> 
+                                                    <button type="submit" name="modificarFoto" value="<?PHP echo $foto['id_foto'] ?>" >Modificar Foto</button>
+                                                    <button type="submit" name="eliminarFoto" value="<?PHP echo $foto['id_foto'] ?>" >Eliminar Foto</button>
+                                                </div>
+
+                                                <?PHP
+                                            }
+                                        } else {
+                                            if ($_SESSION['amigo'] == FALSE) {
+                                                ?>
+
+
+                                                <label onclick="mostrarFoto(<?PHP echo $contenido['id_contenido'] ?>)" >  -> Insertar Foto</label>
+                                                <div id="<?PHP echo "mostrarFoto" . $contenido['id_contenido'] ?>" style="display:none" >
+                                                    <input id="nuevaFoto" type="url" name="nuevaFoto"  /> 
+                                                    <button type="submit" name="insertarFoto" value="<?PHP echo $contenido['id_contenido'] ?>" >Insertar Foto</button>
+                                                </div>
+
+                                                <?PHP
+                                            }
+                                        }
+                                        ?>
+                                        <p id="descripcion"><b>Descripci&oacute;n: </b><?PHP echo $contenido['descripcion']; ?></p>
                                         <?PHP if ($_SESSION['amigo'] == FALSE) { ?>
-
-
-                                            <label onclick="mostrarFoto(<?PHP echo $foto['id_foto'] ?>)" >  -> Modificar/Eliminar Foto</label>
-                                            <div id="<?PHP echo "mostrarFoto" . $foto['id_foto'] ?>" style="display:none" >
-                                                <input id="nuevaFoto" type="url" name="nuevaFoto"  /> 
-                                                <button type="submit" name="modificarFoto" value="<?PHP echo $foto['id_foto'] ?>" >Modificar Foto</button>
-                                                <button type="submit" name="eliminarFoto" value="<?PHP echo $foto['id_foto'] ?>" >Eliminar Foto</button>
+                                            <label onclick="mostrarDescripcion(<?PHP echo $contenido['id_contenido'] ?>)">  -> Modificar Descripcion</label>
+                                            <div id="<?PHP echo "mostrarDescripcion" . $contenido['id_contenido'] ?>" style="display:none" >
+                                                <input id="descripcion" type="text" name="nuevaDescripcion" onchange="comprobar(this, /^([a-zA-ZÁÉÍÓÚñáéíóú?¿!!<>\*\.0-9]*[\s]*)+$/)" /> 
+                                                <button type="submit" name="modificarDescripcion" value="<?PHP echo $contenido['id_contenido'] ?>" >Modificar Descripci&oacute;n</button>
                                             </div>
 
                                             <?PHP
                                         }
-                                    } else {
-                                        if ($_SESSION['amigo'] == FALSE) {
+                                        //comprobamos si el contenido es de deportes,alimentación o suplementos
+                                        $rowAlimentacion = mysqli_query($con, "SELECT * FROM `contenido` NATURAL JOIN `alimentacion` WHERE `id_contenido` = " . $contenido['id_contenido'] . ";");
+                                        $rowDeportes = mysqli_query($con, "SELECT * FROM `contenido` NATURAL JOIN `deportes` WHERE `id_contenido` = " . $contenido['id_contenido'] . ";");
+                                        $rowSuplemento = mysqli_query($con, "SELECT * FROM `contenido` NATURAL JOIN `suplemento` WHERE `id_contenido` = " . $contenido['id_contenido'] . ";");
+
+                                        if (mysqli_num_rows($rowAlimentacion) == 1) {
+                                            $alimentacion = mysqli_fetch_array($rowAlimentacion);
+                                            ?>
+                                            <p><b>Tipo: </b><?PHP echo $alimentacion['dieta_estudio']; ?> - <b>Alimentaci&oacute;n: </b><?PHP echo $alimentacion['tipo']; ?> - <b>Duraci&oacute;n: </b><?PHP echo $alimentacion['duracion']; ?></p>                                      
+                                            <?PHP
+                                        } else if (mysqli_num_rows($rowDeportes) == 1) {
+                                            $deportes = mysqli_fetch_array($rowDeportes);
                                             ?>
 
-
-                                            <label onclick="mostrarFoto(<?PHP echo $contenido['id_contenido'] ?>)" >  -> Insertar Foto</label>
-                                            <div id="<?PHP echo "mostrarFoto" . $contenido['id_contenido'] ?>" style="display:none" >
-                                                <input id="nuevaFoto" type="url" name="nuevaFoto"  /> 
-                                                <button type="submit" name="insertarFoto" value="<?PHP echo $contenido['id_contenido'] ?>" >Insertar Foto</button>
-                                            </div>
-
+                                            <p><b>Nivel: </b><?PHP echo $deportes['nivel']; ?> - <b>Localicaci&oacute;n: </b><?PHP echo $deportes['localizacion']; ?> - <b>Deporte: </b><?PHP echo $deportes['tipo']; ?> - <b>Duraci&oacute;n: </b><?PHP echo $deportes['duracion']; ?></p>
+                                            <?PHP
+                                        } else if (mysqli_num_rows($rowSuplemento) == 1) {
+                                            $suplemento = mysqli_fetch_array($rowSuplemento);
+                                            ?>
+                                            <p><b>Dosis: </b><?PHP echo $suplemento['dosis']; ?> - <b>Tipo suplemento: </b><?PHP echo $suplemento['tipo']; ?> - <b>Duraci&oacute;n: </b><?PHP echo $suplemento['duracion']; ?></p>
                                             <?PHP
                                         }
-                                    }
-                                    ?>
-                                    <p id="descripcion"><b>Descripci&oacute;n: </b><?PHP echo $contenido['descripcion']; ?></p>
-                                    <?PHP if ($_SESSION['amigo'] == FALSE) { ?>
-                                        <label onclick="mostrarDescripcion(<?PHP echo $contenido['id_contenido'] ?>)">  -> Modificar Descripcion</label>
-                                        <div id="<?PHP echo "mostrarDescripcion" . $contenido['id_contenido'] ?>" style="display:none" >
-                                            <input id="descripcion" type="text" name="nuevaDescripcion" onchange="comprobar(this, /^([a-zA-ZÁÉÍÓÚñáéíóú?¿!!<>\*\.0-9]*[\s]*)+$/)" /> 
-                                            <button type="submit" name="modificarDescripcion" value="<?PHP echo $contenido['id_contenido'] ?>" >Modificar Descripci&oacute;n</button>
-                                        </div>
-
-                                        <?PHP
-                                    }
-                                    //comprobamos si el contenido es de deportes,alimentación o suplementos
-                                    $rowAlimentacion = mysqli_query($con, "SELECT * FROM `contenido` NATURAL JOIN `alimentacion` WHERE `id_contenido` = " . $contenido['id_contenido'] . ";");
-                                    $rowDeportes = mysqli_query($con, "SELECT * FROM `contenido` NATURAL JOIN `deportes` WHERE `id_contenido` = " . $contenido['id_contenido'] . ";");
-                                    $rowSuplemento = mysqli_query($con, "SELECT * FROM `contenido` NATURAL JOIN `suplemento` WHERE `id_contenido` = " . $contenido['id_contenido'] . ";");
-
-                                    if (mysqli_num_rows($rowAlimentacion) == 1) {
-                                        $alimentacion = mysqli_fetch_array($rowAlimentacion);
                                         ?>
 
-                                        <details><summary>M&aacute;s</summary>
-                                            <p><b>Dieta o estudio: </b><?PHP echo $alimentacion['dieta_estudio']; ?></p>
-                                            <p><b>Tipo alimentaci&oacute;n: </b><?PHP echo $alimentacion['tipo']; ?></p>
-                                            <p><b>Duraci&oacute;n: </b><?PHP echo $alimentacion['duracion']; ?></p>
-                                        </details><?PHP
-                                    } else if (mysqli_num_rows($rowDeportes) == 1) {
-                                        $deportes = mysqli_fetch_array($rowDeportes);
-                                        ?>
-                                        <details><summary>M&aacute;s</summary>
-                                            <p><b>Nivel: </b><?PHP echo $deportes['nivel']; ?></p>
-                                            <p><b>Localicaci&oacute;n: </b><?PHP echo $deportes['localizacion']; ?></p>
-                                            <p><b>Tipo deporte: </b><?PHP echo $deportes['tipo']; ?></p>
-                                            <p><b>Duraci&oacute;n: </b><?PHP echo $deportes['duracion']; ?></p>
-                                        </details><?PHP
-                                    } else if (mysqli_num_rows($rowSuplemento) == 1) {
-                                        $suplemento = mysqli_fetch_array($rowSuplemento);
-                                        ?><details><summary>M&aacute;s</summary>
-                                            <p><b>Dosis: </b><?PHP echo $suplemento['dosis']; ?></p>
-                                            <p><b>Tipo suplemento: </b><?PHP echo $suplemento['tipo']; ?></p>
-                                            <p><b>Duraci&oacute;n: </b><?PHP echo $suplemento['duracion']; ?></p>
-                                        </details><?PHP
-                                    }
-                                    ?>
-
+                                    </figure>
                                     <?php
                                     //consultamos el total de votos
                                     $rowVoto = mysqli_query($con, "select count(*) as \"totalVotos\" from voto where id_contenido = " . $contenido['id_contenido'] . ";");
@@ -402,16 +394,19 @@ if (isset($_SESSION['usuario'])) {
                                     $idContenido = $contenido['id_contenido'];
                                     ?>
 
-                                    <button type="submit" value="<?PHP echo $idContenido; ?>"  name="like" class="botonesSection" style="font-size:24px"><i class="fa fa-thumbs-o-up" ></i></button>
-                                    <button class="botonesSection" style="font-size:24px"><?PHP echo $votos['totalVotos']; ?> <i class="fa fa-heart"></i></button>
-                                    <button type="submit" value="<?PHP echo $idContenido; ?>" name="unlike" class="botonesSection"  style="font-size:24px"><i class="fa fa-thumbs-o-down"></i></button>
-                                    <?PHP
-                                    if ($_SESSION['amigo'] == FALSE) {
-                                        ?><button  type="submit" value="<?PHP echo $idContenido; ?>"  name="borrar"  class="botonesSection"  style="font-size:24px" /><i class="fa fa-trash"></i></button>
+                                    <div class="botones">
+                                        <button class="botonesSection" type="submit" value="<?PHP echo $idContenido; ?>"  name="like"  style="font-size:24px"><i class="fa fa-thumbs-o-up" ></i></button>
+                                        <button class="botonesSection" type=button"  style="font-size:24px"><?PHP echo $votos['totalVotos']; ?> <i class="fa fa-heart"></i></button>
+                                        <button class="botonesSection" type="submit" value="<?PHP echo $idContenido; ?>" name="unlike"  style="font-size:24px"><i class="fa fa-thumbs-o-down"></i></button>                     
+                                        <button class="botonesSection" type="submit" value="<?PHP echo $idContenido; ?>" name="comentario"  style="font-size:24px" ><i class="fa fa-commenting"></i></button>                              
+                                        <?PHP
+                                        if ($_SESSION['amigo'] == FALSE) {
+                                            ?> <button class="botonesSection" type="submit" value="<?PHP echo $idContenido; ?>"  name="borrar"  style="font-size:24px" /><i class="fa fa-trash"></i></button>
                                         <?PHP }
                                         ?>
-                                    <button type="submit" value="<?PHP echo $idContenido; ?>" name="comentario" class="botonesSection"  style="font-size:24px" ><i class="fa fa-commenting-o"></i></button>
-                                    <input id="comentario" onchange="comprobar(this, /^([a-zA-ZÁÉÍÓÚñáéíóú?¿!!<>\*\.0-9]*[\s]*)+$/)" type="text" name="comment" />
+                                        <button class="botonesSection" type="button" name="comentarios"  style="font-size:24px" ><i class="fa fa-comments"></i></button>
+                                        <input id="comentario" onchange="comprobar(this, /^([a-zA-ZÁÉÍÓÚñáéíóú?¿!!<>\*\.0-9]*[\s]*)+$/)" type="text" name="comment" class=comentarioPersonal" placeholder="Introduzca comentario..." style="width: 70%"/>
+                                    </div>
                                     <?PHP
                                     $rowComentario = mysqli_query($con, "SELECT * FROM `comentario` WHERE `id_contenido` = " . $idContenido . ";");
 
