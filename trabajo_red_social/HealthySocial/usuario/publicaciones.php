@@ -234,7 +234,6 @@ if (isset($_SESSION['usuario'])) {
 
                     if (mostradoComentario) {
                         document.getElementById("mostrarComentario" + id).setAttribute("style", "display:block");
-                        document.setAttribute("style","width: 70%;");
                         mostradoComentario = false;
                     } else {
                         document.getElementById("mostrarComentario" + id).setAttribute("style", "display:none");
@@ -309,7 +308,7 @@ if (isset($_SESSION['usuario'])) {
                                         }
                                         $amigo = mysqli_fetch_array($rowAmigo);
                                         ?> 
-                                        <p><b>Usuario: </b><?PHP echo $amigo['usuario']; ?></p>
+                                        <p><b><u>Usuario:</u></b>&nbsp;&nbsp;<?PHP echo $amigo['usuario']; ?></p>
 
                                         <?PHP
                                     }
@@ -324,7 +323,7 @@ if (isset($_SESSION['usuario'])) {
 
 
                                                 <label class="botonesSection" onclick="mostrarFoto(<?PHP echo $foto['id_foto'] ?>)" ><i class="fa fa-plus" aria-hidden="true"></i></label>
-        
+
                                                 <div class="botones" id="<?PHP echo "mostrarFoto" . $foto['id_foto'] ?>" style="display:none" >
                                                     <input id="nuevaFoto" type="url" name="nuevaFoto" placeholder="Introduzca url..." style="width: 75%" /> 
                                                     <button class="botonesSection" type="submit" name="modificarFoto" value="<?PHP echo $foto['id_foto'] ?>" >Modificar Foto</button>
@@ -348,9 +347,9 @@ if (isset($_SESSION['usuario'])) {
                                             }
                                         }
                                         ?>
-                                        <p id="descripcion"><b>Descripci&oacute;n: </b><?PHP echo $contenido['descripcion']; ?></p>
+                                        <p id="descripcion"><b><u>Descripci&oacute;n:</u> </b><?PHP echo $contenido['descripcion']; ?></p>
                                         <?PHP if ($_SESSION['amigo'] == FALSE) { ?>
-                                            <label class="botonesSection" onclick="mostrarDescripcion(<?PHP echo $contenido['id_contenido'] ?>)"><i class="fa fa-plus" aria-hidden="true"></i></label>
+                                        <label class="botonesSection" onclick="mostrarDescripcion(<?PHP echo $contenido['id_contenido'] ?>)"><i class="fa fa-plus" aria-hidden="true"></i></label>
                                             <div class="botones" id="<?PHP echo "mostrarDescripcion" . $contenido['id_contenido'] ?>" style="display:none" >
                                                 <input id="descripcion" type="text" name="nuevaDescripcion" onchange="comprobar(this, /^([a-zA-ZÁÉÍÓÚñáéíóú?¿!!<>\*\.0-9]*[\s]*)+$/)" placeholder="Introduzca descripci&oacute;n..." style="width:75%" /> 
                                                 <button class="botonesSection" type="submit" name="modificarDescripcion" value="<?PHP echo $contenido['id_contenido'] ?>" >Modificar Descripci&oacute;n</button>
@@ -366,18 +365,18 @@ if (isset($_SESSION['usuario'])) {
                                         if (mysqli_num_rows($rowAlimentacion) == 1) {
                                             $alimentacion = mysqli_fetch_array($rowAlimentacion);
                                             ?>
-                                            <p><b>Tipo: </b><?PHP echo $alimentacion['dieta_estudio']; ?> - <b>Alimentaci&oacute;n: </b><?PHP echo $alimentacion['tipo']; ?> - <b>Duraci&oacute;n: </b><?PHP echo $alimentacion['duracion']; ?></p>                                      
+                                            <p><b><u>Tipo:</u>&nbsp;&nbsp;</b><?PHP echo $alimentacion['dieta_estudio']; ?>&nbsp;&nbsp;-&nbsp;&nbsp;<b><u>Alimentaci&oacute;n:</u>&nbsp;&nbsp;&nbsp;&nbsp;</b><?PHP echo $alimentacion['tipo']; ?>&nbsp;&nbsp;-&nbsp;&nbsp;<b><u>Duraci&oacute;n:</u>&nbsp;&nbsp;&nbsp;&nbsp;</b><?PHP echo $alimentacion['duracion']; ?></p>                                      
                                             <?PHP
                                         } else if (mysqli_num_rows($rowDeportes) == 1) {
                                             $deportes = mysqli_fetch_array($rowDeportes);
                                             ?>
 
-                                            <p><b>Nivel: </b><?PHP echo $deportes['nivel']; ?> - <b>Localicaci&oacute;n: </b><?PHP echo $deportes['localizacion']; ?> - <b>Deporte: </b><?PHP echo $deportes['tipo']; ?> - <b>Duraci&oacute;n: </b><?PHP echo $deportes['duracion']; ?></p>
+                                            <p><b><u>Nivel:</u>&nbsp;&nbsp;&nbsp;&nbsp;</b><?PHP echo $deportes['nivel']; ?>&nbsp;&nbsp;-&nbsp;&nbsp; <b><u>Localicaci&oacute;n:</u>&nbsp;&nbsp;&nbsp;&nbsp;</b><?PHP echo $deportes['localizacion']; ?>&nbsp;&nbsp;-&nbsp;&nbsp;<b><u>Deporte:</u>&nbsp;&nbsp;&nbsp;&nbsp;</b><?PHP echo $deportes['tipo']; ?>&nbsp;&nbsp;-&nbsp;&nbsp;<b><u>Duraci&oacute;n:</u>&nbsp;&nbsp;&nbsp;&nbsp;</b><?PHP echo $deportes['duracion']; ?></p>
                                             <?PHP
                                         } else if (mysqli_num_rows($rowSuplemento) == 1) {
                                             $suplemento = mysqli_fetch_array($rowSuplemento);
                                             ?>
-                                            <p><b>Dosis: </b><?PHP echo $suplemento['dosis']; ?> - <b>Tipo suplemento: </b><?PHP echo $suplemento['tipo']; ?> - <b>Duraci&oacute;n: </b><?PHP echo $suplemento['duracion']; ?></p>
+                                            <p><b><u>Dosis:</u>&nbsp;&nbsp;&nbsp;&nbsp;</b><?PHP echo $suplemento['dosis']; ?>&nbsp;&nbsp;-&nbsp;&nbsp;<b><u>Tipo suplemento:</u>&nbsp;&nbsp;&nbsp;&nbsp;</b><?PHP echo $suplemento['tipo']; ?>&nbsp;&nbsp;-&nbsp;&nbsp;<b><u>Duraci&oacute;n:</u>&nbsp;&nbsp;&nbsp;&nbsp;</b><?PHP echo $suplemento['duracion']; ?></p>
                                             <?PHP
                                         }
                                         ?>
@@ -397,15 +396,15 @@ if (isset($_SESSION['usuario'])) {
                                     ?>
 
                                     <div class="botones">
-                                        <button class="botonesSection" type="submit" value="<?PHP echo $idContenido; ?>"  name="like"  style="font-size:24px"><i class="fa fa-thumbs-o-up" ></i></button>
+                                        <button id="megusta" class="botonesSection" type="submit" value="<?PHP echo $idContenido; ?>"  name="like"  style="font-size:24px"><i class="fa fa-thumbs-o-up" ></i></button>
                                         <button class="botonesSection" type=button"  style="font-size:24px"><?PHP echo $votos['totalVotos']; ?> <i class="fa fa-heart"></i></button>
                                         <button class="botonesSection" type="submit" value="<?PHP echo $idContenido; ?>" name="unlike"  style="font-size:24px"><i class="fa fa-thumbs-o-down"></i></button>                     
                                         <button class="botonesSection" type="submit" value="<?PHP echo $idContenido; ?>" name="comentario"  style="font-size:24px" ><i class="fa fa-commenting"></i></button>                              
                                         <?PHP
                                         if ($_SESSION['amigo'] == FALSE) {
                                             ?> <button class="botonesSection" type="submit" value="<?PHP echo $idContenido; ?>"  name="borrar"  style="font-size:24px" /><i class="fa fa-trash"></i></button>
-                                        <?PHP }
-                                        ?>
+                                            <?PHP }
+                                            ?>
                                         <input id="comentario" onchange="comprobar(this, /^([a-zA-ZÁÉÍÓÚñáéíóú?¿!!<>\*\.0-9]*[\s]*)+$/)" type="text" name="comment" class=comentarioPersonal" placeholder="Introduzca comentario y pulse &#xf27a;" style="font-family:FontAwesome;width: 70%" />
                                     </div>
                                     <?PHP
@@ -416,18 +415,17 @@ if (isset($_SESSION['usuario'])) {
                                     }
 
                                     if (mysqli_num_rows($rowComentario) > 0) {
-                                                                                   
-                                        
-                                        ?><label class="botonesSection"  onclick="mostrarComentario(<?PHP echo $contenido['id_contenido'] ?>)"><i class="fa fa-plus" aria-hidden="true"></i></label><?php
-                                        while ($comentario = mysqli_fetch_array($rowComentario)) {
+                                        ?><label class="botonesSection"  onclick="mostrarComentario(<?PHP echo $contenido['id_contenido'] ?>)"><i class="fa fa-plus" aria-hidden="true"></i></label>
+                                        <div class="botones" id="<?PHP echo "mostrarComentario" . $contenido['id_contenido'] ?>" style="display:none" ><?php
+                                            while ($comentario = mysqli_fetch_array($rowComentario)) {
 
-                                            $rowUser = mysqli_query($con, "SELECT usuario FROM `usuario` WHERE `id_usuario` = " . $comentario['id_usuario'] . ";");
+                                                $rowUser = mysqli_query($con, "SELECT usuario FROM `usuario` WHERE `id_usuario` = " . $comentario['id_usuario'] . ";");
 
-                                            if (!$rowUser) {
-                                                die("Error al ejecutar la consulta: " . mysqli_error($con));
-                                            }
-                                            $usuario = mysqli_fetch_array($rowUser);
-                                            ?><p><b><?PHP echo $usuario['usuario']; ?>: </b><?PHP echo $comentario['texto'] ?> </p>
+                                                if (!$rowUser) {
+                                                    die("Error al ejecutar la consulta: " . mysqli_error($con));
+                                                }
+                                                $usuario = mysqli_fetch_array($rowUser);
+                                                ?><p><b><u><?PHP echo $usuario['usuario']; ?>:</u> </b><?PHP echo $comentario['texto'] ?> </p>
 
                                                 <!--Modificar comentario si eres el propietario del mismo-->
                                                 <?PHP if ($row['id_usuario'] == $comentario['id_usuario']) { ?>
@@ -439,7 +437,7 @@ if (isset($_SESSION['usuario'])) {
                                                     </div><?PHP
                                                 }
                                             }
-                                            ?></details><?php
+                                            ?></div><?php
                                     }
                                     ?>
                                 </form>

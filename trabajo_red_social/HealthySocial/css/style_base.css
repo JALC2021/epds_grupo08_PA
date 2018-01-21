@@ -27,6 +27,7 @@ and open the template in the editor.
 
 body{
     margin: 0%;
+    font-family: 'Comfortaa', cursive;
 }
 
 header {
@@ -504,6 +505,7 @@ input[type=submit] {
     border-top-right-radius:9px;
     border-bottom-left-radius:9px;
     border-bottom-right-radius:9px;
+    font-family: 'Comfortaa', cursive;
 }
 
 input[type=submit]:hover {
