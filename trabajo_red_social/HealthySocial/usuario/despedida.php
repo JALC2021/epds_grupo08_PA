@@ -34,7 +34,7 @@ if (isset($_SESSION['usuario'])) {
             <?php include_once '../footer.php'; ?>
 
             <?php
-            header("refresh:20;url=../login.php");
+            header("refresh:6;url=../login.php");
         } else {
             $_SESSION['url'] = "usuario/despedida.php";
             $_SESSION['tipo'] = 'usuario';
