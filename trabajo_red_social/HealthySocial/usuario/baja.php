@@ -154,7 +154,7 @@ if (isset($_SESSION['usuario'])) {
                                     <label>Nota<span id="requerido">&nbsp;(*)</span></label>
                                 </div>
                                 <div class="col-75">
-                                    <input  type="number" id="nota"  name="nota" class="form-control"  min="0" max="9" placeholder="Introduzca un n&uacute;mero entre el 1 y 9" required />
+                                    <input  type="number" id="nota"  name="nota" class="form-control"  min="0" max="10" placeholder="Introduzca un n&uacute;mero entre el 1 y 10" required />
                                 </div>
                             </div>
 

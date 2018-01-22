@@ -108,7 +108,6 @@ strict.dtd">
 
                 <section class="sectionModificar">
 
-                    <div class="container">
                         <h2>Eliminar amigos</h2>
 
                         <?PHP
@@ -116,9 +115,8 @@ strict.dtd">
                             echo "<p>No tienes amigos actualmente</p>";
                         } else {
                             ?>
-
                             <form method="POST">
-                                <table>
+                                <table class="eliminarAmigos">
                                     <tr><th></th><th>Usuario</th><th>Nombre</th><th>Apellidos</th><th>Email</th><th>localidad</th></tr>
                                     <?PHP
                                     while ($usuarios = mysqli_fetch_array($rowUsuario)) {
@@ -129,7 +127,8 @@ strict.dtd">
 
                                         $idAmigo = mysqli_fetch_array($rowIdAmigo);
                                         ?>
-                                    <tr><td><input type="radio" name="id_usuario_eliminar" value="<?PHP echo $idAmigo['id_usuario'] ?>"/></td><td>&n&nbsp;<?PHP echo $idAmigo['usuario'] ?></td><td><?PHP echo $idAmigo['nombre'] ?></td><td><?PHP echo $idAmigo['apellidos'] ?></td><td><?PHP echo $idAmigo['email'] ?></td><td><?PHP echo $idAmigo['localidad'] ?></td></tr>
+                                    <tr><td><input type="radio" name="id_usuario_eliminar" value="<?PHP echo $idAmigo['id_usuario'] ?>"/></td><td><i class="fa fa-user-o" style="color:#ef8d17;"></i>&nbsp;<?PHP echo $idAmigo['usuario'] ?></td><td><?PHP echo $idAmigo['nombre'] ?></td><td><?PHP echo $idAmigo['apellidos'] ?></td><td><?PHP echo $idAmigo['email'] ?></td><td><?PHP echo $idAmigo['localidad'] ?></td></tr>
+                                        
                                         <?PHP
                                     }
                                     ?>
@@ -141,9 +140,6 @@ strict.dtd">
                         }
                         ?>
 
-
-
-                    </div>
                 </section>
 
 

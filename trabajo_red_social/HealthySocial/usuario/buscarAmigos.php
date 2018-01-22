@@ -201,21 +201,21 @@ if (isset($_SESSION['usuario'])) {
                                 echo "<p>No se encontraron coincidencias</p>";
                             } else {
                                 ?>
-                        <div class="agregarAmigos">
+<!--                                <div class="agregarAmigos">-->
                                     <form method="POST">
-                                        <table>
+                                        <table class="buscarAmigos">
                                             <tr><th></th><th>Usuario</th><th>Nombre</th><th>Apellidos</th><th>Email</th><th>Localidad</th></tr>
                                             <?PHP
                                             while ($usuarios = mysqli_fetch_array($rowUsuario)) {
                                                 ?>
-                                                <tr><td><input type="radio" name="id_usuario_agregar" value="<?PHP echo $usuarios['id_usuario'] ?>" /></td><td><i class="fa fa-user-o"></i>&nbsp;<?PHP echo $usuarios['usuario'] ?></td><td><?PHP echo $usuarios['nombre'] ?></td><td><?PHP echo $usuarios['apellidos'] ?></td><td><?PHP echo $usuarios['email'] ?></td><td><?PHP echo $usuarios['localidad'] ?></td></tr>
+                                                <tr><td><input type="radio" name="id_usuario_agregar" value="<?PHP echo $usuarios['id_usuario'] ?>" /></td><td><i class="fa fa-user-o" style="color:#ef8d17;"></i>&nbsp;<?PHP echo $usuarios['usuario'] ?></td><td><?PHP echo $usuarios['nombre'] ?></td><td><?PHP echo $usuarios['apellidos'] ?></td><td><?PHP echo $usuarios['email'] ?></td><td><?PHP echo $usuarios['localidad'] ?></td></tr>
                                                 <?PHP
                                             }
                                             ?>
                                         </table>
                                         <input type="submit" name="agregar" value="Agregar" />
                                     </form>
-                                </div>
+<!--                                </div>-->
                                 <?PHP
                             }
                         }

@@ -14,7 +14,7 @@ strict.dtd">
             <link rel="stylesheet" type="text/css" href="../css/style_base.css" />
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
             <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-            <link rel="shortcut icon" type="image/x-icon" href="images/logoUrl.ico" />
+            <link rel="shortcut icon" type="image/x-icon" href="../images/logo2.png" />
         </head>
         <body>
 
@@ -26,11 +26,13 @@ strict.dtd">
 
                 <section class="sectionPaginaPersonal">
 
-                    <p><b>Bienvenido <?PHP echo $_SESSION['user']; ?></b></p>
-                    <ol>Como administrador del sistema podrás realizar las siguientes funciones:
-                        <li>Eliminar un usuario en concreto</li>
-                        <li>Eliminar el contenido de un usuario</li>
-                        <li>Ver estadísticas de los usuarios para mejorar la aplicación</li>
+                    <h2><i class="fa fa-user-secret" style="color:#ef8d17;font-size:20px;"></i>&nbsp;<?PHP echo $_SESSION['user'];?></h2>
+                    
+                    <p>Como administrador del sistema podrás realizar las siguientes funciones:</p>
+                    <ol>
+                        <li>Eliminar un usuario en concreto.</li>
+                        <li>Eliminar el contenido de un usuario.</li>
+                        <li>Ver estad&iacute;sticas de los usuarios para mejorar la aplicaci&oacute;n.</li>
                     </ol>
 
                 </section>

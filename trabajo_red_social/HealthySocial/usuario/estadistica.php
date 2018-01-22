@@ -106,7 +106,7 @@ if (isset($_SESSION['usuario'])) {
 
                     <h2>Mis estad&iacute;sticas</h2>
                     <table class="estadistica">
-                        <tr><th>Estad&iacute;stica</th><th>Cantidad</th></tr>
+<!--                        <tr><th>Estad&iacute;stica</th><th>Cantidad</th></tr>-->
                         <tr><td>Likes realizados</td><td><?PHP echo $votosRecibidos; ?></td></tr>
                         <tr><td>Likes recibidos</td><td><?PHP echo $votosRealizados; ?></td></tr>
                         <tr><td>Publicaciones realizadas</td><td><?PHP echo $publicaciones; ?></td></tr>
