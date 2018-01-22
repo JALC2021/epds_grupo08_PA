@@ -462,8 +462,18 @@ footer {
     padding: 8px;
 }
 
+.estadisticaUsuario{
+   
+    text-align: center;
+    font-family: 'Comfortaa', cursive;
+    font-size: 18px;
+    overflow: hidden; 
+    width: 100%;
+}
+
 
 .buscarAmigos, .eliminarAmigos{
+
     padding-left: 5px;
     padding-right: 5px;
     margin-left: 20px;
@@ -477,6 +487,7 @@ footer {
 
 .buscarAmigos td, .eliminarAmigos td{
     padding: 8px;
+        text-align: center;
 }
 
 
