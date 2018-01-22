@@ -310,7 +310,7 @@ if (isset($_SESSION['usuario'])) {
                                         }
                                         $amigo = mysqli_fetch_array($rowAmigo);
                                         ?> 
-                                        <p><b><u>Usuario:</u></b>&nbsp;&nbsp;<?PHP echo $amigo['usuario']; ?></p>
+                                        <p><b><i class="fa fa-user-circle" style="font-size:20px"></i></b>&nbsp;&nbsp;<?PHP echo $amigo['usuario']; ?></p>
 
                                         <?PHP
                                     }
@@ -323,13 +323,12 @@ if (isset($_SESSION['usuario'])) {
 
                                             <?PHP if ($_SESSION['amigo'] == FALSE) { ?>
 
-
-                                                <label class="botonesSection" onclick="mostrarFoto(<?PHP echo $foto['id_foto'] ?>)" style="font-size: 1em;">Editar</label>
+                                                <label class="labelSection" onclick="mostrarFoto(<?PHP echo $foto['id_foto'] ?>)" style="font-size:20px"><i class="fa fa-picture-o"></i></label>
 
                                                 <div class="botones" id="<?PHP echo "mostrarFoto" . $foto['id_foto'] ?>" style="display:none" >
-                                                    <input id="nuevaFoto" type="url" name="nuevaFoto" placeholder="Introduzca url..." style="width: 75%" /> 
-                                                    <button class="botonesSection" type="submit" name="modificarFoto" value="<?PHP echo $foto['id_foto'] ?>">Modificar Foto</button>
-                                                    <button class="botonesSection" type="submit" name="eliminarFoto" value="<?PHP echo $foto['id_foto'] ?>">Eliminar Foto</button>
+                                                    <input id="nuevaFoto" type="url" name="nuevaFoto" placeholder="Introduzca url y pulse &#xf044;&nbsp;&#xf03e;&nbsp;para editar &oacute;&nbsp;&#xf146;&nbsp;&#xf03e;&nbsp;para eliminar." style="font-family:FontAwesome;width: 70%" /> 
+                                                    <button class="botonesSection" type="submit" name="modificarFoto" value="<?PHP echo $foto['id_foto'] ?>" style="font-size:20px"><i class="fa fa-edit"></i>&nbsp;<i class="fa fa-picture-o"></i></button>
+                                                    <button class="botonesSection" type="submit" name="eliminarFoto" value="<?PHP echo $foto['id_foto'] ?>" style="font-size:20px"><i class="fa fa-minus-square"></i>&nbsp;<i class="fa fa-picture-o"></i></button>
                                                 </div>
 
                                                 <?PHP
@@ -338,23 +337,23 @@ if (isset($_SESSION['usuario'])) {
                                             if ($_SESSION['amigo'] == FALSE) {
                                                 ?>
 
-
-                                                <label class="botonesSection" onclick="mostrarFoto(<?PHP echo $contenido['id_contenido'] ?>)" ><i class="fa fa-plus" aria-hidden="true"></i></label>
+                                                <label class="labelSection" onclick="mostrarFoto(<?PHP echo $contenido['id_contenido'] ?>)" style="font-size:20px"><i class="fa fa-picture-o"></i></label>
                                                 <div class="botones" id="<?PHP echo "mostrarFoto" . $contenido['id_contenido'] ?>" style="display:none" >
-                                                    <input id="nuevaFoto" type="url" name="nuevaFoto"  placeholder="Introduzca url..." width="70%"/> 
-                                                    <button class="botonesSection" type="submit" name="insertarFoto" value="<?PHP echo $contenido['id_contenido'] ?>" >Insertar Foto</button>
+                                                    <input id="nuevaFoto" type="url" name="nuevaFoto" placeholder="Introduzca url y pulse &#xf0fe;&nbsp;&#xf03e;" style="font-family:FontAwesome;width: 70%" /> 
+                                                    <button class="botonesSection" type="submit" name="insertarFoto" value="<?PHP echo $contenido['id_contenido'] ?>" style="font-size:20px"><i class="fa fa-plus-square"></i>&nbsp;<i class="fa fa-picture-o"></i></button>
                                                 </div>
 
                                                 <?PHP
                                             }
                                         }
                                         ?>
-                                        <p id="descripcion"><b><u>Descripci&oacute;n:</u> </b><?PHP echo $contenido['descripcion']; ?></p>
+                                        <!--parte de descripcion-->
+                                        <p id="descripcion"><b><u>Descripci&oacute;n:</u>&nbsp;</b><?PHP echo $contenido['descripcion']; ?></p>
                                         <?PHP if ($_SESSION['amigo'] == FALSE) { ?>
-                                            <label class="botonesSection" onclick="mostrarDescripcion(<?PHP echo $contenido['id_contenido'] ?>)"><i class="fa fa-plus" aria-hidden="true"></i></label>
+                                            <label class="labelSection" onclick="mostrarDescripcion(<?PHP echo $contenido['id_contenido'] ?>)" style="font-size:20px"><i class="fa fa-align-justify"></i></label>
                                             <div class="botones" id="<?PHP echo "mostrarDescripcion" . $contenido['id_contenido'] ?>" style="display:none" >
-                                                <input id="descripcion" type="text" name="nuevaDescripcion" onchange="comprobar(this, /^([a-zA-ZÁÉÍÓÚñáéíóú?¿!!<>\*\.0-9]*[\s]*)+$/)" placeholder="Introduzca descripci&oacute;n..." style="width:75%" /> 
-                                                <button class="botonesSection" type="submit" name="modificarDescripcion" value="<?PHP echo $contenido['id_contenido'] ?>" >Modificar Descripci&oacute;n</button>
+                                                <input id="descripcion" type="text" name="nuevaDescripcion" onchange="comprobar(this, /^([a-zA-ZÁÉÍÓÚñáéíóú?¿!!<>\*\.0-9]*[\s]*)+$/)" placeholder="Introduzca descripci&oacute;n y pulse &#xf044;&nbsp;&#xf039;&nbsp;para editarlo." style="font-family:FontAwesome;width: 70%" /> 
+                                                <button class="botonesSection" type="submit" name="modificarDescripcion" value="<?PHP echo $contenido['id_contenido'] ?>" style="font-size:20px"><i class="fa fa-edit"></i>&nbsp;<i class="fa fa-align-justify"></i></button>
                                             </div>
 
                                             <?PHP
@@ -398,16 +397,16 @@ if (isset($_SESSION['usuario'])) {
                                     ?>
 
                                     <div class="botones">
-                                        <button id="megusta" class="botonesSection" type="submit" value="<?PHP echo $idContenido; ?>"  name="like"  style="font-size:24px"><i class="fa fa-thumbs-o-up" ></i></button>
-                                        <button class="botonesSection" type=button"  style="font-size:24px"><?PHP echo $votos['totalVotos']; ?> <i class="fa fa-heart"></i></button>
-                                        <button class="botonesSection" type="submit" value="<?PHP echo $idContenido; ?>" name="unlike"  style="font-size:24px"><i class="fa fa-thumbs-o-down"></i></button>                     
-                                        <button class="botonesSection" type="submit" value="<?PHP echo $idContenido; ?>" name="comentario"  style="font-size:24px" ><i class="fa fa-commenting"></i></button>                              
+                                        <button id="megusta" class="botonesSection" type="submit" value="<?PHP echo $idContenido; ?>"  name="like"  style="font-size:20px"><i class="fa fa-thumbs-o-up" ></i></button>
+                                        <button class="botonesSection" type=button"  style="font-size:20px"><?PHP echo $votos['totalVotos']; ?> <i class="fa fa-heart"></i></button>
+                                        <button class="botonesSection" type="submit" value="<?PHP echo $idContenido; ?>" name="unlike"  style="font-size:20px"><i class="fa fa-thumbs-o-down"></i></button>                     
+                                        <button class="botonesSection" type="submit" value="<?PHP echo $idContenido; ?>" name="comentario"  style="font-size:20px" ><i class="fa fa-commenting"></i></button>                              
                                         <?PHP
                                         if ($_SESSION['amigo'] == FALSE) {
-                                            ?> <button class="botonesSection" type="submit" value="<?PHP echo $idContenido; ?>"  name="borrar"  style="font-size:24px" /><i class="fa fa-trash"></i></button>
+                                            ?> <button class="botonesSection" type="submit" value="<?PHP echo $idContenido; ?>"  name="borrar"  style="font-size:20px" /><i class="fa fa-trash"></i></button>
                                             <?PHP }
                                             ?>
-                                        <input id="comentario" onchange="comprobar(this, /^([a-zA-ZÁÉÍÓÚñáéíóú?¿!!<>\*\.0-9]*[\s]*)+$/)" type="text" name="comment" class=comentarioPersonal" placeholder="Introduzca comentario y pulse &#xf27a;" style="font-family:FontAwesome;width: 70%" />
+                                    <input id="comentario" onchange="comprobar(this, /^([a-zA-ZÁÉÍÓÚñáéíóú?¿!!<>\*\.0-9]*[\s]*)+$/)" type="text" name="comment" class=comentarioPersonal" placeholder="Introduzca comentario y pulse &#xf27a; para insertar &oacute; &#xf0e6;&nbsp; para ver todos comentarios." style="font-family:FontAwesome;width: 70%" />
                                     </div>
                                     <?PHP
                                     $rowComentario = mysqli_query($con, "SELECT * FROM `comentario` WHERE `id_contenido` = " . $idContenido . ";");
@@ -417,7 +416,7 @@ if (isset($_SESSION['usuario'])) {
                                     }
 
                                     if (mysqli_num_rows($rowComentario) > 0) {
-                                        ?><label class="botonesSection"  onclick="mostrarComentario(<?PHP echo $contenido['id_contenido'] ?>)"><i class="fa fa-plus" aria-hidden="true"></i></label>
+                                        ?><label class="labelSection"  onclick="mostrarComentario(<?PHP echo $contenido['id_contenido'] ?>)" style="font-size:20px"><i class="fa fa-comments-o"></i></label>
                                         <div class="botones" id="<?PHP echo "mostrarComentario" . $contenido['id_contenido'] ?>" style="display:none" ><?php
                                             while ($comentario = mysqli_fetch_array($rowComentario)) {
 
@@ -427,15 +426,15 @@ if (isset($_SESSION['usuario'])) {
                                                     die("Error al ejecutar la consulta: " . mysqli_error($con));
                                                 }
                                                 $usuario = mysqli_fetch_array($rowUser);
-                                                ?><p><b><u><?PHP echo $usuario['usuario']; ?>:</u> </b><?PHP echo $comentario['texto'] ?> </p>
+                                                ?><p><i class="fa fa-user-o">&nbsp;</i><b><u><?PHP echo $usuario['usuario']; ?>:</u> </b><?PHP echo $comentario['texto'] ?> </p>
 
                                                 <!--Modificar comentario si eres el propietario del mismo-->
                                                 <?PHP if ($row['id_usuario'] == $comentario['id_usuario']) { ?>
-                                                    <label id="comentario" class="botonesSection" onclick="mostrarComentario(<?PHP echo $comentario['id_comentario'] ?>)" ><i class="fa fa-plus" aria-hidden="true"></i></label>
+                                                <label id="comentario" class="labelSection" onclick="mostrarComentario(<?PHP echo $comentario['id_comentario'] ?>)" style="font-size:20px"><i class="fa fa-cogs">&nbsp;</i><i class="fa fa-comments-o"></i></label>
                                                     <div class="botones" id="<?PHP echo "mostrarComentario" . $comentario['id_comentario'] ?>" style="display:none" >
-                                                        <input id="comentario" type="text" onchange="comprobar(this, /^([a-zA-ZÁÉÍÓÚñáéíóú?¿!!<>\*\.0-9]*[\s]*)+$/)" name="<?PHP echo "nuevoComentario" . $comentario['id_comentario'] ?>" placeholder="Introduzca comentario..." style="width: 70%" /> 
-                                                        <button class="botonesSection" type="submit" name="modificarComentario"  value="<?PHP echo $comentario['id_comentario'] ?>" >Modificar Comentario</button>
-                                                        <button class="botonesSection" type="submit" name="eliminarComentario"  value="<?PHP echo $comentario['id_comentario'] ?>" >Eliminar Comentario</button>
+                                                        <input id="comentario" type="text" onchange="comprobar(this, /^([a-zA-ZÁÉÍÓÚñáéíóú?¿!!<>\*\.0-9]*[\s]*)+$/)" name="<?PHP echo "nuevoComentario" . $comentario['id_comentario'] ?>" placeholder="Introduzca url y pulse &#xf044;&nbsp;&#xf0e6;&nbsp;para editar &oacute;&nbsp;&#xf146;&nbsp;&#xf0e6;&nbsp;para eliminar." style="font-family:FontAwesome;width: 70%" /> 
+                                                        <button class="botonesSection" type="submit" name="modificarComentario"  value="<?PHP echo $comentario['id_comentario'] ?>" style="font-size:20px"><i class="fa fa-edit"></i>&nbsp;<i class="fa fa-comments-o"></i></button>
+                                                        <button class="botonesSection" type="submit" name="eliminarComentario"  value="<?PHP echo $comentario['id_comentario'] ?>" style="font-size:20px"><i class="fa fa-minus-square"></i>&nbsp;<i class="fa fa-comments-o"></i></button>
                                                     </div><?PHP
                                                 }
                                             }

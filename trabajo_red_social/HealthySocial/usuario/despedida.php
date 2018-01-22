@@ -4,8 +4,8 @@ session_start();
 if (isset($_SESSION['usuario'])) {
     ?>
     <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-
-strict.dtd">
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-
+        strict.dtd">
     <html> 
         <head>
             <meta charset="UTF-8" />
@@ -22,29 +22,24 @@ strict.dtd">
 
             <div class="contendioPrincipal">
 
-                <section class="sectionModificar">
-
-                    <div class="container">
-
-                        <h2>Baja usuario</h2>
-                        <p><?php $_SESSION['user'] ?> Lamentamos su p&eacute;rdida, pero tal y como nos ha solicitado, ha sido dado de baja</p>
-                        <p>Redirigiendo al login...</p>
-
-                    </div>
-
+                <section class="sectionBaja">
+                    <h2>Baja usuario</h2>
+                    <p><?php $_SESSION['user'] ?> Lamentamos su p&eacute;rdida, pero tal y como nos ha solicitado, ha sido dado de baja</p>
+                    <p>Redirigiendo al login...</p>
+ 
                 </section>
+
                 <?PHP include_once '../aside.php'; ?>
             </div>
+            <?php include_once '../footer.php'; ?>
 
-        </body>
-    </html>
-    <?php
-    header("refresh:6;url=../login.php");
-
-    include_once '../footer.php';
-} else {
-    $_SESSION['url'] = "usuario/despedida.php";
-    $_SESSION['tipo'] = 'usuario';
-    header("location:../login.php");
-}
-?>
+            <?php
+            header("refresh:20;url=../login.php");
+        } else {
+            $_SESSION['url'] = "usuario/despedida.php";
+            $_SESSION['tipo'] = 'usuario';
+            header("location:../login.php");
+        }
+        ?>
+    </body>
+</html>

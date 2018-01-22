@@ -166,8 +166,8 @@ if (isset($_SESSION['usuario'])) {
     }
     ?>
     <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-
-strict.dtd">
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-
+        strict.dtd">
     <html>
         <head>
             <meta charset="UTF-8" />
@@ -373,11 +373,12 @@ strict.dtd">
                                     </div>
                                     <div class="col-75">
                                         <select id="localidad" name="localidad" >
-                                            <option value='A Coruña' >A Coruña</option>
+                                            <option value='' >&nbsp;<-&nbsp;Seleccione&nbsp;una&nbsp;localidad&nbsp;->&nbsp;</option>
+                                            <option value='A Coruña' >A&nbsp;Coruña</option>
                                             <option value='&Aacute;lava'>Alava</option>
                                             <option value='Albacete' >Albacete</option>
                                             <option value='Alicante'>Alicante</option>
-                                            <option value='Almería' >Almería</option>
+                                            <option value='Almería' >Almería</option>ﬁ
                                             <option value='Asturias' >Asturias</option>
                                             <option value='ávila' >Ávila</option>
                                             <option value='Badajoz' >Badajoz</option>
@@ -388,19 +389,19 @@ strict.dtd">
                                             <option value='Cantabria' >Cantabria</option>
                                             <option value='Castellón' >Castellón</option>
                                             <option value='Ceuta' >Ceuta</option>
-                                            <option value='Ciudad Real' >Ciudad Real</option>
+                                            <option value='Ciudad Real' >Ciudad&nbsp;Real</option>
                                             <option value='Córdoba' >Córdoba</option>
                                             <option value='Cuenca' >Cuenca</option>
                                             <option value='Gerona' >Gerona</option>
                                             <option value='Girona' >Girona</option>
-                                            <option value='Las Palmas' >Las Palmas</option>
+                                            <option value='Las Palmas' >Las&nbsp;Palmas</option>
                                             <option value='Granada' >Granada</option>
                                             <option value='Guadalajara' >Guadalajara</option>
                                             <option value='Guipúzcoa' >Guipúzcoa</option>
                                             <option value='Huelva' >Huelva</option>
                                             <option value='Huesca' >Huesca</option>
                                             <option value='Jaén' >Jaén</option>
-                                            <option value='La Rioja' >La Rioja</option>
+                                            <option value='La Rioja' >La&nbsp;Rioja</option>
                                             <option value='León' >León</option>
                                             <option value='Lleida' >Lleida</option>
                                             <option value='Lugo' >Lugo</option>
@@ -456,10 +457,10 @@ strict.dtd">
                                     </div>
                                     <div class="col-75">
                                         <select id="duracionSuplemento" name="duracionSuplemento" >                                    
-                                            <option value="1semana">1 semana</option>
-                                            <option value="2semanas">2 semanas</option>
-                                            <option value="3semanas">3 semanas</option>
-                                            <option value="4semanas">4 semanas</option>
+                                            <option value="1semana">1&nbsp;semana</option>
+                                            <option value="2semanas">2&nbsp;semanas</option>
+                                            <option value="3semanas">3&nbsp;semanas</option>
+                                            <option value="4semanas">4&nbsp;semanas</option>
                                         </select>
                                     </div>
                                 </div>

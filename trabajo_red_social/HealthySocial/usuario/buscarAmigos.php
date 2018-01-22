@@ -111,10 +111,10 @@ if (isset($_SESSION['usuario'])) {
 
             if (mysqli_num_rows($rowComprobacion) > 0) {
                 ?>
-                    <script type="text/javascript">
-                        alert("No puedes agregar a este usuario porque ya es tu amigo");
-                    </script>
-                    <?PHP
+                <script type="text/javascript">
+                    alert("No puedes agregar a este usuario porque ya es tu amigo");
+                </script>
+                <?PHP
             } else {
                 $rowInsertar = mysqli_query($con, "INSERT INTO `amigo` (`id_usuario_amigo`, `id_usuario`) VALUES ('" . $_POST['id_usuario_agregar'] . "', '" . $idUsuario['id_usuario'] . "');");
 
@@ -137,9 +137,9 @@ if (isset($_SESSION['usuario'])) {
     }
     ?>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-
-strict.dtd">
+    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-
+        strict.dtd">
     <html>
         <head>
             <meta charset="UTF-8" />
@@ -201,21 +201,21 @@ strict.dtd">
                                 echo "<p>No se encontraron coincidencias</p>";
                             } else {
                                 ?>
-
-                                <form method="POST">
-                                    <table>
-                                        <tr><th></th><th>Usuario</th><th>Nombre</th><th>Apellidos</th><th>Email</th><th>localidad</th></tr>
-                                        <?PHP
-                                        while ($usuarios = mysqli_fetch_array($rowUsuario)) {
-                                            ?>
-                                            <tr><td><input type="radio" name="id_usuario_agregar" value="<?PHP echo $usuarios['id_usuario'] ?>" /></td><td><?PHP echo $usuarios['usuario'] ?></td><td><?PHP echo $usuarios['nombre'] ?></td><td><?PHP echo $usuarios['apellidos'] ?></td><td><?PHP echo $usuarios['email'] ?></td><td><?PHP echo $usuarios['localidad'] ?></td></tr>
+                        <div class="agregarAmigos">
+                                    <form method="POST">
+                                        <table>
+                                            <tr><th></th><th>Usuario</th><th>Nombre</th><th>Apellidos</th><th>Email</th><th>Localidad</th></tr>
                                             <?PHP
-                                        }
-                                        ?>
-                                    </table>
-                                    <input type="submit" name="agregar" value="Agregar" />
-                                </form>
-
+                                            while ($usuarios = mysqli_fetch_array($rowUsuario)) {
+                                                ?>
+                                                <tr><td><input type="radio" name="id_usuario_agregar" value="<?PHP echo $usuarios['id_usuario'] ?>" /></td><td><i class="fa fa-user-o"></i>&nbsp;<?PHP echo $usuarios['usuario'] ?></td><td><?PHP echo $usuarios['nombre'] ?></td><td><?PHP echo $usuarios['apellidos'] ?></td><td><?PHP echo $usuarios['email'] ?></td><td><?PHP echo $usuarios['localidad'] ?></td></tr>
+                                                <?PHP
+                                            }
+                                            ?>
+                                        </table>
+                                        <input type="submit" name="agregar" value="Agregar" />
+                                    </form>
+                                </div>
                                 <?PHP
                             }
                         }
@@ -259,8 +259,8 @@ strict.dtd">
 
                                 <div class="col-75">
                                     <select id="localidad" name="localidad" >
-                                        <option value='' >---</option>
-                                        <option value='A Coruña' >A Coruña</option>
+                                        <option value='' >&nbsp;<-&nbsp;Seleccione&nbsp;una&nbsp;localidad&nbsp;->&nbsp;</option>
+                                        <option value='A Coruña' >A&nbsp;Coruña</option>
                                         <option value='&Aacute;lava'>Alava</option>
                                         <option value='Albacete' >Albacete</option>
                                         <option value='Alicante'>Alicante</option>
@@ -275,19 +275,19 @@ strict.dtd">
                                         <option value='Cantabria' >Cantabria</option>
                                         <option value='Castellón' >Castellón</option>
                                         <option value='Ceuta' >Ceuta</option>
-                                        <option value='Ciudad Real' >Ciudad Real</option>
+                                        <option value='Ciudad Real' >Ciudad&nbsp;Real</option>
                                         <option value='Córdoba' >Córdoba</option>
                                         <option value='Cuenca' >Cuenca</option>
                                         <option value='Gerona' >Gerona</option>
                                         <option value='Girona' >Girona</option>
-                                        <option value='Las Palmas' >Las Palmas</option>
+                                        <option value='Las Palmas' >Las&nbsp;Palmas</option>
                                         <option value='Granada' >Granada</option>
                                         <option value='Guadalajara' >Guadalajara</option>
                                         <option value='Guipúzcoa' >Guipúzcoa</option>
                                         <option value='Huelva' >Huelva</option>
                                         <option value='Huesca' >Huesca</option>
                                         <option value='Jaén' >Jaén</option>
-                                        <option value='La Rioja' >La Rioja</option>
+                                        <option value='La Rioja' >La&nbsp;Rioja</option>
                                         <option value='León' >León</option>
                                         <option value='Lleida' >Lleida</option>
                                         <option value='Lugo' >Lugo</option>

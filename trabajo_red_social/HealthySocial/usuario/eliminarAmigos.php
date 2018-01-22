@@ -129,7 +129,7 @@ strict.dtd">
 
                                         $idAmigo = mysqli_fetch_array($rowIdAmigo);
                                         ?>
-                                        <tr><td><input type="radio" name="id_usuario_eliminar" value="<?PHP echo $idAmigo['id_usuario'] ?>" /></td><td><?PHP echo $idAmigo['usuario'] ?></td><td><?PHP echo $idAmigo['nombre'] ?></td><td><?PHP echo $idAmigo['apellidos'] ?></td><td><?PHP echo $idAmigo['email'] ?></td><td><?PHP echo $idAmigo['localidad'] ?></td></tr>
+                                    <tr><td><input type="radio" name="id_usuario_eliminar" value="<?PHP echo $idAmigo['id_usuario'] ?>"/></td><td>&n&nbsp;<?PHP echo $idAmigo['usuario'] ?></td><td><?PHP echo $idAmigo['nombre'] ?></td><td><?PHP echo $idAmigo['apellidos'] ?></td><td><?PHP echo $idAmigo['email'] ?></td><td><?PHP echo $idAmigo['localidad'] ?></td></tr>
                                         <?PHP
                                     }
                                     ?>

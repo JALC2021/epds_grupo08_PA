@@ -101,12 +101,12 @@ if (isset($_SESSION['usuario'])) {
                 <section class="sectionModificar">
 
                     <div class="container">
-                        <h2>Baja usuario</h2>
+                        <h2>Baja&nbsp;usuario</h2>
                         <form method="POST" action="#">
 
                             <div class="row">
                                 <div class="col-25">
-                                    <label>Motivo de la baja<span id="requerido"> (*)</span></label>
+                                    <label>Motivo de la baja<span id="requerido">&nbsp;(*)</span></label>
                                 </div>
 
                                 <div class="col-75">
@@ -119,38 +119,42 @@ if (isset($_SESSION['usuario'])) {
                                         $mot1 = mysqli_fetch_array($motivo1);
                                     }
                                     ?>
-                                    <label ><?php echo utf8_encode($mot1['descripcion']) ?></label><input type="radio" name="motivo" value="1" required/>
 
-                                    <?php
-                                    $motivo2 = mysqli_query($con, "SELECT `descripcion` FROM `motivo` WHERE `id_motivo`=2;");
-                                    if (!$motivo2) {
-                                        die("Error al ejecutar la consulta: " . mysqli_error($con));
-                                    } else {
-                                        $mot2 = mysqli_fetch_array($motivo2);
-                                    }
-                                    ?>
-                                    <label ><?php echo utf8_encode($mot2['descripcion']) ?></label><input type="radio" name="motivo" value="2" required/>
+                                    <div class="tipoBaja">
+                                        <p><label><?php echo utf8_encode($mot1['descripcion']) ?></label><input type="radio" name="motivo" value="1" required /></p>
 
-                                    <?php
-                                    $motivo3 = mysqli_query($con, "SELECT `descripcion` FROM `motivo` WHERE `id_motivo`=3;");
-                                    if (!$motivo3) {
-                                        die("Error al ejecutar la consulta: " . mysqli_error($con));
-                                    } else {
-                                        $mot3 = mysqli_fetch_array($motivo3);
-                                    }
-                                    disconnectDB($con);
-                                    ?>
-                                    <div><label ><?php echo utf8_encode($mot3['descripcion']) ?></label><input type="radio" name="motivo" value="3" required/></div>
+                                        <?php
+                                        $motivo2 = mysqli_query($con, "SELECT `descripcion` FROM `motivo` WHERE `id_motivo`=2;");
+                                        if (!$motivo2) {
+                                            die("Error al ejecutar la consulta: " . mysqli_error($con));
+                                        } else {
+                                            $mot2 = mysqli_fetch_array($motivo2);
+                                        }
+                                        ?>
+                                        <p><label><?php echo utf8_encode($mot2['descripcion']) ?></label><input type="radio" name="motivo" value="2" required /></p>
+
+                                        <?php
+                                        $motivo3 = mysqli_query($con, "SELECT `descripcion` FROM `motivo` WHERE `id_motivo`=3;");
+                                        if (!$motivo3) {
+                                            die("Error al ejecutar la consulta: " . mysqli_error($con));
+                                        } else {
+                                            $mot3 = mysqli_fetch_array($motivo3);
+                                        }
+                                        disconnectDB($con);
+                                        ?>
+                                        <p><label><?php echo utf8_encode($mot3['descripcion']) ?></label><input type="radio" name="motivo" value="3" required /></p>
+
+                                    </div>
                                 </div>
 
                             </div>
 
                             <div class="row">
                                 <div class="col-25">
-                                    <label>Nota<span id="requerido"> (*)</span></label>
+                                    <label>Nota<span id="requerido">&nbsp;(*)</span></label>
                                 </div>
                                 <div class="col-75">
-                                    <input type="text" type="number" id="nota"  name="nota" class="form-control"  placeholder="C&iacute;&ntilde;ase a este formato: 9" required />
+                                    <input  type="number" id="nota"  name="nota" class="form-control"  min="0" max="9" placeholder="Introduzca un n&uacute;mero entre el 1 y 9" required />
                                 </div>
                             </div>
 

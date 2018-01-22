@@ -121,8 +121,11 @@ nav{
     color: white;
 }
 
-.botonesSection{
-    
+.tipoBaja{
+    text-align: center;
+}
+
+.botonesSection,.labelSection{
     width: 100px;
     overflow:hidden;
     zoom: 1;
@@ -132,7 +135,8 @@ nav{
     padding: 2px;
     margin-top: 12px;
     margin-bottom: 12px;
-    border:solid 1px #000000;
+    /*    border:solid 1px #000000;*/
+    border:solid 1px #ef8d17;
     background-color: #f9fbe7; 
     font-size: 10%;
     font-weight: bold;
@@ -148,16 +152,15 @@ nav{
     border-top-right-radius:9px;
     border-bottom-left-radius:9px;
     border-bottom-right-radius:9px;
-
-
 }
 
 .botones{
     margin:10px auto 20px;
+    padding:10px auto 20px;
     text-align:center;
 }
 
-.botonesSection:hover {
+.botonesSection:hover,.labelSection:hover {
     border:solid 1px  #2196f3;
     -moz-border-radius-topleft: 9px;
     -moz-border-radius-topright:9px;
@@ -173,7 +176,7 @@ nav{
     border-bottom-right-radius:9px;
 }
 
-.botonesSection:active {
+.botonesSection:active,.labelSection:active {
     background-color:   #ffa000  ;
     color: white;
 }
@@ -257,9 +260,6 @@ nav{
 
 .sectionPublicaciones, .sectionEstadistica, .sectionModificar{
     width: 70%;
-/*    background-color: #a2dece;
-        background-image: url("../images/background.jpg");
-        background-repeat: no-repeat;*/
     background-color: #a2dece;
     background-attachment: fixed;
     background-size: cover;
@@ -281,6 +281,34 @@ nav{
     border-top-right-radius:9px;
     border-bottom-left-radius:9px;
     border-bottom-right-radius:9px;
+}
+
+.sectionBaja{
+    width: 80%;
+    background-color: #a2dece;
+    background-attachment: fixed;
+    background-size: cover;
+    float: left;
+    padding: 12px; 
+    margin-top: 12px;
+    margin-bottom: 5px;
+    margin-left: 50px;
+    margin-right: 50px;
+    text-align: center;
+    border:hidden 1px #000000;
+    -moz-border-radius-topleft: 9px;
+    -moz-border-radius-topright:9px;
+    -moz-border-radius-bottomleft:9px;
+    -moz-border-radius-bottomright:9px;
+    -webkit-border-top-left-radius:9px;
+    -webkit-border-top-right-radius:9px;
+    -webkit-border-bottom-left-radius:9px;
+    -webkit-border-bottom-right-radius:9px;
+    border-top-left-radius:9px;
+    border-top-right-radius:9px;
+    border-bottom-left-radius:9px;
+    border-bottom-right-radius:9px;
+
 }
 
 
@@ -369,12 +397,13 @@ hr{
     border-style: inset;
     border-width: 2px;
 }
+
+u{
+    color:#ef8d17;
+}
+
 .contendioPrincipal{
-    /*    background-image: url("http://s1.1zoom.me/big3/963/Texture_Boards_Wooden_478676.jpg");*/
-    /*    background-image: url(../images/background.jpg);*/
     background-color:#ef8d17;
-    /*#002471*/
-    /*background-repeat: repeat-x;*/
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
@@ -419,19 +448,19 @@ footer {
 }
 
 table{
-    padding-left: 5%;
-    text-align: left;
-
-    font: normal 15px/150% Arial, Helvetica, sans-serif; 
+    padding-left: 5px;
+    text-align: center;
+    font-family: 'Comfortaa', cursive;
+    font-size: 15px;
     overflow: hidden; 
-
-    -webkit-border-radius: 10px; 
-    -moz-border-radius: 10px; 
-    border-radius: 10px;
+    -webkit-border-radius: 9px; 
+    -moz-border-radius: 9px; 
+    border-radius: 9px;
 }
+
 table td{
-    width: 200px;
-    height: 50px;
+    width: 130px;
+    height: 25px;
 
 }
 
@@ -441,19 +470,27 @@ table td{
     padding-right: 5%;
 }
 
+.agregarAmigos{
+
+    width: 100%;
+    margin: 6px;
+    
+}
+
 
 
 /* Eso es para que la página sea responsive*/
 @media (max-width: 720px) {
-    nav,aside,section {
+    nav,aside,section,.menu, .sectionBaja, .sectionEstadistica,.sectionModificar,.sectionPaginaPersonal,.sectionPublicaciones {
         width: 100%;
     }
 }
 
-/*esto es el formulario de publicar contenido*/
-input[type=text],input[type=time],input[type=url], input[type=email], input[type=password], select, option, textarea {
 
-    font-size: 100%;
+/*esto es el formulario de publicar contenido*/
+input[type=text],input[type=time],input[type=url], input[type=email], input[type=password],input[type=number], select, option, textarea {
+
+    font-size: 15px;
     box-sizing: border-box;
     resize: vertical;
     background-color:   #f9fbe7; 
@@ -464,7 +501,8 @@ input[type=text],input[type=time],input[type=url], input[type=email], input[type
     margin: auto;
     width: 100%;
     text-align: justify;
-    border:solid 1px  #ffab91 ;
+    /*    border:solid 1px  #ffab91 ;*/
+    border:solid 1px #ef8d17;
     -moz-border-radius-topleft: 9px;
     -moz-border-radius-topright:9px;
     -moz-border-radius-bottomleft:9px;
@@ -479,10 +517,10 @@ input[type=text],input[type=time],input[type=url], input[type=email], input[type
     border-bottom-right-radius:9px;
 }
 
-label {
+/*label {
     padding: 10px 10px 10px 0;
     display: inline-block;
-}
+}*/
 
 input[type=submit] {
     cursor: pointer;
@@ -492,7 +530,8 @@ input[type=submit] {
     width: 30%;
     font-size: 100%;
     font-weight: bold;
-    border:solid 1px #000000;
+    /*    border:solid 1px #000000;*/
+    border:solid 1px #ef8d17;
     -moz-border-radius-topleft: 9px;
     -moz-border-radius-topright:9px;
     -moz-border-radius-bottomleft:9px;
@@ -530,7 +569,7 @@ input[type=submit]:active {
     color: white;
 }
 
-/*.container {
+/*container {
     border-radius: 9px;
     padding: 8px;
     font-weight: bold;
@@ -604,11 +643,5 @@ input[type=submit]:active {
         border-radius: 14px;
 
     }
-
-    /*    .comentarioPersonal{
-            margin-bottom: 15px;
-            width: 40%;
-        }*/
-
 
 }

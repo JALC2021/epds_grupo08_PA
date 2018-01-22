@@ -103,7 +103,7 @@ if (isset($_POST['login'])) {
             alert("El usuario introducido ya existe. Pruebe a insertar uno nuevo");
         </script>
         <?PHP
-    }else if (preg_match("/^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]{2,15}[\s]{0,1}){1,2}$/", $_POST['nombre']) && preg_match("/^[[:alnum:]]{6,15}$/", $_POST['password']) &&
+    } else if (preg_match("/^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]{2,15}[\s]{0,1}){1,2}$/", $_POST['nombre']) && preg_match("/^[[:alnum:]]{6,15}$/", $_POST['password']) &&
             preg_match("/^[[:alnum:]]{3,15}$/", $_POST['usuario']) && preg_match("/^[a-zA-z0-9]+@[a-z]+\.[a-z]+/", $_POST['email']) &&
             preg_match("/^([a-zA-ZÁÉÍÓÚñáéíóú]{1,15}[\s]*)+$/", $_POST['apellidos']) && preg_match("/^([a-zA-ZÁÉÍÓÚñáéíóú]{1,15}[\s]*)+$/", $_POST['localidad'])) {
 
@@ -186,8 +186,8 @@ if (isset($_POST['login'])) {
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-
-strict.dtd">
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-
+    strict.dtd">
 <html>
     <head>
         <meta charset="UTF-8" />
@@ -198,37 +198,37 @@ strict.dtd">
         <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
         <script type="text/javascript" src="js/login.js" ></script>
         <script type="text/javascript">
-    function comprobar(campo, expr) {
-        if (!expr.test(campo.value)) {
-            campo.value = "";
+                function comprobar(campo, expr) {
+                    if (!expr.test(campo.value)) {
+                        campo.value = "";
 
-            if (campo.getAttribute('id') == "nombre") {
-                alert('El campo ' +
-                        campo.getAttribute('id') +
-                        ' debe tener la primera letra mayúscula y de 3 a 15 carácteres alfabéticos');
-            } else if (campo.getAttribute('id') == "apellidos") {
-                alert('El campo ' +
-                        campo.getAttribute('id') +
-                        ' debe tener de 1 a 15 carácteres alfabéticos');
-            } else if (campo.getAttribute('id') == "usuario") {
-                alert('El campo ' +
-                        campo.getAttribute('id') +
-                        ' debe tener de 3 a 15 carácteres alfanuméricos');
-            } else if (campo.getAttribute('id') == "password") {
-                alert('El campo ' +
-                        campo.getAttribute('id') +
-                        ' debe tener de 6 a 15 carácteres alfanuméricos');
-            } else if (campo.getAttribute('id') == "localidad") {
-                alert('El campo ' +
-                        campo.getAttribute('id') +
-                        ' debe tener de 1 a 15 carácteres alfabéticos');
-            } else if (campo.getAttribute('id') == "email") {
-                alert('El campo ' +
-                        campo.getAttribute('id') +
-                        ' no se ha introducido correctamente.Ej:ejemplo@ejemplo.com');
-            }
-        }
-    }
+                        if (campo.getAttribute('id') == "nombre") {
+                            alert('El campo ' +
+                                    campo.getAttribute('id') +
+                                    ' debe tener la primera letra mayúscula y de 3 a 15 carácteres alfabéticos');
+                        } else if (campo.getAttribute('id') == "apellidos") {
+                            alert('El campo ' +
+                                    campo.getAttribute('id') +
+                                    ' debe tener de 1 a 15 carácteres alfabéticos');
+                        } else if (campo.getAttribute('id') == "usuario") {
+                            alert('El campo ' +
+                                    campo.getAttribute('id') +
+                                    ' debe tener de 3 a 15 carácteres alfanuméricos');
+                        } else if (campo.getAttribute('id') == "password") {
+                            alert('El campo ' +
+                                    campo.getAttribute('id') +
+                                    ' debe tener de 6 a 15 carácteres alfanuméricos');
+                        } else if (campo.getAttribute('id') == "localidad") {
+                            alert('El campo ' +
+                                    campo.getAttribute('id') +
+                                    ' debe tener de 1 a 15 carácteres alfabéticos');
+                        } else if (campo.getAttribute('id') == "email") {
+                            alert('El campo ' +
+                                    campo.getAttribute('id') +
+                                    ' no se ha introducido correctamente.Ej:ejemplo@ejemplo.com');
+                        }
+                    }
+                }
         </script>
     </head>
 
@@ -298,8 +298,9 @@ strict.dtd">
                             <label >Localidad:</label>
 
                             <select id="localidad" class="form-control" name="localidad" required>
-                                <option value='A Coruña' >A Coruña</option>
-                                <option value='álava'>Alava</option>
+                                <option value='' >&nbsp;<-&nbsp;Seleccione&nbsp;una&nbsp;localidad&nbsp;->&nbsp;</option>
+                                <option value='A Coruña' >A&nbsp;Coruña</option>
+                                <option value='&Aacute;lava'>Alava</option>
                                 <option value='Albacete' >Albacete</option>
                                 <option value='Alicante'>Alicante</option>
                                 <option value='Almería' >Almería</option>
@@ -313,19 +314,19 @@ strict.dtd">
                                 <option value='Cantabria' >Cantabria</option>
                                 <option value='Castellón' >Castellón</option>
                                 <option value='Ceuta' >Ceuta</option>
-                                <option value='Ciudad Real' >Ciudad Real</option>
+                                <option value='Ciudad Real' >Ciudad&nbsp;Real</option>
                                 <option value='Córdoba' >Córdoba</option>
                                 <option value='Cuenca' >Cuenca</option>
                                 <option value='Gerona' >Gerona</option>
                                 <option value='Girona' >Girona</option>
-                                <option value='Las Palmas' >Las Palmas</option>
+                                <option value='Las Palmas' >Las&nbsp;Palmas</option>
                                 <option value='Granada' >Granada</option>
                                 <option value='Guadalajara' >Guadalajara</option>
                                 <option value='Guipúzcoa' >Guipúzcoa</option>
                                 <option value='Huelva' >Huelva</option>
                                 <option value='Huesca' >Huesca</option>
                                 <option value='Jaén' >Jaén</option>
-                                <option value='La Rioja' >La Rioja</option>
+                                <option value='La Rioja' >La&nbsp;Rioja</option>
                                 <option value='León' >León</option>
                                 <option value='Lleida' >Lleida</option>
                                 <option value='Lugo' >Lugo</option>
@@ -368,7 +369,7 @@ strict.dtd">
                     <input type="submit" name="registro" class="button" id="btn-register-now" value="Enviar"  />
 
                     <div class="button" id="btn-back">
-                        < Login
+                        Login
                     </div>
                 </div>
 
