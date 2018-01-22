@@ -19,7 +19,7 @@ body{
     padding: 12px;
     text-decoration: none; 
     margin: auto;
-    border:solid 1px  #ffab91 ;
+    border:solid 1px  #ef8d17 ;
     border-top-left-radius:9px;
     border-top-right-radius:9px;
     border-bottom-left-radius:9px;
@@ -29,6 +29,7 @@ body{
 #register input[type=text],#register input[type=email],#register input[type=radio], #register input[type=time],#register input[type=url],#register input[type=password], #register select,#register  textarea{
 
     font-size: 100%;
+/*    width: 30%;*/
     box-sizing: border-box;
     resize: vertical;
     background-color:   #f9fbe7; 
@@ -36,7 +37,7 @@ body{
     padding: 12px;
     text-decoration: none; 
     margin: auto;
-    border:solid 1px  #ffab91 ;
+    border:solid 1px  #ef8d17 ;
     border-top-left-radius:9px;
     border-top-right-radius:9px;
     border-bottom-left-radius:9px;
@@ -50,7 +51,7 @@ label {
 
 .container{
     height: 100%;
-    
+
 }
 
 #login{
@@ -59,7 +60,20 @@ label {
     background:#F0ECE8;
     text-align: center;
     margin-left: 25%;
-    padding-bottom: 3px;
+    padding-bottom: 3px;   
+    border:hidden 1px;
+    -moz-border-radius-topleft: 9px;
+    -moz-border-radius-topright:9px;
+    -moz-border-radius-bottomleft:9px;
+    -moz-border-radius-bottomright:9px;
+    -webkit-border-top-left-radius:9px;
+    -webkit-border-top-right-radius:9px;
+    -webkit-border-bottom-left-radius:9px;
+    -webkit-border-bottom-right-radius:9px;
+    border-top-left-radius:9px;
+    border-top-right-radius:9px;
+    border-bottom-left-radius:9px;
+    border-bottom-right-radius:9px;
 }
 
 #register{
@@ -69,6 +83,19 @@ label {
     text-align: center;
     margin-left: 10%;
     padding-bottom: 3px;
+    border:hidden 1px;
+    -moz-border-radius-topleft: 9px;
+    -moz-border-radius-topright:9px;
+    -moz-border-radius-bottomleft:9px;
+    -moz-border-radius-bottomright:9px;
+    -webkit-border-top-left-radius:9px;
+    -webkit-border-top-right-radius:9px;
+    -webkit-border-bottom-left-radius:9px;
+    -webkit-border-bottom-right-radius:9px;
+    border-top-left-radius:9px;
+    border-top-right-radius:9px;
+    border-bottom-left-radius:9px;
+    border-bottom-right-radius:9px;
 }
 
 #requerido{
@@ -84,11 +111,24 @@ Login FORM:
     display: flex;
     align-items: center;
     overfloat: auto;
-    
+
 }
 
 .form-head{
     background:#68BA8A;
+        border:hidden 1px;
+    -moz-border-radius-topleft: 9px;
+    -moz-border-radius-topright:9px;
+    -moz-border-radius-bottomleft:9px;
+    -moz-border-radius-bottomright:9px;
+    -webkit-border-top-left-radius:9px;
+    -webkit-border-top-right-radius:9px;
+    -webkit-border-bottom-left-radius:9px;
+    -webkit-border-bottom-right-radius:9px;
+    border-top-left-radius:9px;
+    border-top-right-radius:9px;
+    border-bottom-left-radius:9px;
+    border-bottom-right-radius:9px;
 }
 .form-head h1{
     margin: 0px;
@@ -113,7 +153,7 @@ Login FORM:
     font-size: 1.5em;
     height: 50px;
     border:none;
-    
+
 }
 .form-control{
     text-align: center;
@@ -155,7 +195,7 @@ REGISTER FORM:
 #registerForm > form > .input-group{
     margin: 10px 15px;
     display: block;
-    
+
 }
 #registerForm > form > .input-group > .form-control{
     height: 40px;
