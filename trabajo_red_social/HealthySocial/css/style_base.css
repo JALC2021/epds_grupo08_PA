@@ -463,7 +463,7 @@ footer {
 }
 
 .estadisticaUsuario{
-   
+
     text-align: center;
     font-family: 'Comfortaa', cursive;
     font-size: 18px;
@@ -487,7 +487,6 @@ footer {
 
 .buscarAmigos td, .eliminarAmigos td{
     padding: 8px;
-        text-align: center;
 }
 
 
@@ -585,7 +584,7 @@ input[type=submit]:active {
 
 /*index del administrador*/
 li{
-     text-align: center;
+    text-align: center;
     margin-left:  100px;
     margin-right: 100px;
     padding: 10px;

@@ -177,9 +177,10 @@ if (isset($_SESSION['administrador'])) {
                     <div class="pruebaEst">
                         <table class="estadisticaUsuario">
                             <tr><td>Motivos de baja ordenados por su frecuencia</td></tr>
-                            <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;1.&nbsp;<?PHP echo utf8_encode($desc1['descripcion']) ?></td></tr>
-                            <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;2.&nbsp;<?PHP echo utf8_encode($desc2['descripcion']) ?></td></tr>
-                            <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;3.&nbsp;<?PHP echo utf8_encode($desc3['descripcion']) ?></td></tr>
+                            <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<b>1.</b>&nbsp;<?PHP echo utf8_encode($desc1['descripcion']) ?></td></tr>
+                            <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<b>2.</b>&nbsp;<?PHP echo utf8_encode($desc2['descripcion']) ?></td></tr>
+                            <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<b>3.</b>&nbsp;<?PHP echo utf8_encode($desc3['descripcion']) ?></td></tr>
+                            <tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr>
                             <tr><td>Nota media de la aplicación puntuada por los usuarios:&nbsp;&nbsp;&nbsp;&nbsp;<b><?php echo number_format($nota_media['notamedia'], 1) ?></b></td></tr>                                      
                             <tr><td>Sexo m&aacute;s frecuente de uso de la aplicaci&oacute;n:&nbsp;&nbsp;&nbsp;&nbsp;<b><?php echo $sexoMasFrec ?></b></td></tr>
                             <tr><td>Ti&eacute;mpo medio de uso de la aplicaci&oacute;n:&nbsp;&nbsp;&nbsp;&nbsp;<b><?php echo number_format($tiempoMedioUso['tiempoMedio'], 0) . ' d&iacute;as' ?></b></td></tr> 
