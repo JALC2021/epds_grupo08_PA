@@ -3,16 +3,14 @@ session_start();
 
 require_once '../functions.php';
 
+//si está activa la sesión del usuario entramos
 if (isset($_SESSION['usuario'])) {
 
+    //nos conectamos a la base de datos
     $con = connectDB();
 
-    if (!$con) {
-        die("Conexión fallida");
-    }
-
     $db_selected = selectDB($con);
-
+//si vamos a eliminar a un amigo a través del formulario, cogemos el id del amigo y lo eliminamos de la base de datos.
     if (isset($_POST['eliminar'])) {
         if (isset($_POST['id_usuario_eliminar'])) {
 
@@ -34,13 +32,13 @@ if (isset($_SESSION['usuario'])) {
         }
     }
 
-//consultamos el id_usuario
+    //consultamos el id_usuario
     $rowUsuario = mysqli_query($con, "SELECT `id_usuario` FROM `usuario` WHERE `usuario` LIKE '" . $_SESSION['user'] . "';");
 
     if (!$rowUsuario) {
         die("Error al ejecutar la consulta: " . mysqli_error($con));
     }
-
+    //consultamos los amigos del usuario activo
     $idUsuario = mysqli_fetch_array($rowUsuario);
     $sql = "select id_usuario_amigo from amigo a where id_usuario = " . $idUsuario['id_usuario'] . " ";
 
@@ -50,7 +48,6 @@ if (isset($_SESSION['usuario'])) {
         die("Error al ejecutar la consulta: " . mysqli_error($con));
     }
 
-//    disconnectDB($con);
     ?>
 
     <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
@@ -111,9 +108,12 @@ strict.dtd">
                         <h2>Eliminar amigos</h2>
 
                         <?PHP
+                        //sin no tiene amigos, se muestra el mensaje en pantalla.
                         if (mysqli_num_rows($rowUsuario) == 0) {
                             echo "<p>No tienes amigos actualmente</p>";
-                        } else {
+                        } 
+                        //si tiene amigos se muestran por pantalla.
+                        else {
                             ?>
                             <form method="POST">
                                 <table class="eliminarAmigos">
@@ -138,6 +138,7 @@ strict.dtd">
 
                             <?PHP
                         }
+                        disconnectDB($con);
                         ?>
 
                 </section>

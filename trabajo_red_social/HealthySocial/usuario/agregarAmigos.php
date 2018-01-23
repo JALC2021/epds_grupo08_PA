@@ -3,17 +3,15 @@ session_start();
 
 require_once '../functions.php';
 
+//entreamos si la sesión de usuario está activa
 if (isset($_SESSION['usuario'])) {
 
+    //conexión base de datos
     $con = connectDB();
-
-    if (!$con) {
-        die("Conexión fallida");
-    }
 
     $db_selected = selectDB($con);
 
-
+//únicamene entramos si hay algún campo relleno en el formulario buscar
     $condInicial = isset($_POST['enviar']) && ($_POST['usuario'] != "" || $_POST['nombre'] != "" || $_POST['email'] != "" || $_POST['localidad'] != "" || $_POST['apellidos'] != "");
     if ($condInicial) {
 
@@ -21,6 +19,8 @@ if (isset($_SESSION['usuario'])) {
 
         $sql = "select * from usuario where tipo like 'usuario' and usuario <> '" . $_SESSION['user'] . "' ";
 
+        
+        //realizamos un control de datos por expresiones regulares y almacenamos en la cadena sql la condición
         $condUsuario = preg_match("/^[[:alnum:]]{3,15}$/", $_POST['usuario']);
         if ($_POST['usuario'] != "") {
             if ($condUsuario) {
@@ -91,6 +91,7 @@ if (isset($_SESSION['usuario'])) {
                 <?PHP
             }
         }
+        //realizamos la consulta según la cadena final introducida
         $rowUsuario = mysqli_query($con, $sql);
 
         if (!$rowUsuario) {
@@ -98,8 +99,10 @@ if (isset($_SESSION['usuario'])) {
         }
 
         disconnectDB($con);
+        //si hemos pulsado el botón de agregar usuario
     } else if (isset($_POST['agregar'])) {
         if (isset($_POST['id_usuario_agregar'])) {
+            //insertamos en la base de datos el id del amigo
             $rowIdUsuario = mysqli_query($con, "SELECT * FROM `usuario` WHERE `usuario` LIKE '" . $_SESSION['user'] . "';");
             if (!$rowIdUsuario) {
                 die("Error al ejecutar la consulta: " . mysqli_error($con));
@@ -150,6 +153,7 @@ if (isset($_SESSION['usuario'])) {
             <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
             <link rel="shortcut icon" type="image/x-icon" href="../images/logo2.png" />
             <script type="text/javascript">
+//                comprobamos los datos por expresiones regulares
                 function comprobar(campo, expr) {
                     if (!expr.test(campo.value)) {
                         campo.value = "";
@@ -201,7 +205,7 @@ if (isset($_SESSION['usuario'])) {
                                 echo "<p>No se encontraron coincidencias</p>";
                             } else {
                                 ?>
-<!--                                <div class="agregarAmigos">-->
+
                                     <form method="POST">
                                         <table class="buscarAmigos">
                                             <tr><th></th><th>Usuario</th><th>Nombre</th><th>Apellidos</th><th>Email</th><th>Localidad</th></tr>
@@ -215,7 +219,7 @@ if (isset($_SESSION['usuario'])) {
                                         </table>
                                         <input type="submit" name="agregar" value="Agregar" />
                                     </form>
-<!--                                </div>-->
+
                                 <?PHP
                             }
                         }
@@ -353,7 +357,7 @@ if (isset($_SESSION['usuario'])) {
             <?php
             include_once '../footer.php';
         } else {
-            $_SESSION['url'] = "usuario/buscarAmigos.php";
+            $_SESSION['url'] = "usuario/agregarAmigos.php";
             $_SESSION['tipo'] = 'usuario';
             header("location:../login.php");
         }

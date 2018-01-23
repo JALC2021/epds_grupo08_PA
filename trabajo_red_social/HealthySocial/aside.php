@@ -1,3 +1,4 @@
+<!--menú reservado para la publicidad de las empresas-->
 <aside class="aside">
     <a target="_blank" href="http://vidasana.org/"><img class="imagenesAside" src="https://pbs.twimg.com/profile_images/771267606456053765/GdDcSuoM.jpg" alt="vidasana"></a>
     <a target="_blank" href="https://www.buzzfeed.com/carolynkylstra/healthy-living-habits?utm_term=.pwO8EQxA5P#.eodoZ3e8VK"><img class="imagenesAside" src="http://wellness.syr.edu/wp-content/uploads/2016/06/healthy-habits-lifestyle-300x225.jpg"alt="vidasana"></a>

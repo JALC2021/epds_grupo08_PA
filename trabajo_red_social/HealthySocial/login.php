@@ -7,11 +7,12 @@ require_once './functions.php';
 
 if (isset($_POST['login'])) {
 
+    //nos conectamos a la base de datos
     $con = connectDB();
 
     $db_selected = selectDB($con);
 
-    //sanear la entrada
+    //saneamos los datos de entrada
     $name = mysqli_real_escape_string($con, $_POST['usuario']);
     $pass = mysqli_real_escape_string($con, $_POST['password']);
 
@@ -21,6 +22,8 @@ if (isset($_POST['login'])) {
     if (!$result) {
         die("Error al ejecutar la consulta: " . mysqli_error($con));
     }
+    
+    //si no hay coincidencias con el usuario volvemos al login
 
     if (mysqli_num_rows($result) < 1) {
         ?>
@@ -31,27 +34,31 @@ if (isset($_POST['login'])) {
     } else {
         $fila = mysqli_fetch_array($result);
 
-//comprobamos si el hash de la contraseña del formulario coincide con la almacenada en la bbdd
+        //comprobamos si el hash de la contraseña del formulario coincide con la almacenada en la bbdd
         if (password_verify($pass, $fila['password'])) {
 
-//actualizamos la última hora del acceso.
+        //actualizamos la última hora del acceso.
             $result2 = mysqli_query($con, "UPDATE usuario SET ultimo_acceso=now() WHERE usuario like '" . $name . "';");
             if (!$result2) {
                 die("Error al ejecutar la consulta: " . mysqli_error($con));
             }
 
+            //desconexión de la base de datos
             disconnectDB($con);
-//guardamos la cookie con el nombre del usuario durante 30 días
+            //guardamos la cookie con el nombre del usuario durante 30 días
             setcookie("user", $name, time() + 30 * 60 * 60);
 
+            //almacenamos en variables de sessión si es usuario o administrador
             if ($fila['tipo'] == 'usuario') {
                 $_SESSION['usuario'] = TRUE;
             } else if ($fila['tipo'] == 'administrador') {
                 $_SESSION['administrador'] = TRUE;
             }
+            //almacenamos el nombre del usuario en la sessión
             $_SESSION['user'] = $name;
 
-
+            //si existe una url no accedemos y en el caso de no existir 
+            //dependiendo de si eres administrador o usuario se redirigirá a un sitio u otro
             if (!isset($_SESSION['url'])) {
 
                 if ($fila['tipo'] == 'usuario') {
@@ -60,7 +67,7 @@ if (isset($_POST['login'])) {
                     $_SESSION['url'] = "administrador/indexAdministrador.php";
                 }
             }
-
+            //si hay url y coincide con el tipo, ser redigirá a la página marcada por el usuario
             if ($_SESSION['tipo'] == $fila['tipo']) {
                 header("location:" . $_SESSION['url']);
             } else {
@@ -84,11 +91,8 @@ if (isset($_POST['login'])) {
     }
 } else if (isset($_POST['registro'])) {
 
+    //conexión base de datos
     $con = connectDB();
-
-    if (!$con) {
-        die("Conexión fallida");
-    }
 
     $db_selected = selectDB($con);
 
@@ -98,19 +102,20 @@ if (isset($_POST['login'])) {
     if (!$result) {
         die("Error al ejecutar la consulta: " . mysqli_error($con));
     }
-
+    // si el usuario no existe en bbdd continuamos con la insercción de datos.
     if (mysqli_num_rows($result) > 0) {
         ?>
         <script type="text/javascript">
             alert("El usuario introducido ya existe. Pruebe a insertar uno nuevo");
         </script>
         <?PHP
+        //se realiza el control del formulario por expresiones regulares
     } else if (preg_match("/^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]{2,15}[\s]{0,1}){1,2}$/", $_POST['nombre']) && preg_match("/^[[:alnum:]]{6,15}$/", $_POST['password']) &&
             preg_match("/^[[:alnum:]]{3,15}$/", $_POST['usuario']) && preg_match("/^[a-zA-z0-9]+@[a-z]+\.[a-z]+/", $_POST['email']) &&
             preg_match("/^([a-zA-ZÁÉÍÓÚñáéíóú]{1,15}[\s]*)+$/", $_POST['apellidos']) && preg_match("/^([a-zA-ZÁÉÍÓÚñáéíóú]{1,15}[\s]*)+$/", $_POST['localidad'])) {
 
 
-//saneamos la entrada a la bbdd
+        //saneamos la entrada a la bbdd
         $name = mysqli_real_escape_string($con, $_POST['nombre']);
         $apellidos = mysqli_real_escape_string($con, $_POST['apellidos']);
         $localidad = mysqli_real_escape_string($con, $_POST['localidad']);
@@ -118,7 +123,7 @@ if (isset($_POST['login'])) {
 
         $email = mysqli_real_escape_string($con, $_POST['email']);
         $sexo = mysqli_real_escape_string($con, $_POST['sexo']);
-//usamos el hash para insertarlo en la bbdd
+        //usamos el hash para insertarlo en la bbdd
         $pass = password_hash(mysqli_real_escape_string($con, $_POST['password']), PASSWORD_DEFAULT);
 
         $result = mysqli_query($con, "INSERT INTO `usuario` (`id_usuario`, `usuario`, `password`, `tipo`, `nombre`, `email`, `sexo`,`apellidos`, `localidad`)
@@ -133,7 +138,7 @@ if (isset($_POST['login'])) {
         <?PHP
         disconnectDB($con);
     } else {
-
+        //en caso de no pasar el filtro de expresiones regulares, mostraremos un mensaje 
         if (!preg_match('/^[[:alnum:]]{3,15}$/', $_POST['usuario'])) {
             ?>
             }
@@ -200,6 +205,7 @@ if (isset($_POST['login'])) {
         <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
         <script type="text/javascript" src="js/login.js" ></script>
         <script type="text/javascript">
+//            Comprobamos con expresiones regulares si cumple los requisitos exijidos
                 function comprobar(campo, expr) {
                     if (!expr.test(campo.value)) {
                         campo.value = "";
@@ -244,6 +250,7 @@ if (isset($_POST['login'])) {
                 </div>
                 <div class="form">
                     <h2>SocialHealthy</h2>
+                    <!-- Formulario del login -->
                     <form action="#" method="post">
 
                         <div class="input-group">
@@ -280,6 +287,7 @@ if (isset($_POST['login'])) {
                 <div class="form-head">
                     <h1>Registro</h1>
                 </div>
+                <!--Formulario del Registro-->
                 <div class="form">
                     <form action="#" method="POST">
                         <div class="input-group">

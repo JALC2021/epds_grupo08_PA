@@ -24,6 +24,7 @@ function disconnectDB($conexion) {
     return $close;
 }
 
+//selección de la base de datos
 function selectDB($conexion) {
     $db = mysqli_select_db($conexion, "healthysocial");
     if (!$db) {

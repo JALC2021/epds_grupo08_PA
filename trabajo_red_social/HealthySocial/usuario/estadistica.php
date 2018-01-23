@@ -3,19 +3,17 @@ session_start();
 
 require_once '../functions.php';
 
-
+//si está activa la sesión usuario entramos
 if (isset($_SESSION['usuario'])) {
 
+    //nos conectamos a la base de datos
     $con = connectDB();
-
-    if (!$con) {
-        die("Conexión fallida");
-    }
 
     $db_selected = selectDB($con);
 
     $user = $_SESSION['user'];
-
+    
+    //si entramos 
     $result = mysqli_query($con, "SELECT `id_usuario` FROM `usuario` WHERE `usuario` LIKE '" . $user . "';");
 
     $row = mysqli_fetch_array($result);

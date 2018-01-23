@@ -7,6 +7,6 @@
     <a href="./eliminarAmigos.php">Eliminar&nbsp;<i class="fa fa-group" style="font-size:20px"></i></a>
     <a href="./baja.php">Baja&nbsp;<i class="fa fa-user-times" style="font-size:20px"></i></a>
     <a href="./publicacionAmigos.php" id="amigos">PUBLICACI&Oacute;N AMIGOS&nbsp;<i class="fa fa-handshake-o" style="font-size:20px"></i></a>
-    <a href="./buscarAmigos.php" id="buscar">AGREGAR&nbsp;<i class="fa fa-group" style="font-size:20px"></i></a>
+    <a href="./agregarAmigos.php" id="buscar">AGREGAR&nbsp;<i class="fa fa-group" style="font-size:20px"></i></a>
     <a href="../logout.php" id="cerrarSesion">CERRAR SESI&Oacute;N&nbsp;<i class="fa fa-power-off" style="font-size:20px"></i></a>
 </nav>

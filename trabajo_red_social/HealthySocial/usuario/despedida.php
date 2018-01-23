@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+//en esta página nos redigirá al login tras 6 segundos tras mostrarle un mesaje de despedida al usuario.
 if (isset($_SESSION['usuario'])) {
     ?>
     <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"

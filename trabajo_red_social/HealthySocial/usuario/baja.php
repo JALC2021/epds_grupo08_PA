@@ -1,15 +1,18 @@
 <?php
 session_start();
 
+//añadimos la librería de funciones
 require_once '../functions.php';
 
+//si la variable de sessión de usuario está activa, entramos en la página
 if (isset($_SESSION['usuario'])) {
 
+    //nos conectamos a la base de datos
     $con = connectDB();
 
     $db_selected = selectDB($con);
 
-
+    //al enviar el formulario de baja
     if (isset($_POST['enviar'])) {
 
 //Validamos la nota
@@ -26,13 +29,13 @@ if (isset($_SESSION['usuario'])) {
             }
             $datosUsu = mysqli_fetch_array($datos);
             $motivo = $_POST['motivo'];
-
+            //añadimos a las estadísticas el motivo elegido por el usuario
             $estadisticas = mysqli_query($con, "INSERT INTO `estadisticasapp`(`id_usuario`, `nombre`, `apellidos`, `email`, `sexo`, `num_motivo`, `nota`, `fecha_alta`) VALUES ('" . $datosUsu['id_usuario'] . "','" . $datosUsu['nombre'] . "','" . $datosUsu['apellidos'] . "','" . $datosUsu['email'] . "','" . $datosUsu['sexo'] . "'," . $motivo . "," . $_POST['nota'] . ",'" . $datosUsu['fecha_alta'] . "');");
 
             if (!$estadisticas) {
                 die("Error al ejecutar la consulta: " . mysqli_error($con));
             }
-
+            //eliminamos al usuario
             $usuario = mysqli_query($con, "DELETE FROM `usuario` WHERE `id_usuario`=" . $datosUsu['id_usuario'] . ";");
             if (!$usuario) {
                 die("Error al ejecutar la consulta: " . mysqli_error($con));
@@ -95,6 +98,7 @@ if (isset($_SESSION['usuario'])) {
 
                     <div class="container">
                         <h2>Baja&nbsp;usuario</h2>
+                        <!--formulario de baja-->
                         <form method="POST" action="#">
 
                             <div class="row">
@@ -105,6 +109,7 @@ if (isset($_SESSION['usuario'])) {
                                 <div class="col-75">
 
                                     <?php
+                                    //mostramos el primer motivo
                                     $motivo1 = mysqli_query($con, "SELECT `descripcion` FROM `motivo` WHERE `id_motivo`=1;");
                                     if (!$motivo1) {
                                         die("Error al ejecutar la consulta: " . mysqli_error($con));
@@ -117,6 +122,7 @@ if (isset($_SESSION['usuario'])) {
                                         <p><label><?php echo utf8_encode($mot1['descripcion']) ?></label><input type="radio" name="motivo" value="1" required /></p>
 
                                         <?php
+                                        //mostramos el segundo motivo
                                         $motivo2 = mysqli_query($con, "SELECT `descripcion` FROM `motivo` WHERE `id_motivo`=2;");
                                         if (!$motivo2) {
                                             die("Error al ejecutar la consulta: " . mysqli_error($con));
@@ -127,6 +133,7 @@ if (isset($_SESSION['usuario'])) {
                                         <p><label><?php echo utf8_encode($mot2['descripcion']) ?></label><input type="radio" name="motivo" value="2" required /></p>
 
                                         <?php
+                                        //mostramos el tercer motivo
                                         $motivo3 = mysqli_query($con, "SELECT `descripcion` FROM `motivo` WHERE `id_motivo`=3;");
                                         if (!$motivo3) {
                                             die("Error al ejecutar la consulta: " . mysqli_error($con));
