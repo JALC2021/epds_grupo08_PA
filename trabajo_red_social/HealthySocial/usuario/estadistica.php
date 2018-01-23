@@ -13,67 +13,57 @@ if (isset($_SESSION['usuario'])) {
 
     $user = $_SESSION['user'];
     
-    //si entramos 
+    //recogemos el id el usuario
     $result = mysqli_query($con, "SELECT `id_usuario` FROM `usuario` WHERE `usuario` LIKE '" . $user . "';");
-
     $row = mysqli_fetch_array($result);
-
     $id_usuario = $row["id_usuario"];
 
+    //consulta para los likes realizados por el usurio activo
     $result = mysqli_query($con, "select COUNT(*) AS \"votosRealizados\"  FROM contenido c , voto v WHERE c.id_contenido = v.id_contenido and c.id_usuario = '" . $id_usuario . "';");
-
     $row = mysqli_fetch_array($result);
-
     $votosRealizados = $row["votosRealizados"];
 
+    //consulta para los likes recibidos por el usurio activo
     $result = mysqli_query($con, "SELECT COUNT(*) AS \"votosRecibidos\" FROM voto WHERE id_usuario = '" . $id_usuario . "';");
-
     $row = mysqli_fetch_array($result);
-
     $votosRecibidos = $row["votosRecibidos"];
 
+    //consulta para el tiempo total de deporte realizado por el usurio activo
     $result = mysqli_query($con, "select SEC_TO_TIME(SUM(TIME_TO_SEC(d.duracion))) as \"time\" from contenido c NATURAL JOIN deportes d where c.id_usuario ='" . $id_usuario . "';");
-
     $row = mysqli_fetch_array($result);
-
     $time = $row['time'];
 
+    //consulta para los comentario recibidos por el usurio activo
     $result = mysqli_query($con, "SELECT COUNT(*) AS \"comentariosRecibidos\" FROM comentario cm, contenido cn where cm.id_contenido = cn.id_contenido and cn.id_usuario = '" . $id_usuario . "';");
-
     $row = mysqli_fetch_array($result);
-
     $comentariosRecibidos = $row['comentariosRecibidos'];
-
+    
+    //consulta para los comentario realizados por el usurio activo
     $result = mysqli_query($con, "SELECT COUNT(*) AS \"comentariosRealizados\" FROM comentario WHERE id_usuario = '" . $id_usuario . "';");
-
     $row = mysqli_fetch_array($result);
-
     $comentariosRealizados = $row['comentariosRealizados'];
 
-
+    //consulta para las publicaciones de tipo dieta realizados por el usurio activo
     $result = mysqli_query($con, "SELECT count(*) AS \"dieta\" FROM alimentacion a NATURAL JOIN contenido c where c.id_usuario = '" . $id_usuario . "' and a.dieta_estudio like 'dieta';");
-
     $row = mysqli_fetch_array($result);
-
     $dietas = $row['dieta'];
-
+    
+    //consulta para las publicaciones de tipo estudio científico realizados por el usurio activo
     $result = mysqli_query($con, "SELECT count(*) AS \"cientifico\" FROM alimentacion a NATURAL JOIN contenido c where c.id_usuario = '" . $id_usuario . "' and a.dieta_estudio like 'cientifico';");
-
     $row = mysqli_fetch_array($result);
-
     $cientifico = $row['cientifico'];
-
+    
+    //consulta para las publicaciones de tipo deportes realizados por el usurio activo
     $result = mysqli_query($con, "SELECT count(*) AS \"deportes\" FROM deportes a NATURAL JOIN contenido c where c.id_usuario = '" . $id_usuario . "';");
-
     $row = mysqli_fetch_array($result);
-
     $deportes = $row['deportes'];
-
+    
+    //consulta para las publicaciones de tipo suplemento realizados por el usurio activo
     $result = mysqli_query($con, "SELECT count(*) AS \"suplemento\" FROM suplemento a NATURAL JOIN contenido c where c.id_usuario = '" . $id_usuario . "';");
-
     $row = mysqli_fetch_array($result);
-
     $suplemento = $row['suplemento'];
+    
+    //total de publicaciones
     $publicaciones = $dietas + $cientifico + $deportes + $suplemento;
 
     disconnectDB($con);
@@ -104,7 +94,7 @@ if (isset($_SESSION['usuario'])) {
 
                     <h2>Mis estad&iacute;sticas</h2>
                     <table class="estadistica">
-<!--                        <tr><th>Estad&iacute;stica</th><th>Cantidad</th></tr>-->
+                        <!--mostramos las estadísticas-->
                         <tr><td>Likes realizados</td><td><?PHP echo $votosRecibidos; ?></td></tr>
                         <tr><td>Likes recibidos</td><td><?PHP echo $votosRealizados; ?></td></tr>
                         <tr><td>Publicaciones realizadas</td><td><?PHP echo $publicaciones; ?></td></tr>

@@ -4,11 +4,13 @@ session_start();
 
 require_once '../functions.php';
 
-
+// si hay sesión activa por el usuario entramos
 if (isset($_SESSION['usuario'])) {
 
+    //si el formulario es alimentación, deportes o suplemento, accedemos
     if (isset($_POST['alimentacion']) || isset($_POST['deportes']) || isset($_POST['suplemento'])) {
 
+        //comprobamos que todos los requisitos estén enviados por el usuario
         $insertar = true;
         if (isset($_POST['alimentacion'])) {
             if (!isset($_POST['dietaEstudio'])) {
@@ -48,13 +50,10 @@ if (isset($_SESSION['usuario'])) {
             }
         }
 
+        //si están todos los requisitos y cumple con las expresiones regulares, entramos
         if ($insertar && preg_match("/^([a-zA-ZÁÉÍÓÚñáéíóú?¿!!-<>\*\.0-9]*[\s]*)+$/", $_POST['descripcion'])) {
+            //nos conectamos a la base de datos
             $con = connectDB();
-
-            if (!$con) {
-                die("Conexión fallida");
-            }
-
             $db_selected = selectDB($con);
 
             //saneamos la entrada a la bbdd
