@@ -1,4 +1,6 @@
 <?php
+
+//inciamos las sesiones
 session_start();
 
 require_once './functions.php';
