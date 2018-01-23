@@ -379,7 +379,7 @@ if (isset($_POST['login'])) {
                     <input type="submit" name="registro" class="button" id="btn-register-now" value="Enviar"  />
 
                     <div class="button" id="btn-back">
-                        Login
+                        Volver
                     </div>
                 </div>
 
