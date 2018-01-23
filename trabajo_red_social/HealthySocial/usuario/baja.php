@@ -109,40 +109,20 @@ if (isset($_SESSION['usuario'])) {
                                 <div class="col-75">
 
                                     <?php
-                                    //mostramos el primer motivo
-                                    $motivo1 = mysqli_query($con, "SELECT `descripcion` FROM `motivo` WHERE `id_motivo`=1;");
-                                    if (!$motivo1) {
-                                        die("Error al ejecutar la consulta: " . mysqli_error($con));
-                                    } else {
-                                        $mot1 = mysqli_fetch_array($motivo1);
-                                    }
-                                    ?>
-
-                                    <div class="tipoBaja">
-                                        <p><label><?php echo utf8_encode($mot1['descripcion']) ?></label><input type="radio" name="motivo" value="1" required /></p>
-
-                                        <?php
-                                        //mostramos el segundo motivo
-                                        $motivo2 = mysqli_query($con, "SELECT `descripcion` FROM `motivo` WHERE `id_motivo`=2;");
-                                        if (!$motivo2) {
+                                    //mostramos los motivos
+                                    for ($i = 1; $i < 4; $i++) {
+                                        $motivo = mysqli_query($con, "SELECT `descripcion` FROM `motivo` WHERE `id_motivo`=" . $i . ";");
+                                        if (!$motivo) {
                                             die("Error al ejecutar la consulta: " . mysqli_error($con));
                                         } else {
-                                            $mot2 = mysqli_fetch_array($motivo2);
+                                            $mot = mysqli_fetch_array($motivo);
                                         }
                                         ?>
-                                        <p><label><?php echo utf8_encode($mot2['descripcion']) ?></label><input type="radio" name="motivo" value="2" required /></p>
-
-                                        <?php
-                                        //mostramos el tercer motivo
-                                        $motivo3 = mysqli_query($con, "SELECT `descripcion` FROM `motivo` WHERE `id_motivo`=3;");
-                                        if (!$motivo3) {
-                                            die("Error al ejecutar la consulta: " . mysqli_error($con));
-                                        } else {
-                                            $mot3 = mysqli_fetch_array($motivo3);
+                                        <div class="tipoBaja">
+                                            <p><label><?php echo utf8_encode($mot['descripcion']) ?></label><input type="radio" name="motivo" value="<?php $i ?>" required /></p>
+                                            <?php
                                         }
-                                        disconnectDB($con);
                                         ?>
-                                        <p><label><?php echo utf8_encode($mot3['descripcion']) ?></label><input type="radio" name="motivo" value="3" required /></p>
 
                                     </div>
                                 </div>
