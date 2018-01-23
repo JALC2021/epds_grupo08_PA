@@ -30,7 +30,10 @@ if (isset($_SESSION['usuario'])) {
             $datosUsu = mysqli_fetch_array($datos);
             $motivo = $_POST['motivo'];
             //añadimos a las estadísticas el motivo elegido por el usuario
-            $estadisticas = mysqli_query($con, "INSERT INTO `estadisticasapp`(`id_usuario`, `nombre`, `apellidos`, `email`, `sexo`, `num_motivo`, `nota`, `fecha_alta`) VALUES ('" . $datosUsu['id_usuario'] . "','" . $datosUsu['nombre'] . "','" . $datosUsu['apellidos'] . "','" . $datosUsu['email'] . "','" . $datosUsu['sexo'] . "'," . $motivo . "," . $_POST['nota'] . ",'" . $datosUsu['fecha_alta'] . "');");
+            $sql = "INSERT INTO `estadisticasapp` (`id_usuario`, `nombre`, `apellidos`, `email`, `sexo`, `id_baja`, `num_motivo`, `nota`, `fecha_alta`, `fecha_baja`) "
+                    . "               VALUES ('" . $datosUsu['id_usuario'] . "', '" . $datosUsu['nombre'] . "', '" . $datosUsu['apellidos'] . "', '" . $datosUsu['email'] . "', '" . $datosUsu['sexo'] . "', NULL, ".$motivo.", '" . $_POST['nota'] . "', '" . $datosUsu['fecha_alta'] . "', CURRENT_TIMESTAMP);";
+//            $sql = INSERT INTO `estadisticasapp`(`id_usuario`, `nombre`, `apellidos`, `email`, `sexo`, `num_motivo`, nota, `fecha_alta`) VALUES ('" . $datosUsu['id_usuario'] . "','" . $datosUsu['nombre'] . "','" . $datosUsu['apellidos'] . "','" . $datosUsu['email'] . "','" . $datosUsu['sexo'] . "'," . $motivo . "," . $_POST['nota'] . ",'" . $datosUsu['fecha_alta'] . "';
+            $estadisticas = mysqli_query($con, $sql);
 
             if (!$estadisticas) {
                 die("Error al ejecutar la consulta: " . mysqli_error($con));
@@ -119,7 +122,7 @@ if (isset($_SESSION['usuario'])) {
                                         }
                                         ?>
                                         <div class="tipoBaja">
-                                            <p><label><?php echo utf8_encode($mot['descripcion']) ?></label><input type="radio" name="motivo" value="<?php $i ?>" required /></p>
+                                            <p><label><?php echo utf8_encode($mot['descripcion']) ?></label><input type="radio" name="motivo" value="<?php echo $i ?>" required /></p>
                                             <?php
                                         }
                                         ?>
