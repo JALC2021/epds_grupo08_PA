@@ -303,7 +303,7 @@ if (isset($_SESSION['usuario'])) {
                                         }
                                         $amigo = mysqli_fetch_array($rowAmigo);
                                         ?> 
-                                        <p><b><i class="fa fa-user-circle" style="font-size:20px"></i></b>&nbsp;&nbsp;<?PHP echo $amigo['usuario']; ?></p>
+                                        <p><b><i class="fa fa-user-circle" style="font-size:20px;color:#ef8d17;"></i></b>&nbsp;&nbsp;<?PHP echo $amigo['usuario']; ?></p>
 
                                         <?PHP
                                     }
