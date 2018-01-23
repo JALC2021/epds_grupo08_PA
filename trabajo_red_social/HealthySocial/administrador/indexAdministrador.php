@@ -1,6 +1,6 @@
 <?PHP
 session_start();
-
+//si la sesión activa es la del administrador
 if (isset($_SESSION['administrador'])) {
     ?>
     <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
@@ -27,7 +27,7 @@ strict.dtd">
                 <section class="sectionPaginaPersonal">
 
                     <h2><i class="fa fa-user-secret" style="color:#ef8d17;font-size:20px;"></i>&nbsp;<?PHP echo $_SESSION['user'];?></h2>
-                    
+                    <!--mensaje de inicio-->
                     <p>Como administrador del sistema podrás realizar las siguientes funciones:</p>
                     <ol>
                         <li>Eliminar un usuario en concreto.</li>
@@ -45,6 +45,7 @@ strict.dtd">
             <?php
             include_once '../footer.php';
         } else {
+//guardamos la url para volver a esta pagína en una variable de sesión y el tipo de usuario
             $_SESSION['url'] = "administrador/indexAdministrador.php";
             $_SESSION['tipo'] = 'administrador';
             header("location:../login.php");

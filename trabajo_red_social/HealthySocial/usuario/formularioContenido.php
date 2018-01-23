@@ -67,11 +67,11 @@ if (isset($_SESSION['usuario'])) {
             if (!$result1) {
                 die("Error al ejecutar la consulta: " . mysqli_error($con));
             }
-
+            //si hay un usuario entramos
             if (mysqli_num_rows($result1) == 1) {
 
                 $row = mysqli_fetch_array($result1);
-
+                //introducimos el contenido
                 $result2 = mysqli_query($con, "INSERT INTO `contenido` (`id_contenido`, `id_usuario`, `descripcion`) VALUES (NULL, '" . $row['id_usuario'] . "','" . $descripcion . "');");
                 if (!$result2) {
                     die("Error al ejecutar la consulta: " . mysqli_error($con));
@@ -88,12 +88,14 @@ if (isset($_SESSION['usuario'])) {
                 $id_cont = $row2['id_contenido'];
                 $_SESSION['cont'] = $id_cont;
 
+                //si se ha introducido una url de una foto, se inserta
                 if ($_POST['foto'] != "") {
                     $result = mysqli_query($con, "INSERT INTO `foto` (`id_foto`, `id_usuario`, `id_contenido`, `url`) VALUES (NULL, '" . $row['id_usuario'] . "', '" . $row2['id_contenido'] . "', '" . $foto . "');");
                     if (!$result) {
                         die("Error al ejecutar la consulta: " . mysqli_error($con));
                     }
                 }
+                //si el contenido es de alimentación,deportes o suplemento se inserta en su tabla correspondiente
                 if (isset($_POST['alimentacion'])) {
                     //saneamos las entradas
                     $tipoAlimentacion = mysqli_real_escape_string($con, $_POST['tipoAlimentacion']);
@@ -179,6 +181,7 @@ if (isset($_SESSION['usuario'])) {
             <link rel="shortcut icon" type="image/x-icon" href="../images/logo2.png" />
             <script type="text/javascript">
 
+    //mostramos el formulario adecuado según la selección del desplegable
                 function mostrar(num) {
                     if (num === 0) {
                         document.getElementById('c' + (num + 2)).setAttribute("style", "display: none");
@@ -196,6 +199,7 @@ if (isset($_SESSION['usuario'])) {
 
                 }
 
+    //comprobamos con expresiones regulares el campo en concreto
                 function comprobar(campo, expr) {
                     if (!expr.test(campo.value)) {
                         campo.value = "";
@@ -217,11 +221,6 @@ if (isset($_SESSION['usuario'])) {
                 }
 
             </script>
-            <script>
-                function myFunction() {
-                    alert("Por ejemplo futbol");
-                }
-            </script>
 
         </head>
         <body>
@@ -235,6 +234,7 @@ if (isset($_SESSION['usuario'])) {
 
                     <div class="container">
                         <h2>Publicar</h2>
+                        <!--inicio del formulario de contenido de deportes, alimentación o suplemento-->
                         <form method="POST" action="#">
 
                             <div class="row">
@@ -497,6 +497,7 @@ if (isset($_SESSION['usuario'])) {
             <?php
             include_once '../footer.php';
         } else {
+            //guardamos la url para volver a esta pagína en una variable de sesión y el tipo de usuario
             $_SESSION['url'] = "usuario/formularioContenido.php";
             $_SESSION['tipo'] = 'usuario';
             header("location:../login.php");

@@ -2,13 +2,12 @@
 session_start();
 
 require_once '../functions.php';
-
+//si eres sesión de administrador
 if (isset($_SESSION['administrador'])) {
-
+    //conexión con la base de datos
     $con = connectDB();
-
     $db_selected = selectDB($con);
-
+    //consultamos el número de mujeres
     $numMujeres = mysqli_query($con, "SELECT COUNT(*) AS numeroMujeres FROM `estadisticasapp` WHERE `sexo` LIKE 'mujer';");
 
     if (!$numMujeres) {
@@ -16,48 +15,51 @@ if (isset($_SESSION['administrador'])) {
     } else {
         $mujeres = mysqli_fetch_array($numMujeres);
     }
+    //consultamos el número de hombres
     $numHombres = mysqli_query($con, "SELECT COUNT(*) AS numeroHombres FROM `estadisticasapp` WHERE `sexo` LIKE 'hombre';");
     if (!$numHombres) {
         die("Error al ejecutar la consulta: " . mysqli_error($con));
     } else {
         $hombres = mysqli_fetch_array($numHombres);
     }
+    //mostramos qué sexo hay más
     if ($hombres['numeroHombres'] > $mujeres['numeroMujeres']) {
         $sexoMasFrec = 'Hombre';
     } else {
         $sexoMasFrec = 'Mujer';
     }
 
+    //calculamos la nota media
     $media = mysqli_query($con, "SELECT AVG(estadisticasapp.nota) AS notamedia FROM estadisticasapp;");
     if (!$media) {
         die("Error al ejecutar la consulta: " . mysqli_error($con));
     } else {
         $nota_media = mysqli_fetch_array($media);
     }
-
-
-
+    
+    //calculamos el tiempo medio de la aplicación
     $tiempoMedio = mysqli_query($con, "SELECT AVG(DATEDIFF(estadisticasapp.fecha_baja,estadisticasapp.fecha_alta)) AS tiempoMedio FROM estadisticasapp;");
     if (!$tiempoMedio) {
         die("Error al ejecutar la consulta: " . mysqli_error($con));
     } else {
         $tiempoMedioUso = mysqli_fetch_array($tiempoMedio);
     }
-
+    
+    //contamos el número del primer motivo
     $numMot1 = mysqli_query($con, "SELECT COUNT(estadisticasapp.num_motivo) AS motivo1,estadisticasapp.num_motivo FROM estadisticasapp WHERE estadisticasapp.num_motivo=1;");
     if (!$numMot1) {
         die("Error al ejecutar la consulta: " . mysqli_error($con));
     } else {
         $motivo1 = mysqli_fetch_array($numMot1);
     }
-
+    //contamos el número del segundo motivo
     $numMot2 = mysqli_query($con, "SELECT COUNT(estadisticasapp.num_motivo) AS motivo2,estadisticasapp.num_motivo FROM estadisticasapp WHERE estadisticasapp.num_motivo=2;");
     if (!$numMot2) {
         die("Error al ejecutar la consulta: " . mysqli_error($con));
     } else {
         $motivo2 = mysqli_fetch_array($numMot2);
     }
-
+    //contamos el número del tercer motivo
     $numMot3 = mysqli_query($con, "SELECT COUNT(estadisticasapp.num_motivo) AS motivo3,estadisticasapp.num_motivo FROM estadisticasapp WHERE estadisticasapp.num_motivo=3;");
     if (!$numMot3) {
         die("Error al ejecutar la consulta: " . mysqli_error($con));
@@ -196,6 +198,7 @@ if (isset($_SESSION['administrador'])) {
             <?php
             include_once '../footer.php';
         } else {
+            //guardamos la url para volver a esta pagína en una variable de sesión y el tipo de usuario
             $_SESSION['url'] = "administrador/estadisticasAdministrador.php";
             $_SESSION['tipo'] = 'administrador';
             header("location:../login.php");

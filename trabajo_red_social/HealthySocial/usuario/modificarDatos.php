@@ -5,11 +5,8 @@ require_once '../functions.php';
 
 if (isset($_SESSION['usuario'])) {
 
+    //conexión a la base de datos
     $con = connectDB();
-
-    if (!$con) {
-        die("Conexión fallida");
-    }
 
     $db_selected = selectDB($con);
 
@@ -19,15 +16,14 @@ if (isset($_SESSION['usuario'])) {
     }
     $datosUsu = mysqli_fetch_array($consulta);
 
+    //entramos en el formulario de modificar
     if (isset($_POST['modificar'])) {
         $result = mysqli_query($con, "SELECT usuario FROM usuario WHERE usuario like '" . $_POST['usuario'] . "';");
 
         if (!$result) {
             die("Error al ejecutar la consulta: " . mysqli_error($con));
         }
-
-
-
+        //controlamos con expresiones regulares la entrada de datos
         if (preg_match("/^[A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]{2,15}$/", $_POST['nombre']) && preg_match("/^[[:alnum:]]{6,15}$/", $_POST['password']) &&
                 preg_match("/^[[:alnum:]]{3,15}$/", $_POST['usuario']) && preg_match("/^[a-zA-z0-9]+@[a-z]+\.[a-z]+/", $_POST['email']) &&
                 preg_match("/^([a-zA-ZÁÉÍÓÚñáéíóú]{1,15}[\s]*)+$/", $_POST['apellidos']) && preg_match("/^([a-zA-ZÁÉÍÓÚñáéíóú]{1,15}[\s]*)+$/", $_POST['localidad'])) {
@@ -45,9 +41,9 @@ if (isset($_SESSION['usuario'])) {
             //usamos el hash para insertarlo en la bbdd
             $pass = password_hash(mysqli_real_escape_string($con, $_POST['password']), PASSWORD_DEFAULT);
 
-
+            //actualizamos los datos
             $result = mysqli_query($con, "UPDATE `usuario` SET `usuario`='" . $user . "',`password`='" . $pass . "',`tipo`='usuario',`nombre`='" . $name . "',`email`='" . $email . "',`sexo`='" . $datosUsu['sexo'] . "',`apellidos`='" . $apellidos . "',`localidad`='" . $localidad . "',`fecha_alta`='" . $datosUsu['fecha_alta'] . "' WHERE `usuario` LIKE '" . $_SESSION['user'] . "';");
-            
+
 
             if (!$result) {
                 die("Error al ejecutar la consulta: " . mysqli_error($con));
@@ -64,7 +60,7 @@ if (isset($_SESSION['usuario'])) {
             }
             $datosUsu = mysqli_fetch_array($consulta);
             disconnectDB($con);
-        } else { //el problema viene aquí. Habra k poner alguna condición. Esto entonces tb un if else¿
+        } else { //mensaje personalizado por si no pasa las expresiones regulares
             if (!preg_match('/^[[:alnum:]]{3,15}$/', $_POST['usuario'])) {
                 ?>
                 }
@@ -116,11 +112,10 @@ if (isset($_SESSION['usuario'])) {
             }
         }
     }
-   
     ?>
     <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-
-strict.dtd">
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-
+        strict.dtd">
     <html>
         <head>
             <meta charset="UTF-8" />
@@ -177,6 +172,7 @@ strict.dtd">
 
                     <div class="container">
                         <h2>Modificar datos</h2>
+                        <!--formulario modificar-->
                         <form method="POST" action="#">
 
                             <div class="row">
@@ -319,6 +315,7 @@ strict.dtd">
             <?php
             include_once '../footer.php';
         } else {
+            //guardamos la url para volver a esta pagína en una variable de sesión y el tipo de usuario
             $_SESSION['url'] = "usuario/modificarDatos.php";
             $_SESSION['tipo'] = 'usuario';
             header("location:../login.php");

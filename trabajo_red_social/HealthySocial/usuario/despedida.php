@@ -36,6 +36,7 @@ if (isset($_SESSION['usuario'])) {
             <?php
             header("refresh:6;url=../login.php");
         } else {
+            //guardamos la url para volver a esta pagína en una variable de sesión y el tipo de usuario
             $_SESSION['url'] = "usuario/despedida.php";
             $_SESSION['tipo'] = 'usuario';
             header("location:../login.php");

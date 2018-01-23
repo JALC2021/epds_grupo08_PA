@@ -357,6 +357,7 @@ if (isset($_SESSION['usuario'])) {
             <?php
             include_once '../footer.php';
         } else {
+            //guardamos la url para volver a esta pagína en una variable de sesión y el tipo de usuario
             $_SESSION['url'] = "usuario/agregarAmigos.php";
             $_SESSION['tipo'] = 'usuario';
             header("location:../login.php");

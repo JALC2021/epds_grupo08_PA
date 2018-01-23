@@ -2,18 +2,15 @@
 session_start();
 
 require_once '../functions.php';
-
+//si la sesión es de administrador
 if (isset($_SESSION['administrador'])) {
-
+    //seleccionamos la base de datos
     $con = connectDB();
-
-    if (!$con) {
-        die("Conexión fallida");
-    }
-
     $db_selected = selectDB($con);
 
+    //si eliminamos el usuario o el contenido
     if (isset($_POST['eliminarUsuario']) || isset($_POST['eliminarContenido'])) {
+        //si eliminamos el usuario o el contenido
         if (isset($_POST['id_usuario_eliminar'])) {
             if (isset($_POST['eliminarUsuario'])) {
                 $rowEliminar = mysqli_query($con, "delete from `usuario` where id_usuario= " . $_POST['id_usuario_eliminar'] . ";");
@@ -50,7 +47,7 @@ if (isset($_SESSION['administrador'])) {
     //Limito la busqueda
     $TAMANO_PAGINA = 5;
 
-//examino la página a mostrar y el inicio del registro a mostrar
+    //examino la página a mostrar y el inicio del registro a mostrar
     if (isset($_GET["pagina"])) {
         $pagina = $_GET["pagina"];
     } else {
@@ -68,7 +65,7 @@ if (isset($_SESSION['administrador'])) {
     $sql = "select * from usuario where tipo like 'usuario' order by usuario;";
     $rs = mysqli_query($con, $sql);
     $num_total_registros = mysqli_num_rows($rs);
-//calculo el total de páginas
+    //calculo el total de páginas
     $total_paginas = ceil($num_total_registros / $TAMANO_PAGINA);
 
     $sql = "select * from usuario where tipo like 'usuario' order by usuario limit " . $inicio . "," . $TAMANO_PAGINA . ";";
@@ -77,7 +74,7 @@ if (isset($_SESSION['administrador'])) {
     $condInicial = isset($_POST['enviar']) && ($_POST['usuario'] != "" || $_POST['nombre'] != "" || $_POST['email'] != "" || $_POST['localidad'] != "" || $_POST['apellidos'] != "");
     if ($condInicial) {
 
-//si el campo no está vacío hacemos las comprobaciones y luego concatenamos los campos rellenos en una sql para solo hacer una sql select
+    //si el campo no está vacío hacemos las comprobaciones y luego concatenamos los campos rellenos en una sql para solo hacer una sql select
 
         $sql = "select usuario,nombre,apellidos,email,localidad from usuario where tipo like 'usuario' and usuario <> '" . $_SESSION['user'] . "' ";
 
@@ -167,6 +164,7 @@ if (isset($_SESSION['administrador'])) {
             <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
             <link rel="shortcut icon" type="image/x-icon" href="../images/logo2.png" />
             <script type="text/javascript">
+//                comprobamos las expresiones regulares
                 function comprobar(campo, expr) {
                     if (!expr.test(campo.value)) {
                         campo.value = "";
@@ -213,6 +211,7 @@ if (isset($_SESSION['administrador'])) {
                     <?PHP
                     $rowUsuario = mysqli_query($con, $sql);
                     disconnectDB($con);
+                    //si no hay coincidencias con el usuario
                     if (mysqli_num_rows($rowUsuario) == 0) {
                         echo "<p>No se encontraron coincidencias</p>";
                     } else {
@@ -222,6 +221,7 @@ if (isset($_SESSION['administrador'])) {
                             <table class="eliminarAmigos">
                                 <tr><th></th><th>Usuario</th><th>Nombre</th><th>Apellidos</th><th>Email</th><th>localidad</th></tr>
                                 <?PHP
+                                //se muestran todos los usuarios encontrados
                                 while ($usuarios = mysqli_fetch_array($rowUsuario)) {
                                     ?>
                                     <tr><td><input type="radio" name="id_usuario_eliminar" value="<?PHP echo $usuarios['id_usuario'] ?>" /></td><td><i class="fa fa-user-o" style="color:#ef8d17;"></i>&nbsp;<?PHP echo $usuarios['usuario'] ?></td><td><?PHP echo $usuarios['nombre'] ?></td><td><?PHP echo $usuarios['apellidos'] ?></td><td><?PHP echo $usuarios['email'] ?></td><td><?PHP echo $usuarios['localidad'] ?></td></tr>
@@ -391,6 +391,7 @@ if (isset($_SESSION['administrador'])) {
             <?php
             include_once '../footer.php';
         } else {
+            //guardamos la url para volver a esta pagína en una variable de sesión y el tipo de usuario
             $_SESSION['url'] = "administrador/eliminarUsuario.php";
             $_SESSION['tipo'] = 'administrador';
             header("location:../login.php");
