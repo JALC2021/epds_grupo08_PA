@@ -7,15 +7,8 @@ if (isset($_SESSION['usuario'])) {
 
     $con = connectDB();
 
-    if (!$con) {
-        die("Conexión fallida");
-    }
-
     $db_selected = selectDB($con);
 
-    if (!$db_selected) {
-        die("Conexión a basde de datos fallida");
-    }
 
     if (isset($_POST['enviar'])) {
 
